@@ -1,6 +1,0 @@
-============ End effector: eff
-Completed Trajectory Planned And To Be Executed After 1 Attempts
-[0m[ INFO] [1638804881.449740810]: Loading robot model 'robotron'...[0m
-[0m[ INFO] [1638804881.449759359]: No root/virtual joint specified in SRDF. Assuming fixed joint[0m
-[0m[ INFO] [1638804882.632041781, 1004.540000000]: Ready to take commands for planning group arm.[0m
-[0m[ INFO] [1638804882.880872197, 1004.700000000]: ABORTED: Solution found but controller failed during execution[0m
