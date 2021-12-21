@@ -1,0 +1,45 @@
+arm_controller:
+  type: position_controllers/JointTrajectoryController
+  joints:
+    - base_link__link1
+    - link1__link2
+    - link2__link3
+    - link3__link4
+    - link4__link5
+  # gains:
+  #   base_link__link1:
+  #     p: 100
+  #     d: 1
+  #     i: 1
+  #     i_clamp: 1
+  #   link1__link2:
+  #     p: 100
+  #     d: 1
+  #     i: 1
+  #     i_clamp: 1
+  #   link2__link3:
+  #     p: 100
+  #     d: 1
+  #     i: 1
+  #     i_clamp: 1
+  #   link3__link4:
+  #     p: 100
+  #     d: 1
+  #     i: 1
+  #     i_clamp: 1
+  #   link4__link5:
+  #     p: 100
+  #     d: 1
+  #     i: 1
+  #     i_clamp: 1
+  constraints:
+    goal_time: 0.6
+    stopped_velocity_tolerance: 0
+    joint_1: {trajectory: 0.1, goal: 0.1}
+    joint_2: {trajectory: 0.1, goal: 0.1}
+    joint_3: {trajectory: 0.1, goal: 0.1}
+    joint_4: {trajectory: 0.1, goal: 0.1}
+
+    stop_trajectory_duration: 0.5
+    state_publish_rate: 25
+    action_monitor_rate: 10

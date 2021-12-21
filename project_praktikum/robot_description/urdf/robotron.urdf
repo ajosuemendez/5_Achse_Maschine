@@ -1,0 +1,354 @@
+<?xml version="1.0" ?>
+<robot name="robotron">
+    <material name="yellow">
+        <color rgba="0.0 0.8 0.0 1.0" />
+    </material>
+    <material name="red">
+        <color rgba="0.0 0.8 0.0 1.0" />
+    </material>
+    <material name="black">
+        <color rgba="0.0 0.0 0.0 1.0" />
+    </material>
+    <material name="blue">
+        <color rgba="0.0 0.0 0.0 1.0" />
+    </material>
+    <material name="white">
+        <color rgba="0.0 0.0 0.0 1.0" />
+    </material>
+    <link name="world" />
+    <!-- BASE LINK -->
+    <link name="base_link">
+        <visual>
+            <origin rpy="0 0 0" xyz="-0.0675 2.035 -0.087" />
+            <material name="silver">
+                <color rgba="0.75 0.75 0.75 1" alpha="100" />
+            </material>
+            <geometry>
+                <!--mesh filename="package://project_praktikum/robot_description/meshes/Flip_Rescaled_EMS1630-CNC-Pro-1500x2000_Z1200_Grundgestell.STL" /-->
+                <mesh filename="package://project_praktikum/robot_description/collision/Simplified_Grundgestell.STL" />
+            </geometry>
+        </visual>
+        <collision>
+            <origin rpy="0 0 0" xyz="-0.0675 2.035 -0.087" />
+            <geometry>
+                <mesh filename="package://project_praktikum/robot_description/collision/Simplified_Grundgestell.STL" />
+            </geometry>
+        </collision>
+
+<inertial>
+            <mass value="0.1" />
+            <inertia ixx="0.076" iyy="0.001" izz="0.076" ixy="0.0" ixz="0.0" iyz="0.0" />
+        </inertial>
+
+    </link>
+    <gazebo reference="base_link">
+        <material>Gazebo/White</material>
+        <turnGravityOff>false</turnGravityOff>
+    </gazebo>
+    <!-- joint -->
+    <joint name="fixed" type="fixed">
+        <parent link="world" />
+        <child link="base_link" />
+        <origin rpy="0 0 0" xyz="0 0 0.085" />
+    </joint>
+    <link name="link1">
+        <visual>
+            <!--origin rpy="0 0 0" xyz="-0.1645 0.0328 0.9295" /--> <!--for mesh fein model -->
+            <origin rpy="0 0 0" xyz="-0.1580 0.03 0.14" /> <!--for mesh grob model -->
+            <!--origin rpy="0 0 0" xyz="0.728 -0.21 0.064" /--> <!--for box model -->
+            <material name="silver">
+                <color rgba="0.75 0.75 0.75 1" alpha="100" />
+            </material>
+            <geometry>
+                <!--mesh filename="package://project_praktikum/robot_description/meshes/Double_Flip_Scaled_EMS1630-CNC-Pro-1500x2000_Z1200_Portal.STL" /--> <!--for fein model -->
+                <mesh filename="package://project_praktikum/robot_description/simplified/Fliped_Scaled_EMS1630-CNC-Pro-1500mm-Portal_Grob.STL" /> <!--for grob model -->
+                <!--box size="1.50 0.160 0.107" /-->
+            </geometry>
+        </visual>
+        <collision>
+            <origin rpy="0 0 0" xyz="0.728 -0.21 0.064" />
+            <geometry>
+                <box size="1.50 0.160 0.107" />
+            </geometry>
+        </collision>
+
+<inertial>
+            <mass value="0.1" />
+            <inertia ixx="0.001" iyy="0.141" izz="0.141" ixy="0.0" ixz="0.0" iyz="0.0" />
+        </inertial>
+
+    </link>
+    <gazebo reference="link1">
+        <material>Gazebo/White</material>
+        <turnGravityOff>false</turnGravityOff>
+    </gazebo>
+    <joint name="base_link__link1" type="prismatic">
+        <origin rpy="-1.57079 0 0" xyz="-0.026 0.1919 0.989" />
+        <parent link="base_link" />
+        <child link="link1" />
+        <axis xyz="0 0 1" />
+        <limit lower="0" upper="1.5" effort="15" velocity="0.5" />
+    </joint>
+    <link name="link2">
+        <visual>
+            <!--origin rpy="0 0 0" xyz="-0.907 0.110 -0.012" /--> <!--for mesh fein model -->
+            <origin rpy="0 0 0" xyz="-0.110 0.1075 -0.012" /> <!--for mesh grob model -->
+            <!--origin rpy="0 0 0" xyz="0.025 0 0.172" /--> <!--for box model -->
+            <material name="silver">
+                <color rgba="0.75 0.75 0.75 1" alpha="100" />
+            </material>
+            <geometry>
+                <!--mesh filename="package://project_praktikum/robot_description/meshes/X-Schlitten_final.STL" /-->
+                <mesh filename="package://project_praktikum/robot_description/simplified/Scaled_EMS1630-CNC-Pro-X-Schlitten_Grob.STL" /> <!--for grob model -->
+                <!--box size="0.015 0.18 0.340" /-->
+            </geometry>
+        </visual>
+        <collision>
+            <origin rpy="0 0 0" xyz="0.025 0 0.172" />
+            <geometry>
+                <box size="0.015 0.18 0.340" />
+            </geometry>
+        </collision>
+
+<inertial>
+            <mass value="0.1" />
+            <inertia ixx="0.004" iyy="0.004" izz="0.001" ixy="0.0" ixz="0.0" iyz="0.0" />
+        </inertial>
+
+    </link>
+    <gazebo reference="link2">
+        <material>Gazebo/White</material>
+        <turnGravityOff>false</turnGravityOff>
+    </gazebo>
+    <joint name="link1__link2" type="prismatic">
+        <origin rpy="0 1.57079 0" xyz="0.02342 -0.210 0.023" />
+        <parent link="link1" />
+        <child link="link2" />
+        <axis xyz="0 0 1" />
+        <limit lower="0" upper="1.06" effort="15" velocity="0.5" />
+    </joint>
+    <link name="link3">
+        <visual>
+            <!--origin rpy="0 0 0" xyz="-1.1460 0.0877 0.0118" /--> <!--for mesh model -->
+            <origin rpy="0 0 0" xyz="-0.0400 0.001 -0.344" /> <!--for Box model -->
+            <material name="silver">
+                <color rgba="0.75 0.75 0.75 1" alpha="100" />
+            </material>
+            <geometry>
+                <!--mesh filename="package://project_praktikum/robot_description/meshes/Z-Achse_Scaled_Flip.STL" /-->
+                <box size="0.250 0.165 0.7" />
+            </geometry>
+        </visual>
+        <collision>
+            <origin rpy="0 0 0" xyz="-0.0400 0.001 -0.344" />
+            <geometry>
+                <box size="0.250 0.165 0.7" />
+            </geometry>
+        </collision>
+
+<inertial>
+            <mass value="0.1" />
+            <inertia ixx="0.041" iyy="0.001" izz="0.041" ixy="0.0" ixz="0.0" iyz="0.0" />
+        </inertial>
+
+    </link>
+    <gazebo reference="link3">
+        <material>Gazebo/White</material>
+        <turnGravityOff>false</turnGravityOff>
+    </gazebo>
+    <joint name="link2__link3" type="prismatic">
+        <origin rpy="-1.57079 0 0" xyz="0.201 0.141 0.1755" />
+        <parent link="link2" />
+        <child link="link3" />
+        <axis xyz="0 0 1" />
+        <limit lower="0" upper="0.45" effort="15" velocity="0.5" />
+    </joint>
+    <link name="link4">
+        <visual>
+            <origin rpy="0 0 0" xyz="-1.078 -0.277 0.402" /> <!--for mesh model -->
+            <material name="silver">
+                <color rgba="0.75 0.75 0.75 1" alpha="100" />
+            </material>
+            <geometry>
+                <!--mesh filename="package://project_praktikum/robot_description/meshes/Drehachse_C_Final.STL" /-->
+                <mesh filename="package://project_praktikum/robot_description/collision/Simplified_Drehachse_C_Final.STL" />
+            </geometry>
+        </visual>
+        <collision>
+            <origin rpy="0 0 0" xyz="-1.078 -0.277 0.402" />
+            <geometry>
+                <mesh filename="package://project_praktikum/robot_description/collision/Simplified_Drehachse_C_Final.STL" />
+            </geometry>
+        </collision>
+
+<inertial>
+            <mass value="0.1" />
+            <inertia ixx="0.001" iyy="0.001" izz="0.001" ixy="0.0" ixz="0.0" iyz="0.0" />
+        </inertial>
+
+    </link>
+    <gazebo reference="link4">
+        <material>Gazebo/White</material>
+        <turnGravityOff>false</turnGravityOff>
+    </gazebo>
+    <joint name="link3__link4" type="revolute">
+        <origin rpy="0 0 0" xyz="0 0 0.01025" />
+        <parent link="link3" />
+        <child link="link4" />
+        <axis xyz="0 0 1" />
+        <limit lower="0" upper="6.28" effort="30" velocity="0.5" />
+        <dynamics damping="0.01" friction="0.01" />
+    </joint>
+    <link name="link5">
+        <visual>
+            <origin rpy="0 0 0" xyz="-0.0657 -0.3125 -1.0178" /> <!--for mesh model -->
+            <material name="silver">
+                <color rgba="0.75 0.75 0.75 1" alpha="100" />
+            </material>
+            <geometry>
+                <mesh filename="package://project_praktikum/robot_description/meshes/Drehachse_B_Final.STL" />
+            </geometry>
+        </visual>
+        <collision>
+            <origin rpy="0 0 0" xyz="-0.0657 -0.3125 -1.0178" />
+            <geometry>
+                <mesh filename="package://project_praktikum/robot_description/meshes/Drehachse_B_Final.STL" />
+            </geometry>
+        </collision>
+
+<inertial>
+            <mass value="0.1" />
+            <inertia ixx="0.004" iyy="0.004" izz="0.001" ixy="0.0" ixz="0.0" iyz="0.0" />
+        </inertial>
+
+    </link>
+    <gazebo reference="link5">
+        <material>Gazebo/White</material>
+        <turnGravityOff>false</turnGravityOff>
+    </gazebo>
+    <joint name="link4__link5" type="revolute">
+        <origin rpy="0 1.57079 0" xyz="-0.066 0 0.315" />
+        <parent link="link4" />
+        <child link="link5" />
+        <axis xyz="0 0 1" />
+        <limit lower="-3.14" upper="3.14" effort="30" velocity="0.5" />
+        <dynamics damping="0.01" friction="0.01" />
+    </joint>
+    <link name="tool_link">
+        <visual>
+            <origin rpy="0 0 0" xyz="0 0 0" />
+        </visual>
+        <collision>
+            <origin rpy="0 0 0" xyz="0 0 0" />
+        </collision>
+
+<inertial>
+            <mass value="0.1" />
+            <inertia ixx="0.03" iyy="0.03" izz="0.03" ixy="0.0" ixz="0.0" iyz="0.0" />
+        </inertial>
+
+    </link>
+    <joint name="link5__tool_link" type="fixed">
+        <parent link="link5" />
+        <child link="tool_link" />
+        <origin rpy="0 1.57 0" xyz="0 0 0.066" />
+    </joint>
+    <link name="eff">
+        <visual>
+            <origin rpy="0 0 0" xyz="0 0 0" />
+        </visual>
+        <collision>
+            <origin rpy="0 0 0" xyz="0 0 0" />
+        </collision>
+
+<inertial>
+            <mass value="0.1" />
+            <inertia ixx="0.03" iyy="0.03" izz="0.03" ixy="0.0" ixz="0.0" iyz="0.0" />
+        </inertial>
+
+    </link>
+    <joint name="tool_link__eff" type="fixed">
+        <parent link="tool_link" />
+        <child link="eff" />
+        <origin rpy="0 0 -1.57" xyz="0.000 0.000 -0.188" />
+    </joint>
+
+
+    <transmission name="trans_base_link__link1">
+        <type>transmission_interface/SimpleTransmission</type>
+        <joint name="base_link__link1">
+            <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+        </joint>
+        <actuator name="base_link__link1_motor">
+            <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+            <mechanicalReduction>1</mechanicalReduction>
+        </actuator>
+    </transmission>
+
+    <transmission name="trans_link1__link2">
+        <type>transmission_interface/SimpleTransmission</type>
+        <joint name="link1__link2">
+            <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+        </joint>
+        <actuator name="link1__link2_motor">
+            <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+            <mechanicalReduction>1</mechanicalReduction>
+        </actuator>
+    </transmission>
+
+    <transmission name="trans_link2__link3">
+        <type>transmission_interface/SimpleTransmission</type>
+        <joint name="link2__link3">
+            <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+        </joint>
+        <actuator name="link2__link3_motor">
+            <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+            <mechanicalReduction>1</mechanicalReduction>
+        </actuator>
+    </transmission>
+
+    <transmission name="trans_link3__link4">
+        <type>transmission_interface/SimpleTransmission</type>
+        <joint name="link3__link4">
+            <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+        </joint>
+        <actuator name="link3__link4_motor">
+            <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+            <mechanicalReduction>1</mechanicalReduction>
+        </actuator>
+    </transmission>
+
+    <transmission name="trans_link4__link5">
+        <type>transmission_interface/SimpleTransmission</type>
+        <joint name="link4__link5">
+            <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+        </joint>
+        <actuator name="link4__link5_motor">
+            <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+            <mechanicalReduction>1</mechanicalReduction>
+        </actuator>
+    </transmission>
+
+    <gazebo>
+        <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
+            <robotNamespace>/</robotNamespace>
+        </plugin>
+    </gazebo>
+
+    <gazebo>
+        <plugin name="gazebo_grasp_fix" filename="libgazebo_grasp_fix.so">
+            <arm>
+                <arm_name>arm</arm_name>
+                <palm_link>link4__link5</palm_link>
+            </arm>
+            <forces_angle_tolerance>100</forces_angle_tolerance>
+            <update_rate>4</update_rate>
+            <grip_count_threshold>4</grip_count_threshold>
+            <max_grip_count>8</max_grip_count>
+            <release_tolerance>0.005</release_tolerance>
+            <disable_collisions_on_attach>false</disable_collisions_on_attach>
+            <contact_topic>__default_topic__</contact_topic>
+        </plugin>
+    </gazebo>
+
+</robot>

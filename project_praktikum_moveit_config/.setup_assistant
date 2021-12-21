@@ -1,0 +1,11 @@
+moveit_setup_assistant_config:
+  URDF:
+    package: project_praktikum
+    relative_path: robot_description/urdf/robotron.urdf
+    xacro_args: ""
+  SRDF:
+    relative_path: config/robotron.srdf
+  CONFIG:
+    author_name: alejandro
+    author_email: alejandor@gmail.com
+    generated_timestamp: 1638438351
