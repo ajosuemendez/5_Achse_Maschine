@@ -1,0 +1,5 @@
+<launch>
+    <include file="$(find project_praktikum_moveit_config)/launch/gazebo.launch" />
+    <include file="$(find project_praktikum_moveit_config)/launch/move_group.launch" />
+    <include file="$(find project_praktikum_moveit_config)/launch/moveit_rviz.launch" />
+</launch>

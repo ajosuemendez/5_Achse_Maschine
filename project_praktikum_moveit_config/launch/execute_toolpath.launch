@@ -1,0 +1,5 @@
+<?xml version="1.0"?>
+<launch>
+  <node name="save_gcode" pkg="project_praktikum_moveit_config" type="save_gcode.py" output="screen"/>
+  <node name="test_path_constraint" pkg="project_praktikum_moveit_config" type="test_path_constraints.py" output="screen"/>
+</launch>

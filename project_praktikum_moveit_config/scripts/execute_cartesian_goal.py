@@ -113,12 +113,17 @@ class MoveGroupPythonIntefaceTutorial(object):
 def main():
     try:
         tutorial = MoveGroupPythonIntefaceTutorial()
-        x = sys.argv[1]#input("Give the value you want to move along the x-axis (in m): ")
-        y = sys.argv[2]#input("Give the value you want to move along the y-axis (in m): ")
-        z = sys.argv[3]#input("Give the value you want to move along the z-axis (in m): ")
-        r = sys.argv[4]#input("Give the value you want to roll (in degrees): ")
-        p = sys.argv[5]#input("Give the value you want to pitch (in degrees): ")
-        yaw = sys.argv[6]#input("Give the value for yaw (in degrees): ")
+
+        delta_deg = -60
+        delta_rad = math.radians(delta_deg)
+        m = math.tan(delta_rad)
+
+        x = -0.1 #sys.argv[1]#input("Give the value you want to move along the x-axis (in m): ")
+        y = 0 #sys.argv[2]#input("Give the value you want to move along the y-axis (in m): ")
+        z = m*x #sys.argv[3]#input("Give the value you want to move along the z-axis (in m): ")
+        r = 0 #sys.argv[4]#input("Give the value you want to roll (in degrees): ")
+        p = 0 #sys.argv[5]#input("Give the value you want to pitch (in degrees): ")
+        yaw = 0 #sys.argv[6]#input("Give the value for yaw (in degrees): ")
 
         cartesian_plan, fraction, success, attempts = tutorial.plan_cartesian_path(x_input=x, y_input=y, z_input=z, r_input=r, p_input=p, yaw_input=yaw)
 

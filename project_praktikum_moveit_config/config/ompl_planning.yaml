@@ -129,7 +129,7 @@ planner_configs:
     max_failures: 5000  # maximum consecutive failure limit. default: 5000
 arm:
   enforce_joint_model_state_space: true
-  default_planner_config: RRTConnect
+  #default_planner_config: RRTConnect
   planner_configs:
     - AnytimePathShortening
     - SBL
@@ -155,3 +155,4 @@ arm:
     - LazyPRMstar
     - SPARS
     - SPARStwo
+  longest_valid_segment_fraction: 0.5

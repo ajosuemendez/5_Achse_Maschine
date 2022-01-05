@@ -11,6 +11,7 @@ import moveit_commander
 import moveit_msgs.msg
 import geometry_msgs.msg
 import tf
+import math
 
 
 try:
@@ -90,20 +91,44 @@ class MoveGroupPythonInterfaceTutorial(object):
         self.planning_frame = planning_frame
         self.eef_link = eef_link
         self.group_names = group_names
+        self.pose_goal = geometry_msgs.msg.PoseStamped()
 
     def go_to_pose_goal(self, roll_input, pitch_input, yaw_input, x_input, y_input, z_input):
 
-        pose_goal = geometry_msgs.msg.Pose()
-        quaternion = tf.transformations.quaternion_from_euler(float(roll_input) ,float(pitch_input) ,float(yaw_input))
-        pose_goal.orientation.x = quaternion[0]
-        pose_goal.orientation.y = quaternion[1]
-        pose_goal.orientation.z = quaternion[2]
-        pose_goal.orientation.w = quaternion[3]
-        pose_goal.position.x = float(x_input)
-        pose_goal.position.y = float(y_input)
-        pose_goal.position.z = float(z_input)
+        scale_m = 0.001
+        self.pose_goal = geometry_msgs.msg.PoseStamped()
 
-        self.move_group.set_pose_target(pose_goal)
+        quaternion = tf.transformations.quaternion_from_euler(math.radians(roll_input) ,math.radians(pitch_input) ,math.radians(yaw_input))
+        self.pose_goal.pose.orientation.x = quaternion[0]
+        self.pose_goal.pose.orientation.y = quaternion[1]
+        self.pose_goal.pose.orientation.z = quaternion[2]
+        self.pose_goal.pose.orientation.w = quaternion[3]
+        self.pose_goal.pose.position.x = x_input*scale_m
+        self.pose_goal.pose.position.y = y_input*scale_m
+        self.pose_goal.pose.position.z = z_input*scale_m
+
+        self.move_group.set_pose_target(self.pose_goal.pose)
+
+        my_scale = 1000
+        calc_plan = self.move_group.plan()
+
+        for i in range(len(calc_plan[1].joint_trajectory.points)):
+            my_x = my_scale*calc_plan[1].joint_trajectory.points[i].positions[1]
+            my_y = my_scale*calc_plan[1].joint_trajectory.points[i].positions[0]
+            my_z = -my_scale*calc_plan[1].joint_trajectory.points[i].positions[2]
+            my_c = math.degrees(calc_plan[1].joint_trajectory.points[i].positions[3])
+            my_b = math.degrees(calc_plan[1].joint_trajectory.points[i].positions[4])
+
+            array = [(my_x, 'X'),(my_y, 'Y'),(my_z,'Z'),(my_b,'B'),(my_c,'C')]
+
+            for k in array:
+                if i== 0:
+                    print(f"current joint position {k[1]}: {k[0]}")
+                else:
+                    print(f"calculated joint position {k[1]}: {k[0]}")
+
+
+    def execute_pose_goal(self):
 
         plan = self.move_group.go(wait=True)
 
@@ -112,19 +137,21 @@ class MoveGroupPythonInterfaceTutorial(object):
         self.move_group.clear_pose_targets()
 
         current_pose = self.move_group.get_current_pose().pose
-        return all_close(pose_goal, current_pose, 0.01)
+        return all_close(self.pose_goal.pose, current_pose, 0.01)
 
 def main():
     try:
         tutorial = MoveGroupPythonInterfaceTutorial()
-        roll_input = input("Please enter the Roll rad: ")
-        pitch_input = input("Please enter the Pitch: rad")
-        yaw_input = input("Please enter the Yaw rad: ")
-        x_input = input("Please enter the x m: ")
-        y_input = input("Please enter the y m: ")
-        z_input = input("Please enter the z m: ")
+        roll_input = 0
+        pitch_input = float(input("Please enter the Pitch deg: "))
+        yaw_input = float(input("Please enter the Yaw deg: "))
+        x_input = float(input("Please enter the x mm: "))
+        y_input = float(input("Please enter the y mm: "))
+        z_input = float(input("Please enter the z mm: "))
 
         tutorial.go_to_pose_goal(roll_input, pitch_input, yaw_input, x_input, y_input, z_input)
+        tutorial.execute_pose_goal()
+
 
     except rospy.ROSInterruptException:
         return
