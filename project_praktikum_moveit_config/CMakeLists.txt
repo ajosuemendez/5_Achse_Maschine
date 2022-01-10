@@ -1,7 +1,22 @@
 cmake_minimum_required(VERSION 3.1.3)
 project(project_praktikum_moveit_config)
 
-find_package(catkin REQUIRED)
+find_package(catkin REQUIRED COMPONENTS
+  roscpp
+  rospy
+  std_msgs
+  message_generation
+)
+
+add_service_files(
+  FILES
+  CalculateJoints.srv
+)
+
+generate_messages(
+    DEPENDENCIES
+    std_msgs
+)
 
 catkin_package()
 
@@ -30,5 +45,6 @@ catkin_install_python(PROGRAMS
     scripts/cartesian_path.py
     scripts/save_gcode.py
     scripts/joint_space_planning.py
+    scripts/simple_gui.py
     DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )

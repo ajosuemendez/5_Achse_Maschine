@@ -12,6 +12,7 @@ import moveit_msgs.msg
 import geometry_msgs.msg
 import tf
 import math
+from project_praktikum_moveit_config.srv import CalculateJoints, CalculateJointsResponse
 
 
 try:
@@ -68,7 +69,7 @@ class MoveGroupPythonInterfaceTutorial(object):
         super(MoveGroupPythonInterfaceTutorial, self).__init__()
 
         moveit_commander.roscpp_initialize(sys.argv)
-        rospy.init_node("move_group_python_interface_tutorial", anonymous=True)
+
         robot = moveit_commander.RobotCommander()
         scene = moveit_commander.PlanningSceneInterface()
         group_name = "arm"
@@ -92,40 +93,63 @@ class MoveGroupPythonInterfaceTutorial(object):
         self.eef_link = eef_link
         self.group_names = group_names
         self.pose_goal = geometry_msgs.msg.PoseStamped()
+        self.calc_pose_service = rospy.Service("/calc_pose", CalculateJoints, self.callback_calc_pose)
 
-    def go_to_pose_goal(self, roll_input, pitch_input, yaw_input, x_input, y_input, z_input):
 
+
+
+    #def go_to_pose_goal(self, pitch_input, yaw_input, x_input, y_input, z_input):
+    def callback_calc_pose(self,req):
+
+        current_joints_list = []
+        calculated_joints_list = []
+        Invalid_plan = True
         scale_m = 0.001
         self.pose_goal = geometry_msgs.msg.PoseStamped()
+        roll_input = 0
 
-        quaternion = tf.transformations.quaternion_from_euler(math.radians(roll_input) ,math.radians(pitch_input) ,math.radians(yaw_input))
+        quaternion = tf.transformations.quaternion_from_euler(math.radians(roll_input) ,math.radians(req.pitch_input) ,math.radians(req.yaw_input))
         self.pose_goal.pose.orientation.x = quaternion[0]
         self.pose_goal.pose.orientation.y = quaternion[1]
         self.pose_goal.pose.orientation.z = quaternion[2]
         self.pose_goal.pose.orientation.w = quaternion[3]
-        self.pose_goal.pose.position.x = x_input*scale_m
-        self.pose_goal.pose.position.y = y_input*scale_m
-        self.pose_goal.pose.position.z = z_input*scale_m
+        self.pose_goal.pose.position.x = req.x_input*scale_m
+        self.pose_goal.pose.position.y = req.y_input*scale_m
+        self.pose_goal.pose.position.z = req.z_input*scale_m
 
         self.move_group.set_pose_target(self.pose_goal.pose)
 
         my_scale = 1000
         calc_plan = self.move_group.plan()
+        length = len(calc_plan[1].joint_trajectory.points)
 
-        for i in range(len(calc_plan[1].joint_trajectory.points)):
-            my_x = my_scale*calc_plan[1].joint_trajectory.points[i].positions[1]
-            my_y = my_scale*calc_plan[1].joint_trajectory.points[i].positions[0]
-            my_z = -my_scale*calc_plan[1].joint_trajectory.points[i].positions[2]
-            my_c = math.degrees(calc_plan[1].joint_trajectory.points[i].positions[3])
-            my_b = math.degrees(calc_plan[1].joint_trajectory.points[i].positions[4])
+        if length:
+            Invalid_plan = False
+            for i in range(length):
+                my_x = round(my_scale*calc_plan[1].joint_trajectory.points[i].positions[1], 2)
+                my_y = round(my_scale*calc_plan[1].joint_trajectory.points[i].positions[0],2)
+                my_z = round(-my_scale*calc_plan[1].joint_trajectory.points[i].positions[2],2)
+                my_c = round(math.degrees(calc_plan[1].joint_trajectory.points[i].positions[3]),2)
+                my_b = round(math.degrees(calc_plan[1].joint_trajectory.points[i].positions[4]),2)
 
-            array = [(my_x, 'X'),(my_y, 'Y'),(my_z,'Z'),(my_b,'B'),(my_c,'C')]
+                # array = [(my_x, 'X'),(my_y, 'Y'),(my_z,'Z'),(my_b,'B'),(my_c,'C')]
+                #
+                # for k in array:
+                #     if i== 0:
+                #         print(f"current joint position {k[1]}: {k[0]}")
+                #     else:
+                #         print(f"calculated joint position {k[1]}: {k[0]}")
+                array = [my_x, my_y, my_z, my_b,my_c]
 
-            for k in array:
-                if i== 0:
-                    print(f"current joint position {k[1]}: {k[0]}")
-                else:
-                    print(f"calculated joint position {k[1]}: {k[0]}")
+
+                for k in array:
+                    if i== 0:
+                        current_joints_list.append(k)
+                    else:
+                        calculated_joints_list.append(k)
+
+
+        return CalculateJointsResponse([*current_joints_list, *calculated_joints_list], Invalid_plan)
 
 
     def execute_pose_goal(self):
@@ -141,16 +165,23 @@ class MoveGroupPythonInterfaceTutorial(object):
 
 def main():
     try:
-        tutorial = MoveGroupPythonInterfaceTutorial()
-        roll_input = 0
-        pitch_input = float(input("Please enter the Pitch deg: "))
-        yaw_input = float(input("Please enter the Yaw deg: "))
-        x_input = float(input("Please enter the x mm: "))
-        y_input = float(input("Please enter the y mm: "))
-        z_input = float(input("Please enter the z mm: "))
+        #tutorial = MoveGroupPythonInterfaceTutorial()
+        MoveGroupPythonInterfaceTutorial()
+        rospy.init_node("move_group_python_interface_tutorial", anonymous=True)
+        rospy.loginfo("EXECUTE_POSE NODE IS READY")
+        rospy.spin()
 
-        tutorial.go_to_pose_goal(roll_input, pitch_input, yaw_input, x_input, y_input, z_input)
-        tutorial.execute_pose_goal()
+        # roll_input = 0
+        # pitch_input = float(input("Please enter the Pitch deg: "))
+        # yaw_input = float(input("Please enter the Yaw deg: "))
+        # x_input = float(input("Please enter the x mm: "))
+        # y_input = float(input("Please enter the y mm: "))
+        # z_input = float(input("Please enter the z mm: "))
+        #
+        # tutorial.go_to_pose_goal(roll_input, pitch_input, yaw_input, x_input, y_input, z_input)
+        # int = input("press 'y' to go to the new position? ")
+        # if int.lower() == "y":
+        #     tutorial.execute_pose_goal()
 
 
     except rospy.ROSInterruptException:

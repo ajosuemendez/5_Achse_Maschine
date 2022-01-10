@@ -1,0 +1,320 @@
+FloatLayout:
+    canvas:
+        Color:
+            rgba: app.theme_cls.primary_light
+        RoundedRectangle:
+            pos: self.pos
+            size: self.size
+            radius: [0, 0, 0, 0]
+
+    MDLabel:
+        text: "Desired Pose"
+        halign: "center"
+        theme_text_color: "Custom"
+        text_color: 0, 0, 0, 1
+        pos_hint: {"center_x": 0.15, "center_y": 0.9}
+        font_style: 'H5'
+
+    MDLabel:
+        text: "Current Joints"
+        halign: "center"
+        theme_text_color: "Custom"
+        text_color: 0, 0, 0, 1
+        pos_hint: {"center_x": 0.5, "center_y": 0.9}
+        font_style: 'H5'
+
+    MDLabel:
+        text: "Calculated Joints"
+        halign: "center"
+        theme_text_color: "Custom"
+        text_color: 0, 0, 0, 1
+        pos_hint: {"center_x": 0.8, "center_y": 0.9}
+        font_style: 'H5'
+
+    MDRaisedButton:
+        id: "calculate"
+        text: "calculate"
+        height: "30dp"
+        width: "300dp"
+        pos_hint: {"center_x": 0.22, "center_y": 0.53}
+        md_bg_color: app.theme_cls.primary_color
+        on_press: app.calculate(*args)
+
+    MDRaisedButton:
+        id: "clear"
+        text: "clear"
+        height: "30dp"
+        width: "300dp"
+        pos_hint: {"center_x": 0.1, "center_y": 0.53}
+        md_bg_color: app.theme_cls.primary_color
+        on_press: app.clear()
+
+    MDRaisedButton:
+        id: "execute"
+        text: "execute"
+        height: "30dp"
+        width: "300dp"
+        pos_hint: {"center_x": 0.85, "center_y": 0.53}
+        md_bg_color: app.theme_cls.primary_color
+        on_press: app.execute()
+
+    MDRaisedButton:
+        id: "gcode"
+        text: "gcode"
+        height: "30dp"
+        width: "300dp"
+        pos_hint: {"center_x": 0.73, "center_y": 0.53}
+        md_bg_color: app.theme_cls.primary_color
+        on_press: app.gcode()
+
+    MDTextField:
+        id: x_coordinate
+        pos_hint: {"center_x": 0.20, "center_y": 0.8}
+        size_hint: 0.15, None
+        #hint_text: "X in mm"
+        #required: True
+        height: "30dp"
+        halign: "left"
+        #mode: "rectangle"
+
+    MDLabel:
+        text: "X mm"
+        halign: "center"
+        theme_text_color: "Custom"
+        text_color: 0, 0, 0, 1
+        pos_hint: {"center_x": 0.09, "center_y": 0.8}
+
+    MDTextField:
+        id: y_coordinate
+        pos_hint: {"center_x": 0.20, "center_y": 0.75}
+        size_hint: 0.15, None
+        #hint_text: "Y in mm"
+        #required: True
+        height: "30dp"
+        halign: "left"
+        #mode: "rectangle"
+
+    MDLabel:
+        text: "Y mm"
+        halign: "center"
+        theme_text_color: "Custom"
+        text_color: 0, 0, 0, 1
+        pos_hint: {"center_x": 0.09, "center_y": 0.75}
+
+    MDTextField:
+        id: z_coordinate
+        pos_hint: {"center_x": 0.20, "center_y": 0.7}
+        size_hint: 0.15, None
+        #hint_text: "Z in mm"
+        #required: True
+        height: "30dp"
+        halign: "left"
+        #mode: "rectangle"
+
+    MDLabel:
+        text: "Z mm"
+        halign: "center"
+        theme_text_color: "Custom"
+        text_color: 0, 0, 0, 1
+        pos_hint: {"center_x": 0.09, "center_y": 0.7}
+
+    MDTextField:
+        id: pitch_coordinate
+        pos_hint: {"center_x": 0.20, "center_y": 0.65}
+        size_hint: 0.15, None
+        #hint_text: "B in Degrees"
+        #required: True
+        height: "30dp"
+        halign: "left"
+        #mode: "rectangle"
+
+    MDLabel:
+        text: "PITCH deg"
+        halign: "center"
+        theme_text_color: "Custom"
+        text_color: 0, 0, 0, 1
+        pos_hint: {"center_x": 0.07, "center_y": 0.65}
+
+    MDTextField:
+        id: yaw_coordinate
+        pos_hint: {"center_x": 0.20, "center_y": 0.60}
+        size_hint: 0.15, None
+        #hint_text: "C in Degrees"
+        #required: True
+        height: "30dp"
+        halign: "left"
+        #mode: "rectangle"
+
+    MDLabel:
+        text: "YAW deg"
+        halign: "center"
+        theme_text_color: "Custom"
+        text_color: 0, 0, 0, 1
+        pos_hint: {"center_x": 0.07, "center_y": 0.60}
+
+###############################################################################################
+####################CURRENT JOINTS#############################################################
+
+    MDLabel:
+        text: "X"
+        halign: "center"
+        theme_text_color: "Custom"
+        text_color: 0, 0, 0, 1
+        pos_hint: {"center_x": 0.40, "center_y": 0.8}
+
+    MDLabel:
+        id: current_joint_x
+        text: "0"
+        halign: "left"
+        theme_text_color: "Custom"
+        text_color: 0, 0, 0, 1
+        pos_hint: {"center_x": 0.95, "center_y": 0.8}
+
+
+    MDLabel:
+        text: "Y"
+        halign: "center"
+        theme_text_color: "Custom"
+        text_color: 0, 0, 0, 1
+        pos_hint: {"center_x": 0.40, "center_y": 0.75}
+
+    MDLabel:
+        id: current_joint_y
+        text: "0"
+        halign: "left"
+        theme_text_color: "Custom"
+        text_color: 0, 0, 0, 1
+        pos_hint: {"center_x": 0.95, "center_y": 0.75}
+
+
+
+    MDLabel:
+        text: "Z"
+        halign: "center"
+        theme_text_color: "Custom"
+        text_color: 0, 0, 0, 1
+        pos_hint: {"center_x": 0.40, "center_y": 0.7}
+
+    MDLabel:
+        id: current_joint_z
+        text: "0"
+        halign: "left"
+        theme_text_color: "Custom"
+        text_color: 0, 0, 0, 1
+        pos_hint: {"center_x": 0.95, "center_y": 0.7}
+
+
+
+    MDLabel:
+        text: "B"
+        halign: "center"
+        theme_text_color: "Custom"
+        text_color: 0, 0, 0, 1
+        pos_hint: {"center_x": 0.40, "center_y": 0.65}
+
+    MDLabel:
+        id: current_joint_b
+        text: "0"
+        halign: "left"
+        theme_text_color: "Custom"
+        text_color: 0, 0, 0, 1
+        pos_hint: {"center_x": 0.95, "center_y": 0.65}
+
+
+    MDLabel:
+        text: "C"
+        halign: "center"
+        theme_text_color: "Custom"
+        text_color: 0, 0, 0, 1
+        pos_hint: {"center_x": 0.40, "center_y": 0.60}
+
+    MDLabel:
+        id: current_joint_c
+        text: "0"
+        halign: "left"
+        theme_text_color: "Custom"
+        text_color: 0, 0, 0, 1
+        pos_hint: {"center_x": 0.95, "center_y": 0.60}
+
+###############################################################################################
+####################CALC JOINTS####################################################################
+    MDLabel:
+        text: "X"
+        halign: "center"
+        theme_text_color: "Custom"
+        text_color: 0, 0, 0, 1
+        pos_hint: {"center_x": 0.7, "center_y": 0.8}
+
+    MDLabel:
+        id: calc_joint_x
+        text: "0"
+        halign: "left"
+        theme_text_color: "Custom"
+        text_color: 0, 0, 0, 1
+        pos_hint: {"center_x": 1.25, "center_y": 0.8}
+
+
+    MDLabel:
+        text: "Y"
+        halign: "center"
+        theme_text_color: "Custom"
+        text_color: 0, 0, 0, 1
+        pos_hint: {"center_x": 0.7, "center_y": 0.75}
+
+    MDLabel:
+        id: calc_joint_y
+        text: "0"
+        halign: "left"
+        theme_text_color: "Custom"
+        text_color: 0, 0, 0, 1
+        pos_hint: {"center_x": 1.25, "center_y": 0.75}
+
+
+
+    MDLabel:
+        text: "Z"
+        halign: "center"
+        theme_text_color: "Custom"
+        text_color: 0, 0, 0, 1
+        pos_hint: {"center_x": 0.7, "center_y": 0.7}
+
+    MDLabel:
+        id: calc_joint_z
+        text: "0"
+        halign: "left"
+        theme_text_color: "Custom"
+        text_color: 0, 0, 0, 1
+        pos_hint: {"center_x": 1.25, "center_y": 0.7}
+
+
+
+    MDLabel:
+        text: "B"
+        halign: "center"
+        theme_text_color: "Custom"
+        text_color: 0, 0, 0, 1
+        pos_hint: {"center_x": 0.7, "center_y": 0.65}
+
+    MDLabel:
+        id: calc_joint_b
+        text: "0"
+        halign: "left"
+        theme_text_color: "Custom"
+        text_color: 0, 0, 0, 1
+        pos_hint: {"center_x": 1.25, "center_y": 0.65}
+
+
+    MDLabel:
+        text: "C"
+        halign: "center"
+        theme_text_color: "Custom"
+        text_color: 0, 0, 0, 1
+        pos_hint: {"center_x": 0.7, "center_y": 0.60}
+
+    MDLabel:
+        id: calc_joint_c
+        text: "0"
+        halign: "left"
+        theme_text_color: "Custom"
+        text_color: 0, 0, 0, 1
+        pos_hint: {"center_x": 1.25, "center_y": 0.60}
