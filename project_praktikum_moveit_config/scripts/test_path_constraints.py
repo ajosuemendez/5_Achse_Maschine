@@ -240,30 +240,6 @@ def main():
         with open("/home/praktikant2/ws_moveit/src/project_praktikum_moveit_config/scripts/5d_samples.txt") as f:
             lines= f.readlines()
 
-        #x_input = 600
-        #y_input = 600
-        #z_input = 550
-        #roll_input = 0
-        #pitch_input = i
-        #yaw_input = 0
-
-        #for i in range(0,-92, -2):
-        #for i in range(0,-91,-2):
-        #for i in range(1):
-            #roll_input = input("Please enter the Roll in deg: ")
-            #pitch_input = input("Please enter the Pitch in deg: ")
-            #yaw_input = input("Please enter the Yaw in deg: ")
-            #x_input = input("Please enter the x (between 174mm-1234mm) in mm: ")
-            #y_input = input("Please enter the y (between 15mm-1515mm) in mm: ")
-            #z_input = input("Please enter the z (between 180mm-630mm)in mm: ")
-            #x_input = 600
-            #y_input = 600
-            #z_input = 550
-            #roll_input = 0
-            #pitch_input = i
-            #yaw_input = 0
-            #tutorial.go_to_pose_goal(roll_input, pitch_input, yaw_input, x_input, y_input, z_input)
-
         for line in lines:
             pattern = re.compile(r'([.-]|)\d*\.\d*')
             matches = pattern.finditer(str(line))

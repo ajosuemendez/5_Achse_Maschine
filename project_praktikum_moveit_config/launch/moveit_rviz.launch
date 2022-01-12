@@ -11,5 +11,26 @@
   <node name="$(anon rviz)" launch-prefix="$(arg launch_prefix)" pkg="rviz" type="rviz" respawn="false"
         args="$(arg command_args)" output="screen">
   </node>
+  <!-- <arg name="use_rviz" default="true" />
+  <node pkg="rviz" type ="rviz" name="rviz"
+    args="-d $(find rviz_camera_stream)/config/rviz_camera_stream.rviz"
+    if="$(arg use_rviz)" /> -->
 
+  <!-- <node pkg="tf" type="static_transform_publisher" name="camera_broadcaster1" args="0 0 0 0 0 0 world map 10" />
+  <node pkg="tf" type="static_transform_publisher" name="camera_broadcaster2" args="0 -1.8 1 0 0 -1.9 map rviz_cam 10" />
+
+  <node name="camera_info" pkg="rostopic" type="rostopic"
+    args="pub camera_info sensor_msgs/CameraInfo
+    '{header: {seq: 0, stamp: {secs:0, nsecs: 0}, frame_id: 'rviz_cam'},
+    height: 768, width: 1024, distortion_model: 'plumb_bob',
+    D: [0],
+    K: [0,0,0,0,0,0,0,0,0],
+    R: [0,0,0,0,0,0,0,0,0],
+    P: [1000, 0, 512, 0, 0, 1000, 384, 0, 0, 0, 0, 0],
+    binning_x: 0, binning_y: 0,
+    roi: {x_offset: 0, y_offset: 0, height: 768, width: 1024, do_rectify: false}}' -r 2"
+    output="screen"/>
+
+    <node name="web_video_server" pkg="web_video_server" type="web_video_server" output="screen" /> -->
+<!-- http://localhost:8080/stream?topic=/rviz_stream/camera/image&type=ros_compressed -->
 </launch>

@@ -1,0 +1,5 @@
+<?xml version="1.0"?>
+<launch>
+  <node name="execute_pose_goal" pkg="project_praktikum_moveit_config" type="execute_pose_goal.py" output="screen"/>
+  <node name="simple_gui" pkg="project_praktikum_moveit_config" type="simple_gui.py" output="screen"/>
+</launch>

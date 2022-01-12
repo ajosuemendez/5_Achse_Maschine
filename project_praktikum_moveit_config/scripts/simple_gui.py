@@ -3,22 +3,31 @@ import rospy
 from kivymd.app import MDApp
 from kivymd.uix.dialog import MDDialog
 from kivy.lang import Builder
+from plyer import filechooser
 from std_msgs.msg import Bool
+from std_srvs.srv import SetBool
 from project_praktikum_moveit_config.srv import CalculateJoints
+import re
+import math
+import numpy
 
+class Finisher():
+    def __init__(self):
+        self.pub = rospy.Publisher("/shutdown_gui", Bool, queue_size=1)
+        self.msg = False
 
+    def clean_shutdown(self):
+        self.msg = True
+        self.pub.publish(self.msg)
 
-##################################################################################
-##################################################################################
-##################################################################################
-class TutorialApp(MDApp):
+class GuiApp(MDApp):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         self.path = '/home/praktikant2/ws_moveit/src/project_praktikum_moveit_config/guis/ros_gui.kv'
         self.screen = Builder.load_file(self.path)
         self.dialog = None
-
-
+        self.calculated_plan = False
+        self.full_list = []
 
     def build(self):
         self.theme_cls.primary_palette = "Gray"
@@ -32,9 +41,7 @@ class TutorialApp(MDApp):
             )
         self.dialog.open()
 
-
     def calculate(self, *args):
-        #my calc
         try:
             x = float(self.screen.ids.x_coordinate.text)
             y = float(self.screen.ids.y_coordinate.text)
@@ -46,15 +53,9 @@ class TutorialApp(MDApp):
             self.dialog = None
             return None
 
-
-        roll = 0
-
-        #send this data to a service
         rospy.wait_for_service('/calc_pose')
-        print("SERVICE FOUND")
-
         service_conn = rospy.ServiceProxy('/calc_pose', CalculateJoints)
-        print("SERVICE CONNECTED")
+
         try:
             request = CalculateJoints()
             request.x_input = x
@@ -81,6 +82,8 @@ class TutorialApp(MDApp):
             self.screen.ids.calc_joint_z.text = str(response.joints[7])
             self.screen.ids.calc_joint_b.text = str(response.joints[8])
             self.screen.ids.calc_joint_c.text = str(response.joints[9])
+
+            self.calculated_plan = True
         else:
             self.show_alert_dialog("No Motion Plan Found")
             self.dialog = None
@@ -94,18 +97,68 @@ class TutorialApp(MDApp):
         self.screen.ids.yaw_coordinate.text = ""
 
     def execute(self):
-        #self.root.ids.calc_pos.text = ""
+        if self.calculated_plan:
+            rospy.wait_for_service('/execute_pose')
+            print("SERVICE FOUND")
+
+            service_conn = rospy.ServiceProxy('/execute_pose', SetBool)
+            print("SERVICE CONNECTED")
+            try:
+                request = SetBool()
+                request.data = True
+                response = service_conn(request.data)
+                #print(response)
+            except rospy.ServiceException as exc:
+                print("Service did not process request: " + str(exc))
+            self.calculated_plan = False
+
+        else:
+            self.show_alert_dialog("There is no calculated trajectory plan")
+            self.dialog = None
+            return None
+
+    def file_chooser(self):
+        filechooser.open_file(on_selection=self.selected)
+
+    def selected(self, selection):
+        self.root.ids.dumper_file.text = selection[0]
+        lines = []
+        self.full_list = []
+
+        with open(selection[0]) as f:
+            lines= f.readlines()
+
+
+        for line in lines:
+            pattern = re.compile(r'([.-]|)\d*\.\d*')
+            matches = pattern.finditer(str(line))
+            tcp_coordinates = [round(float(match.group(0)),2) for match in matches]
+            self.full_list.append(tcp_coordinates)
+
+        myatan = lambda x,y: numpy.pi*(1.0-0.5*(1+numpy.sign(x))*(1-numpy.sign(y**2))\
+                 -0.25*(2+numpy.sign(x))*numpy.sign(y))\
+                 -numpy.sign(x*y)*numpy.arctan((numpy.abs(x)-numpy.abs(y))/(numpy.abs(x)+numpy.abs(y)))
+
+        coordinates = [(float("{:.2f}".format(math.degrees(myatan(elem[3], elem[4])))), float("{:.2f}".format(math.degrees(math.atan(math.sqrt(math.fabs(math.pow(elem[3],2)) + math.fabs(math.pow(elem[4],2)))/elem[5]))))) for elem in self.full_list]
+
+
+        for i in range(len(coordinates)):
+            self.full_list[i].append(coordinates[i][0])
+            self.full_list[i].append(coordinates[i][1])
+
+
+    def generate_gcode(self):
+        self.screen.ids.gcode_field.text = self.full_list
+
+
+
+    def save_file(self):
         pass
 
     def gcode(self):
-        #self.root.ids.calc_pos.text = ""
-        #my calc
         pass
-
 
 if __name__ =='__main__':
     rospy.init_node('simple_gui', anonymous=True)
-
-    pub = rospy.Publisher("/button", Bool, queue_size=1)
-
-    TutorialApp().run()
+    rospy.on_shutdown(Finisher().clean_shutdown)
+    GuiApp().run()

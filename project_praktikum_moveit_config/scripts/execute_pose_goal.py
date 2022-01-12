@@ -12,7 +12,9 @@ import moveit_msgs.msg
 import geometry_msgs.msg
 import tf
 import math
+from std_srvs.srv import SetBool
 from project_praktikum_moveit_config.srv import CalculateJoints, CalculateJointsResponse
+from std_msgs.msg import Bool
 
 
 try:
@@ -29,19 +31,9 @@ except:  # For Python 2 compatibility
 from std_msgs.msg import String
 from moveit_commander.conversions import pose_to_list
 
-## END_SUB_TUTORIAL
-
 
 def all_close(goal, actual, tolerance):
-    """
-    Convenience method for testing if the values in two lists are within a tolerance of each other.
-    For Pose and PoseStamped inputs, the angle between the two quaternions is compared (the angle
-    between the identical orientations q and -q is calculated correctly).
-    @param: goal       A list of floats, a Pose or a PoseStamped
-    @param: actual     A list of floats, a Pose or a PoseStamped
-    @param: tolerance  A float
-    @returns: bool
-    """
+
     if type(goal) is list:
         for index in range(len(goal)):
             if abs(actual[index] - goal[index]) > tolerance:
@@ -94,11 +86,15 @@ class MoveGroupPythonInterfaceTutorial(object):
         self.group_names = group_names
         self.pose_goal = geometry_msgs.msg.PoseStamped()
         self.calc_pose_service = rospy.Service("/calc_pose", CalculateJoints, self.callback_calc_pose)
+        self.execute_pose_service = rospy.Service("/execute_pose", SetBool, self.execute_pose_goal)
+        self.shutdown_subscriber = rospy.Subscriber("/shutdown_gui", Bool, self.shutdown)
 
 
+    def shutdown(self,msg):
+        if msg.data:
+            rospy.signal_shutdown("GUI was shutdown")
+            sys.exit(1)
 
-
-    #def go_to_pose_goal(self, pitch_input, yaw_input, x_input, y_input, z_input):
     def callback_calc_pose(self,req):
 
         current_joints_list = []
@@ -129,18 +125,10 @@ class MoveGroupPythonInterfaceTutorial(object):
                 my_x = round(my_scale*calc_plan[1].joint_trajectory.points[i].positions[1], 2)
                 my_y = round(my_scale*calc_plan[1].joint_trajectory.points[i].positions[0],2)
                 my_z = round(-my_scale*calc_plan[1].joint_trajectory.points[i].positions[2],2)
-                my_c = round(math.degrees(calc_plan[1].joint_trajectory.points[i].positions[3]),2)
-                my_b = round(math.degrees(calc_plan[1].joint_trajectory.points[i].positions[4]),2)
+                my_c = round(360-math.degrees(calc_plan[1].joint_trajectory.points[i].positions[3]),2)
+                my_b = round((-1)*math.degrees(calc_plan[1].joint_trajectory.points[i].positions[4]),2)
 
-                # array = [(my_x, 'X'),(my_y, 'Y'),(my_z,'Z'),(my_b,'B'),(my_c,'C')]
-                #
-                # for k in array:
-                #     if i== 0:
-                #         print(f"current joint position {k[1]}: {k[0]}")
-                #     else:
-                #         print(f"calculated joint position {k[1]}: {k[0]}")
                 array = [my_x, my_y, my_z, my_b,my_c]
-
 
                 for k in array:
                     if i== 0:
@@ -152,43 +140,31 @@ class MoveGroupPythonInterfaceTutorial(object):
         return CalculateJointsResponse([*current_joints_list, *calculated_joints_list], Invalid_plan)
 
 
-    def execute_pose_goal(self):
+    def execute_pose_goal(self,req):
+        if req.data:
+            plan = self.move_group.go(wait=True)
 
-        plan = self.move_group.go(wait=True)
+            self.move_group.stop()
 
-        self.move_group.stop()
+            self.move_group.clear_pose_targets()
 
-        self.move_group.clear_pose_targets()
+            current_pose = self.move_group.get_current_pose().pose
+            all_close(self.pose_goal.pose, current_pose, 0.01)
 
-        current_pose = self.move_group.get_current_pose().pose
-        return all_close(self.pose_goal.pose, current_pose, 0.01)
+            return True, "Execution Successfuly"
+        return False, "Execution Failed"
 
 def main():
     try:
-        #tutorial = MoveGroupPythonInterfaceTutorial()
         MoveGroupPythonInterfaceTutorial()
         rospy.init_node("move_group_python_interface_tutorial", anonymous=True)
         rospy.loginfo("EXECUTE_POSE NODE IS READY")
         rospy.spin()
 
-        # roll_input = 0
-        # pitch_input = float(input("Please enter the Pitch deg: "))
-        # yaw_input = float(input("Please enter the Yaw deg: "))
-        # x_input = float(input("Please enter the x mm: "))
-        # y_input = float(input("Please enter the y mm: "))
-        # z_input = float(input("Please enter the z mm: "))
-        #
-        # tutorial.go_to_pose_goal(roll_input, pitch_input, yaw_input, x_input, y_input, z_input)
-        # int = input("press 'y' to go to the new position? ")
-        # if int.lower() == "y":
-        #     tutorial.execute_pose_goal()
-
-
     except rospy.ROSInterruptException:
         return
     except KeyboardInterrupt:
         return
-
 
 if __name__ == "__main__":
     main()
