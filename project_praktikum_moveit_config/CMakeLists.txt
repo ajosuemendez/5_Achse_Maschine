@@ -6,16 +6,26 @@ find_package(catkin REQUIRED COMPONENTS
   rospy
   std_msgs
   message_generation
+  genmsg
+  actionlib_msgs
 )
 
 add_service_files(
   FILES
   CalculateJoints.srv
+  SendCommand.srv
+)
+
+add_action_files(DIRECTORY action
+  FILES
+  SerialCommunication.action
+  ExecuteDesiredPose.action
 )
 
 generate_messages(
     DEPENDENCIES
     std_msgs
+    actionlib_msgs
 )
 
 catkin_package()
@@ -46,5 +56,9 @@ catkin_install_python(PROGRAMS
     scripts/save_gcode.py
     scripts/joint_space_planning.py
     scripts/simple_gui.py
+    scripts/data_exchange.py
+    scripts/serviceTest.py
+    scripts/dold_gui_2.py
+    scripts/simpleActionClient.py
     DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )

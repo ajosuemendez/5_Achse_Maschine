@@ -14,8 +14,9 @@ import tf
 import math
 from std_srvs.srv import SetBool
 from project_praktikum_moveit_config.srv import CalculateJoints, CalculateJointsResponse
+from project_praktikum_moveit_config.msg import ExecuteDesiredPoseAction, ExecuteDesiredPoseFeedback, ExecuteDesiredPoseResult
 from std_msgs.msg import Bool
-
+import actionlib
 
 try:
     from math import pi, tau, dist, fabs, cos
@@ -88,7 +89,83 @@ class MoveGroupPythonInterfaceTutorial(object):
         self.calc_pose_service = rospy.Service("/calc_pose", CalculateJoints, self.callback_calc_pose)
         self.execute_pose_service = rospy.Service("/execute_pose", SetBool, self.execute_pose_goal)
         self.shutdown_subscriber = rospy.Subscriber("/shutdown_gui", Bool, self.shutdown)
+        self.plan_cartesian_service = rospy.Service("/plan_cartesian", CalculateJoints, self.plan_cartesian)
+        self.action_server_execute = actionlib.SimpleActionServer("execute_action", ExecuteDesiredPoseAction, execute_cb=self.execute_cb, auto_start = False)
+        self.action_server_execute.start()
+        self.scale_m = 0.001
+        self.roll_input = 0
 
+
+    def execute_cb(self,goal):
+        success = True
+        feedback_action = ExecuteDesiredPoseFeedback()
+        result_action = ExecuteDesiredPoseResult()
+        rate = rospy.Rate(100)
+
+        if goal.command:
+            feedback_action.feedback = "Executing....."
+            plan = self.move_group.go(wait=True)
+            self.action_server_execute.publish_feedback(feedback_action)
+            self.move_group.stop()
+            feedback_action.feedback = "Finished Executing....."
+            self.action_server_execute.publish_feedback(feedback_action)
+            self.move_group.clear_pose_targets()
+            current_pose = self.move_group.get_current_pose().pose
+            all_close(self.pose_goal.pose, current_pose, 0.01)
+
+            if success:
+                result_action.result = "Execution Successfuly"
+                self.action_server_execute.set_succeeded(result_action)
+
+
+    def plan_cartesian(self, req):
+        waypoints = []
+
+        scale=1
+        wpose = self.move_group.get_current_pose(end_effector_link="eff").pose
+
+        wpose.position.x += scale * req.x_input*self.scale_m
+        wpose.position.y += scale * req.y_input*self.scale_m
+        wpose.position.z += scale * req.z_input*self.scale_m
+
+        orientation_list = [wpose.orientation.x, wpose.orientation.y, wpose.orientation.z, wpose.orientation.w]
+
+        (roll, pitch, yaw) = tf.transformations.euler_from_quaternion(orientation_list)
+        roll += scale * math.radians(self.roll_input)
+        pitch += scale * math.radians(req.pitch_input)
+        yaw += scale * math.radians(req.yaw_input)*(-1)
+
+        quaternion = tf.transformations.quaternion_from_euler(float(roll) ,float(pitch) ,float(yaw))
+        wpose.orientation.x = quaternion[0]
+        wpose.orientation.y = quaternion[1]
+        wpose.orientation.z = quaternion[2]
+        wpose.orientation.w = quaternion[3]
+
+        waypoints.append(copy.deepcopy(wpose))
+
+        fraction = 0.0
+        attempts = 0
+        max_tries = 100
+        success = False
+
+        while fraction < 1.0 and attempts < max_tries:
+            (plan, fraction) = self.move_group.compute_cartesian_path(waypoints, 0.001, 0.0)
+            attempts += 1
+            if fraction == 1.0:
+                 success = True
+
+        if success:
+            my_scale=1000
+            modified_coodinates = []
+            modified_coodinates.append(round(my_scale*plan.joint_trajectory.points[-1].positions[1], 2))
+            modified_coodinates.append(round(my_scale*plan.joint_trajectory.points[-1].positions[0],2))
+            modified_coodinates.append(round(-my_scale*plan.joint_trajectory.points[-1].positions[2],2))
+            modified_coodinates.append(round((-1)*math.degrees(plan.joint_trajectory.points[-1].positions[4]),2))
+            modified_coodinates.append(0)
+
+
+        #return CalculateJointsResponse(plan.joint_trajectory.points[-1].positions, success)
+        return CalculateJointsResponse(modified_coodinates, success)
 
     def shutdown(self,msg):
         if msg.data:
@@ -99,19 +176,17 @@ class MoveGroupPythonInterfaceTutorial(object):
 
         current_joints_list = []
         calculated_joints_list = []
-        Invalid_plan = True
-        scale_m = 0.001
+        valid_plan = False
         self.pose_goal = geometry_msgs.msg.PoseStamped()
-        roll_input = 0
 
-        quaternion = tf.transformations.quaternion_from_euler(math.radians(roll_input) ,math.radians(req.pitch_input) ,math.radians(req.yaw_input))
+        quaternion = tf.transformations.quaternion_from_euler(math.radians(self.roll_input) ,math.radians(req.pitch_input) ,math.radians(req.yaw_input))
         self.pose_goal.pose.orientation.x = quaternion[0]
         self.pose_goal.pose.orientation.y = quaternion[1]
         self.pose_goal.pose.orientation.z = quaternion[2]
         self.pose_goal.pose.orientation.w = quaternion[3]
-        self.pose_goal.pose.position.x = req.x_input*scale_m
-        self.pose_goal.pose.position.y = req.y_input*scale_m
-        self.pose_goal.pose.position.z = req.z_input*scale_m
+        self.pose_goal.pose.position.x = req.x_input*self.scale_m
+        self.pose_goal.pose.position.y = req.y_input*self.scale_m
+        self.pose_goal.pose.position.z = req.z_input*self.scale_m
 
         self.move_group.set_pose_target(self.pose_goal.pose)
 
@@ -120,12 +195,15 @@ class MoveGroupPythonInterfaceTutorial(object):
         length = len(calc_plan[1].joint_trajectory.points)
 
         if length:
-            Invalid_plan = False
+            valid_plan = True
             for i in range(length):
                 my_x = round(my_scale*calc_plan[1].joint_trajectory.points[i].positions[1], 2)
                 my_y = round(my_scale*calc_plan[1].joint_trajectory.points[i].positions[0],2)
                 my_z = round(-my_scale*calc_plan[1].joint_trajectory.points[i].positions[2],2)
-                my_c = round(360-math.degrees(calc_plan[1].joint_trajectory.points[i].positions[3]),2)
+                if math.degrees(calc_plan[1].joint_trajectory.points[i].positions[3])<0.15:
+                    my_c = 0
+                else:
+                    my_c = round(360-math.degrees(calc_plan[1].joint_trajectory.points[i].positions[3]),2)
                 my_b = round((-1)*math.degrees(calc_plan[1].joint_trajectory.points[i].positions[4]),2)
 
                 array = [my_x, my_y, my_z, my_b,my_c]
@@ -137,7 +215,7 @@ class MoveGroupPythonInterfaceTutorial(object):
                         calculated_joints_list.append(k)
 
 
-        return CalculateJointsResponse([*current_joints_list, *calculated_joints_list], Invalid_plan)
+        return CalculateJointsResponse([*current_joints_list, *calculated_joints_list], valid_plan)
 
 
     def execute_pose_goal(self,req):
@@ -154,10 +232,11 @@ class MoveGroupPythonInterfaceTutorial(object):
             return True, "Execution Successfuly"
         return False, "Execution Failed"
 
+
 def main():
     try:
-        MoveGroupPythonInterfaceTutorial()
         rospy.init_node("move_group_python_interface_tutorial", anonymous=True)
+        MoveGroupPythonInterfaceTutorial()
         rospy.loginfo("EXECUTE_POSE NODE IS READY")
         rospy.spin()
 

@@ -1,0 +1,4 @@
+<launch>
+    <include file="$(find project_praktikum_moveit_config)/launch/sim.launch" />
+    <include file="$(find project_praktikum_moveit_config)/launch/dold_gui.launch" />
+</launch>
