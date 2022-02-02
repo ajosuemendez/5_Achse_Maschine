@@ -13,6 +13,7 @@ RX_BUFFER_SIZE = 128
 class SerialCom():
     def __init__(self):
         self.port = "/dev/ttyACM0"
+        #self.port = "/dev/ttyUSB0"
         self.baudrate = 115200
         self.ser = self.init_ser()
         self.serviceCommand = rospy.Service("/cmd_input", SendCommand, self.cmdCallback)

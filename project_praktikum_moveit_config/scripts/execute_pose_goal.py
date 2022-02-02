@@ -192,19 +192,23 @@ class MoveGroupPythonInterfaceTutorial(object):
 
         my_scale = 1000
         calc_plan = self.move_group.plan()
+        #print("CALC_PLAN:",calc_plan)
         length = len(calc_plan[1].joint_trajectory.points)
+
 
         if length:
             valid_plan = True
+
             for i in range(length):
-                my_x = round(my_scale*calc_plan[1].joint_trajectory.points[i].positions[1], 2)
-                my_y = round(my_scale*calc_plan[1].joint_trajectory.points[i].positions[0],2)
-                my_z = round(-my_scale*calc_plan[1].joint_trajectory.points[i].positions[2],2)
-                if math.degrees(calc_plan[1].joint_trajectory.points[i].positions[3])<0.15:
+                my_x = round(my_scale*calc_plan[1].joint_trajectory.points[-2+i].positions[1], 2)
+                my_y = round(my_scale*calc_plan[1].joint_trajectory.points[-2+i].positions[0],2)
+                my_z = round(-my_scale*calc_plan[1].joint_trajectory.points[-2+i].positions[2],2)
+                if math.degrees(calc_plan[1].joint_trajectory.points[-2+i].positions[3])<0.15:
                     my_c = 0
                 else:
-                    my_c = round(360-math.degrees(calc_plan[1].joint_trajectory.points[i].positions[3]),2)
-                my_b = round((-1)*math.degrees(calc_plan[1].joint_trajectory.points[i].positions[4]),2)
+                    my_c = round(360-math.degrees(calc_plan[1].joint_trajectory.points[-2+i].positions[3]),2)
+                my_b = round((-1)*math.degrees(calc_plan[1].joint_trajectory.points[-2+i].positions[4]),2)
+
 
                 array = [my_x, my_y, my_z, my_b,my_c]
 

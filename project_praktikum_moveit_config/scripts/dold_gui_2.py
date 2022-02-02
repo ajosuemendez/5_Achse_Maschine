@@ -381,6 +381,7 @@ class Ui_MainWindow(object):
         self.verticalLayout_17.setObjectName("verticalLayout_17")
         self.custom1Button = QtWidgets.QPushButton(self.layoutWidget1)
         self.custom1Button.setObjectName("custom1Button")
+        self.custom1Button.clicked.connect(self.custom1Callback)
         self.verticalLayout_17.addWidget(self.custom1Button)
         self.custom2Button = QtWidgets.QPushButton(self.layoutWidget1)
         self.custom2Button.setObjectName("custom2Button")
@@ -726,7 +727,7 @@ class Ui_MainWindow(object):
         ####################################################
         ####################################################
         #My Initializations
-        self.pos_offsets = [703,764,405] #central position
+        self.pos_offsets = [703,764,452] #central position 405 (-47)
         self.set_offsets = [0,0,0]
         self.abs_offset = [530, 750, -224.8] #corresponding x,y,z offset #joints are at X530,Y750,Z225
         self.set_world_frame = [0,0,0]
@@ -957,6 +958,139 @@ class Ui_MainWindow(object):
         #self.set_offsets[1] = defalutValue
         #self.set_offsets[2] = defalutValue
 
+    def custom1Callback(self):
+        x_list = []
+        y_list = []
+        z_list = []
+        pitch_list = []
+        yaw_list = []
+
+        x_list_distance = []
+        y_list_distance = []
+        z_list_distance = []
+        pitch_list_distance = []
+        yaw_list_distance = []
+
+        x_list_step = []
+        y_list_step = []
+        z_list_step = []
+        pitch_list_step = []
+        yaw_list_step = []
+
+        my_list = []
+        samples = [10,10,10,10,10,10,10,10] #5 is too little
+
+        x_list.append(0 + self.pos_offsets[0] + self.set_offsets[0] +self.set_world_frame[0])
+        y_list.append(0 + self.pos_offsets[1] + self.set_offsets[1] +self.set_world_frame[1])
+        z_list.append(0 + self.pos_offsets[2] + self.set_offsets[2] +self.set_world_frame[2])
+        pitch_list.append(0)
+        yaw_list.append(0)
+
+        x_list.append(0 + self.pos_offsets[0] + self.set_offsets[0] +self.set_world_frame[0])
+        y_list.append(0 + self.pos_offsets[1] + self.set_offsets[1] +self.set_world_frame[1])
+        z_list.append(0 + self.pos_offsets[2] + self.set_offsets[2] +self.set_world_frame[2])
+        pitch_list.append(-90)
+        yaw_list.append(0)
+
+        x_list.append(0 + self.pos_offsets[0] + self.set_offsets[0] +self.set_world_frame[0])
+        y_list.append(0 + self.pos_offsets[1] + self.set_offsets[1] +self.set_world_frame[1])
+        z_list.append(0 + self.pos_offsets[2] + self.set_offsets[2] +self.set_world_frame[2])
+        pitch_list.append(0)
+        yaw_list.append(0)
+
+        x_list.append(0 + self.pos_offsets[0] + self.set_offsets[0] +self.set_world_frame[0])
+        y_list.append(0 + self.pos_offsets[1] + self.set_offsets[1] +self.set_world_frame[1])
+        z_list.append(0 + self.pos_offsets[2] + self.set_offsets[2] +self.set_world_frame[2])
+        pitch_list.append(90)
+        yaw_list.append(0)
+
+        x_list.append(0 + self.pos_offsets[0] + self.set_offsets[0] +self.set_world_frame[0])
+        y_list.append(0 + self.pos_offsets[1] + self.set_offsets[1] +self.set_world_frame[1])
+        z_list.append(0 + self.pos_offsets[2] + self.set_offsets[2] +self.set_world_frame[2])
+        pitch_list.append(90)
+        yaw_list.append(90)
+
+        x_list.append(0 + self.pos_offsets[0] + self.set_offsets[0] +self.set_world_frame[0])
+        y_list.append(0 + self.pos_offsets[1] + self.set_offsets[1] +self.set_world_frame[1])
+        z_list.append(0 + self.pos_offsets[2] + self.set_offsets[2] +self.set_world_frame[2])
+        pitch_list.append(0)
+        yaw_list.append(90)
+
+        x_list.append(0 + self.pos_offsets[0] + self.set_offsets[0] +self.set_world_frame[0])
+        y_list.append(0 + self.pos_offsets[1] + self.set_offsets[1] +self.set_world_frame[1])
+        z_list.append(0 + self.pos_offsets[2] + self.set_offsets[2] +self.set_world_frame[2])
+        pitch_list.append(-90)
+        yaw_list.append(90)
+
+        x_list.append(0 + self.pos_offsets[0] + self.set_offsets[0] +self.set_world_frame[0])
+        y_list.append(0 + self.pos_offsets[1] + self.set_offsets[1] +self.set_world_frame[1])
+        z_list.append(0 + self.pos_offsets[2] + self.set_offsets[2] +self.set_world_frame[2])
+        pitch_list.append(-90)
+        yaw_list.append(0)
+
+        x_list.append(0 + self.pos_offsets[0] + self.set_offsets[0] +self.set_world_frame[0])
+        y_list.append(0 + self.pos_offsets[1] + self.set_offsets[1] +self.set_world_frame[1])
+        z_list.append(0 + self.pos_offsets[2] + self.set_offsets[2] +self.set_world_frame[2])
+        pitch_list.append(0)
+        yaw_list.append(0)
+
+        # x_list.append(0 + self.pos_offsets[0] + self.set_offsets[0] +self.set_world_frame[0])
+        # y_list.append(0 + self.pos_offsets[1] + self.set_offsets[1] +self.set_world_frame[1])
+        # z_list.append(0 + self.pos_offsets[2] + self.set_offsets[2] +self.set_world_frame[2])
+        # pitch_list.append(90)
+        # yaw_list.append(90)
+
+        for k in range(len(x_list)-1):
+            x_list_distance.append(x_list[k+1] - x_list[k])
+            y_list_distance.append(y_list[k+1] - y_list[k])
+            z_list_distance.append(z_list[k+1] - z_list[k])
+            pitch_list_distance.append(pitch_list[k+1] - pitch_list[k])
+            yaw_list_distance.append(yaw_list[k+1] - yaw_list[k])
+
+            #print(f"iteration: {k}, x_list_distance = {x_list_distance}, y_list_distance = {y_list_distance}, z_list_distance = {z_list_distance}, pitch_list_distance = {pitch_list_distance}, yaw_list_distance = {yaw_list_distance}")
+
+            x_list_step.append(x_list_distance[k] / samples[k])
+            y_list_step.append(y_list_distance[k] / samples[k])
+            z_list_step.append(z_list_distance[k] / samples[k])
+            pitch_list_step.append(pitch_list_distance[k] / samples[k])
+            yaw_list_step.append(yaw_list_distance[k] / samples[k])
+
+            #print(f"iteration: {k}, x_list_step = {x_list_step}, y_list_step = {y_list_step}, z_list_step = {z_list_step}, pitch_list_step = {pitch_list_step}, yaw_list_step = {yaw_list_step}")
+
+            for i in range(int(samples[k])+1):
+                rospy.wait_for_service('/calc_pose')
+                service_conn = rospy.ServiceProxy('/calc_pose', CalculateJoints)
+                try:
+                    request = CalculateJoints()
+                    request.x_input = x_list[k] + i*x_list_step[k]
+                    request.y_input = y_list[k] + i*y_list_step[k]
+                    request.z_input = z_list[k] + i*z_list_step[k]
+                    request.pitch_input = pitch_list[k] + i*pitch_list_step[k]
+                    request.yaw_input = yaw_list[k] + i*yaw_list_step[k]
+                    #print(f"iteration: {k},{i}, x_input = {request.x_input}, y_input = {request.y_input}, z_input = {request.z_input}, pitch_input = {request.pitch_input}, yaw_input = {request.yaw_input}")
+                    response = service_conn(request.x_input, request.y_input, request.z_input, request.pitch_input, request.yaw_input)
+                    #print(response)
+                except rospy.ServiceException as exc:
+                    print("Service did not process request: " + str(exc))
+
+                if response.success:
+                    #calculated joints
+                    x_response = round(response.joints[5]-self.abs_offset[0]-self.set_world_frame[0],2)
+                    y_response = round(response.joints[6]-self.abs_offset[1]-self.set_world_frame[1],2)
+                    z_response = round(response.joints[7]-self.abs_offset[2]-self.set_world_frame[2],2)
+                    b_response = round(response.joints[8],2)
+                    c_response = round(response.joints[9],2)
+                    #print(f"iteration: {k},{i}, G01X{x_response}Y{y_response}Z{z_response}B{b_response}C{c_response}F1500")
+                    my_list.append(f"G01X{x_response}Y{y_response}Z{z_response}B{b_response}C{c_response}F1500")
+
+                else:
+                    self.showMessageBox(text="No Motion Plan Found", icon="Critical")
+                    return None
+
+        self.extremesPlainTextEdit.clear()
+        for elem in my_list:
+            self.extremesPlainTextEdit.insertPlainText(elem + "\n")
+
     def setFrameButtonCallback(self):
         self.set_world_frame[0] = float(self.xFrameLineEdit.text())
         self.set_world_frame[1] = float(self.yFrameLineEdit.text())
@@ -968,6 +1102,7 @@ class Ui_MainWindow(object):
         self.xFrameLineEdit.setText(defaultVal)
         self.yFrameLineEdit.setText(defaultVal)
         self.zFrameLineEdit.setText(defaultVal)
+
 
 
     def file_chooser(self):
