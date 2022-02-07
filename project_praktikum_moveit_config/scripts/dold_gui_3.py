@@ -973,7 +973,7 @@ class Ui_MainWindow(object):
         ####################################################
         ####################################################
         #My Initializations
-        self.pos_offsets = [703,764,452] #central position 405 (-47)
+        self.pos_offsets = [705.05,766.03,452] #central position z: 405 (-47) y:764 (-2.03) x:700 (-5.05)
         self.set_offsets = [0,0,0]
         self.abs_offset = [530, 750, -224.8] #corresponding x,y,z offset #joints are at X530,Y750,Z225
         self.set_world_frame = [0,0,0]
@@ -1229,7 +1229,28 @@ class Ui_MainWindow(object):
         #self.set_offsets[2] = defalutValue
 
     def custom1Callback(self):
-        pass
+        R = 40
+        yaw = [i for i in range(0,360,1)]
+        x = [round(R*math.cos(math.radians(i)),2) for i in yaw]
+        y = [round(R*math.sin(math.radians(i)),2) for i in yaw]
+        speed = 1500
+        samples = 1
+        z = -10
+        pitch = 45
+
+        if self.startButtonPressed:
+            point1 = f": X{0} Y{0} Z{z} PITCH{0} YAW{0} SPEED{1500} SAMPLES{1}"
+            point2 = f": X{0} Y{0} Z{z} PITCH{pitch} YAW{0} SPEED{1500} SAMPLES{10}"
+            self.pointsPlainTextEdit.insertPlainText(point1 + "\n")
+            self.pointsPlainTextEdit.insertPlainText(point2 + "\n")
+
+            for i in range(len(x)):
+                points = f"{i}: X{x[i]} Y{y[i]} Z{z} PITCH{pitch} YAW{yaw[i]} SPEED{speed} SAMPLES{samples}"
+                self.pointsPlainTextEdit.insertPlainText(points + "\n")
+                self.secuence_counter+=1
+
+        else:
+            self.showMessageBox(text="Press the start button first", icon="Critical")
 
     def setFrameButtonCallback(self):
         self.set_world_frame[0] = float(self.xFrameLineEdit.text())
@@ -1742,6 +1763,7 @@ class Ui_MainWindow(object):
                     b_response = round(response.joints[8],2)
                     c_response = round(response.joints[9],2)
                     #print(f"iteration: {k},{i}, G01X{x_response}Y{y_response}Z{z_response}B{b_response}C{c_response}F1500")
+                    #if i%2==1: #only for testing otherwise remove this line
                     my_list.append(f"G01X{x_response}Y{y_response}Z{z_response}B{b_response}C{c_response}F{speed_list[k+1]}")
                     progress = counter/total_lines *100
                     self.addProgressBar.setValue(progress)
