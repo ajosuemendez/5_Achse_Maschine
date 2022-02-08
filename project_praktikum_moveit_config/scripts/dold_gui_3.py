@@ -419,6 +419,7 @@ class Ui_MainWindow(object):
         self.custom2Button.setDefault(False)
         self.custom2Button.setFlat(False)
         self.custom2Button.setObjectName("custom2Button")
+        self.custom2Button.clicked.connect(self.custom2ButtonCallback)
         self.verticalLayout_17.addWidget(self.custom2Button)
         self.verticalLayout_18.addLayout(self.verticalLayout_17)
         self.verticalLayout_25.addLayout(self.verticalLayout_18)
@@ -803,55 +804,66 @@ class Ui_MainWindow(object):
         self.horizontalLayout_2.setObjectName("horizontalLayout_2")
         self.backXButton = QtWidgets.QPushButton(self.layoutWidget7)
         self.backXButton.setObjectName("backXButton")
-        self.backXButton.clicked.connect(self.backXCallback)
+        self.backXButton.setAutoRepeat(True)
+        self.backXButton.pressed.connect(self.backXCallback)
+        self.backXButton.released.connect(self.releasedBackXCallback)
         self.horizontalLayout_2.addWidget(self.backXButton)
         self.forwardXButton = QtWidgets.QPushButton(self.layoutWidget7)
         self.forwardXButton.setObjectName("forwardXButton")
-        self.forwardXButton.clicked.connect(self.forwardXCallback)
+        self.forwardXButton.pressed.connect(self.forwardXCallback)
+        self.forwardXButton.released.connect(self.releasedForwardXCallback)
         self.horizontalLayout_2.addWidget(self.forwardXButton)
         self.verticalLayout_3.addLayout(self.horizontalLayout_2)
         self.horizontalLayout_3 = QtWidgets.QHBoxLayout()
         self.horizontalLayout_3.setObjectName("horizontalLayout_3")
         self.backYButton = QtWidgets.QPushButton(self.layoutWidget7)
         self.backYButton.setObjectName("backYButton")
-        self.backYButton.clicked.connect(self.backYCallback)
+        self.backYButton.pressed.connect(self.backYCallback)
+        self.backYButton.released.connect(self.releasedBackYCallback)
         self.horizontalLayout_3.addWidget(self.backYButton)
         self.forwardYButton = QtWidgets.QPushButton(self.layoutWidget7)
         self.forwardYButton.setObjectName("forwardYButton")
-        self.forwardYButton.clicked.connect(self.forwardYCallback)
+        self.forwardYButton.pressed.connect(self.forwardYCallback)
+        self.forwardYButton.released.connect(self.releasedForwardYCallback)
         self.horizontalLayout_3.addWidget(self.forwardYButton)
         self.verticalLayout_3.addLayout(self.horizontalLayout_3)
         self.horizontalLayout_4 = QtWidgets.QHBoxLayout()
         self.horizontalLayout_4.setObjectName("horizontalLayout_4")
         self.backZButton = QtWidgets.QPushButton(self.layoutWidget7)
         self.backZButton.setObjectName("backZButton")
-        self.backZButton.clicked.connect(self.backZCallback)
+        self.backZButton.pressed.connect(self.backZCallback)
+        self.backZButton.released.connect(self.releasedBackZCallback)
         self.horizontalLayout_4.addWidget(self.backZButton)
         self.forwardZButton = QtWidgets.QPushButton(self.layoutWidget7)
         self.forwardZButton.setObjectName("forwardZButton")
-        self.forwardZButton.clicked.connect(self.forwardZCallback)
+        self.forwardZButton.pressed.connect(self.forwardZCallback)
+        self.forwardZButton.released.connect(self.releasedForwardZCallback)
         self.horizontalLayout_4.addWidget(self.forwardZButton)
         self.verticalLayout_3.addLayout(self.horizontalLayout_4)
         self.horizontalLayout_5 = QtWidgets.QHBoxLayout()
         self.horizontalLayout_5.setObjectName("horizontalLayout_5")
         self.backBButton = QtWidgets.QPushButton(self.layoutWidget7)
         self.backBButton.setObjectName("backBButton")
-        self.backBButton.clicked.connect(self.backBCallback)
+        self.backBButton.pressed.connect(self.backBCallback)
+        self.backBButton.released.connect(self.releasedBackBCallback)
         self.horizontalLayout_5.addWidget(self.backBButton)
         self.forwardBButton = QtWidgets.QPushButton(self.layoutWidget7)
         self.forwardBButton.setObjectName("forwardBButton")
-        self.forwardBButton.clicked.connect(self.forwardBCallback)
+        self.forwardBButton.pressed.connect(self.forwardBCallback)
+        self.forwardBButton.released.connect(self.releasedForwardBCallback)
         self.horizontalLayout_5.addWidget(self.forwardBButton)
         self.verticalLayout_3.addLayout(self.horizontalLayout_5)
         self.horizontalLayout_6 = QtWidgets.QHBoxLayout()
         self.horizontalLayout_6.setObjectName("horizontalLayout_6")
         self.backCButton = QtWidgets.QPushButton(self.layoutWidget7)
         self.backCButton.setObjectName("backCButton")
-        self.backCButton.clicked.connect(self.backCCallback)
+        self.backCButton.pressed.connect(self.backCCallback)
+        self.backCButton.released.connect(self.releasedBackCCallback)
         self.horizontalLayout_6.addWidget(self.backCButton)
         self.forwardCButton = QtWidgets.QPushButton(self.layoutWidget7)
         self.forwardCButton.setObjectName("forwardCButton")
-        self.forwardCButton.clicked.connect(self.forwardCCallback)
+        self.forwardCButton.pressed.connect(self.forwardCCallback)
+        self.forwardCButton.released.connect(self.releasedForwardCCallback)
         self.horizontalLayout_6.addWidget(self.forwardCButton)
         self.verticalLayout_3.addLayout(self.horizontalLayout_6)
         self.verticalLayout_4.addLayout(self.verticalLayout_3)
@@ -944,7 +956,7 @@ class Ui_MainWindow(object):
         self.idleLabel.setGeometry(QtCore.QRect(139, 1, 101, 17))
         self.idleLabel.setObjectName("idleLabel")
         self.mposLabel = QtWidgets.QLabel(self.centralwidget)
-        self.mposLabel.setGeometry(QtCore.QRect(40, 690, 67, 17))
+        self.mposLabel.setGeometry(QtCore.QRect(40, 690, 600, 17))
         self.mposLabel.setObjectName("mposLabel")
         self.layoutWidget11 = QtWidgets.QWidget(self.centralwidget)
         self.layoutWidget11.setGeometry(QtCore.QRect(0, 0, 2, 2))
@@ -985,6 +997,8 @@ class Ui_MainWindow(object):
         self.SerialConnected = False
         self.secuence_counter = 1
         self.startButtonPressed = False
+        self.coming_from_continuous_state = False
+        self.joggingCounter = 0
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
@@ -1251,6 +1265,9 @@ class Ui_MainWindow(object):
 
         else:
             self.showMessageBox(text="Press the start button first", icon="Critical")
+
+    def custom2ButtonCallback(self):
+        self.communicationCommand(cmd="?")
 
     def setFrameButtonCallback(self):
         self.set_world_frame[0] = float(self.xFrameLineEdit.text())
@@ -1719,10 +1736,10 @@ class Ui_MainWindow(object):
             yaw_list.append(float(yaw_val))
 
 
-        total_lines = sum(samples)+len(samples)
+        total_lines = sum(samples)#+len(samples)
 
 
-        for k in range(len(x_list)-1):
+        for k in range(len(samples)):
             x_list_distance.append(x_list[k+1] - x_list[k])
             y_list_distance.append(y_list[k+1] - y_list[k])
             z_list_distance.append(z_list[k+1] - z_list[k])
@@ -1739,39 +1756,41 @@ class Ui_MainWindow(object):
 
             #print(f"iteration: {k}, x_list_step = {x_list_step}, y_list_step = {y_list_step}, z_list_step = {z_list_step}, pitch_list_step = {pitch_list_step}, yaw_list_step = {yaw_list_step}")
 
-            for i in range(int(samples[k])+1):
+            for i in range(int(samples[k])+1): ##for i in range(int(samples[k])+1):
                 rospy.wait_for_service('/calc_pose')
                 service_conn = rospy.ServiceProxy('/calc_pose', CalculateJoints)
-                try:
-                    request = CalculateJoints()
-                    request.x_input = x_list[k] + i*x_list_step[k]
-                    request.y_input = y_list[k] + i*y_list_step[k]
-                    request.z_input = z_list[k] + i*z_list_step[k]
-                    request.pitch_input = pitch_list[k] + i*pitch_list_step[k]
-                    request.yaw_input = yaw_list[k] + i*yaw_list_step[k]
-                    #print(f"iteration: {k},{i}, x_input = {request.x_input}, y_input = {request.y_input}, z_input = {request.z_input}, pitch_input = {request.pitch_input}, yaw_input = {request.yaw_input}")
-                    response = service_conn(request.x_input, request.y_input, request.z_input, request.pitch_input, request.yaw_input)
-                    #print(response)
-                except rospy.ServiceException as exc:
-                    print("Service did not process request: " + str(exc))
+                if i!=0:
+                    try:
+                        request = CalculateJoints()
+                        request.x_input = x_list[k] + i*x_list_step[k]
+                        request.y_input = y_list[k] + i*y_list_step[k]
+                        request.z_input = z_list[k] + i*z_list_step[k]
+                        request.pitch_input = pitch_list[k] + i*pitch_list_step[k]
+                        request.yaw_input = yaw_list[k] + i*yaw_list_step[k]
+                        #print(f"iteration: {k},{i}, x_input = {request.x_input}, y_input = {request.y_input}, z_input = {request.z_input}, pitch_input = {request.pitch_input}, yaw_input = {request.yaw_input}")
+                        response = service_conn(request.x_input, request.y_input, request.z_input, request.pitch_input, request.yaw_input)
+                        #print(response)
+                    except rospy.ServiceException as exc:
+                        print("Service did not process request: " + str(exc))
 
-                if response.success:
-                    #calculated joints
-                    x_response = round(response.joints[5]-self.abs_offset[0]-self.set_world_frame[0],2)
-                    y_response = round(response.joints[6]-self.abs_offset[1]-self.set_world_frame[1],2)
-                    z_response = round(response.joints[7]-self.abs_offset[2]-self.set_world_frame[2],2)
-                    b_response = round(response.joints[8],2)
-                    c_response = round(response.joints[9],2)
-                    #print(f"iteration: {k},{i}, G01X{x_response}Y{y_response}Z{z_response}B{b_response}C{c_response}F1500")
-                    #if i%2==1: #only for testing otherwise remove this line
-                    my_list.append(f"G01X{x_response}Y{y_response}Z{z_response}B{b_response}C{c_response}F{speed_list[k+1]}")
-                    progress = counter/total_lines *100
-                    self.addProgressBar.setValue(progress)
-                    counter +=1
+                    if response.success:
+                        #calculated joints
+                        x_response = round(response.joints[5]-self.abs_offset[0]-self.set_world_frame[0],2)
+                        y_response = round(response.joints[6]-self.abs_offset[1]-self.set_world_frame[1],2)
+                        z_response = round(response.joints[7]-self.abs_offset[2]-self.set_world_frame[2],2)
+                        b_response = round(response.joints[8],2)
+                        c_response = round(response.joints[9],2)
+                        #print(f"iteration: {k},{i}, G01X{x_response}Y{y_response}Z{z_response}B{b_response}C{c_response}F1500")
+                        #if i%2==1: #only for testing otherwise remove this line
 
-                else:
-                    self.showMessageBox(text="No Motion Plan Found", icon="Critical")
-                    return None
+                        my_list.append(f"G01X{x_response}Y{y_response}Z{z_response}B{b_response}C{c_response}F{speed_list[k+1]}")
+                        progress = counter/total_lines *100
+                        self.addProgressBar.setValue(progress)
+                        counter +=1
+
+                    else:
+                        self.showMessageBox(text="No Motion Plan Found", icon="Critical")
+                        return None
 
         self.extremesPlainTextEdit.clear()
         for elem in my_list:
@@ -1821,7 +1840,7 @@ class Ui_MainWindow(object):
     def unlockCallback(self):
         #if True:
         if self.SerialConnected:
-            rospy.sleep(1.)
+            rospy.sleep(1.0)
             rospy.wait_for_service('/cmd_input')
             service_conn = rospy.ServiceProxy('/cmd_input', SendCommand)
 
@@ -1840,240 +1859,322 @@ class Ui_MainWindow(object):
         else:
             self.showMessageBox(text="No Serial Communication", icon="Critical")
 
+##############################JOGGING##################################################
+#######################################################################################
 
     def backXCallback(self):
         if self.SerialConnected:
-            global_coordinates[0] -= self.stepSpinBox.value()*global_factor
-            gcode = f"$J=X{global_coordinates[0]}Y{global_coordinates[1]}Z{global_coordinates[2]}B{global_coordinates[3]}C{global_coordinates[4]}F{self.feedLineEdit.text()}"
+            if self.onceRadioButton.isChecked():
+                ##########NON CONTINUOUS STATE######################
+                self.backXButton.setAutoRepeat(False)
+                self.coming_from_continuous_state = False
+                gcode = f"$J=G91X-{self.stepSpinBox.value()}F{self.feedLineEdit.text()}"
+                self.communicationCommand(gcode)
 
-            rospy.wait_for_service('/cmd_input')
-            service_conn = rospy.ServiceProxy('/cmd_input', SendCommand)
-
-            try:
-                request = SendCommand()
-                request.command = gcode
-                request.simple_stream = True
-                response = service_conn(request.command, request.simple_stream)
-                #print(response)
-                if response.success:
-                    self.outputPlainTextEdit.clear()
-                    self.outputPlainTextEdit.insertPlainText(response.message)
-
-            except rospy.ServiceException as exc:
-                print("Service did not process request: " + str(exc))
+            else:
+                ######CONTINUOUS STATE#################
+                self.backXButton.setAutoRepeat(True)
+                self.coming_from_continuous_state = True
+                #print(f"continuous, counter: {self.joggingCounter}")
+                if self.joggingCounter == 0:
+                    #print(f"$J=G90X-400F{self.feedLineEdit.text()}")
+                    gcode = f"$J=G90X-400F{self.feedLineEdit.text()}"
+                    self.communicationCommand(gcode)
+                self.joggingCounter +=1
         else:
             self.showMessageBox(text="No Serial Communication", icon="Critical")
 
+    def releasedBackXCallback(self):
+        #print("Button State DOWN",self.backXButton.isDown())
+        if not self.backXButton.isDown() and self.coming_from_continuous_state:
+            self.joggingCounter = 0
+            #print("sending cancel command")
+            self.continuous_state = False
+            self.communicationCommand(cmd="cancel")
+            rospy.sleep(1.0)
+        self.communicationCommand(cmd="?")
 
     def forwardXCallback(self):
         if self.SerialConnected:
-            global_coordinates[0] += self.stepSpinBox.value()*global_factor
-            gcode = f"$J=X{global_coordinates[0]}Y{global_coordinates[1]}Z{global_coordinates[2]}B{global_coordinates[3]}C{global_coordinates[4]}F{self.feedLineEdit.text()}"
-
-            rospy.wait_for_service('/cmd_input')
-            service_conn = rospy.ServiceProxy('/cmd_input', SendCommand)
-
-            try:
-                request = SendCommand()
-                request.command = gcode
-                request.simple_stream = True
-                response = service_conn(request.command, request.simple_stream)
-                #print(response)
-                if response.success:
-                    self.outputPlainTextEdit.clear()
-                    self.outputPlainTextEdit.insertPlainText(response.message)
-
-            except rospy.ServiceException as exc:
-                print("Service did not process request: " + str(exc))
+            if self.onceRadioButton.isChecked():
+                ##########NON CONTINUOUS STATE######################
+                self.forwardXButton.setAutoRepeat(False)
+                self.coming_from_continuous_state = False
+                gcode = f"$J=G91X{self.stepSpinBox.value()}F{self.feedLineEdit.text()}"
+                self.communicationCommand(gcode)
+            else:
+                ######CONTINUOUS STATE#################
+                self.forwardXButton.setAutoRepeat(True)
+                self.coming_from_continuous_state = True
+                #print(f"continuous, counter: {self.joggingCounter}")
+                if self.joggingCounter == 0:
+                    #print(f"$J=G90X-400F{self.feedLineEdit.text()}")
+                    gcode = f"$J=G90X400F{self.feedLineEdit.text()}"
+                    self.communicationCommand(gcode)
+                self.joggingCounter +=1
         else:
             self.showMessageBox(text="No Serial Communication", icon="Critical")
+
+    def releasedForwardXCallback(self):
+        #print("Button State DOWN",self.forwardXButton.isDown())
+        if not self.forwardXButton.isDown() and self.coming_from_continuous_state:
+            self.joggingCounter = 0
+            #print("sending cancel command")
+            self.continuous_state = False
+            self.communicationCommand(cmd="cancel")
+            rospy.sleep(1.0)
+        self.communicationCommand(cmd="?")
 
     def backYCallback(self):
         if self.SerialConnected:
-            global_coordinates[1] -= self.stepSpinBox.value()*global_factor
-            gcode = f"$J=X{global_coordinates[0]}Y{global_coordinates[1]}Z{global_coordinates[2]}B{global_coordinates[3]}C{global_coordinates[4]}F{self.feedLineEdit.text()}"
-            rospy.wait_for_service('/cmd_input')
-            service_conn = rospy.ServiceProxy('/cmd_input', SendCommand)
-
-            try:
-                request = SendCommand()
-                request.command = gcode
-                request.simple_stream = True
-                response = service_conn(request.command, request.simple_stream)
-                #print(response)
-                if response.success:
-                    self.outputPlainTextEdit.clear()
-                    self.outputPlainTextEdit.insertPlainText(response.message)
-
-            except rospy.ServiceException as exc:
-                print("Service did not process request: " + str(exc))
+            if self.onceRadioButton.isChecked():
+                ##########NON CONTINUOUS STATE######################
+                self.backYButton.setAutoRepeat(False)
+                self.coming_from_continuous_state = False
+                gcode = f"$J=G91Y-{self.stepSpinBox.value()}F{self.feedLineEdit.text()}"
+                self.communicationCommand(gcode)
+            else:
+                ######CONTINUOUS STATE#################
+                self.backYButton.setAutoRepeat(True)
+                self.coming_from_continuous_state = True
+                #print(f"continuous, counter: {self.joggingCounter}")
+                if self.joggingCounter == 0:
+                    #print(f"$J=G90X-400F{self.feedLineEdit.text()}")
+                    gcode = f"$J=G90Y-400F{self.feedLineEdit.text()}"
+                    self.communicationCommand(gcode)
+                self.joggingCounter +=1
         else:
             self.showMessageBox(text="No Serial Communication", icon="Critical")
+
+    def releasedBackYCallback(self):
+        #print("Button State DOWN",self.backYButton.isDown())
+        if not self.backYButton.isDown() and self.coming_from_continuous_state:
+            self.joggingCounter = 0
+            #print("sending cancel command")
+            self.continuous_state = False
+            self.communicationCommand(cmd="cancel")
+            rospy.sleep(1.0)
+        self.communicationCommand(cmd="?")
 
     def forwardYCallback(self):
         if self.SerialConnected:
-            global_coordinates[1] += self.stepSpinBox.value()*global_factor
-            gcode = f"$J=X{global_coordinates[0]}Y{global_coordinates[1]}Z{global_coordinates[2]}B{global_coordinates[3]}C{global_coordinates[4]}F{self.feedLineEdit.text()}"
-            rospy.wait_for_service('/cmd_input')
-            service_conn = rospy.ServiceProxy('/cmd_input', SendCommand)
-
-            try:
-                request = SendCommand()
-                request.command = gcode
-                request.simple_stream = True
-                response = service_conn(request.command, request.simple_stream)
-                #print(response)
-                if response.success:
-                    self.outputPlainTextEdit.clear()
-                    self.outputPlainTextEdit.insertPlainText(response.message)
-
-            except rospy.ServiceException as exc:
-                print("Service did not process request: " + str(exc))
+            if self.onceRadioButton.isChecked():
+                ##########NON CONTINUOUS STATE######################
+                self.forwardYButton.setAutoRepeat(False)
+                self.coming_from_continuous_state = False
+                gcode = f"$J=G91Y{self.stepSpinBox.value()}F{self.feedLineEdit.text()}"
+                self.communicationCommand(gcode)
+            else:
+                ######CONTINUOUS STATE#################
+                self.forwardYButton.setAutoRepeat(True)
+                self.coming_from_continuous_state = True
+                #print(f"continuous, counter: {self.joggingCounter}")
+                if self.joggingCounter == 0:
+                    #print(f"$J=G90X-400F{self.feedLineEdit.text()}")
+                    gcode = f"$J=G90Y400F{self.feedLineEdit.text()}"
+                    self.communicationCommand(gcode)
+                self.joggingCounter +=1
         else:
             self.showMessageBox(text="No Serial Communication", icon="Critical")
+
+    def releasedForwardYCallback(self):
+        #print("Button State DOWN",self.forwardYButton.isDown())
+        if not self.forwardYButton.isDown() and self.coming_from_continuous_state:
+            self.joggingCounter = 0
+            #print("sending cancel command")
+            self.continuous_state = False
+            self.communicationCommand(cmd="cancel")
+            rospy.sleep(1.0)
+        self.communicationCommand(cmd="?")
 
     def backZCallback(self):
         if self.SerialConnected:
-            global_coordinates[2] -= self.stepSpinBox.value()*global_factor
-            gcode = f"$J=X{global_coordinates[0]}Y{global_coordinates[1]}Z{global_coordinates[2]}B{global_coordinates[3]}C{global_coordinates[4]}F{self.feedLineEdit.text()}"
-            rospy.wait_for_service('/cmd_input')
-            service_conn = rospy.ServiceProxy('/cmd_input', SendCommand)
-
-            try:
-                request = SendCommand()
-                request.command = gcode
-                request.simple_stream = True
-                response = service_conn(request.command, request.simple_stream)
-                #print(response)
-                if response.success:
-                    self.outputPlainTextEdit.clear()
-                    self.outputPlainTextEdit.insertPlainText(response.message)
-
-            except rospy.ServiceException as exc:
-                print("Service did not process request: " + str(exc))
+            if self.onceRadioButton.isChecked():
+                ##########NON CONTINUOUS STATE######################
+                self.backZButton.setAutoRepeat(False)
+                self.coming_from_continuous_state = False
+                gcode = f"$J=G91Z-{self.stepSpinBox.value()}F{self.feedLineEdit.text()}"
+                self.communicationCommand(gcode)
+            else:
+                ######CONTINUOUS STATE#################
+                self.backZButton.setAutoRepeat(True)
+                self.coming_from_continuous_state = True
+                #print(f"continuous, counter: {self.joggingCounter}")
+                if self.joggingCounter == 0:
+                    #print(f"$J=G90X-400F{self.feedLineEdit.text()}")
+                    gcode = f"$J=G90Z-400F{self.feedLineEdit.text()}"
+                    self.communicationCommand(gcode)
+                self.joggingCounter +=1
         else:
             self.showMessageBox(text="No Serial Communication", icon="Critical")
+
+    def releasedBackZCallback(self):
+        #print("Button State DOWN",self.backZButton.isDown())
+        if not self.backZButton.isDown() and self.coming_from_continuous_state:
+            self.joggingCounter = 0
+            #print("sending cancel command")
+            self.continuous_state = False
+            self.communicationCommand(cmd="cancel")
+            rospy.sleep(1.0)
+        self.communicationCommand(cmd="?")
 
     def forwardZCallback(self):
         if self.SerialConnected:
-            global_coordinates[2] += self.stepSpinBox.value()*global_factor
-            gcode = f"$J=X{global_coordinates[0]}Y{global_coordinates[1]}Z{global_coordinates[2]}B{global_coordinates[3]}C{global_coordinates[4]}F{self.feedLineEdit.text()}"
-            rospy.wait_for_service('/cmd_input')
-            service_conn = rospy.ServiceProxy('/cmd_input', SendCommand)
-
-            try:
-                request = SendCommand()
-                request.command = gcode
-                request.simple_stream = True
-                response = service_conn(request.command, request.simple_stream)
-                #print(response)
-                if response.success:
-                    self.outputPlainTextEdit.clear()
-                    self.outputPlainTextEdit.insertPlainText(response.message)
-
-            except rospy.ServiceException as exc:
-                print("Service did not process request: " + str(exc))
+            if self.onceRadioButton.isChecked():
+                ##########NON CONTINUOUS STATE######################
+                self.forwardZButton.setAutoRepeat(False)
+                self.coming_from_continuous_state = False
+                gcode = f"$J=G91Z{self.stepSpinBox.value()}F{self.feedLineEdit.text()}"
+                self.communicationCommand(gcode)
+            else:
+                ######CONTINUOUS STATE#################
+                self.forwardZButton.setAutoRepeat(True)
+                self.coming_from_continuous_state = True
+                #print(f"continuous, counter: {self.joggingCounter}")
+                if self.joggingCounter == 0:
+                    #print(f"$J=G90X-400F{self.feedLineEdit.text()}")
+                    gcode = f"$J=G90Z400F{self.feedLineEdit.text()}"
+                    self.communicationCommand(gcode)
+                self.joggingCounter +=1
         else:
             self.showMessageBox(text="No Serial Communication", icon="Critical")
+
+    def releasedForwardZCallback(self):
+        #print("Button State DOWN",self.forwardZButton.isDown())
+        if not self.forwardZButton.isDown() and self.coming_from_continuous_state:
+            self.joggingCounter = 0
+            #print("sending cancel command")
+            self.continuous_state = False
+            self.communicationCommand(cmd="cancel")
+            rospy.sleep(1.0)
+        self.communicationCommand(cmd="?")
 
 
     def backBCallback(self):
         if self.SerialConnected:
-            global_coordinates[3] -= self.stepSpinBox.value()*global_factor
-            if global_coordinates[3]<-360:
-                global_coordinates[3] = -360
-            gcode = f"$J=X{global_coordinates[0]}Y{global_coordinates[1]}Z{global_coordinates[2]}B{global_coordinates[3]}C{global_coordinates[4]}F{self.feedLineEdit.text()}"
-            rospy.wait_for_service('/cmd_input')
-            service_conn = rospy.ServiceProxy('/cmd_input', SendCommand)
-
-            try:
-                request = SendCommand()
-                request.command = gcode
-                request.simple_stream = True
-                response = service_conn(request.command, request.simple_stream)
-                #print(response)
-                if response.success:
-                    self.outputPlainTextEdit.clear()
-                    self.outputPlainTextEdit.insertPlainText(response.message)
-
-            except rospy.ServiceException as exc:
-                print("Service did not process request: " + str(exc))
+            if self.onceRadioButton.isChecked():
+                ##########NON CONTINUOUS STATE######################
+                self.backBButton.setAutoRepeat(False)
+                self.coming_from_continuous_state = False
+                gcode = f"$J=G91B-{self.stepSpinBox.value()}F{self.feedLineEdit.text()}"
+                self.communicationCommand(gcode)
+            else:
+                ######CONTINUOUS STATE#################
+                self.backBButton.setAutoRepeat(True)
+                self.coming_from_continuous_state = True
+                #print(f"continuous, counter: {self.joggingCounter}")
+                if self.joggingCounter == 0:
+                    #print(f"$J=G90X-400F{self.feedLineEdit.text()}")
+                    gcode = f"$J=G90B-359F{self.feedLineEdit.text()}"
+                    self.communicationCommand(gcode)
+                self.joggingCounter +=1
         else:
             self.showMessageBox(text="No Serial Communication", icon="Critical")
+
+    def releasedBackBCallback(self):
+        #print("Button State DOWN",self.backBButton.isDown())
+        if not self.backBButton.isDown() and self.coming_from_continuous_state:
+            self.joggingCounter = 0
+            #print("sending cancel command")
+            self.continuous_state = False
+            self.communicationCommand(cmd="cancel")
+            rospy.sleep(1.0)
+        self.communicationCommand(cmd="?")
 
 
     def forwardBCallback(self):
         if self.SerialConnected:
-            global_coordinates[3] += self.stepSpinBox.value()*global_factor
-            if global_coordinates[3]>360:
-                global_coordinates[3] = 360
-            gcode = f"$J=X{global_coordinates[0]}Y{global_coordinates[1]}Z{global_coordinates[2]}B{global_coordinates[3]}C{global_coordinates[4]}F{self.feedLineEdit.text()}"
-            rospy.wait_for_service('/cmd_input')
-            service_conn = rospy.ServiceProxy('/cmd_input', SendCommand)
-
-            try:
-                request = SendCommand()
-                request.command = gcode
-                request.simple_stream = True
-                response = service_conn(request.command, request.simple_stream)
-                #print(response)
-                if response.success:
-                    self.outputPlainTextEdit.clear()
-                    self.outputPlainTextEdit.insertPlainText(response.message)
-
-            except rospy.ServiceException as exc:
-                print("Service did not process request: " + str(exc))
+            if self.onceRadioButton.isChecked():
+                ##########NON CONTINUOUS STATE######################
+                self.forwardBButton.setAutoRepeat(False)
+                self.coming_from_continuous_state = False
+                gcode = f"$J=G91B{self.stepSpinBox.value()}F{self.feedLineEdit.text()}"
+                self.communicationCommand(gcode)
+            else:
+                ######CONTINUOUS STATE#################
+                self.forwardBButton.setAutoRepeat(True)
+                self.coming_from_continuous_state = True
+                #print(f"continuous, counter: {self.joggingCounter}")
+                if self.joggingCounter == 0:
+                    #print(f"$J=G90X-400F{self.feedLineEdit.text()}")
+                    gcode = f"$J=G90B359F{self.feedLineEdit.text()}"
+                    self.communicationCommand(gcode)
+                self.joggingCounter +=1
         else:
             self.showMessageBox(text="No Serial Communication", icon="Critical")
+
+    def releasedForwardBCallback(self):
+        #print("Button State DOWN",self.forwardBButton.isDown())
+        if not self.forwardBButton.isDown() and self.coming_from_continuous_state:
+            self.joggingCounter = 0
+            #print("sending cancel command")
+            self.continuous_state = False
+            self.communicationCommand(cmd="cancel")
+            rospy.sleep(1.0)
+        self.communicationCommand(cmd="?")
 
 
     def backCCallback(self):
         if self.SerialConnected:
-            global_coordinates[4] -= self.stepSpinBox.value()*global_factor
-            if global_coordinates[4]<-360:
-                global_coordinates[4] = -360
-            gcode = f"$J=X{global_coordinates[0]}Y{global_coordinates[1]}Z{global_coordinates[2]}B{global_coordinates[3]}C{global_coordinates[4]}F{self.feedLineEdit.text()}"
-            rospy.wait_for_service('/cmd_input')
-            service_conn = rospy.ServiceProxy('/cmd_input', SendCommand)
-
-            try:
-                request = SendCommand()
-                request.command = gcode
-                request.simple_stream = True
-                response = service_conn(request.command, request.simple_stream)
-                #print(response)
-                if response.success:
-                    self.outputPlainTextEdit.clear()
-                    self.outputPlainTextEdit.insertPlainText(response.message)
-
-            except rospy.ServiceException as exc:
-                print("Service did not process request: " + str(exc))
+            if self.onceRadioButton.isChecked():
+                ##########NON CONTINUOUS STATE######################
+                self.backCButton.setAutoRepeat(False)
+                self.coming_from_continuous_state = False
+                gcode = f"$J=G91C-{self.stepSpinBox.value()}F{self.feedLineEdit.text()}"
+                self.communicationCommand(gcode)
+            else:
+                ######CONTINUOUS STATE#################
+                self.backCButton.setAutoRepeat(True)
+                self.coming_from_continuous_state = True
+                #print(f"continuous, counter: {self.joggingCounter}")
+                if self.joggingCounter == 0:
+                    #print(f"$J=G90X-400F{self.feedLineEdit.text()}")
+                    gcode = f"$J=G90C-359F{self.feedLineEdit.text()}"
+                    self.communicationCommand(gcode)
+                self.joggingCounter +=1
         else:
             self.showMessageBox(text="No Serial Communication", icon="Critical")
+
+    def releasedBackCCallback(self):
+        #print("Button State DOWN",self.backCButton.isDown())
+        if not self.backCButton.isDown() and self.coming_from_continuous_state:
+            self.joggingCounter = 0
+            #print("sending cancel command")
+            self.continuous_state = False
+            self.communicationCommand(cmd="cancel")
+            rospy.sleep(1.0)
+        self.communicationCommand(cmd="?")
 
     def forwardCCallback(self):
         if self.SerialConnected:
-            global_coordinates[4] += self.stepSpinBox.value()*global_factor
-            if global_coordinates[4]>360:
-                global_coordinates[4] = 360
-            gcode = f"$J=X{global_coordinates[0]}Y{global_coordinates[1]}Z{global_coordinates[2]}B{global_coordinates[3]}C{global_coordinates[4]}F{self.feedLineEdit.text()}"
-            rospy.wait_for_service('/cmd_input')
-            service_conn = rospy.ServiceProxy('/cmd_input', SendCommand)
-
-            try:
-                request = SendCommand()
-                request.command = gcode
-                request.simple_stream = True
-                response = service_conn(request.command, request.simple_stream)
-                #print(response)
-                if response.success:
-                    self.outputPlainTextEdit.clear()
-                    self.outputPlainTextEdit.insertPlainText(response.message)
-
-            except rospy.ServiceException as exc:
-                print("Service did not process request: " + str(exc))
+            if self.onceRadioButton.isChecked():
+                ##########NON CONTINUOUS STATE######################
+                self.forwardCButton.setAutoRepeat(False)
+                self.coming_from_continuous_state = False
+                gcode = f"$J=G91C{self.stepSpinBox.value()}F{self.feedLineEdit.text()}"
+                self.communicationCommand(gcode)
+            else:
+                ######CONTINUOUS STATE#################
+                self.forwardCButton.setAutoRepeat(True)
+                self.coming_from_continuous_state = True
+                #print(f"continuous, counter: {self.joggingCounter}")
+                if self.joggingCounter == 0:
+                    #print(f"$J=G90X-400F{self.feedLineEdit.text()}")
+                    gcode = f"$J=G90C359F{self.feedLineEdit.text()}"
+                    self.communicationCommand(gcode)
+                self.joggingCounter +=1
         else:
             self.showMessageBox(text="No Serial Communication", icon="Critical")
+
+    def releasedForwardCCallback(self):
+        #print("Button State DOWN",self.forwardCButton.isDown())
+        if not self.forwardCButton.isDown() and self.coming_from_continuous_state:
+            self.joggingCounter = 0
+            #print("sending cancel command")
+            self.continuous_state = False
+            self.communicationCommand(cmd="cancel")
+            rospy.sleep(1.0)
+        self.communicationCommand(cmd="?")
 
     def setCallback(self):
         if self.SerialConnected:
@@ -2105,6 +2206,29 @@ class Ui_MainWindow(object):
     def valueChangeCallback(self):
         step_scale = 50 #we get values from 0-99 so we just multiply it and map the range between 0-4950
         self.feedLineEdit.setText(str(self.feedHorizontalSlider.value()*step_scale))
+
+    def communicationCommand(self,cmd):
+        rospy.wait_for_service('/cmd_input')
+        service_conn = rospy.ServiceProxy('/cmd_input', SendCommand)
+        try:
+            request = SendCommand()
+            request.command = cmd
+            request.simple_stream = True
+            response = service_conn(request.command, request.simple_stream)
+            #print(response)
+            if response.success:
+                #self.outputPlainTextEdit.clear()
+                #self.outputPlainTextEdit.insertPlainText(response.message)
+                index_response = response.message.find("|F")
+                index_status = response.message.find("|")
+                #print(response.message[:index_response])
+                if index_response >0:
+                    self.mposLabel.setText(response.message[1:index_response])
+                if index_status>0:
+                    self.idleLabel.setText(response.message[1:index_status])
+        except rospy.ServiceException as exc:
+            print("Service did not process request: " + str(exc))
+
 
 
 

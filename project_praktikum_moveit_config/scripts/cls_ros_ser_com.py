@@ -210,6 +210,15 @@ class SerialCom():
 
                             return SendCommandResponse(return_msg, True)
                         else:
+                            if self.rec_msg =="cancel":
+                                self.ser.write("\x85".encode("utf-8"))
+                                time.sleep(0.1)
+                                bytesToRead = self.ser.inWaiting()
+                                print("BYTES RECEIVED: ", bytesToRead)
+                                data_raw = self.ser.read(bytesToRead).decode('utf-8')
+                                str_data_raw = str(data_raw)
+                                return SendCommandResponse(str_data_raw, True) #uncomment this line later
+
                             if self.rec_msg =="settings":
                                 self.rec_msg = "$$"
                             print(f'SENDING:{self.rec_msg}')
@@ -221,6 +230,8 @@ class SerialCom():
                             data_raw = self.ser.read(bytesToRead).decode('utf-8')
                             str_data_raw = str(data_raw)
                             return SendCommandResponse(str_data_raw, True) #uncomment this line later
+
+
                             # split_data = str_data_raw.split('\\r\\n')#comment the rest and return str_data_raw
                             # print("RECEIVED [INFO: %s]: " % rospy.get_time())
                             # for i in split_data:
