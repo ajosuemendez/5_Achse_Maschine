@@ -785,6 +785,7 @@ class Ui_MainWindow(object):
         self.homeButton = QtWidgets.QPushButton(self.layoutWidget6)
         self.homeButton.setAutoDefault(True)
         self.homeButton.setObjectName("homeButton")
+        self.homeButton.clicked.connect(self.homeCallBack)
         self.verticalLayout_6.addWidget(self.homeButton)
         self.verticalLayout_5 = QtWidgets.QVBoxLayout()
         self.verticalLayout_5.setObjectName("verticalLayout_5")
@@ -1292,13 +1293,19 @@ class Ui_MainWindow(object):
 
 
     def generate_gcodeCallback(self):
+
+        myatan = lambda x,y: numpy.pi*(1.0-0.5*(1+numpy.sign(x))*(1-numpy.sign(y**2))\
+                 -0.25*(2+numpy.sign(x))*numpy.sign(y))\
+                 -numpy.sign(x*y)*numpy.arctan((numpy.abs(x)-numpy.abs(y))/(numpy.abs(x)+numpy.abs(y)))
+
         lines = []
         self.full_list = []
         try:
             with open(self.dumper_file) as f:
                 lines= f.readlines()
 
-            one_p = len(lines)/100
+
+            counter_line = 0
             percentage = 0
             count = 0
             self.progress_value = 0
@@ -1307,22 +1314,44 @@ class Ui_MainWindow(object):
             z_offset = self.abs_offset[2] + self.set_world_frame[2]
 
             for line in lines:
-                pattern = re.compile(r'([.-]|)((\d*\.\d*)|(\d*))')
-                matches = pattern.finditer(str(line))
-                tcp_coordinates = [match.group(0) for match in matches]
-                tcp_coordinates = [elem for elem in tcp_coordinates if elem!=""]
-                del tcp_coordinates[0]
-                del tcp_coordinates[0]
-                tcp_coordinates = [round(float(elem), 2) for elem in tcp_coordinates]
-                self.full_list.append(tcp_coordinates)
+                if line.find("onLinear5D") > 0:
+                    counter_line +=1
+                    x = [line]
+                    start = 0
+                    while True:
+                        index_e = x[0].find("e-", start)
+                        if index_e <0:
+                            break
+                        index_next_comma =  x[0].find(",",index_e)
+                        for i in range(index_e, 0,-1):
+                            if  x[0][i] == ",":
+                                index_prev_comma = i
+                                break
+                            else:
+                                index_prev_comma = -1
 
-            myatan = lambda x,y: numpy.pi*(1.0-0.5*(1+numpy.sign(x))*(1-numpy.sign(y**2))\
-                     -0.25*(2+numpy.sign(x))*numpy.sign(y))\
-                     -numpy.sign(x*y)*numpy.arctan((numpy.abs(x)-numpy.abs(y))/(numpy.abs(x)+numpy.abs(y)))
+                        x[0] =  x[0].replace(x[0][index_prev_comma:index_next_comma], ", 0.000")
+                        start = index_e +1
+
+                    pattern = re.compile(r'([.-]|)((\d*\.\d*)|(\d*))')
+                    matches = pattern.finditer(str(line))
+                    tcp_coordinates = [match.group(0) for match in matches]
+                    tcp_coordinates = [elem for elem in tcp_coordinates if elem!=""]
+                    if len(tcp_coordinates) >9:
+                        del tcp_coordinates[0]
+                        del tcp_coordinates[0]
+                        tcp_coordinates = [round(float(elem), 2) for elem in tcp_coordinates]
+                        self.full_list.append(tcp_coordinates)
+
+            # myatan = lambda x,y: numpy.pi*(1.0-0.5*(1+numpy.sign(x))*(1-numpy.sign(y**2))\
+            #          -0.25*(2+numpy.sign(x))*numpy.sign(y))\
+            #          -numpy.sign(x*y)*numpy.arctan((numpy.abs(x)-numpy.abs(y))/(numpy.abs(x)+numpy.abs(y)))
 
             coordinates = [(float("{:.2f}".format(math.degrees(myatan(elem[3], elem[4])))), float("{:.2f}".format(math.degrees(math.atan(math.sqrt(math.fabs(math.pow(elem[3],2)) + math.fabs(math.pow(elem[4],2)))/elem[5]))))) for elem in self.full_list]
 
             gcode = ""
+            one_p = counter_line/100
+
             for i in range(len(coordinates)):
                 self.full_list[i].append(coordinates[i][0])
                 self.full_list[i].append(coordinates[i][1])
@@ -1423,8 +1452,8 @@ class Ui_MainWindow(object):
                             percentage += one_p
 
                 else:
-                    self.showMessageBox(text="No Motion Plan Found", icon="Critical")
-                    return None
+                    self.showMessageBox(text=f"No Motion Plan Found for point {i}", icon="Critical")
+                    #return None
 
         except Exception as e:
             self.showMessageBox(text="Error when generating the code", icon="Critical")
@@ -1826,15 +1855,18 @@ class Ui_MainWindow(object):
 
     def connectCallback(self):
         if not self.SerialConnected:
-            node = roslaunch.core.Node("project_praktikum_moveit_config", "cls_ros_ser_com.py")
-            launch = roslaunch.scriptapi.ROSLaunch()
-            launch.start()
-            script = launch.launch(node)
+            try:
+                node = roslaunch.core.Node("project_praktikum_moveit_config", "cls_ros_ser_com.py")
+                launch = roslaunch.scriptapi.ROSLaunch()
+                launch.start()
+                script = launch.launch(node)
 
-            self.outputPlainTextEdit.clear()
-            self.outputPlainTextEdit.insertPlainText("Node Is Running")
-            self.SerialConnected = True
-            self.idleLabel.setText("Connected Locked")
+                self.outputPlainTextEdit.clear()
+                self.outputPlainTextEdit.insertPlainText("Node Is Running")
+                self.SerialConnected = True
+                self.idleLabel.setText("Connected Locked")
+            except:
+                self.showMessageBox(text="No Connection Found", icon="Critical")
 
 
     def unlockCallback(self):
@@ -1856,6 +1888,12 @@ class Ui_MainWindow(object):
                     self.idleLabel.setText("Connected Unlocked")
             except rospy.ServiceException as exc:
                 print("Service did not process request: " + str(exc))
+        else:
+            self.showMessageBox(text="No Serial Communication", icon="Critical")
+
+    def homeCallBack(self):
+        if self.SerialConnected:
+            self.communicationCommand(cmd="G01X0Y0Z0B0C0F1000")
         else:
             self.showMessageBox(text="No Serial Communication", icon="Critical")
 

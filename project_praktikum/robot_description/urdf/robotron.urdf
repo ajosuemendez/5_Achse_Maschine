@@ -271,6 +271,7 @@
         <parent link="tool_link" />
         <child link="eff" />
         <origin rpy="0 0 -1.57" xyz="0.002 -0.002 -0.141" />
+        <!-- <origin rpy="0 0 -1.57" xyz="0.002 -0.002 -0.141" />  prototyp -->
     </joint>
 
 

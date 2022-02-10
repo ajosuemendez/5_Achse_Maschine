@@ -174,52 +174,60 @@ class MoveGroupPythonInterfaceTutorial(object):
 
     def callback_calc_pose(self,req):
 
-        current_joints_list = []
-        calculated_joints_list = []
-        valid_plan = False
-        self.pose_goal = geometry_msgs.msg.PoseStamped()
+        try:
+            current_joints_list = []
+            calculated_joints_list = []
+            valid_plan = False
+            self.pose_goal = geometry_msgs.msg.PoseStamped()
 
-        quaternion = tf.transformations.quaternion_from_euler(math.radians(self.roll_input) ,math.radians(req.pitch_input) ,math.radians(req.yaw_input))
-        self.pose_goal.pose.orientation.x = quaternion[0]
-        self.pose_goal.pose.orientation.y = quaternion[1]
-        self.pose_goal.pose.orientation.z = quaternion[2]
-        self.pose_goal.pose.orientation.w = quaternion[3]
-        self.pose_goal.pose.position.x = req.x_input*self.scale_m
-        self.pose_goal.pose.position.y = req.y_input*self.scale_m
-        self.pose_goal.pose.position.z = req.z_input*self.scale_m
+            quaternion = tf.transformations.quaternion_from_euler(math.radians(self.roll_input) ,math.radians(req.pitch_input) ,math.radians(req.yaw_input))
+            self.pose_goal.pose.orientation.x = quaternion[0]
+            self.pose_goal.pose.orientation.y = quaternion[1]
+            self.pose_goal.pose.orientation.z = quaternion[2]
+            self.pose_goal.pose.orientation.w = quaternion[3]
+            self.pose_goal.pose.position.x = req.x_input*self.scale_m
+            self.pose_goal.pose.position.y = req.y_input*self.scale_m
+            self.pose_goal.pose.position.z = req.z_input*self.scale_m
 
-        self.move_group.set_pose_target(self.pose_goal.pose)
+            self.move_group.set_pose_target(self.pose_goal.pose)
 
-        my_scale = 1000
-        calc_plan = self.move_group.plan()
-        #print("CALC_PLAN:",calc_plan)
-        length = len(calc_plan[1].joint_trajectory.points)
+            my_scale = 1000
+            calc_plan = self.move_group.plan()
+            #print("CALC_PLAN:",calc_plan)
+            length = len(calc_plan[1].joint_trajectory.points)
+            drehung = req.yaw_input//360
 
+            if length:
+                valid_plan = True
 
-        if length:
-            valid_plan = True
-
-            for i in range(length):
-                my_x = round(my_scale*calc_plan[1].joint_trajectory.points[-2+i].positions[1], 2)
-                my_y = round(my_scale*calc_plan[1].joint_trajectory.points[-2+i].positions[0],2)
-                my_z = round(-my_scale*calc_plan[1].joint_trajectory.points[-2+i].positions[2],2)
-                if math.degrees(calc_plan[1].joint_trajectory.points[-2+i].positions[3])<0.15:
-                    my_c = 0
-                else:
-                    my_c = round(360-math.degrees(calc_plan[1].joint_trajectory.points[-2+i].positions[3]),2)
-                my_b = round((-1)*math.degrees(calc_plan[1].joint_trajectory.points[-2+i].positions[4]),2)
-
-
-                array = [my_x, my_y, my_z, my_b,my_c]
-
-                for k in array:
-                    if i== 0:
-                        current_joints_list.append(k)
+                for i in range(length):
+                    my_x = round(my_scale*calc_plan[1].joint_trajectory.points[-2+i].positions[1], 2)
+                    my_y = round(my_scale*calc_plan[1].joint_trajectory.points[-2+i].positions[0],2)
+                    my_z = round(-my_scale*calc_plan[1].joint_trajectory.points[-2+i].positions[2],2)
+                    if math.degrees(calc_plan[1].joint_trajectory.points[-2+i].positions[3])<0.15 and math.degrees(calc_plan[1].joint_trajectory.points[-2+i].positions[3])>0:
+                        my_c = 0 + drehung*360
                     else:
-                        calculated_joints_list.append(k)
+                        my_c = round(360-math.degrees(calc_plan[1].joint_trajectory.points[-2+i].positions[3]),2) + drehung*360
+
+                    my_b = round((-1)*math.degrees(calc_plan[1].joint_trajectory.points[-2+i].positions[4]),2)
 
 
-        return CalculateJointsResponse([*current_joints_list, *calculated_joints_list], valid_plan)
+                    array = [my_x, my_y, my_z, my_b,my_c]
+
+                    for k in array:
+                        if i== 0:
+                            current_joints_list.append(k)
+                        else:
+                            calculated_joints_list.append(k)
+
+            return CalculateJointsResponse([*current_joints_list, *calculated_joints_list], valid_plan)
+
+        except Exception as e:
+            print(e)
+            return CalculateJointsResponse([0,0,0,0,0,0,0,0,0,0], False)
+
+
+
 
 
     def execute_pose_goal(self,req):
