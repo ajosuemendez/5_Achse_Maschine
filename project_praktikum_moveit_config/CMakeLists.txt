@@ -61,5 +61,6 @@ catkin_install_python(PROGRAMS
     scripts/dold_gui_2.py
     scripts/simpleActionClient.py
     scripts/dold_gui_3.py
+    scripts/dold_gui_4.py
     DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )

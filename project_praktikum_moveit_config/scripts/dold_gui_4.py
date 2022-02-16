@@ -71,21 +71,20 @@ class Worker(QObject):
         self.progress.emit(f"{msg.feedback}")
 
 
-
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(988, 760)
+        MainWindow.resize(988, 780)
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
         self.tabWidget = QtWidgets.QTabWidget(self.centralwidget)
-        self.tabWidget.setGeometry(QtCore.QRect(270, 20, 681, 441))
+        self.tabWidget.setGeometry(QtCore.QRect(270, 20, 681, 471))
         self.tabWidget.setMovable(True)
         self.tabWidget.setObjectName("tabWidget")
         self.CalculateJoints = QtWidgets.QWidget()
         self.CalculateJoints.setObjectName("CalculateJoints")
         self.layoutWidget = QtWidgets.QWidget(self.CalculateJoints)
-        self.layoutWidget.setGeometry(QtCore.QRect(20, 60, 641, 321))
+        self.layoutWidget.setGeometry(QtCore.QRect(20, 80, 641, 321))
         self.layoutWidget.setObjectName("layoutWidget")
         self.verticalLayout_15 = QtWidgets.QVBoxLayout(self.layoutWidget)
         self.verticalLayout_15.setContentsMargins(0, 0, 0, 15)
@@ -311,7 +310,7 @@ class Ui_MainWindow(object):
         self.horizontalLayout_24.addWidget(self.executeButton)
         self.verticalLayout_15.addLayout(self.horizontalLayout_24)
         self.desiredPoseLabel = QtWidgets.QLabel(self.CalculateJoints)
-        self.desiredPoseLabel.setGeometry(QtCore.QRect(60, 10, 151, 51))
+        self.desiredPoseLabel.setGeometry(QtCore.QRect(60, 20, 151, 51))
         font = QtGui.QFont()
         font.setPointSize(18)
         font.setBold(True)
@@ -319,7 +318,7 @@ class Ui_MainWindow(object):
         self.desiredPoseLabel.setFont(font)
         self.desiredPoseLabel.setObjectName("desiredPoseLabel")
         self.currentJointsLabel = QtWidgets.QLabel(self.CalculateJoints)
-        self.currentJointsLabel.setGeometry(QtCore.QRect(260, 10, 171, 51))
+        self.currentJointsLabel.setGeometry(QtCore.QRect(260, 20, 171, 51))
         font = QtGui.QFont()
         font.setPointSize(18)
         font.setBold(True)
@@ -327,7 +326,7 @@ class Ui_MainWindow(object):
         self.currentJointsLabel.setFont(font)
         self.currentJointsLabel.setObjectName("currentJointsLabel")
         self.calculatedJointsLabel = QtWidgets.QLabel(self.CalculateJoints)
-        self.calculatedJointsLabel.setGeometry(QtCore.QRect(460, 10, 201, 51))
+        self.calculatedJointsLabel.setGeometry(QtCore.QRect(460, 20, 201, 51))
         font = QtGui.QFont()
         font.setPointSize(18)
         font.setBold(True)
@@ -519,10 +518,10 @@ class Ui_MainWindow(object):
         self.Gcode = QtWidgets.QWidget()
         self.Gcode.setObjectName("Gcode")
         self.gcodeGenerationPlainTextEdit = QtWidgets.QPlainTextEdit(self.Gcode)
-        self.gcodeGenerationPlainTextEdit.setGeometry(QtCore.QRect(11, 21, 491, 301))
+        self.gcodeGenerationPlainTextEdit.setGeometry(QtCore.QRect(11, 81, 491, 251))
         self.gcodeGenerationPlainTextEdit.setObjectName("gcodeGenerationPlainTextEdit")
         self.layoutWidget2 = QtWidgets.QWidget(self.Gcode)
-        self.layoutWidget2.setGeometry(QtCore.QRect(510, 20, 151, 301))
+        self.layoutWidget2.setGeometry(QtCore.QRect(510, 80, 151, 251))
         self.layoutWidget2.setObjectName("layoutWidget2")
         self.verticalLayout_19 = QtWidgets.QVBoxLayout(self.layoutWidget2)
         self.verticalLayout_19.setContentsMargins(0, 0, 0, 0)
@@ -553,13 +552,13 @@ class Ui_MainWindow(object):
         self.saveButton.clicked.connect(self.save_fileCallback)
         self.verticalLayout_19.addWidget(self.saveButton)
         self.updateGcodeButton = QtWidgets.QPushButton(self.Gcode)
-        self.updateGcodeButton.setGeometry(QtCore.QRect(510, 350, 151, 51))
+        self.updateGcodeButton.setGeometry(QtCore.QRect(510, 360, 151, 51))
         self.updateGcodeButton.setAutoDefault(False)
         self.updateGcodeButton.setFlat(False)
         self.updateGcodeButton.setObjectName("updateGcodeButton")
         self.updateGcodeButton.clicked.connect(self.updateGcodeCallback)
         self.groupBox = QtWidgets.QGroupBox(self.Gcode)
-        self.groupBox.setGeometry(QtCore.QRect(10, 330, 491, 71))
+        self.groupBox.setGeometry(QtCore.QRect(10, 340, 491, 71))
         self.groupBox.setObjectName("groupBox")
         self.layoutWidget3 = QtWidgets.QWidget(self.groupBox)
         self.layoutWidget3.setGeometry(QtCore.QRect(10, 30, 471, 27))
@@ -586,14 +585,38 @@ class Ui_MainWindow(object):
         self.speedConfigurationLineEdit = QtWidgets.QLineEdit(self.layoutWidget3)
         self.speedConfigurationLineEdit.setObjectName("speedConfigurationLineEdit")
         self.horizontalLayout_38.addWidget(self.speedConfigurationLineEdit)
+        self.groupBox_3 = QtWidgets.QGroupBox(self.Gcode)
+        self.groupBox_3.setGeometry(QtCore.QRect(10, 10, 201, 61))
+        self.groupBox_3.setObjectName("groupBox_3")
+        self.modeDefaultRadioButton = QtWidgets.QRadioButton(self.groupBox_3)
+        self.modeDefaultRadioButton.setGeometry(QtCore.QRect(10, 30, 71, 23))
+        self.modeDefaultRadioButton.setChecked(True)
+        self.modeDefaultRadioButton.setObjectName("modeDefaultRadioButton")
+        self.moveBackRadioButton = QtWidgets.QRadioButton(self.groupBox_3)
+        self.moveBackRadioButton.setGeometry(QtCore.QRect(100, 30, 101, 23))
+        self.moveBackRadioButton.setObjectName("moveBackRadioButton")
+        self.groupBox_4 = QtWidgets.QGroupBox(self.Gcode)
+        self.groupBox_4.setGeometry(QtCore.QRect(220, 10, 281, 61))
+        self.groupBox_4.setObjectName("groupBox_4")
+        self.onLinear5DCheckBox = QtWidgets.QCheckBox(self.groupBox_4)
+        self.onLinear5DCheckBox.setGeometry(QtCore.QRect(10, 30, 101, 23))
+        self.onLinear5DCheckBox.setChecked(True)
+        self.onLinear5DCheckBox.setTristate(False)
+        self.onLinear5DCheckBox.setObjectName("onLinear5DCheckBox")
+        self.onRapid5DCheckBox = QtWidgets.QCheckBox(self.groupBox_4)
+        self.onRapid5DCheckBox.setGeometry(QtCore.QRect(120, 30, 101, 23))
+        self.onRapid5DCheckBox.setObjectName("onRapid5DCheckBox")
+        self.allCheckBox = QtWidgets.QCheckBox(self.groupBox_4)
+        self.allCheckBox.setGeometry(QtCore.QRect(230, 30, 41, 23))
+        self.allCheckBox.setObjectName("allCheckBox")
         self.tabWidget.addTab(self.Gcode, "")
         self.LoadGcode = QtWidgets.QWidget()
         self.LoadGcode.setObjectName("LoadGcode")
         self.extremesPlainTextEdit = QtWidgets.QPlainTextEdit(self.LoadGcode)
-        self.extremesPlainTextEdit.setGeometry(QtCore.QRect(170, 20, 491, 241))
+        self.extremesPlainTextEdit.setGeometry(QtCore.QRect(170, 20, 491, 251))
         self.extremesPlainTextEdit.setObjectName("extremesPlainTextEdit")
         self.calculateExtremesButton = QtWidgets.QPushButton(self.LoadGcode)
-        self.calculateExtremesButton.setGeometry(QtCore.QRect(20, 270, 141, 131))
+        self.calculateExtremesButton.setGeometry(QtCore.QRect(20, 280, 141, 131))
         self.calculateExtremesButton.setAutoDefault(False)
         self.calculateExtremesButton.setObjectName("calculateExtremesButton")
         self.calculateExtremesButton.clicked.connect(self.calulateExtremesCallback)
@@ -604,7 +627,7 @@ class Ui_MainWindow(object):
         self.loadGcodeButton.setObjectName("loadGcodeButton")
         self.loadGcodeButton.clicked.connect(self.loadGcodeCallback)
         self.layoutWidget4 = QtWidgets.QWidget(self.LoadGcode)
-        self.layoutWidget4.setGeometry(QtCore.QRect(170, 270, 491, 131))
+        self.layoutWidget4.setGeometry(QtCore.QRect(170, 280, 491, 131))
         self.layoutWidget4.setObjectName("layoutWidget4")
         self.verticalLayout_20 = QtWidgets.QVBoxLayout(self.layoutWidget4)
         self.verticalLayout_20.setContentsMargins(0, 0, 0, 0)
@@ -655,7 +678,8 @@ class Ui_MainWindow(object):
         self.horizontalLayout_31.addWidget(self.zMaxLineEdit)
         self.verticalLayout_20.addLayout(self.horizontalLayout_31)
         self.sendGcodeButton = QtWidgets.QPushButton(self.LoadGcode)
-        self.sendGcodeButton.setGeometry(QtCore.QRect(20, 210, 141, 51))
+        self.sendGcodeButton.setEnabled(False)
+        self.sendGcodeButton.setGeometry(QtCore.QRect(20, 220, 141, 51))
         self.sendGcodeButton.setAutoDefault(False)
         self.sendGcodeButton.setDefault(True)
         self.sendGcodeButton.setObjectName("sendGcodeButton")
@@ -758,7 +782,7 @@ class Ui_MainWindow(object):
         self.verticalLayout_29.addWidget(self.addButton)
         self.horizontalLayout_45.addLayout(self.verticalLayout_29)
         self.pointsPlainTextEdit = QtWidgets.QPlainTextEdit(self.SetPoints)
-        self.pointsPlainTextEdit.setGeometry(QtCore.QRect(20, 230, 631, 161))
+        self.pointsPlainTextEdit.setGeometry(QtCore.QRect(20, 230, 631, 181))
         self.pointsPlainTextEdit.setObjectName("pointsPlainTextEdit")
         self.startPointButton = QtWidgets.QPushButton(self.SetPoints)
         self.startPointButton.setGeometry(QtCore.QRect(20, 200, 89, 25))
@@ -774,7 +798,7 @@ class Ui_MainWindow(object):
         self.addProgressBar.setObjectName("addProgressBar")
         self.tabWidget.addTab(self.SetPoints, "")
         self.layoutWidget6 = QtWidgets.QWidget(self.centralwidget)
-        self.layoutWidget6.setGeometry(QtCore.QRect(20, 20, 231, 441))
+        self.layoutWidget6.setGeometry(QtCore.QRect(20, 20, 231, 471))
         self.layoutWidget6.setObjectName("layoutWidget6")
         self.verticalLayout_6 = QtWidgets.QVBoxLayout(self.layoutWidget6)
         self.verticalLayout_6.setContentsMargins(0, 0, 0, 0)
@@ -785,15 +809,21 @@ class Ui_MainWindow(object):
         self.connectButton.clicked.connect(self.connectCallback)
         self.verticalLayout_6.addWidget(self.connectButton)
         self.unlockButton = QtWidgets.QPushButton(self.layoutWidget6)
+        self.unlockButton.setEnabled(False)
         self.unlockButton.setAutoDefault(True)
         self.unlockButton.setObjectName("unlockButton")
         self.unlockButton.clicked.connect(self.unlockCallback)
         self.verticalLayout_6.addWidget(self.unlockButton)
         self.homeButton = QtWidgets.QPushButton(self.layoutWidget6)
+        self.homeButton.setEnabled(False)
         self.homeButton.setAutoDefault(True)
         self.homeButton.setObjectName("homeButton")
         self.homeButton.clicked.connect(self.homeCallBack)
         self.verticalLayout_6.addWidget(self.homeButton)
+        self.hButton = QtWidgets.QPushButton(self.layoutWidget6)
+        self.hButton.setEnabled(False)
+        self.hButton.setObjectName("hButton")
+        self.verticalLayout_6.addWidget(self.hButton)
         self.verticalLayout_5 = QtWidgets.QVBoxLayout()
         self.verticalLayout_5.setObjectName("verticalLayout_5")
         self.Jogging = QtWidgets.QGroupBox(self.layoutWidget6)
@@ -811,12 +841,13 @@ class Ui_MainWindow(object):
         self.horizontalLayout_2.setSizeConstraint(QtWidgets.QLayout.SetDefaultConstraint)
         self.horizontalLayout_2.setObjectName("horizontalLayout_2")
         self.backXButton = QtWidgets.QPushButton(self.layoutWidget7)
+        self.backXButton.setEnabled(False)
         self.backXButton.setObjectName("backXButton")
-        self.backXButton.setAutoRepeat(True)
         self.backXButton.pressed.connect(self.backXCallback)
         self.backXButton.released.connect(self.releasedBackXCallback)
         self.horizontalLayout_2.addWidget(self.backXButton)
         self.forwardXButton = QtWidgets.QPushButton(self.layoutWidget7)
+        self.forwardXButton.setEnabled(False)
         self.forwardXButton.setObjectName("forwardXButton")
         self.forwardXButton.pressed.connect(self.forwardXCallback)
         self.forwardXButton.released.connect(self.releasedForwardXCallback)
@@ -825,11 +856,13 @@ class Ui_MainWindow(object):
         self.horizontalLayout_3 = QtWidgets.QHBoxLayout()
         self.horizontalLayout_3.setObjectName("horizontalLayout_3")
         self.backYButton = QtWidgets.QPushButton(self.layoutWidget7)
+        self.backYButton.setEnabled(False)
         self.backYButton.setObjectName("backYButton")
         self.backYButton.pressed.connect(self.backYCallback)
         self.backYButton.released.connect(self.releasedBackYCallback)
         self.horizontalLayout_3.addWidget(self.backYButton)
         self.forwardYButton = QtWidgets.QPushButton(self.layoutWidget7)
+        self.forwardYButton.setEnabled(False)
         self.forwardYButton.setObjectName("forwardYButton")
         self.forwardYButton.pressed.connect(self.forwardYCallback)
         self.forwardYButton.released.connect(self.releasedForwardYCallback)
@@ -838,11 +871,13 @@ class Ui_MainWindow(object):
         self.horizontalLayout_4 = QtWidgets.QHBoxLayout()
         self.horizontalLayout_4.setObjectName("horizontalLayout_4")
         self.backZButton = QtWidgets.QPushButton(self.layoutWidget7)
+        self.backZButton.setEnabled(False)
         self.backZButton.setObjectName("backZButton")
         self.backZButton.pressed.connect(self.backZCallback)
         self.backZButton.released.connect(self.releasedBackZCallback)
         self.horizontalLayout_4.addWidget(self.backZButton)
         self.forwardZButton = QtWidgets.QPushButton(self.layoutWidget7)
+        self.forwardZButton.setEnabled(False)
         self.forwardZButton.setObjectName("forwardZButton")
         self.forwardZButton.pressed.connect(self.forwardZCallback)
         self.forwardZButton.released.connect(self.releasedForwardZCallback)
@@ -851,11 +886,13 @@ class Ui_MainWindow(object):
         self.horizontalLayout_5 = QtWidgets.QHBoxLayout()
         self.horizontalLayout_5.setObjectName("horizontalLayout_5")
         self.backBButton = QtWidgets.QPushButton(self.layoutWidget7)
+        self.backBButton.setEnabled(False)
         self.backBButton.setObjectName("backBButton")
         self.backBButton.pressed.connect(self.backBCallback)
         self.backBButton.released.connect(self.releasedBackBCallback)
         self.horizontalLayout_5.addWidget(self.backBButton)
         self.forwardBButton = QtWidgets.QPushButton(self.layoutWidget7)
+        self.forwardBButton.setEnabled(False)
         self.forwardBButton.setObjectName("forwardBButton")
         self.forwardBButton.pressed.connect(self.forwardBCallback)
         self.forwardBButton.released.connect(self.releasedForwardBCallback)
@@ -864,11 +901,13 @@ class Ui_MainWindow(object):
         self.horizontalLayout_6 = QtWidgets.QHBoxLayout()
         self.horizontalLayout_6.setObjectName("horizontalLayout_6")
         self.backCButton = QtWidgets.QPushButton(self.layoutWidget7)
+        self.backCButton.setEnabled(False)
         self.backCButton.setObjectName("backCButton")
         self.backCButton.pressed.connect(self.backCCallback)
         self.backCButton.released.connect(self.releasedBackCCallback)
         self.horizontalLayout_6.addWidget(self.backCButton)
         self.forwardCButton = QtWidgets.QPushButton(self.layoutWidget7)
+        self.forwardCButton.setEnabled(False)
         self.forwardCButton.setObjectName("forwardCButton")
         self.forwardCButton.pressed.connect(self.forwardCCallback)
         self.forwardCButton.released.connect(self.releasedForwardCCallback)
@@ -880,6 +919,7 @@ class Ui_MainWindow(object):
         self.stepLabel.setAlignment(QtCore.Qt.AlignLeading|QtCore.Qt.AlignLeft|QtCore.Qt.AlignVCenter)
         self.stepLabel.setObjectName("stepLabel")
         self.stepSpinBox = QtWidgets.QSpinBox(self.Jogging)
+        self.stepSpinBox.setEnabled(False)
         self.stepSpinBox.setGeometry(QtCore.QRect(90, 235, 131, 31))
         self.stepSpinBox.setObjectName("stepSpinBox")
         self.layoutWidget8 = QtWidgets.QWidget(self.Jogging)
@@ -892,10 +932,9 @@ class Ui_MainWindow(object):
         self.feedLabel.setObjectName("feedLabel")
         self.horizontalLayout_7.addWidget(self.feedLabel)
         self.feedHorizontalSlider = QtWidgets.QSlider(self.layoutWidget8)
+        self.feedHorizontalSlider.setEnabled(False)
         self.feedHorizontalSlider.setOrientation(QtCore.Qt.Horizontal)
         self.feedHorizontalSlider.setObjectName("feedHorizontalSlider")
-        # self.feedHorizontalSlider.setMinimum(0)
-        # self.feedHorizontalSlider.setMinimum(5000)
         self.feedHorizontalSlider.valueChanged.connect(self.valueChangeCallback)
         self.horizontalLayout_7.addWidget(self.feedHorizontalSlider)
         self.layoutWidget9 = QtWidgets.QWidget(self.Jogging)
@@ -906,9 +945,11 @@ class Ui_MainWindow(object):
         self.horizontalLayout_37.setSpacing(45)
         self.horizontalLayout_37.setObjectName("horizontalLayout_37")
         self.continuousRadioButton = QtWidgets.QRadioButton(self.layoutWidget9)
+        self.continuousRadioButton.setEnabled(False)
         self.continuousRadioButton.setObjectName("continuousRadioButton")
         self.horizontalLayout_37.addWidget(self.continuousRadioButton)
         self.onceRadioButton = QtWidgets.QRadioButton(self.layoutWidget9)
+        self.onceRadioButton.setEnabled(False)
         self.onceRadioButton.setChecked(True)
         self.onceRadioButton.setObjectName("onceRadioButton")
         self.horizontalLayout_37.addWidget(self.onceRadioButton)
@@ -917,13 +958,14 @@ class Ui_MainWindow(object):
         self.feedLineEdit.setObjectName("feedLineEdit")
         self.verticalLayout_5.addWidget(self.Jogging)
         self.setButton = QtWidgets.QPushButton(self.layoutWidget6)
+        self.setButton.setEnabled(False)
         self.setButton.setAutoDefault(True)
         self.setButton.setObjectName("setButton")
         self.setButton.clicked.connect(self.setCallback)
         self.verticalLayout_5.addWidget(self.setButton)
         self.verticalLayout_6.addLayout(self.verticalLayout_5)
         self.Serial = QtWidgets.QGroupBox(self.centralwidget)
-        self.Serial.setGeometry(QtCore.QRect(30, 480, 921, 201))
+        self.Serial.setGeometry(QtCore.QRect(20, 500, 931, 201))
         self.Serial.setObjectName("Serial")
         self.layoutWidget10 = QtWidgets.QWidget(self.Serial)
         self.layoutWidget10.setGeometry(QtCore.QRect(10, 30, 801, 161))
@@ -953,6 +995,7 @@ class Ui_MainWindow(object):
         self.verticalLayout_2.addWidget(self.outputPlainTextEdit)
         self.horizontalLayout.addLayout(self.verticalLayout_2)
         self.sendButton = QtWidgets.QPushButton(self.Serial)
+        self.sendButton.setEnabled(False)
         self.sendButton.setGeometry(QtCore.QRect(820, 30, 89, 25))
         self.sendButton.setAutoDefault(True)
         self.sendButton.setObjectName("sendButton")
@@ -961,10 +1004,10 @@ class Ui_MainWindow(object):
         self.statusLabel.setGeometry(QtCore.QRect(81, 1, 47, 17))
         self.statusLabel.setObjectName("statusLabel")
         self.idleLabel = QtWidgets.QLabel(self.Serial)
-        self.idleLabel.setGeometry(QtCore.QRect(139, 1, 101, 17))
+        self.idleLabel.setGeometry(QtCore.QRect(139, 1, 221, 17))
         self.idleLabel.setObjectName("idleLabel")
         self.mposLabel = QtWidgets.QLabel(self.centralwidget)
-        self.mposLabel.setGeometry(QtCore.QRect(40, 690, 600, 17))
+        self.mposLabel.setGeometry(QtCore.QRect(100, 710, 571, 21))
         self.mposLabel.setObjectName("mposLabel")
         self.layoutWidget11 = QtWidgets.QWidget(self.centralwidget)
         self.layoutWidget11.setGeometry(QtCore.QRect(0, 0, 2, 2))
@@ -978,6 +1021,11 @@ class Ui_MainWindow(object):
         self.verticalLayout_31 = QtWidgets.QVBoxLayout(self.layoutWidget12)
         self.verticalLayout_31.setContentsMargins(0, 0, 0, 0)
         self.verticalLayout_31.setObjectName("verticalLayout_31")
+        self.refreshButton = QtWidgets.QPushButton(self.centralwidget)
+        self.refreshButton.setEnabled(False)
+        self.refreshButton.setGeometry(QtCore.QRect(20, 710, 71, 21))
+        self.refreshButton.setObjectName("refreshButton")
+        self.refreshButton.clicked.connect(self.refreshCallback)
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(MainWindow)
         self.menubar.setGeometry(QtCore.QRect(0, 0, 988, 22))
@@ -1012,7 +1060,6 @@ class Ui_MainWindow(object):
         self.temp_z = []
         self.temp_b = []
         self.temp_c = []
-
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
@@ -1066,6 +1113,13 @@ class Ui_MainWindow(object):
         self.speedRelativeRadioButton.setText(_translate("MainWindow", "Relative(%)"))
         self.speedAbsoluteRadioButton.setText(_translate("MainWindow", "Absolute"))
         self.speedFlabel.setText(_translate("MainWindow", "F"))
+        self.groupBox_3.setTitle(_translate("MainWindow", "Mode Configuration"))
+        self.modeDefaultRadioButton.setText(_translate("MainWindow", "Default"))
+        self.moveBackRadioButton.setText(_translate("MainWindow", "Move Back"))
+        self.groupBox_4.setTitle(_translate("MainWindow", "Filter"))
+        self.onLinear5DCheckBox.setText(_translate("MainWindow", "onLinear5D"))
+        self.onRapid5DCheckBox.setText(_translate("MainWindow", "onRapid5D"))
+        self.allCheckBox.setText(_translate("MainWindow", "All"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.Gcode), _translate("MainWindow", "Gcode Generation"))
         self.calculateExtremesButton.setText(_translate("MainWindow", "Calculate Extremes"))
         self.loadGcodeButton.setText(_translate("MainWindow", "Load Gcode"))
@@ -1090,19 +1144,20 @@ class Ui_MainWindow(object):
         self.addGenerateGcodeButton.setText(_translate("MainWindow", "Generate Gcode"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.SetPoints), _translate("MainWindow", "Set Points"))
         self.connectButton.setText(_translate("MainWindow", "Connect"))
-        self.unlockButton.setText(_translate("MainWindow", "Unlock"))
-        self.homeButton.setText(_translate("MainWindow", "Home"))
+        self.unlockButton.setText(_translate("MainWindow", "Unlock ($X)"))
+        self.homeButton.setText(_translate("MainWindow", "Home (G01X0Y0Z0B0C0)"))
+        self.hButton.setText(_translate("MainWindow", "$H"))
         self.Jogging.setTitle(_translate("MainWindow", "Jogging"))
         self.backXButton.setText(_translate("MainWindow", "-X"))
-        self.forwardXButton.setText(_translate("MainWindow", "X"))
+        self.forwardXButton.setText(_translate("MainWindow", "+X"))
         self.backYButton.setText(_translate("MainWindow", "-Y"))
-        self.forwardYButton.setText(_translate("MainWindow", "Y"))
+        self.forwardYButton.setText(_translate("MainWindow", "+Y"))
         self.backZButton.setText(_translate("MainWindow", "-Z"))
-        self.forwardZButton.setText(_translate("MainWindow", "Z"))
+        self.forwardZButton.setText(_translate("MainWindow", "+Z"))
         self.backBButton.setText(_translate("MainWindow", "-B"))
-        self.forwardBButton.setText(_translate("MainWindow", "B"))
+        self.forwardBButton.setText(_translate("MainWindow", "+B"))
         self.backCButton.setText(_translate("MainWindow", "-C"))
-        self.forwardCButton.setText(_translate("MainWindow", "C"))
+        self.forwardCButton.setText(_translate("MainWindow", "+C"))
         self.stepLabel.setText(_translate("MainWindow", "Step in mm"))
         self.feedLabel.setText(_translate("MainWindow", "F"))
         self.continuousRadioButton.setText(_translate("MainWindow", "Continuous"))
@@ -1115,6 +1170,7 @@ class Ui_MainWindow(object):
         self.statusLabel.setText(_translate("MainWindow", "Status:"))
         self.idleLabel.setText(_translate("MainWindow", "Idle"))
         self.mposLabel.setText(_translate("MainWindow", "Mpos:"))
+        self.refreshButton.setText(_translate("MainWindow", "Refresh"))
 
     def showMessageBox(title=None, text="", icon="NoIcon", buttons=False, buttonsText=[],callback=None):
         qmb = QMessageBox()
@@ -1281,7 +1337,30 @@ class Ui_MainWindow(object):
             self.showMessageBox(text="Press the start button first", icon="Critical")
 
     def custom2ButtonCallback(self):
-        self.communicationCommand(cmd="?")
+        R = 40
+        pitch = [i for i in range(0,91,30)]
+        x = [round(R*math.sin(math.radians(i)),2) for i in pitch]
+        z = [round(R*math.cos(math.radians(i)),2) for i in pitch]
+        speed = 2500
+        samples = 10
+        y = 0
+        yaw = 0
+
+        if self.startButtonPressed:
+            #point1 = f": X{0} Y{0} Z{z} PITCH{0} YAW{0} SPEED{1500} SAMPLES{1}"
+            #point2 = f": X{0} Y{0} Z{z} PITCH{pitch} YAW{0} SPEED{1500} SAMPLES{10}"
+            #self.pointsPlainTextEdit.insertPlainText(point1 + "\n")
+            #self.pointsPlainTextEdit.insertPlainText(point2 + "\n")
+
+            for i in range(len(x)):
+                points = f"{i}: X{x[i]} Y{y} Z{z[i]} PITCH{pitch[i]} YAW{yaw} SPEED{speed} SAMPLES{samples}"
+                self.pointsPlainTextEdit.insertPlainText(points + "\n")
+                points = f"{i}: X{0} Y{y} Z{0} PITCH{pitch[i]} YAW{yaw} SPEED{speed} SAMPLES{1}"
+                self.pointsPlainTextEdit.insertPlainText(points + "\n")
+                self.secuence_counter+=1
+
+        else:
+            self.showMessageBox(text="Press the start button first", icon="Critical")
 
     def setFrameButtonCallback(self):
         self.set_world_frame[0] = float(self.xFrameLineEdit.text())
@@ -1366,7 +1445,6 @@ class Ui_MainWindow(object):
             one_p = counter_line/100
             #turn_count = 0
             add_degrees = 0
-            turn_outside_mode = True
 
             for i in range(len(coordinates)):
                 self.full_list[i].append(coordinates[i][0])
@@ -1377,12 +1455,12 @@ class Ui_MainWindow(object):
 
                     #if abs(self.full_list[i][-2]- self.full_list[i-1][-2])>300:
                     if (self.full_list[i][-2] - self.full_list[i-1][-2] > 350 and self.full_list[i][-2] - self.full_list[i-2][-2] > 350 and self.full_list[i][-2] - self.full_list[i-3][-2] >350) or (self.full_list[i][-2] - self.full_list[i-1][-2] < -350 and self.full_list[i][-2] - self.full_list[i-2][-2] < -350 and self.full_list[i][-2] - self.full_list[i-3][-2] < -350):
-                        if turn_outside_mode:
+                        if self.moveBackRadioButton.isChecked():
                             m = math.tan(math.radians(self.full_list[i-1][-1])) #steigung
                             if m<1:
                                 x_deviation = 50 #in mm
                             else:
-                                x_deviation = 47.53*(m**(-0.98)) #in mm
+                                x_deviation = 47.53*(m**(-0.98)) #in mm formula to make the x_deviation in dependance of the angle pitch
 
                             z_deviation = m*x_deviation # linear equation in mm
                             # print("m", m)
@@ -1952,6 +2030,30 @@ class Ui_MainWindow(object):
                 self.outputPlainTextEdit.insertPlainText("Node Is Running")
                 self.SerialConnected = True
                 self.idleLabel.setText("Connected Locked")
+                #Enabling all the Buttons for the Microcontroller communication
+                self.refreshButton.setEnabled(True)
+                self.unlockButton.setEnabled(True)
+                self.homeButton.setEnabled(True)
+                self.hButton.setEnabled(True)
+                self.backXButton.setEnabled(True)
+                self.forwardXButton.setEnabled(True)
+                self.backYButton.setEnabled(True)
+                self.forwardYButton.setEnabled(True)
+                self.backZButton.setEnabled(True)
+                self.forwardZButton.setEnabled(True)
+                self.backBButton.setEnabled(True)
+                self.forwardBButton.setEnabled(True)
+                self.backCButton.setEnabled(True)
+                self.forwardCButton.setEnabled(True)
+                self.feedHorizontalSlider.setEnabled(True)
+                self.stepSpinBox.setEnabled(True)
+                self.continuousRadioButton.setEnabled(True)
+                self.onceRadioButton.setEnabled(True)
+                self.setButton.setEnabled(True)
+                self.sendButton.setEnabled(True)
+                self.sendGcodeButton.setEnabled(True)
+
+
             except:
                 self.showMessageBox(text="No Connection Found", icon="Critical")
 
@@ -2330,6 +2432,9 @@ class Ui_MainWindow(object):
         else:
             self.showMessageBox(text="No Serial Communication", icon="Critical")
 
+    def refreshCallback(self):
+        self.communicationCommand(cmd="?")
+
     def valueChangeCallback(self):
         step_scale = 50 #we get values from 0-99 so we just multiply it and map the range between 0-4950
         self.feedLineEdit.setText(str(self.feedHorizontalSlider.value()*step_scale))
@@ -2348,15 +2453,14 @@ class Ui_MainWindow(object):
                 #self.outputPlainTextEdit.insertPlainText(response.message)
                 index_response = response.message.find("|F")
                 index_status = response.message.find("|")
+                index_start = response.message.find("<")
                 #print(response.message[:index_response])
                 if index_response >0:
-                    self.mposLabel.setText(response.message[1:index_response])
+                    self.mposLabel.setText(response.message[index_start+1:index_response])
                 if index_status>0:
-                    self.idleLabel.setText(response.message[1:index_status])
+                    self.idleLabel.setText(response.message[index_start+1:index_status])
         except rospy.ServiceException as exc:
             print("Service did not process request: " + str(exc))
-
-
 
 
 if __name__ == "__main__":
@@ -2367,6 +2471,7 @@ if __name__ == "__main__":
     global_coordinates = [0,0,0,0,0]
     global_factor = 1
     global_F = 500
+
     app = QtWidgets.QApplication(sys.argv)
     MainWindow = QtWidgets.QMainWindow()
     ui = Ui_MainWindow()

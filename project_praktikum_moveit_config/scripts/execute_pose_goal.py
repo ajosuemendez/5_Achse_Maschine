@@ -195,7 +195,7 @@ class MoveGroupPythonInterfaceTutorial(object):
             calc_plan = self.move_group.plan()
             #print("CALC_PLAN:",calc_plan)
             length = len(calc_plan[1].joint_trajectory.points)
-            drehung = req.yaw_input//360
+            drehung = req.yaw_input//360.19
 
             if length:
                 valid_plan = True
@@ -204,7 +204,7 @@ class MoveGroupPythonInterfaceTutorial(object):
                     my_x = round(my_scale*calc_plan[1].joint_trajectory.points[-2+i].positions[1], 2)
                     my_y = round(my_scale*calc_plan[1].joint_trajectory.points[-2+i].positions[0],2)
                     my_z = round(-my_scale*calc_plan[1].joint_trajectory.points[-2+i].positions[2],2)
-                    if math.degrees(calc_plan[1].joint_trajectory.points[-2+i].positions[3])<0.15 and math.degrees(calc_plan[1].joint_trajectory.points[-2+i].positions[3])>0:
+                    if math.degrees(calc_plan[1].joint_trajectory.points[-2+i].positions[3])<0.19 and math.degrees(calc_plan[1].joint_trajectory.points[-2+i].positions[3])>0:
                         my_c = 0 + drehung*360
                     else:
                         my_c = round(360-math.degrees(calc_plan[1].joint_trajectory.points[-2+i].positions[3]),2) + drehung*360

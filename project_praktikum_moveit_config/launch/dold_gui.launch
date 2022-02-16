@@ -3,5 +3,5 @@
   <node name="execute_pose_goal" pkg="project_praktikum_moveit_config" type="execute_pose_goal.py" output="screen"/>
   <!-- <node name="cls_ros_ser_com" pkg="project_praktikum_moveit_config" type="cls_ros_ser_com.py" output="screen"/> -->
   <!-- <node name="dold_gui" pkg="project_praktikum_moveit_config" type="doldGui.py" output="screen"/> -->
-  <node name="dold_gui" pkg="project_praktikum_moveit_config" type="dold_gui_3.py" output="screen"/>
+  <node name="dold_gui" pkg="project_praktikum_moveit_config" type="dold_gui_4.py" output="screen"/>
 </launch>

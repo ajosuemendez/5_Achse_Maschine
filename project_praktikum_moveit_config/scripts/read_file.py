@@ -3,6 +3,7 @@ import math
 import numpy
 lines = []
 full_list = []
+dump_test = []
 
 # defining the atan function
 myatan = lambda x,y: numpy.pi*(1.0-0.5*(1+numpy.sign(x))*(1-numpy.sign(y**2))\
@@ -11,7 +12,7 @@ myatan = lambda x,y: numpy.pi*(1.0-0.5*(1+numpy.sign(x))*(1-numpy.sign(y**2))\
 
 
 
-with open("/home/praktikant2/ws_moveit/src/project_praktikum_moveit_config/scripts/30_steps_kugel.txt") as f:
+with open("/home/praktikant2/ws_moveit/src/project_praktikum_moveit_config/scripts/halbkugel_dumper.txt") as f:
     lines= f.readlines()
 
 for line in lines:
@@ -43,10 +44,18 @@ for line in lines:
         if len(tcp_coordinates) >9:
             del tcp_coordinates[0]
             del tcp_coordinates[0]
+            dump_test.append(tcp_coordinates)
             tcp_coordinates = [round(float(elem), 2) for elem in tcp_coordinates]
             full_list.append(tcp_coordinates)
 
             # print(tcp_coordinates)
+
+
+with open('/home/praktikant2/dumpTest/DebugTestDumper.txt', 'w') as f:
+    for i in range(len(dump_test)):
+        f.write(f"counter:{i}, {dump_test[i]}\n")
+
+
 
 coordinates = [(round(math.degrees(myatan(elem[4], elem[3])), 3) , round(math.degrees(math.atan((math.sqrt( abs((elem[3])**2) + abs((elem[4])**2)))/elem[5])),3)) for elem in full_list]
 

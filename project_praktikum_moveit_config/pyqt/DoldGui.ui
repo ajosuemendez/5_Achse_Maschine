@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>988</width>
-    <height>760</height>
+    <height>780</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -20,11 +20,11 @@
       <x>270</x>
       <y>20</y>
       <width>681</width>
-      <height>441</height>
+      <height>471</height>
      </rect>
     </property>
     <property name="currentIndex">
-     <number>2</number>
+     <number>3</number>
     </property>
     <property name="movable">
      <bool>true</bool>
@@ -37,7 +37,7 @@
       <property name="geometry">
        <rect>
         <x>20</x>
-        <y>60</y>
+        <y>80</y>
         <width>641</width>
         <height>321</height>
        </rect>
@@ -494,7 +494,7 @@
       <property name="geometry">
        <rect>
         <x>60</x>
-        <y>10</y>
+        <y>20</y>
         <width>151</width>
         <height>51</height>
        </rect>
@@ -514,7 +514,7 @@
       <property name="geometry">
        <rect>
         <x>260</x>
-        <y>10</y>
+        <y>20</y>
         <width>171</width>
         <height>51</height>
        </rect>
@@ -534,7 +534,7 @@
       <property name="geometry">
        <rect>
         <x>460</x>
-        <y>10</y>
+        <y>20</y>
         <width>201</width>
         <height>51</height>
        </rect>
@@ -898,9 +898,9 @@
       <property name="geometry">
        <rect>
         <x>11</x>
-        <y>21</y>
+        <y>81</y>
         <width>491</width>
-        <height>301</height>
+        <height>251</height>
        </rect>
       </property>
      </widget>
@@ -908,9 +908,9 @@
       <property name="geometry">
        <rect>
         <x>510</x>
-        <y>20</y>
+        <y>80</y>
         <width>151</width>
-        <height>301</height>
+        <height>251</height>
        </rect>
       </property>
       <layout class="QVBoxLayout" name="verticalLayout_19">
@@ -976,7 +976,7 @@
       <property name="geometry">
        <rect>
         <x>510</x>
-        <y>350</y>
+        <y>360</y>
         <width>151</width>
         <height>51</height>
        </rect>
@@ -995,7 +995,7 @@
       <property name="geometry">
        <rect>
         <x>10</x>
-        <y>330</y>
+        <y>340</y>
         <width>491</width>
         <height>71</height>
        </rect>
@@ -1054,6 +1054,106 @@
        </layout>
       </widget>
      </widget>
+     <widget class="QGroupBox" name="groupBox_3">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>10</y>
+        <width>201</width>
+        <height>61</height>
+       </rect>
+      </property>
+      <property name="title">
+       <string>Mode Configuration</string>
+      </property>
+      <widget class="QRadioButton" name="modeDefaultRadioButton">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>30</y>
+         <width>71</width>
+         <height>23</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Default</string>
+       </property>
+       <property name="checked">
+        <bool>true</bool>
+       </property>
+      </widget>
+      <widget class="QRadioButton" name="moveBackRadioButton">
+       <property name="geometry">
+        <rect>
+         <x>100</x>
+         <y>30</y>
+         <width>101</width>
+         <height>23</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Move Back</string>
+       </property>
+      </widget>
+     </widget>
+     <widget class="QGroupBox" name="groupBox_4">
+      <property name="geometry">
+       <rect>
+        <x>220</x>
+        <y>10</y>
+        <width>281</width>
+        <height>61</height>
+       </rect>
+      </property>
+      <property name="title">
+       <string>Filter</string>
+      </property>
+      <widget class="QCheckBox" name="onLinear5DCheckBox">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>30</y>
+         <width>101</width>
+         <height>23</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>onLinear5D</string>
+       </property>
+       <property name="checked">
+        <bool>true</bool>
+       </property>
+       <property name="tristate">
+        <bool>false</bool>
+       </property>
+      </widget>
+      <widget class="QCheckBox" name="onRapid5DCheckBox">
+       <property name="geometry">
+        <rect>
+         <x>120</x>
+         <y>30</y>
+         <width>101</width>
+         <height>23</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>onRapid5D</string>
+       </property>
+      </widget>
+      <widget class="QCheckBox" name="allCheckBox">
+       <property name="geometry">
+        <rect>
+         <x>230</x>
+         <y>30</y>
+         <width>41</width>
+         <height>23</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>All</string>
+       </property>
+      </widget>
+     </widget>
     </widget>
     <widget class="QWidget" name="LoadGcode">
      <attribute name="title">
@@ -1065,7 +1165,7 @@
         <x>170</x>
         <y>20</y>
         <width>491</width>
-        <height>241</height>
+        <height>251</height>
        </rect>
       </property>
      </widget>
@@ -1073,7 +1173,7 @@
       <property name="geometry">
        <rect>
         <x>20</x>
-        <y>270</y>
+        <y>280</y>
         <width>141</width>
         <height>131</height>
        </rect>
@@ -1108,7 +1208,7 @@
       <property name="geometry">
        <rect>
         <x>170</x>
-        <y>270</y>
+        <y>280</y>
         <width>491</width>
         <height>131</height>
        </rect>
@@ -1189,10 +1289,13 @@
       </layout>
      </widget>
      <widget class="QPushButton" name="sendGcodeButton">
+      <property name="enabled">
+       <bool>false</bool>
+      </property>
       <property name="geometry">
        <rect>
         <x>20</x>
-        <y>210</y>
+        <y>220</y>
         <width>141</width>
         <height>51</height>
        </rect>
@@ -1392,7 +1495,7 @@
         <x>20</x>
         <y>230</y>
         <width>631</width>
-        <height>161</height>
+        <height>181</height>
        </rect>
       </property>
      </widget>
@@ -1443,7 +1546,7 @@
       <x>20</x>
       <y>20</y>
       <width>231</width>
-      <height>441</height>
+      <height>471</height>
      </rect>
     </property>
     <layout class="QVBoxLayout" name="verticalLayout_6">
@@ -1459,8 +1562,11 @@
      </item>
      <item>
       <widget class="QPushButton" name="unlockButton">
+       <property name="enabled">
+        <bool>false</bool>
+       </property>
        <property name="text">
-        <string>Unlock</string>
+        <string>Unlock ($X)</string>
        </property>
        <property name="autoDefault">
         <bool>true</bool>
@@ -1469,11 +1575,24 @@
      </item>
      <item>
       <widget class="QPushButton" name="homeButton">
+       <property name="enabled">
+        <bool>false</bool>
+       </property>
        <property name="text">
-        <string>Home</string>
+        <string>Home (G01X0Y0Z0B0C0)</string>
        </property>
        <property name="autoDefault">
         <bool>true</bool>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="hButton">
+       <property name="enabled">
+        <bool>false</bool>
+       </property>
+       <property name="text">
+        <string>$H</string>
        </property>
       </widget>
      </item>
@@ -1506,6 +1625,9 @@
                </property>
                <item>
                 <widget class="QPushButton" name="backXButton">
+                 <property name="enabled">
+                  <bool>false</bool>
+                 </property>
                  <property name="text">
                   <string>-X</string>
                  </property>
@@ -1513,6 +1635,9 @@
                </item>
                <item>
                 <widget class="QPushButton" name="forwardXButton">
+                 <property name="enabled">
+                  <bool>false</bool>
+                 </property>
                  <property name="text">
                   <string>X</string>
                  </property>
@@ -1524,6 +1649,9 @@
               <layout class="QHBoxLayout" name="horizontalLayout_3">
                <item>
                 <widget class="QPushButton" name="backYButton">
+                 <property name="enabled">
+                  <bool>false</bool>
+                 </property>
                  <property name="text">
                   <string>-Y</string>
                  </property>
@@ -1531,6 +1659,9 @@
                </item>
                <item>
                 <widget class="QPushButton" name="forwardYButton">
+                 <property name="enabled">
+                  <bool>false</bool>
+                 </property>
                  <property name="text">
                   <string>Y</string>
                  </property>
@@ -1542,6 +1673,9 @@
               <layout class="QHBoxLayout" name="horizontalLayout_4">
                <item>
                 <widget class="QPushButton" name="backZButton">
+                 <property name="enabled">
+                  <bool>false</bool>
+                 </property>
                  <property name="text">
                   <string>-Z</string>
                  </property>
@@ -1549,6 +1683,9 @@
                </item>
                <item>
                 <widget class="QPushButton" name="forwardZButton">
+                 <property name="enabled">
+                  <bool>false</bool>
+                 </property>
                  <property name="text">
                   <string>Z</string>
                  </property>
@@ -1560,6 +1697,9 @@
               <layout class="QHBoxLayout" name="horizontalLayout_5">
                <item>
                 <widget class="QPushButton" name="backBButton">
+                 <property name="enabled">
+                  <bool>false</bool>
+                 </property>
                  <property name="text">
                   <string>-B</string>
                  </property>
@@ -1567,6 +1707,9 @@
                </item>
                <item>
                 <widget class="QPushButton" name="forwardBButton">
+                 <property name="enabled">
+                  <bool>false</bool>
+                 </property>
                  <property name="text">
                   <string>B</string>
                  </property>
@@ -1578,6 +1721,9 @@
               <layout class="QHBoxLayout" name="horizontalLayout_6">
                <item>
                 <widget class="QPushButton" name="backCButton">
+                 <property name="enabled">
+                  <bool>false</bool>
+                 </property>
                  <property name="text">
                   <string>-C</string>
                  </property>
@@ -1585,6 +1731,9 @@
                </item>
                <item>
                 <widget class="QPushButton" name="forwardCButton">
+                 <property name="enabled">
+                  <bool>false</bool>
+                 </property>
                  <property name="text">
                   <string>C</string>
                  </property>
@@ -1613,6 +1762,9 @@
           </property>
          </widget>
          <widget class="QSpinBox" name="stepSpinBox">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
           <property name="geometry">
            <rect>
             <x>90</x>
@@ -1641,6 +1793,9 @@
            </item>
            <item>
             <widget class="QSlider" name="feedHorizontalSlider">
+             <property name="enabled">
+              <bool>false</bool>
+             </property>
              <property name="orientation">
               <enum>Qt::Horizontal</enum>
              </property>
@@ -1663,6 +1818,9 @@
            </property>
            <item>
             <widget class="QRadioButton" name="continuousRadioButton">
+             <property name="enabled">
+              <bool>false</bool>
+             </property>
              <property name="text">
               <string>Continuous</string>
              </property>
@@ -1670,6 +1828,9 @@
            </item>
            <item>
             <widget class="QRadioButton" name="onceRadioButton">
+             <property name="enabled">
+              <bool>false</bool>
+             </property>
              <property name="text">
               <string>Once</string>
              </property>
@@ -1694,6 +1855,9 @@
        </item>
        <item>
         <widget class="QPushButton" name="setButton">
+         <property name="enabled">
+          <bool>false</bool>
+         </property>
          <property name="text">
           <string>Set</string>
          </property>
@@ -1709,9 +1873,9 @@
    <widget class="QGroupBox" name="Serial">
     <property name="geometry">
      <rect>
-      <x>30</x>
-      <y>480</y>
-      <width>921</width>
+      <x>20</x>
+      <y>500</y>
+      <width>931</width>
       <height>201</height>
      </rect>
     </property>
@@ -1774,6 +1938,9 @@
      </layout>
     </widget>
     <widget class="QPushButton" name="sendButton">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
      <property name="geometry">
       <rect>
        <x>820</x>
@@ -1807,7 +1974,7 @@
       <rect>
        <x>139</x>
        <y>1</y>
-       <width>101</width>
+       <width>221</width>
        <height>17</height>
       </rect>
      </property>
@@ -1819,10 +1986,10 @@
    <widget class="QLabel" name="mposLabel">
     <property name="geometry">
      <rect>
-      <x>40</x>
-      <y>690</y>
-      <width>67</width>
-      <height>17</height>
+      <x>100</x>
+      <y>710</y>
+      <width>571</width>
+      <height>21</height>
      </rect>
     </property>
     <property name="text">
@@ -1850,6 +2017,22 @@
      </rect>
     </property>
     <layout class="QVBoxLayout" name="verticalLayout_31"/>
+   </widget>
+   <widget class="QPushButton" name="refreshButton">
+    <property name="enabled">
+     <bool>false</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>710</y>
+      <width>71</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Refresh</string>
+    </property>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
