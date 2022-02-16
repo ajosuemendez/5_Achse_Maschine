@@ -1357,6 +1357,8 @@ class Ui_MainWindow(object):
                 self.pointsPlainTextEdit.insertPlainText(points + "\n")
                 points = f"{i}: X{0} Y{y} Z{0} PITCH{pitch[i]} YAW{yaw} SPEED{speed} SAMPLES{1}"
                 self.pointsPlainTextEdit.insertPlainText(points + "\n")
+                points = f"{i}: X{x[i]} Y{y} Z{z[i]} PITCH{pitch[i]} YAW{yaw} SPEED{speed} SAMPLES{1}"
+                self.pointsPlainTextEdit.insertPlainText(points + "\n")
                 self.secuence_counter+=1
 
         else:
