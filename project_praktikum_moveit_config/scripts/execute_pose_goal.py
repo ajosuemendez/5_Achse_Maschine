@@ -180,7 +180,7 @@ class MoveGroupPythonInterfaceTutorial(object):
             valid_plan = False
             self.pose_goal = geometry_msgs.msg.PoseStamped()
 
-            quaternion = tf.transformations.quaternion_from_euler(math.radians(self.roll_input) ,math.radians(req.pitch_input) ,math.radians(req.yaw_input))
+            quaternion = tf.transformations.quaternion_from_euler(math.radians(self.roll_input) ,math.radians(req.pitch_input) ,math.radians(req.yaw_input)) ##added-1 and -1
             self.pose_goal.pose.orientation.x = quaternion[0]
             self.pose_goal.pose.orientation.y = quaternion[1]
             self.pose_goal.pose.orientation.z = quaternion[2]
@@ -199,6 +199,8 @@ class MoveGroupPythonInterfaceTutorial(object):
 
             if length:
                 valid_plan = True
+                print(calc_plan)
+
 
                 for i in range(length):
                     my_x = round(my_scale*calc_plan[1].joint_trajectory.points[-2+i].positions[1], 2)
@@ -209,7 +211,7 @@ class MoveGroupPythonInterfaceTutorial(object):
                     else:
                         my_c = round(360-math.degrees(calc_plan[1].joint_trajectory.points[-2+i].positions[3]),2) + drehung*360
 
-                    my_b = round((-1)*math.degrees(calc_plan[1].joint_trajectory.points[-2+i].positions[4]),2)
+                    my_b = round(-math.degrees(calc_plan[1].joint_trajectory.points[-2+i].positions[4]),2) 
 
 
                     array = [my_x, my_y, my_z, my_b,my_c]

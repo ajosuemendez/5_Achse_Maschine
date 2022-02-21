@@ -1386,6 +1386,17 @@ class Ui_MainWindow(object):
         self.chosenFilelabel.setText(self.dumper_file[len(self.dumper_file)-self.dumper_file[::-1].find("/"):])
 
 
+    def check_filter(self,line,*mode):
+        name = mode[0][0]
+        state = mode[0][1]
+        if state:
+            if line.find(name)>0:
+                return name
+            else:
+                return "Not Found"
+        else:
+            return "Not Found"
+
     def generate_gcodeCallback(self):
 
         myatan = lambda x,y: numpy.pi*(1.0-0.5*(1+numpy.sign(x))*(1-numpy.sign(y**2))\
@@ -1407,9 +1418,39 @@ class Ui_MainWindow(object):
             y_offset = self.abs_offset[1] + self.set_world_frame[1]
             z_offset = self.abs_offset[2] + self.set_world_frame[2]
 
+            #Setting the Filters
+            if (not self.onRapid5DCheckBox.isChecked()) and (not self.onLinear5DCheckBox.isChecked()) and (not self.allCheckBox.isChecked()):
+                self.showMessageBox(text="Make Sure To Check At Least One Filter", icon="Critical")
+                return None
+
+            mode_onRapid5D = ("onRapid5D(",self.onRapid5DCheckBox.isChecked())
+            mode_onLinear5D = ("onLinear5D(",self.onLinear5DCheckBox.isChecked())
+            mode_all = self.allCheckBox.isChecked()
+            if mode_all:
+                mode_onLinear = ("onLinear(",True)
+                mode_onRapid = ("onRapid(",True)
+                mode_onCircular = ("onCircular(",True)
+                mode_onRapid5D = ("onRapid5D(",True)
+                mode_onLinear5D = ("onLinear5D(",True)
+            else:
+                mode_onLinear = ("onLinear(",False)
+                mode_onRapid = ("onRapid(",False)
+                mode_onCircular = ("onCircular(",False)
+
+            modes = [mode_onLinear5D, mode_onRapid5D, mode_onLinear, mode_onRapid, mode_onCircular]
+
+            #counter = 0
+            total_lines = 0
+
             for line in lines:
-                if line.find("onLinear5D") > 0:
-                    counter_line +=1
+                cw= True
+                found_functions = []
+                for i in modes:
+                    mode_name = self.check_filter(line, i)
+                    if mode_name != "Not Found":
+                        found_functions.append(mode_name)
+
+                if found_functions:
                     x = [line]
                     start = 0
                     while True:
@@ -1417,50 +1458,84 @@ class Ui_MainWindow(object):
                         if index_e <0:
                             break
                         index_next_comma =  x[0].find(",",index_e)
+
                         for i in range(index_e, 0,-1):
-                            if  x[0][i] == ",":
+                            if  x[0][i] == "," or x[0][i] == "(":
                                 index_prev_comma = i
                                 break
                             else:
                                 index_prev_comma = -1
 
-                        x[0] =  x[0].replace(x[0][index_prev_comma:index_next_comma], ", 0.000")
+                        x[0] =  x[0].replace(x[0][index_prev_comma:index_next_comma], ", 0.0001")
                         start = index_e +1
+                #
+                #     print(x[0])
+                    if str(x[0]).find("false") > 0:
+                        cw = False
 
                     pattern = re.compile(r'([.-]|)((\d*\.\d*)|(\d*))')
-                    matches = pattern.finditer(str(line))
+                    matches = pattern.finditer(str(x[0]))
                     tcp_coordinates = [match.group(0) for match in matches]
                     tcp_coordinates = [elem for elem in tcp_coordinates if elem!=""]
-                    if len(tcp_coordinates) >9:
-                        del tcp_coordinates[0]
-                        del tcp_coordinates[0]
-                        tcp_coordinates = [round(float(elem), 2) for elem in tcp_coordinates]
-                        self.full_list.append(tcp_coordinates)
+                    #print(tcp_coordinates)
+                    #print(found_functions)
+                    if len(tcp_coordinates) >1:
+                        if "onLinear(" in found_functions or "onRapid(" in found_functions or "onCircular(" in found_functions:
+                            del tcp_coordinates[0]
+                        elif "onRapid5D(" in found_functions or "onLinear5D(" in found_functions:
+                            del tcp_coordinates[0]
+                            del tcp_coordinates[0]
 
-            # myatan = lambda x,y: numpy.pi*(1.0-0.5*(1+numpy.sign(x))*(1-numpy.sign(y**2))\
-            #          -0.25*(2+numpy.sign(x))*numpy.sign(y))\
-            #          -numpy.sign(x*y)*numpy.arctan((numpy.abs(x)-numpy.abs(y))/(numpy.abs(x)+numpy.abs(y)))
+                        #dump_test.append(tcp_coordinates)
+                        tcp_coordinates = [round(float(elem), 6) for elem in tcp_coordinates]
+                        if "onRapid5D(" in found_functions:
+                            coordinate = [(round(math.degrees(myatan(tcp_coordinates[3], tcp_coordinates[4])), 6) , round(math.degrees(math.atan((math.sqrt( abs((tcp_coordinates[3])**2) + abs((tcp_coordinates[4])**2)))/tcp_coordinates[5])),2))]
+                            list_coordinate = [coordinate[0][0],coordinate[0][1]] # yaw, pitch
+                            self.full_list.append(tcp_coordinates + list_coordinate)
+                            #print(f"Line Number:{counter} function(onRapid5D) x: {full_list[-1][0]} y: {full_list[-1][1]} z: {full_list[-1][2]} yaw: {full_list[-1][-2]} pitch: {full_list[-1][-1]}")
+                            #counter +=1
+                        elif "onLinear5D(" in found_functions:
+                            coordinate = [(round(math.degrees(myatan(tcp_coordinates[3], tcp_coordinates[4])), 6) , round(math.degrees(math.atan((math.sqrt( abs((tcp_coordinates[3])**2) + abs((tcp_coordinates[4])**2)))/tcp_coordinates[5])),2))]
+                            list_coordinate = [coordinate[0][0],coordinate[0][1]]
+                            if math.isnan(coordinate[0][0]):
+                                print(tcp_coordinates[4], tcp_coordinates[3])
+                            self.full_list.append(tcp_coordinates + list_coordinate)
+                            #print(f"Line Number:{counter} function(onLinear5D) x: {full_list[-1][0]} y: {full_list[-1][1]} z: {full_list[-1][2]} yaw: {full_list[-1][-2]} pitch: {full_list[-1][-1]} speed: {full_list[-1][6]}" )
+                            #counter +=1
+                        elif "onLinear(" in found_functions:
+                            self.full_list.append(tcp_coordinates)
+                            #print(f"Line Number:{counter} function(onLinear) x: {full_list[-1][0]} y: {full_list[-1][1]} z: {full_list[-1][2]} speed: {full_list[-1][3]}" )
+                            #counter +=1
 
-            coordinates = [(float("{:.2f}".format(math.degrees(myatan(elem[3], elem[4])))), float("{:.2f}".format(math.degrees(math.atan(math.sqrt(math.fabs(math.pow(elem[3],2)) + math.fabs(math.pow(elem[4],2)))/elem[5]))))) for elem in self.full_list]
+                        elif "onRapid(" in found_functions:
+                            self.full_list.append(tcp_coordinates)
+                            #print(f"Line Number:{counter} function(onRapid) x: {full_list[-1][0]} y: {full_list[-1][1]} z: {full_list[-1][2]}" )
+                            #counter +=1
+
+                        elif "onCircular(" in found_functions:
+                            self.full_list.append(tcp_coordinates)
+                            #print(f"Line Number:{counter} function(onCirular) clockwise: {cw} cx: {full_list[-1][0]} cy: {full_list[-1][1]} cz: {full_list[-1][2]} end_x: {full_list[-1][3]} end_y: {full_list[-1][4]} end_z: {full_list[-1][5]}" )
+                            #counter +=1
+                        total_lines +=1
+
 
             gcode = ""
-            one_p = counter_line/100
-            #turn_count = 0
+            count = 1
             add_degrees = 0
+            cyclic_count = 1
 
-            for i in range(len(coordinates)):
-                self.full_list[i].append(coordinates[i][0])
-                self.full_list[i].append(coordinates[i][1])
-                abs_pos = [self.set_offsets[k] +self.pos_offsets[k] + self.full_list[i][k] for k in range(len(self.pos_offsets))]
+            for i in range(len(self.full_list)):
+                abs_pos = [self.set_offsets[k] +self.pos_offsets[k] + self.full_list[i][k] for k in range(len(self.pos_offsets))] #[x,y,z] abs offset
 
-                if i>=3:
+                if i>=3 and len(self.full_list[i])>8:
 
                     #if abs(self.full_list[i][-2]- self.full_list[i-1][-2])>300:
-                    if (self.full_list[i][-2] - self.full_list[i-1][-2] > 350 and self.full_list[i][-2] - self.full_list[i-2][-2] > 350 and self.full_list[i][-2] - self.full_list[i-3][-2] >350) or (self.full_list[i][-2] - self.full_list[i-1][-2] < -350 and self.full_list[i][-2] - self.full_list[i-2][-2] < -350 and self.full_list[i][-2] - self.full_list[i-3][-2] < -350):
+                    cyclic_threshold = 280 #before 350
+                    if (self.full_list[i][-2] - self.full_list[i-1][-2] > cyclic_threshold and self.full_list[i][-2] - self.full_list[i-2][-2] > cyclic_threshold and self.full_list[i][-2] - self.full_list[i-3][-2] >cyclic_threshold) or (self.full_list[i][-2] - self.full_list[i-1][-2] < -cyclic_threshold and self.full_list[i][-2] - self.full_list[i-2][-2] < -cyclic_threshold and self.full_list[i][-2] - self.full_list[i-3][-2] < -cyclic_threshold):
                         if self.moveBackRadioButton.isChecked():
                             m = math.tan(math.radians(self.full_list[i-1][-1])) #steigung
                             if m<1:
-                                x_deviation = 50 #in mm
+                                x_deviation = 100 #in mm
                             else:
                                 x_deviation = 47.53*(m**(-0.98)) #in mm formula to make the x_deviation in dependance of the angle pitch
 
@@ -1470,21 +1545,6 @@ class Ui_MainWindow(object):
                             # print("z_dev: ",z_deviation)
                             # print("b (degrees): ", self.full_list[i-1][-1])
                             # print("b readians: ", math.radians(self.full_list[i-1][-1]))
-
-
-                            # rospy.wait_for_service('/plan_cartesian')
-                            # service_conn = rospy.ServiceProxy('/plan_cartesian', CalculateJoints)
-                            # try:
-                            #     request = CalculateJoints()
-                            #     request.x_input = x_deviation
-                            #     request.y_input = 0
-                            #     request.z_input = z_deviation
-                            #     request.pitch_input = 0
-                            #     request.yaw_input = 0
-                            #     response = service_conn(request.x_input, request.y_input, request.z_input, request.pitch_input, request.yaw_input)
-                            #     #print(response)
-                            # except rospy.ServiceException as exc:
-                            #     print("Service did not process request: " + str(exc))
 
                             rospy.wait_for_service('/calc_pose')
                             service_conn = rospy.ServiceProxy('/calc_pose', CalculateJoints)
@@ -1503,38 +1563,44 @@ class Ui_MainWindow(object):
                                 response = service_conn(request.x_input, request.y_input, request.z_input, request.pitch_input, request.yaw_input)
                                 #print(response)
                                 if response.success:
-                                    feed_rate = 2000
+                                    feed_rate = 2500
                                     #print(f"Completed Trajectory Planned And To Be Executed After {attempts} Attempts")
                                     #tutorial.execute_plan(cartesian_plan)
                                     #uncomment gcode += f"G01X{round(response.joints[5]-x_offset -self.set_world_frame[0],2)}Y{round(response.joints[6]-y_offset -self.set_world_frame[1],2)}Z{round(response.joints[7]-z_offset -self.set_world_frame[2],2)}B{round(response.joints[8],2)}C{round(response.joints[9],2)}F{feed_rate}\n"
                                     #call_bool_service('/save_gcode_point')
                                     #determinating the direction (from 0 to 360 or 360 to 0)
-                                    if self.full_list[i][-2] - self.full_list[i-1][-2] > 350 and self.full_list[i][-2] - self.full_list[i-2][-2] > 350 and self.full_list[i][-2] - self.full_list[i-3][-2] >350: #yaw is decreasing
+                                    if self.full_list[i][-2] - self.full_list[i-1][-2] > cyclic_threshold and self.full_list[i][-2] - self.full_list[i-2][-2] > cyclic_threshold and self.full_list[i][-2] - self.full_list[i-3][-2] >cyclic_threshold: #yaw is decreasing
                                         #positive then rotate the other way (go to 0)
                                         #print("added -360")
                                         #tutorial.go_to_joint_state(359.9)
 
                                         #go back with the inclination
                                         gcode += f"G01X{round(response.joints[5]-x_offset -self.set_world_frame[0],2)}Y{round(response.joints[6]-y_offset -self.set_world_frame[1],2)}Z{round(response.joints[7]-z_offset -self.set_world_frame[2],2)}B{round(response.joints[8],2)}C{0.1}F{feed_rate}\n"
-                                        #print(f"first : G01X{round(response.joints[5]-x_offset -self.set_world_frame[0],2)}Y{round(response.joints[6]-y_offset -self.set_world_frame[1],2)}Z{round(response.joints[7]-z_offset -self.set_world_frame[2],2)}B{round(response.joints[8],2)}C{0.1}F{feed_rate}\n")
+                                        print(f"G01X{round(response.joints[5]-x_offset -self.set_world_frame[0],2)}Y{round(response.joints[6]-y_offset -self.set_world_frame[1],2)}Z{round(response.joints[7]-z_offset -self.set_world_frame[2],2)}B{round(response.joints[8],2)}C{0.1}F{feed_rate}\n")
                                         #turn around
                                         gcode += f"G01X{round(response.joints[5]-x_offset -self.set_world_frame[0],2)}Y{round(response.joints[6]-y_offset -self.set_world_frame[1],2)}Z{round(response.joints[7]-z_offset -self.set_world_frame[2],2)}B{round(response.joints[8],2)}C{359.9}F{feed_rate}\n"
+                                        print(f"G01X{round(response.joints[5]-x_offset -self.set_world_frame[0],2)}Y{round(response.joints[6]-y_offset -self.set_world_frame[1],2)}Z{round(response.joints[7]-z_offset -self.set_world_frame[2],2)}B{round(response.joints[8],2)}C{359.9}F{feed_rate}\n")
                                         # go back to the initial position  but now with the new C value
                                         gcode += f"G01X{round(response.joints[5]-x_offset -self.set_world_frame[0]-z_deviation,2)}Y{round(response.joints[6]-y_offset -self.set_world_frame[1],2)}Z{round(response.joints[7]-z_offset -self.set_world_frame[2]-x_deviation,2)}B{round(response.joints[8],2)}C{359.9}F{feed_rate}\n"
-                                        #print(f"second: G01X{round(response.joints[5]-x_offset -self.set_world_frame[0],2)}Y{round(response.joints[6]-y_offset -self.set_world_frame[1],2)}Z{round(response.joints[7]-z_offset -self.set_world_frame[2],2)}B{round(response.joints[8],2)}C{0.1}F{feed_rate}\n")
-                                    elif self.full_list[i][-2] - self.full_list[i-1][-2] < -350 and self.full_list[i][-2] - self.full_list[i-2][-2] < -350 and self.full_list[i][-2] - self.full_list[i-3][-2] < -350: #yaw is decreasing
+                                        print(f"G01X{round(response.joints[5]-x_offset -self.set_world_frame[0]-z_deviation,2)}Y{round(response.joints[6]-y_offset -self.set_world_frame[1],2)}Z{round(response.joints[7]-z_offset -self.set_world_frame[2]-x_deviation,2)}B{round(response.joints[8],2)}C{359.9}F{feed_rate}\n")
+                                        print("cyclic_count:",cyclic_count)
+                                        cyclic_count+=1
+                                    elif self.full_list[i][-2] - self.full_list[i-1][-2] < -cyclic_threshold and self.full_list[i][-2] - self.full_list[i-2][-2] < -cyclic_threshold and self.full_list[i][-2] - self.full_list[i-3][-2] < -cyclic_threshold: #yaw is decreasing
                                         #negative then rotate the other way (go to 360)
                                         #print("added +360")
                                         #tutorial.go_to_joint_state(0.0001)
 
                                         #go back with the inclination
                                         gcode += f"G01X{round(response.joints[5]-x_offset -self.set_world_frame[0],2)}Y{round(response.joints[6]-y_offset -self.set_world_frame[1],2)}Z{round(response.joints[7]-z_offset -self.set_world_frame[2],2)}B{round(response.joints[8],2)}C{359.9}F{feed_rate}\n"
-                                        #print(f"first : G01X{round(response.joints[5]-x_offset -self.set_world_frame[0],2)}Y{round(response.joints[6]-y_offset -self.set_world_frame[1],2)}Z{round(response.joints[7]-z_offset -self.set_world_frame[2],2)}B{round(response.joints[8],2)}C{359.9}F{feed_rate}\n")
+                                        print(f"G01X{round(response.joints[5]-x_offset -self.set_world_frame[0],2)}Y{round(response.joints[6]-y_offset -self.set_world_frame[1],2)}Z{round(response.joints[7]-z_offset -self.set_world_frame[2],2)}B{round(response.joints[8],2)}C{359.9}F{feed_rate}\n")
                                         #turn around
                                         gcode += f"G01X{round(response.joints[5]-x_offset -self.set_world_frame[0],2)}Y{round(response.joints[6]-y_offset -self.set_world_frame[1],2)}Z{round(response.joints[7]-z_offset -self.set_world_frame[2],2)}B{round(response.joints[8],2)}C{0.1}F{feed_rate}\n"
+                                        print(f"G01X{round(response.joints[5]-x_offset -self.set_world_frame[0],2)}Y{round(response.joints[6]-y_offset -self.set_world_frame[1],2)}Z{round(response.joints[7]-z_offset -self.set_world_frame[2],2)}B{round(response.joints[8],2)}C{0.1}F{feed_rate}\n")
                                         # go back to the initial position  but now with the new C value
                                         gcode += f"G01X{round(response.joints[5]-x_offset -self.set_world_frame[0]-z_deviation,2)}Y{round(response.joints[6]-y_offset -self.set_world_frame[1],2)}Z{round(response.joints[7]-z_offset -self.set_world_frame[2]-x_deviation,2)}B{round(response.joints[8],2)}C{0.1}F{feed_rate}\n"
-                                        #print(f"G01X{round(response.joints[5]-x_offset -self.set_world_frame[0]-x_deviation,2)}Y{round(response.joints[6]-y_offset -self.set_world_frame[1],2)}Z{round(response.joints[7]-z_offset -self.set_world_frame[2]-z_deviation,2)}B{round(response.joints[8],2)}C{359.9}F{feed_rate}\n")
+                                        print(f"G01X{round(response.joints[5]-x_offset -self.set_world_frame[0]-z_deviation,2)}Y{round(response.joints[6]-y_offset -self.set_world_frame[1],2)}Z{round(response.joints[7]-z_offset -self.set_world_frame[2]-x_deviation,2)}B{round(response.joints[8],2)}C{0.1}F{feed_rate}\n")
+                                        print("cyclic_count:",cyclic_count)
+                                        cyclic_count+=1
                                 else:
                                     #print(f"No proper Cartesian Plan Found after {attempts} Attempts!")
                                     #ERROR_FLAG = True
@@ -1546,14 +1612,14 @@ class Ui_MainWindow(object):
 
                         else:
 
-                            if self.full_list[i][-2] - self.full_list[i-1][-2] > 350 and self.full_list[i][-2] - self.full_list[i-2][-2] > 350 and self.full_list[i][-2] - self.full_list[i-3][-2] >350: #yaw is decreasing
+                            if self.full_list[i][-2] - self.full_list[i-1][-2] > cyclic_threshold and self.full_list[i][-2] - self.full_list[i-2][-2] > cyclic_threshold and self.full_list[i][-2] - self.full_list[i-3][-2] >cyclic_threshold: #yaw is decreasing
                                 print("c_no offset ", self.full_list[i][-2])
                                 print("self.temp_c[-2]", self.full_list[i-1][-2])
                                 print("self.temp_c[-3]", self.full_list[i-2][-2])
                                 print("self.temp_c[-4]", self.full_list[i-3][-2])
                                 add_degrees -=360
 
-                            elif self.full_list[i][-2] - self.full_list[i-1][-2] < -350 and self.full_list[i][-2] - self.full_list[i-2][-2] < -350 and self.full_list[i][-2] - self.full_list[i-3][-2] < -350: #yaw is decreasing
+                            elif self.full_list[i][-2] - self.full_list[i-1][-2] < -cyclic_threshold and self.full_list[i][-2] - self.full_list[i-2][-2] < -cyclic_threshold and self.full_list[i][-2] - self.full_list[i-3][-2] < -cyclic_threshold: #yaw is decreasing
                                 print("c_no offset ", self.full_list[i][-2])
                                 print("self.temp_c[-2]", self.full_list[i-1][-2])
                                 print("self.temp_c[-3]", self.full_list[i-2][-2])
@@ -1561,6 +1627,7 @@ class Ui_MainWindow(object):
                                 add_degrees += 360
 
 
+                #if len(self.full_list[i])>=8: #either Rapid5d or Linear5D can come in
                 rospy.wait_for_service('/calc_pose')
                 service_conn = rospy.ServiceProxy('/calc_pose', CalculateJoints)
                 try:
@@ -1568,54 +1635,87 @@ class Ui_MainWindow(object):
                     request.x_input = abs_pos[0]
                     request.y_input = abs_pos[1]
                     request.z_input = abs_pos[2]
-                    request.pitch_input = self.full_list[i][-1]
-                    request.yaw_input = self.full_list[i][-2] #+ add_degrees
+                    if len(self.full_list[i])>= 8: #onlinear5d or onRapid5D
+                        request.pitch_input = self.full_list[i][-1]
+                        request.yaw_input = self.full_list[i][-2] + add_degrees
+                    elif len(self.full_list[i])< 7:# onLinear or onRapid
+                        request.pitch_input = 0
+                        request.yaw_input = 0
+                    elif len(self.full_list[i])== 7: #onCircular
+                        abs_pos_circular_start = [self.set_offsets[k] +self.pos_offsets[k] + self.full_list[i][k] for k in range(len(self.pos_offsets))] #[x,y,z] abs offset
+                        abs_pos_circular_end = [self.set_offsets[k] +self.pos_offsets[k] + self.full_list[i][3+k] for k in range(len(self.pos_offsets))] #[x,y,z] abs offset
+                        request.x_input = abs_pos_circular_end[0]
+                        request.y_input = abs_pos_circular_end[1]
+                        request.z_input = abs_pos_circular_end[2]
+                        request.pitch_input = 0
+                        request.yaw_input = 0
+                        r = round(math.sqrt((abs_pos_circular_end[0]-abs_pos_circular_start[0])**2 +(abs_pos_circular_end[1]-abs_pos_circular_start[1])**2 +(abs_pos_circular_end[2]-abs_pos_circular_start[2])**2),5)
+                        #print(r)
                     response_srv = service_conn(request.x_input, request.y_input, request.z_input, request.pitch_input, request.yaw_input)
                     #print(response)
                 except rospy.ServiceException as exc:
                     print("Service did not process request: " + str(exc))
 
                 if response_srv.success:
-                    if len(self.full_list[i])>8:
-                        x_no_offset = round(response_srv.joints[5]-x_offset -self.set_world_frame[0],2)
-                        y_no_offset = round(response_srv.joints[6]-y_offset -self.set_world_frame[1],2)
-                        z_no_offset = round(response_srv.joints[7]-z_offset -self.set_world_frame[2],2)
+
+                    x_no_offset = round(response_srv.joints[5]-x_offset -self.set_world_frame[0],2)
+                    y_no_offset = round(response_srv.joints[6]-y_offset -self.set_world_frame[1],2)
+                    z_no_offset = round(response_srv.joints[7]-z_offset -self.set_world_frame[2],2)
+                    #print(len(self.full_list[i]))
+                    if len(self.full_list[i])== 3: #onlinear
+                        gcode += f"G00X{x_no_offset}Y{y_no_offset}Z{z_no_offset}\n"
+
+                        progress = int(count/total_lines *100)
+                        print(progress)
+                        self.progressBar.setValue(progress)
+                        count +=1
+
+                    elif len(self.full_list[i])== 4: #onlinear
+                        f_no_offset = round(self.full_list[i][-1],2)
+                        gcode += f"G01X{x_no_offset}Y{y_no_offset}Z{z_no_offset}F{f_no_offset}\n"
+
+                        progress = int(count/total_lines *100)
+                        print(progress)
+                        self.progressBar.setValue(progress)
+                        count +=1
+
+                    elif len(self.full_list[i])==8: #onRapid5D
                         b_no_offset = round(response_srv.joints[8],2)
                         c_no_offset = round(response_srv.joints[9],2)
+                        gcode += f"G00X{x_no_offset}Y{y_no_offset}Z{z_no_offset}B{b_no_offset}C{c_no_offset}\n"
+
+
+                        progress = int(count/total_lines *100)
+                        print(progress)
+                        self.progressBar.setValue(progress)
+                        count +=1
+
+                    elif len(self.full_list[i])==10: #onLinear5D
                         f_no_offset = round(self.full_list[i][6],2)
+                        b_no_offset = round(response_srv.joints[8],2)
+                        c_no_offset = round(response_srv.joints[9],2)
+                        gcode += f"G01X{x_no_offset}Y{y_no_offset}Z{z_no_offset}B{b_no_offset}C{c_no_offset}F{f_no_offset}\n"
 
-                        # self.temp_x.append(x_no_offset)
-                        # self.temp_y.append(y_no_offset)
-                        # self.temp_z.append(z_no_offset)
-                        # self.temp_b.append(b_no_offset)
-                        # self.temp_c.append(c_no_offset)
+                        progress = int(count/total_lines *100)
+                        print(progress)
+                        self.progressBar.setValue(progress)
+                        count +=1
 
-                        # if i>3:
-                        #     if c_no_offset - self.temp_c[-2] < -350 and c_no_offset - self.temp_c[-3] <-350 and c_no_offset - self.temp_c[-4] <-350:
-                        #         print("c_no offset ", c_no_offset)
-                        #         print("self.temp_c[-2]", self.temp_c[-2])
-                        #         print("self.temp_c[-2]", self.temp_c[-2])
-                        #         print("self.temp_c[-3]", self.temp_c[-3])
-                        #         print("self.temp_c[-4]", self.temp_c[-4])
-                        #         add_degrees += 360
-                        #     elif c_no_offset - self.temp_c[-2] >350 and c_no_offset - self.temp_c[-3] >350 and c_no_offset - self.temp_c[-4] >350:
-                        #         print("c_no offset ", c_no_offset)
-                        #         print("self.temp_c[-2]", self.temp_c[-2])
-                        #         print("self.temp_c[-3]", self.temp_c[-3])
-                        #         print("self.temp_c[-4]", self.temp_c[-4])
-                        #         add_degrees -=360
+                    elif len(self.full_list[i])==7:
+                        if cw:
+                            gcode += f"G02X{x_no_offset}Y{y_no_offset}Z{z_no_offset}R{r}F{f_no_offset}\n"
+                        else:
+                            gcode += f"G03X{x_no_offset}Y{y_no_offset}Z{z_no_offset}R{r}F{f_no_offset}\n"
+                        self.progressBar.setValue(progress)
+                        count +=1
 
-                        gcode += f"G01X{x_no_offset}Y{y_no_offset}Z{z_no_offset}B{b_no_offset}C{c_no_offset+add_degrees}F{f_no_offset}\n"
-                        count += 1
-                        if count > percentage:
-                            print(f"{self.progress_value}%")
-                            self.progress_value += 1
-                            self.progressBar.setValue(self.progress_value)
-                            percentage += one_p
 
                 else:
-                    self.showMessageBox(text=f"No Motion Plan Found for point {i}", icon="Critical")
+                    self.showMessageBox(text=f"No Motion Plan Found for point {i} x{self.full_list[i][0]}y{self.full_list[i][1]}z{self.full_list[i][2]}pitch{self.full_list[i][-1]}yaw{self.full_list[i][-2]}f{self.full_list[i][6]}", icon="Critical")
                     #return None
+
+
+
 
         except Exception as e:
             self.showMessageBox(text="Error when generating the code", icon="Critical")
