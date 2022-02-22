@@ -1,0 +1,11 @@
+moveit_setup_assistant_config:
+  URDF:
+    package: 6-dof-arm-pick-and-place
+    relative_path: urdf/urdf_arm.urdf
+    xacro_args: ""
+  SRDF:
+    relative_path: config/manipulator.srdf
+  CONFIG:
+    author_name: alejandro mendez
+    author_email: ajosuemendez@gmail.com
+    generated_timestamp: 1645449989
