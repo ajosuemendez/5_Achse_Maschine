@@ -1,0 +1,5 @@
+<launch>
+    <include file="$(find dummy_robot_moveit_config)/launch/gazebo.launch" />
+    <include file="$(find dummy_robot_moveit_config)/launch/move_group.launch" />
+    <include file="$(find dummy_robot_moveit_config)/launch/moveit_rviz.launch" />
+</launch>

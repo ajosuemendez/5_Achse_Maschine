@@ -1,0 +1,6 @@
+- type: orientation
+  frame_id: link1
+  link_name: tcp
+  orientation: [-3.1415269, -1.57079632, 0] #RPY
+  tolerances: [6.28318531, 0.2, 6.28318531]
+  weight: 1.0

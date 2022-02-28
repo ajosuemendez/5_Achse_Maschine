@@ -1,0 +1,10 @@
+float64 x_input
+float64 y_input
+float64 z_input
+float64 roll_input
+float64 pitch_input
+float64 yaw_input
+float64 check
+---
+float64[] joints
+bool success

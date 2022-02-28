@@ -1,0 +1,15 @@
+# Define the goal
+bool command
+float64 x_input
+float64 y_input
+float64 z_input
+float64 roll_input
+float64 pitch_input
+float64 yaw_input
+float64 check
+---
+# Define the result
+float64[] result
+---
+# Define a feedback message
+string feedback

@@ -286,7 +286,8 @@
         <dynamics damping="0.01" friction="0.01" />
     </joint>
 
-    <link name="tcp">
+
+    <link name="link7">
         <visual>
             <origin rpy="0 0 0" xyz="0 0 -0.075" />
             <geometry>
@@ -301,8 +302,50 @@
             <geometry>
                 <box size="0.02 0.02 0.15" />
             </geometry>
+            <material name="blue">
+                <color rgba="0 0 0.75 1" />
+            </material>
+
+        </collision>
+
+        <inertial>
+            <mass value="0.1" />
+            <inertia ixx="0.03" iyy="0.03" izz="0.03" ixy="0.0" ixz="0.0" iyz="0.0" />
+        </inertial>
+    </link>
+
+    <gazebo reference="link7">
+        <material>Gazebo/Blue</material>
+        <turnGravityOff>false</turnGravityOff>
+    </gazebo>
+
+    <joint name="joint7" type="revolute">
+        <origin rpy="0 0 0" xyz="0 0 0.3" />
+        <parent link="link6" />
+        <child link="link7" />
+        <axis xyz="0 0 1" />
+        <limit lower="-3.14" upper="3.14" effort="100" velocity="1" />
+        <dynamics damping="0.01" friction="0.01" />
+    </joint>
+
+
+    <link name="tcp">
+        <visual>
+            <origin rpy="0 0 0" xyz="0 0 0" />
+            <geometry>
+                <box size="0 0 0" />
+            </geometry>
             <material name="silver">
                 <color rgba="0.75 0.75 0.75 1" />
+            </material>
+        </visual>
+        <collision>
+            <origin rpy="0 0 0" xyz="0 0 0" />
+            <geometry>
+                <box size="0 0 0" />
+            </geometry>
+            <material name="blue">
+                <color rgba="0 0 0.75 1" />
             </material>
 
         </collision>
@@ -318,9 +361,9 @@
         <turnGravityOff>false</turnGravityOff>
     </gazebo>
 
-    <joint name="joint6_tcp" type="fixed">
-        <origin rpy="0 0 0" xyz="0 0 0.3" />
-        <parent link="link6" />
+    <joint name="joint7_tcp" type="fixed">
+        <origin rpy="0 0 0" xyz="0 0 0" />
+        <parent link="link7" />
         <child link="tcp" />
     </joint>
 
@@ -401,6 +444,16 @@
             <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
         </joint>
         <actuator name="joint6_motor">
+            <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+            <mechanicalReduction>1</mechanicalReduction>
+        </actuator>
+    </transmission>
+    <transmission name="trans_joint7">
+        <type>transmission_interface/SimpleTransmission</type>
+        <joint name="joint7">
+            <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+        </joint>
+        <actuator name="joint7_motor">
             <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
             <mechanicalReduction>1</mechanicalReduction>
         </actuator>
