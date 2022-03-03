@@ -110,6 +110,7 @@ class MoveGroupPythonInterfaceTutorial(object):
             # valid_plan = False
             self.pose_goal = geometry_msgs.msg.PoseStamped()
             #print("my joints values:",self.move_group.get_current_joint_values())
+            self.move_group.set_max_velocity_scaling_factor(goal.sim_vel/100)
 
             quaternion = tf.transformations.quaternion_from_euler(math.radians(goal.roll_input) ,math.radians(goal.pitch_input) ,math.radians(goal.yaw_input)) ##added-1 and -1
             self.pose_goal.pose.orientation.x = quaternion[0]
@@ -134,7 +135,7 @@ class MoveGroupPythonInterfaceTutorial(object):
             orientation_constraint.weight = 1
 
             #######ENABLING ORIENTATION CONSTGRAINT########
-            self.upright_constraints.orientation_constraints.append(orientation_constraint)
+            #self.upright_constraints.orientation_constraints.append(orientation_constraint)
             #self.move_group.set_path_constraints(self.upright_constraints)
 
             ######JOINT1 COINSTRAINT#############
@@ -147,8 +148,8 @@ class MoveGroupPythonInterfaceTutorial(object):
             joint_constraint.tolerance_above = 0.174533
             joint_constraint.tolerance_below = 0.174533
             joint_constraint.weight = 1
-            #######ENABLING ORIENTATION CONSTGRAINT########
-            self.fixed_base_constraint.joint_constraints.append(joint_constraint)
+            #######ENABLING JOINT CONSTGRAINT########
+            #self.fixed_base_constraint.joint_constraints.append(joint_constraint)
             #self.move_group.set_path_constraints(self.fixed_base_constraint)
 
             ####POISTION CONSTRAINT###########
@@ -160,11 +161,13 @@ class MoveGroupPythonInterfaceTutorial(object):
             point_constraint.target_point_offset = self.pose_goal.pose.position
             bounding_region = SolidPrimitive()
             bounding_region.type = 2
-            bounding_region.dimensions.append(0.010)
+            bounding_region.dimensions.append(0.001)
             point_constraint.constraint_region.primitives.append(bounding_region)
             point_constraint.constraint_region.primitive_poses.append(self.pose_goal.pose)
             point_constraint.weight = 1
+            #######ENABLING POSITION CONSTGRAINT########
             self.fixed_point_constraint.position_constraints.append(point_constraint)
+            #self.fixed_point_constraint.joint_constraints.append(joint_constraint)
             self.move_group.set_path_constraints(self.fixed_point_constraint)
 
             ########DISABLING ALL CONSTRAINTS##############
@@ -257,9 +260,13 @@ class MoveGroupPythonInterfaceTutorial(object):
                 modified_coodinates = []
                 #print("here starts!!")
                 #print(calc_plan[1].joint_trajectory.points)
-                for j in range(6):
-                    modified_coodinates.append(round(math.degrees(calc_plan[1].joint_trajectory.points[-1].positions[j]),2))
+                for i in range(len(calc_plan[1].joint_trajectory.points)):
+                    print("Positions: ",calc_plan[1].joint_trajectory.points[i].positions)
+                    for j in range(6):
+                        modified_coodinates.append(round(math.degrees(calc_plan[1].joint_trajectory.points[i].positions[j]),2))
+
                 result_action.result = modified_coodinates
+                print("result: ",result_action.result)
                 self.action_server_execute.set_succeeded(result_action)
             else:
                 modified_coodinates = []
@@ -270,6 +277,7 @@ class MoveGroupPythonInterfaceTutorial(object):
 
 
     def action_plan_cartesian(self,goal):
+        self.move_group.set_max_velocity_scaling_factor(goal.sim_vel/100)
         success = True
         feedback_action = ExecuteCartesianDesiredPoseFeedback()
         result_action = ExecuteCartesianDesiredPoseResult()

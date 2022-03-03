@@ -57,7 +57,7 @@ class Worker(QObject):
 
     def call_action_execution(self):
         self.action_client_execute.wait_for_server()
-        goal = ExecuteDesiredPoseGoal(command=True, x_input=GLOBAL_CALCULATED_JOINTS[0], y_input=GLOBAL_CALCULATED_JOINTS[1], z_input=GLOBAL_CALCULATED_JOINTS[2], roll_input=GLOBAL_CALCULATED_JOINTS[3], pitch_input=GLOBAL_CALCULATED_JOINTS[4], yaw_input=GLOBAL_CALCULATED_JOINTS[5], check=2)
+        goal = ExecuteDesiredPoseGoal(command=True, x_input=GLOBAL_CALCULATED_JOINTS[0], y_input=GLOBAL_CALCULATED_JOINTS[1], z_input=GLOBAL_CALCULATED_JOINTS[2], roll_input=GLOBAL_CALCULATED_JOINTS[3], pitch_input=GLOBAL_CALCULATED_JOINTS[4], yaw_input=GLOBAL_CALCULATED_JOINTS[5], check=2, sim_vel=0.5)
         self.action_client_execute.send_goal(goal)
         self.action_client_execute.wait_for_result()
         result = self.action_client_execute.get_result()
@@ -74,6 +74,7 @@ class Worker(QObject):
         samples= []
         speed_list = []
         cartesian_list = []
+        sim_vel_list = []
 
         x_list_distance = []
         y_list_distance = []
@@ -105,6 +106,7 @@ class Worker(QObject):
             speed_index = lines[i].find("SP")
             samples_index = lines[i].find("SAM")
             cartesian_index = lines[i].find("CAR")
+            sim_vel_index = lines[i].find("V")
 
             x_val = lines[i][x_index+1:y_index]
             y_val = lines[i][y_index+1:z_index]
@@ -115,11 +117,13 @@ class Worker(QObject):
             if samples_index >0:
                 speed_val = lines[i][speed_index+2:samples_index]
                 samples_val = lines[i][samples_index+3:cartesian_index]
-                cartesian_val = lines[i][cartesian_index+3:]
-                print(f"x_val:{x_val}y_val{y_val}z_val{z_val}roll{roll_val}pitch{pitch_val}yaw_val{yaw_val}speed_val{speed_val}samples_val{samples_val}cartesian{cartesian_val}")
+                cartesian_val = lines[i][cartesian_index+3:sim_vel_index]
+                sim_vel_val =  lines[i][sim_vel_index+1:]
+                print(f"x_val:{x_val}y_val{y_val}z_val{z_val}roll{roll_val}pitch{pitch_val}yaw_val{yaw_val}speed_val{speed_val}samples_val{samples_val}cartesian{cartesian_val}vel{sim_vel_val}")
                 samples.append(float(samples_val))
                 speed_list.append(float(speed_val))
                 cartesian_list.append(cartesian_val)
+                sim_vel_list.append(float(sim_vel_val))
             else:
                 speed_val = lines[i][speed_index+2:]
                 speed_list.append(float(speed_val))
@@ -167,7 +171,7 @@ class Worker(QObject):
                     if cartesian_list[k] == "True": #cartesian
                         print("getting the action server Cartesian")
                         self.action_client_cartesian_execute.wait_for_server()
-                        goal = ExecuteCartesianDesiredPoseGoal(command=True, x_input=x_input, y_input=y_input, z_input=z_input, roll_input=roll_input, pitch_input=pitch_input, yaw_input=yaw_input, check=2)
+                        goal = ExecuteCartesianDesiredPoseGoal(command=True, x_input=x_input, y_input=y_input, z_input=z_input, roll_input=roll_input, pitch_input=pitch_input, yaw_input=yaw_input, check=2, sim_vel=sim_vel_list[k])
                         self.action_client_cartesian_execute.send_goal(goal)
                         self.action_client_cartesian_execute.wait_for_result()
                         result = self.action_client_cartesian_execute.get_result()
@@ -180,7 +184,7 @@ class Worker(QObject):
                     else:
                         print("getting the action server Non Cartesian")
                         self.action_client_execute.wait_for_server()
-                        goal = ExecuteDesiredPoseGoal(command=True, x_input=x_input, y_input=y_input, z_input=z_input, roll_input=roll_input, pitch_input=pitch_input, yaw_input=yaw_input, check=2)
+                        goal = ExecuteDesiredPoseGoal(command=True, x_input=x_input, y_input=y_input, z_input=z_input, roll_input=roll_input, pitch_input=pitch_input, yaw_input=yaw_input, check=2, sim_vel=sim_vel_list[k])
                         self.action_client_execute.send_goal(goal)
                         self.action_client_execute.wait_for_result()
                         result = self.action_client_execute.get_result()
@@ -191,7 +195,8 @@ class Worker(QObject):
                         #self.finished.emit()
 
                     end_J = []
-                    start = 6 if cartesian_list[k] == "True" else 0
+                    #start = 6 if cartesian_list[k] == "True" else 0
+                    start = 6
                     total_joints = len(result.result)
                     step = 1
                     #print("start",start)
@@ -677,9 +682,11 @@ class Ui_MainWindow(object):
         self.cartesianTrajectoryLoadButton = QtWidgets.QPushButton(self.groupBox_6)
         self.cartesianTrajectoryLoadButton.setGeometry(QtCore.QRect(550, 60, 91, 21))
         self.cartesianTrajectoryLoadButton.setObjectName("cartesianTrajectoryLoadButton")
+        self.cartesianTrajectoryLoadButton.clicked.connect(self.cartesianTrajectoryLoadButtonCallback)
         self.cartesianTrajectorySaveButton = QtWidgets.QPushButton(self.groupBox_6)
         self.cartesianTrajectorySaveButton.setGeometry(QtCore.QRect(550, 120, 91, 21))
         self.cartesianTrajectorySaveButton.setObjectName("cartesianTrajectorySaveButton")
+        self.cartesianTrajectorySaveButton.clicked.connect(self.cartesianTrajectorySaveButtonCallback)
         self.cartesianTrajectoryExecuteButton = QtWidgets.QPushButton(self.groupBox_6)
         self.cartesianTrajectoryExecuteButton.setGeometry(QtCore.QRect(550, 90, 91, 21))
         self.cartesianTrajectoryExecuteButton.setObjectName("cartesianTrajectoryExecuteButton")
@@ -2161,6 +2168,7 @@ class Ui_MainWindow(object):
             file = open(fileName, 'w')
             file.write(self.gcodeGenerationPlainTextEdit.toPlainText())
             file.close()
+            #self.file_to_save = False
         else:
             self.showMessageBox(text="Generate a File First", icon="Critical")
 
@@ -3113,8 +3121,10 @@ class Ui_MainWindow(object):
             yaw = float(self.yawCartesianLineEdit.text())
             speed = float(self.speedCartesianLineEdit.text())
             samples = int(self.samplesCartesianLineEdit.text())
+            vel = self.cartesianSimSpeedSpinBox.value()
+            self.file_to_save = True
 
-            points = f"{self.secuence_counter_cartesian}: X{x}Y{y}Z{z}R{roll}P{pitch}YA{yaw}SP{speed}SAM{samples}CAR{self.cartesianModecheckBox.isChecked()}"
+            points = f"{self.secuence_counter_cartesian}: X{x}Y{y}Z{z}R{roll}P{pitch}YA{yaw}SP{speed}SAM{samples}CAR{self.cartesianModecheckBox.isChecked()}V{vel}"
             self.cartesianTrajectoryPlainTextEdit.insertPlainText(points + "\n")
             self.secuence_counter_cartesian+=1
             self.checkCartesian = False
@@ -3153,6 +3163,7 @@ class Ui_MainWindow(object):
         self.secuence_counter_cartesian+=1
         self.cartesianStartButtonPressed = True
         self.cartesian_gcode = []
+
 
     def cartesianTrajectoryExecuteButtonCallback(self):
         self.cartesian_gcode = []
@@ -3193,7 +3204,26 @@ class Ui_MainWindow(object):
         else:
             print("noting")
 
+    def cartesianTrajectoryLoadButtonCallback(self):
+        try:
+            name, _ = QFileDialog.getOpenFileName(None, 'Open File')
+            file = open(name,'r')
+            with file:
+                text = file.read()
+                self.cartesianTrajectoryPlainTextEdit.clear()
+                self.cartesianTrajectoryPlainTextEdit.insertPlainText(text)
+        except FileNotFoundError:
+            print("No File Was Chosen/Found")
 
+    def cartesianTrajectorySaveButtonCallback(self):
+        if self.file_to_save:
+            fileName, _ = QFileDialog.getSaveFileName(None,'Save File')
+            file = open(fileName, 'w')
+            file.write(self.cartesianTrajectoryPlainTextEdit.toPlainText())
+            file.close()
+            #self.file_to_save = False
+        else:
+            self.showMessageBox(text="Add a trajectory point first", icon="Critical")
 
 if __name__ == "__main__":
     import sys

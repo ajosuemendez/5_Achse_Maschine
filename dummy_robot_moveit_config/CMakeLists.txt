@@ -39,5 +39,6 @@ catkin_install_python(PROGRAMS
     scripts/execute_pose_goal.py
     scripts/dold_gui_6.py
     scripts/cls_ros_ser_com.py
+    scripts/get_joints.py
     DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )
