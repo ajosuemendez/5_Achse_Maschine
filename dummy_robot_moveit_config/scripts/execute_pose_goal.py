@@ -18,6 +18,8 @@ from dummy_robot_moveit_config.msg import ExecuteDesiredPoseAction, ExecuteDesir
 from dummy_robot_moveit_config.msg import ExecuteCartesianDesiredPoseAction, ExecuteCartesianDesiredPoseFeedback, ExecuteCartesianDesiredPoseResult
 from std_msgs.msg import Bool
 import actionlib
+from moveit_msgs.msg import Constraints, OrientationConstraint, JointConstraint, PositionConstraint
+from shape_msgs.msg import SolidPrimitive
 
 try:
     from math import pi, tau, dist, fabs, cos
@@ -101,11 +103,13 @@ class MoveGroupPythonInterfaceTutorial(object):
 
 
     def execute_cb(self,goal):
+        success = True
         try:
-            current_joints_list = []
-            calculated_joints_list = []
-            valid_plan = False
+            # current_joints_list = []
+            # calculated_joints_list = []
+            # valid_plan = False
             self.pose_goal = geometry_msgs.msg.PoseStamped()
+            #print("my joints values:",self.move_group.get_current_joint_values())
 
             quaternion = tf.transformations.quaternion_from_euler(math.radians(goal.roll_input) ,math.radians(goal.pitch_input) ,math.radians(goal.yaw_input)) ##added-1 and -1
             self.pose_goal.pose.orientation.x = quaternion[0]
@@ -117,15 +121,119 @@ class MoveGroupPythonInterfaceTutorial(object):
             self.pose_goal.pose.position.z = goal.z_input*self.scale_m
 
             self.move_group.set_pose_target(self.pose_goal.pose)
+            ####ORIENTATION CONSTRAINT########
+            self.upright_constraints = Constraints()
+            self.upright_constraints.name = "upright"
+            orientation_constraint = OrientationConstraint()
+            orientation_constraint.header = self.pose_goal.header
+            orientation_constraint.link_name = self.move_group.get_end_effector_link()
+            orientation_constraint.orientation = self.pose_goal.pose.orientation
+            orientation_constraint.absolute_x_axis_tolerance = 0.4
+            orientation_constraint.absolute_y_axis_tolerance = 0.4
+            orientation_constraint.absolute_z_axis_tolerance = 0.4
+            orientation_constraint.weight = 1
+
+            #######ENABLING ORIENTATION CONSTGRAINT########
+            self.upright_constraints.orientation_constraints.append(orientation_constraint)
+            #self.move_group.set_path_constraints(self.upright_constraints)
+
+            ######JOINT1 COINSTRAINT#############
+            self.fixed_base_constraint = Constraints()
+            self.fixed_base_constraint.name= "fixed_base"
+            joint_constraint = JointConstraint()
+            joint_constraint.joint_name = self.move_group.get_joints()[1]
+            joint_constraint.position = self.move_group.get_current_joint_values()[0]
+            print(joint_constraint.position)
+            joint_constraint.tolerance_above = 0.174533
+            joint_constraint.tolerance_below = 0.174533
+            joint_constraint.weight = 1
+            #######ENABLING ORIENTATION CONSTGRAINT########
+            self.fixed_base_constraint.joint_constraints.append(joint_constraint)
+            #self.move_group.set_path_constraints(self.fixed_base_constraint)
+
+            ####POISTION CONSTRAINT###########
+            self.fixed_point_constraint = Constraints()
+            self.fixed_point_constraint.name = "fixed_point"
+            point_constraint = PositionConstraint()
+            point_constraint.header = self.pose_goal.header
+            point_constraint.link_name = self.move_group.get_end_effector_link()
+            point_constraint.target_point_offset = self.pose_goal.pose.position
+            bounding_region = SolidPrimitive()
+            bounding_region.type = 2
+            bounding_region.dimensions.append(0.010)
+            point_constraint.constraint_region.primitives.append(bounding_region)
+            point_constraint.constraint_region.primitive_poses.append(self.pose_goal.pose)
+            point_constraint.weight = 1
+            self.fixed_point_constraint.position_constraints.append(point_constraint)
+            self.move_group.set_path_constraints(self.fixed_point_constraint)
+
+            ########DISABLING ALL CONSTRAINTS##############
+            #self.move_group.set_path_constraints(None)
 
             # my_scale = 1000
+            # calc_plan_1 = self.move_group.plan()
+            # print("plan1:", calc_plan_1[1].joint_trajectory.points[-1].positions)
+            # calc_plan_2 = self.move_group.plan()
+            # print("plan2:", calc_plan_2[1].joint_trajectory.points[-1].positions)
+            # joint1 = calc_plan_1[1].joint_trajectory.points[-1].positions[0]
+            # joint2 = calc_plan_1[1].joint_trajectory.points[-1].positions[1]
+            # joint3 = calc_plan_1[1].joint_trajectory.points[-1].positions[2]
+            # joint4 = calc_plan_1[1].joint_trajectory.points[-1].positions[3]
+            # joint5 = calc_plan_1[1].joint_trajectory.points[-1].positions[4]
+            # joint6 = calc_plan_1[1].joint_trajectory.points[-1].positions[5]
+            #
+            # next_joint1 = calc_plan_2[1].joint_trajectory.points[-1].positions[0]
+            # next_joint2 = calc_plan_2[1].joint_trajectory.points[-1].positions[1]
+            # next_joint3 = calc_plan_2[1].joint_trajectory.points[-1].positions[2]
+            # next_joint4 = calc_plan_2[1].joint_trajectory.points[-1].positions[3]
+            # next_joint5 = calc_plan_2[1].joint_trajectory.points[-1].positions[4]
+            # next_joint6 = calc_plan_2[1].joint_trajectory.points[-1].positions[5]
+            #
+            # abs_joint1 = abs(joint1 - next_joint1)
+            # abs_joint2 = abs(joint2 - next_joint2)
+            # abs_joint3 = abs(joint3 - next_joint3)
+            # abs_joint4 = abs(joint4 - next_joint4)
+            # abs_joint5 = abs(joint5 - next_joint5)
+            # abs_joint6 = abs(joint6 - next_joint6)
+            #
+            # thresshold = 0.17
+            # counting = 0
+            #
+            # while (abs_joint1>thresshold) or (abs_joint2>thresshold) or (abs_joint3>thresshold) or (abs_joint4>thresshold) or (abs_joint5>thresshold) or (abs_joint6>thresshold):
+            #     calc_plan_3 = self.move_group.plan()
+            #
+            #     next_joint1 = calc_plan_3[1].joint_trajectory.points[-1].positions[0]
+            #     next_joint2 = calc_plan_3[1].joint_trajectory.points[-1].positions[1]
+            #     next_joint3 = calc_plan_3[1].joint_trajectory.points[-1].positions[2]
+            #     next_joint4 = calc_plan_3[1].joint_trajectory.points[-1].positions[3]
+            #     next_joint5 = calc_plan_3[1].joint_trajectory.points[-1].positions[4]
+            #     next_joint6 = calc_plan_3[1].joint_trajectory.points[-1].positions[5]
+            #
+            #     abs_joint1 = abs(joint1 - next_joint1)
+            #     abs_joint2 = abs(joint2 - next_joint2)
+            #     abs_joint3 = abs(joint3 - next_joint3)
+            #     abs_joint5 = abs(joint5 - next_joint5)
+            #     abs_joint4 = abs(joint4 - next_joint4)
+            #     abs_joint6 = abs(joint6 - next_joint6)
+            #
+            #     counting +=1
+            #
+            # print("plan3:", calc_plan_3[1].joint_trajectory.points[-1].positions)
+            # print("abs_joint1:",abs_joint1)
+            # print("abs_joint2:",abs_joint2)
+            # print("abs_joint3:",abs_joint3)
+            # print("abs_joint4:",abs_joint4)
+            # print("abs_joint5:",abs_joint5)
+            # print("abs_joint6:",abs_joint6)
+            #
+            # print("counter:", counting)
             calc_plan = self.move_group.plan()
-            #print("CALC_PLAN:",calc_plan)
 
         except Exception as e:
             print(e)
+            success = False
 
-        success = True
+
         feedback_action = ExecuteDesiredPoseFeedback()
         result_action = ExecuteDesiredPoseResult()
         rate = rospy.Rate(100)
@@ -147,8 +255,8 @@ class MoveGroupPythonInterfaceTutorial(object):
                 # result_action.result = "Execution Successfuly"
                 # self.action_server_execute.set_succeeded(result_action)
                 modified_coodinates = []
-                print("here starts!!")
-                print(calc_plan[1].joint_trajectory.points)
+                #print("here starts!!")
+                #print(calc_plan[1].joint_trajectory.points)
                 for j in range(6):
                     modified_coodinates.append(round(math.degrees(calc_plan[1].joint_trajectory.points[-1].positions[j]),2))
                 result_action.result = modified_coodinates

@@ -3152,6 +3152,7 @@ class Ui_MainWindow(object):
         self.cartesianTrajectoryPlainTextEdit.insertPlainText(points + "\n")
         self.secuence_counter_cartesian+=1
         self.cartesianStartButtonPressed = True
+        self.cartesian_gcode = []
 
     def cartesianTrajectoryExecuteButtonCallback(self):
         self.cartesian_gcode = []
