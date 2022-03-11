@@ -8,6 +8,7 @@ float64 pitch_input
 float64 yaw_input
 float64 check
 float64 sim_vel
+string constraint
 ---
 # Define the result
 float64[] result

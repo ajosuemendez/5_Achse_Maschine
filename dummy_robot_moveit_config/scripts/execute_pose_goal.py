@@ -10,6 +10,7 @@ import rospy
 import moveit_commander
 import moveit_msgs.msg
 import geometry_msgs.msg
+from geometry_msgs.msg import PointStamped, Point
 import tf
 import math
 from std_srvs.srv import SetBool
@@ -20,6 +21,12 @@ from std_msgs.msg import Bool
 import actionlib
 from moveit_msgs.msg import Constraints, OrientationConstraint, JointConstraint, PositionConstraint
 from shape_msgs.msg import SolidPrimitive
+from nav_msgs.msg import Path
+import time
+
+# import multiprocessing
+from threading import Thread
+
 
 try:
     from math import pi, tau, dist, fabs, cos
@@ -100,7 +107,50 @@ class MoveGroupPythonInterfaceTutorial(object):
         self.cartesian_action_server_execute.start()
         self.scale_m = 0.001
         self.roll_input = 0
+        self.publish_tcp_coordinate = rospy.Publisher("/tcp_coordinate_point", PointStamped, queue_size=10)
 
+
+    def get_tcp_coordinate(self):
+        #print("getting the pose")
+        current_pose_header = self.move_group.get_current_pose(end_effector_link="tcp")
+        x = round(current_pose_header.pose.position.x, 5)
+        y = round(current_pose_header.pose.position.y, 5)
+        z = round(current_pose_header.pose.position.z, 5)
+        header = current_pose_header.header
+
+        point_stamped = PointStamped()
+        point_stamped.header = header
+        point = Point()
+        point.x = x
+        point.y = y
+        point.z = z
+
+
+        point_stamped.point = point
+
+        return point_stamped
+
+        # nav_path = Path()
+        # nav_path.header = current_pose_header.header
+        # nav_path.
+
+
+        # self.publish_tcp_coordinate.publish(point_stamped)
+
+
+    def display_path(self,id,stop):
+        #print(f"in the process path with id:{id}")
+        while True:
+            point_stamped = self.get_tcp_coordinate()
+            #print("point Stamped", point_stamped)
+            #print("about to publish")
+            self.publish_tcp_coordinate.publish(point_stamped)
+            #print("after publish ")
+            time.sleep(0.04)
+            if stop():
+                #print("exiting loop")
+                break
+        #print("Leaving Thread")
 
     def execute_cb(self,goal):
         success = True
@@ -112,7 +162,7 @@ class MoveGroupPythonInterfaceTutorial(object):
             #print("my joints values:",self.move_group.get_current_joint_values())
             self.move_group.set_max_velocity_scaling_factor(goal.sim_vel/100)
 
-            quaternion = tf.transformations.quaternion_from_euler(math.radians(goal.roll_input) ,math.radians(goal.pitch_input) ,math.radians(goal.yaw_input)) ##added-1 and -1
+            quaternion = tf.transformations.quaternion_from_euler(math.radians(goal.roll_input) ,math.radians(goal.pitch_input) ,math.radians(goal.yaw_input))
             self.pose_goal.pose.orientation.x = quaternion[0]
             self.pose_goal.pose.orientation.y = quaternion[1]
             self.pose_goal.pose.orientation.z = quaternion[2]
@@ -122,56 +172,70 @@ class MoveGroupPythonInterfaceTutorial(object):
             self.pose_goal.pose.position.z = goal.z_input*self.scale_m
 
             self.move_group.set_pose_target(self.pose_goal.pose)
-            ####ORIENTATION CONSTRAINT########
-            self.upright_constraints = Constraints()
-            self.upright_constraints.name = "upright"
-            orientation_constraint = OrientationConstraint()
-            orientation_constraint.header = self.pose_goal.header
-            orientation_constraint.link_name = self.move_group.get_end_effector_link()
-            orientation_constraint.orientation = self.pose_goal.pose.orientation
-            orientation_constraint.absolute_x_axis_tolerance = 0.4
-            orientation_constraint.absolute_y_axis_tolerance = 0.4
-            orientation_constraint.absolute_z_axis_tolerance = 0.4
-            orientation_constraint.weight = 1
+            chosen_constraint = goal.constraint
+            self.move_group.set_path_constraints(None)
 
-            #######ENABLING ORIENTATION CONSTGRAINT########
-            #self.upright_constraints.orientation_constraints.append(orientation_constraint)
-            #self.move_group.set_path_constraints(self.upright_constraints)
+            if chosen_constraint == "None":
+                ########DISABLING ALL CONSTRAINTS##############
+                #self.move_group.set_path_constraints(None)
+                pass
 
-            ######JOINT1 COINSTRAINT#############
-            self.fixed_base_constraint = Constraints()
-            self.fixed_base_constraint.name= "fixed_base"
-            joint_constraint = JointConstraint()
-            joint_constraint.joint_name = self.move_group.get_joints()[1]
-            joint_constraint.position = self.move_group.get_current_joint_values()[0]
-            print(joint_constraint.position)
-            joint_constraint.tolerance_above = 0.174533
-            joint_constraint.tolerance_below = 0.174533
-            joint_constraint.weight = 1
-            #######ENABLING JOINT CONSTGRAINT########
-            #self.fixed_base_constraint.joint_constraints.append(joint_constraint)
-            #self.move_group.set_path_constraints(self.fixed_base_constraint)
 
-            ####POISTION CONSTRAINT###########
-            self.fixed_point_constraint = Constraints()
-            self.fixed_point_constraint.name = "fixed_point"
-            point_constraint = PositionConstraint()
-            point_constraint.header = self.pose_goal.header
-            point_constraint.link_name = self.move_group.get_end_effector_link()
-            point_constraint.target_point_offset = self.pose_goal.pose.position
-            bounding_region = SolidPrimitive()
-            bounding_region.type = 2
-            bounding_region.dimensions.append(0.001)
-            point_constraint.constraint_region.primitives.append(bounding_region)
-            point_constraint.constraint_region.primitive_poses.append(self.pose_goal.pose)
-            point_constraint.weight = 1
-            #######ENABLING POSITION CONSTGRAINT########
-            self.fixed_point_constraint.position_constraints.append(point_constraint)
-            #self.fixed_point_constraint.joint_constraints.append(joint_constraint)
-            self.move_group.set_path_constraints(self.fixed_point_constraint)
+            elif chosen_constraint == "Orientation":
+                ####ORIENTATION CONSTRAINT########
+                self.upright_constraints = Constraints()
+                self.upright_constraints.name = "upright"
+                orientation_constraint = OrientationConstraint()
+                orientation_constraint.header = self.pose_goal.header
+                orientation_constraint.link_name = self.move_group.get_end_effector_link()
+                orientation_constraint.orientation = self.pose_goal.pose.orientation
+                orientation_constraint.absolute_x_axis_tolerance = 0.4
+                orientation_constraint.absolute_y_axis_tolerance = 0.4
+                orientation_constraint.absolute_z_axis_tolerance = 0.4
+                orientation_constraint.weight = 1
+                #######ENABLING ORIENTATION CONSTGRAINT########
+                self.upright_constraints.orientation_constraints.append(orientation_constraint)
+                self.move_group.set_path_constraints(self.upright_constraints)
 
-            ########DISABLING ALL CONSTRAINTS##############
-            #self.move_group.set_path_constraints(None)
+            elif chosen_constraint == "Position":
+                ####POISTION CONSTRAINT###########
+                self.fixed_point_constraint = Constraints()
+                self.fixed_point_constraint.name = "fixed_point"
+                point_constraint = PositionConstraint()
+                point_constraint.header = self.pose_goal.header
+                point_constraint.link_name = self.move_group.get_end_effector_link()
+                point_constraint.target_point_offset = self.pose_goal.pose.position
+                bounding_region = SolidPrimitive()
+                bounding_region.type = 2
+                bounding_region.dimensions.append(0.01)
+                point_constraint.constraint_region.primitives.append(bounding_region)
+                point_constraint.constraint_region.primitive_poses.append(self.pose_goal.pose)
+                point_constraint.weight = 1
+                #######ENABLING POSITION CONSTGRAINT########
+                self.fixed_point_constraint.position_constraints.append(point_constraint)
+                self.move_group.set_path_constraints(self.fixed_point_constraint)
+
+            elif chosen_constraint == "Joint":
+                ######JOINT1 COINSTRAINT#############
+                self.fixed_base_constraint = Constraints()
+                self.fixed_base_constraint.name= "fixed_base"
+                joint_constraint = JointConstraint()
+                joint_constraint.joint_name = self.move_group.get_joints()[1]
+                joint_constraint.position = self.move_group.get_current_joint_values()[0]
+                print(joint_constraint.position)
+                joint_constraint.tolerance_above = 0.174533
+                joint_constraint.tolerance_below = 0.174533
+                joint_constraint.weight = 1
+                #######ENABLING JOINT CONSTGRAINT########
+                self.fixed_base_constraint.joint_constraints.append(joint_constraint)
+                self.move_group.set_path_constraints(self.fixed_base_constraint)
+
+
+
+
+
+
+
 
             # my_scale = 1000
             # calc_plan_1 = self.move_group.plan()
@@ -243,11 +307,21 @@ class MoveGroupPythonInterfaceTutorial(object):
 
         if goal.command: ##command true means normal execution
             feedback_action.feedback = "Executing....."
-            plan = self.move_group.go(wait=True)
+            stop_threads = False
+            p2 = Thread(target=self.display_path, args=(1, lambda: stop_threads))
+            p2.start()
+            print("about to start movoving object")
+            self.move_group.go(wait=True)
+            self.move_group.stop()
+            stop_threads = True
+            p2.join()
+            #print('Process2 joined:', p2, p2.is_alive())
+
+            # plan = self.move_group.go(wait=True)
+
             #self.move_group.execute(calc_plan, wait=True)
             #print("plan:",plan)
             self.action_server_execute.publish_feedback(feedback_action)
-            self.move_group.stop()
             feedback_action.feedback = "Finished Executing....."
             self.action_server_execute.publish_feedback(feedback_action)
             self.move_group.clear_pose_targets()
@@ -323,7 +397,15 @@ class MoveGroupPythonInterfaceTutorial(object):
             if success:
                 feedback_action.feedback = "Executing....."
                 self.cartesian_action_server_execute.publish_feedback(feedback_action)
+
+                stop_threads = False
+                p2 = Thread(target=self.display_path, args=(1, lambda: stop_threads))
+                p2.start()
+                print("about to start movoving object")
                 self.move_group.execute(plan, wait=True)
+                stop_threads = True
+                p2.join()
+
                 feedback_action.feedback = "Finished Executing....."
                 self.cartesian_action_server_execute.publish_feedback(feedback_action)
                 # result_action.result = "Execution Successfuly"
@@ -499,6 +581,7 @@ class MoveGroupPythonInterfaceTutorial(object):
             pitch = round(math.degrees(pitch),2)
             yaw = round(math.degrees(yaw),2)
 
+
             return True, f"X{x}Y{y}Z{z}Roll{roll}Pitch{pitch}Yaw{yaw}"
         return False, "Execution Failed"
 
@@ -506,7 +589,7 @@ class MoveGroupPythonInterfaceTutorial(object):
 def main():
     try:
         rospy.init_node("move_group_python_interface_tutorial", anonymous=True)
-        MoveGroupPythonInterfaceTutorial()
+        tutorial = MoveGroupPythonInterfaceTutorial()
         rospy.loginfo("EXECUTE_POSE NODE IS READY")
         rospy.spin()
 
