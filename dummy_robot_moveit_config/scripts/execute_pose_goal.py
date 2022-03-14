@@ -206,7 +206,7 @@ class MoveGroupPythonInterfaceTutorial(object):
                 point_constraint.link_name = self.move_group.get_end_effector_link()
                 point_constraint.target_point_offset = self.pose_goal.pose.position
                 bounding_region = SolidPrimitive()
-                bounding_region.type = 2
+                bounding_region.type = SolidPrimitive.SPHERE
                 bounding_region.dimensions.append(0.01)
                 point_constraint.constraint_region.primitives.append(bounding_region)
                 point_constraint.constraint_region.primitive_poses.append(self.pose_goal.pose)

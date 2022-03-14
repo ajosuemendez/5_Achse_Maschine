@@ -11,6 +11,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import QMessageBox, QApplication, QWidget, QFileDialog
 from PyQt5.QtCore import QObject, QThread, pyqtSignal
 import rospy
+import time
 from plyer import filechooser
 from std_msgs.msg import Bool
 from std_msgs.msg import String
@@ -706,12 +707,15 @@ class Ui_MainWindow(object):
         self.desiredPoseTestButton = QtWidgets.QPushButton(self.groupBox_5)
         self.desiredPoseTestButton.setGeometry(QtCore.QRect(650, 140, 121, 25))
         self.desiredPoseTestButton.setObjectName("desiredPoseTestButton")
+        self.desiredPoseTestButton.clicked.connect(self.cartesianTestButtonCallback)
         self.desiredPoseUndoButton = QtWidgets.QPushButton(self.groupBox_5)
         self.desiredPoseUndoButton.setGeometry(QtCore.QRect(650, 170, 121, 25))
         self.desiredPoseUndoButton.setObjectName("desiredPoseUndoButton")
+        self.desiredPoseUndoButton.clicked.connect(self.cartesianUndoButtonCallback)
         self.desiredPoseConfirmButton = QtWidgets.QPushButton(self.groupBox_5)
         self.desiredPoseConfirmButton.setGeometry(QtCore.QRect(650, 200, 121, 30))
         self.desiredPoseConfirmButton.setObjectName("desiredPoseConfirmButton")
+        self.desiredPoseConfirmButton.clicked.connect(self.desiredPoseConfirmButtonCallback)
         self.groupBox_6 = QtWidgets.QGroupBox(self.tab)
         self.groupBox_6.setGeometry(QtCore.QRect(10, 260, 781, 151))
         self.groupBox_6.setObjectName("groupBox_6")
@@ -1377,6 +1381,8 @@ class Ui_MainWindow(object):
         self.temp_c = []
         self.checkCartesian = False
         self.cartesian_gcode = []
+        self.testButtonPressed = False
+        self.desiredPoseAddButtonPressed = False
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
@@ -3042,7 +3048,8 @@ class Ui_MainWindow(object):
             return None
 
     def desirePoseAddButtonCallback(self):
-        if self.checkCartesian and self.cartesianStartButtonPressed:
+        #if self.checkCartesian and self.cartesianStartButtonPressed:
+        if self.checkCartesian:
             x = float(self.xmmCartesianLineEdit.text())
             y = float(self.ymmCartesianLineEdit.text())
             z = float(self.zmmCartesianLineEdit.text())
@@ -3056,14 +3063,116 @@ class Ui_MainWindow(object):
             self.file_to_save = True
 
             points = f"{self.secuence_counter_cartesian}: X{x}Y{y}Z{z}R{roll}P{pitch}YA{yaw}SP{speed}SAM{samples}CAR{self.cartesianModecheckBox.isChecked()}V{vel}CON{constraint}"
-            self.cartesianTrajectoryPlainTextEdit.insertPlainText(points + "\n")
+            #self.cartesianTrajectoryPlainTextEdit.insertPlainText(points + "\n")
+
+
+            self.cartesianStartPointCallback(test=True)
+
+            self.desiredPoseTestPlainTextEdit.insertPlainText(points + "\n")
             self.secuence_counter_cartesian+=1
             self.checkCartesian = False
+            self.desiredPoseAddButtonPressed = True
         else:
-            self.showMessageBox(text="Press the start and check button first", icon="Critical")
+            self.showMessageBox(text="Check button first", icon="Critical")
 
-    def cartesianStartPointCallback(self):
-        self.cartesianTrajectoryPlainTextEdit.clear()
+    def cartesianTestButtonCallback(self):
+        if self.desiredPoseAddButtonPressed:
+            self.cartesianTrajectoryExecuteButtonCallback(test=True)
+            self.testButtonPressed = True
+        else:
+            self.showMessageBox(text="Press Add Button First", icon="Critical")
+
+    def cartesianUndoButtonCallback(self):
+        if self.testButtonPressed:
+            lines = self.desiredPoseTestPlainTextEdit.toPlainText().split("\n")
+
+            swapped_lines = self.swap_lines(line1=lines[0], line2=lines[1])
+
+            self.desiredPoseTestPlainTextEdit.clear()
+            self.desiredPoseTestPlainTextEdit.insertPlainText(swapped_lines)
+            time.sleep(0.01)
+
+            self.cartesianTrajectoryExecuteButtonCallback(test=True)
+            self.testButtonPressed =False
+        else:
+            self.showMessageBox(text="Press Test Button First", icon="Critical")
+
+        #print("swapped Lines:",swapped_lines)
+
+
+    def swap_lines(self,line1,line2,reverse=False):
+        ###INDEXES for first line
+        x1_index = line1.find("X")
+        y1_index = line1.find("Y")
+        z1_index = line1.find("Z")
+        roll1_index = line1.find("R")
+        pitch1_index = line1.find("P")
+        yaw1_index = line1.find("YA")
+        speed1_index = line1.find("SP")
+
+        ###INDEXES for second line
+        x2_index = line2.find("X")
+        y2_index = line2.find("Y")
+        z2_index = line2.find("Z")
+        roll2_index = line2.find("R")
+        pitch2_index = line2.find("P")
+        yaw2_index = line2.find("YA")
+        speed2_index = line2.find("SP")
+        samples2_index = line2.find("SAM")
+        cartesian2_index = line2.find("CAR")
+        sim2_vel_index = line2.find("V")
+        constraint2_index = line2.find("CON")
+
+        ###VALUES for first Line
+        x1_val = line1[x1_index+1:y1_index]
+        y1_val = line1[y1_index+1:z1_index]
+        z1_val = line1[z1_index+1:roll1_index]
+        roll1_val = line1[roll1_index+1:pitch1_index]
+        pitch1_val = line1[pitch1_index+1:yaw1_index]
+        yaw1_val = line1[yaw1_index+2:speed1_index]
+
+
+
+        ###VALUES for second Line
+        x2_val = line2[x2_index+1:y2_index]
+        y2_val = line2[y2_index+1:z2_index]
+        z2_val = line2[z2_index+1:roll2_index]
+        roll2_val = line2[roll2_index+1:pitch2_index]
+        pitch2_val = line2[pitch2_index+1:yaw2_index]
+        yaw2_val = line2[yaw2_index+2:speed2_index]
+        speed2_val = line2[speed2_index+2:samples2_index]
+        samples2_val = line2[samples2_index+3:cartesian2_index]
+        cartesian2_val = line2[cartesian2_index+3:sim2_vel_index]
+        sim2_vel_val =  line2[sim2_vel_index+1:constraint2_index]
+        constraint2_val = line2[constraint2_index+3:]
+
+        if not reverse:
+
+            string1 = f"X{x2_val}Y{y2_val}Z{z2_val}R{roll2_val}P{pitch2_val}YA{yaw2_val}SP{500}\n"
+            #print("first",string1)
+            string2 = f"X{x1_val}Y{y1_val}Z{z1_val}R{roll1_val}P{pitch1_val}YA{yaw1_val}SP{speed2_val}SAM{samples2_val}CAR{cartesian2_val}V{sim2_vel_val}CON{constraint2_val}\n"
+            #print("Second",string2)
+            combined_string = string1 + string2
+
+            #print("combined",combined_string)
+
+            return combined_string
+        else:
+            return f"X{x2_val}Y{y2_val}Z{z2_val}R{roll2_val}P{pitch2_val}YA{yaw2_val}SP{speed2_val}SAM{samples2_val}CAR{cartesian2_val}V{sim2_vel_val}CON{constraint2_val}\n"
+
+    def desiredPoseConfirmButtonCallback(self):
+        if self.testButtonPressed:
+            lines = self.desiredPoseTestPlainTextEdit.toPlainText().split("\n")
+            not_swapped_line = self.swap_lines(line1=lines[0], line2=lines[1], reverse=True)
+            self.cartesianTrajectoryPlainTextEdit.insertPlainText(not_swapped_line)
+        else:
+            self.showMessageBox(text="Press Test Button First", icon="Critical")
+
+    def cartesianStartPointCallback(self, test=False):
+        if not test:
+            self.cartesianTrajectoryPlainTextEdit.clear()
+        else:
+            self.desiredPoseTestPlainTextEdit.clear()
         self.secuence_counter_cartesian = 1
         rospy.wait_for_service('/get_pose')
         service_conn = rospy.ServiceProxy('/get_pose', SetBool)
@@ -3090,31 +3199,43 @@ class Ui_MainWindow(object):
         yaw_val = response.message[yaw_index+3:]
 
         points = f"{self.secuence_counter_cartesian}: X{x_val}Y{y_val}Z{z_val}R{roll_val}P{pitch_val}YA{yaw_val}SP{500}"
-        self.cartesianTrajectoryPlainTextEdit.insertPlainText(points + "\n")
+        if test:
+            self.desiredPoseTestPlainTextEdit.insertPlainText(points + "\n")
+        else:
+            self.cartesianTrajectoryPlainTextEdit.insertPlainText(points + "\n")
+        #self.desiredPoseTestPlainTextEdit.insertPlainText(points + "\n")
         self.secuence_counter_cartesian+=1
         self.cartesianStartButtonPressed = True
         self.cartesian_gcode = []
 
 
-    def cartesianTrajectoryExecuteButtonCallback(self):
-        self.cartesian_gcode = []
-        GLOABAL_LINES_CARTESIAN[0] = self.cartesianTrajectoryPlainTextEdit.toPlainText()
-        GLOBAL_CURRENT_CONSTRAINT[0] = self.constraintsComboBox.currentText() # this line is no longer necesssary
-        print(GLOBAL_CURRENT_CONSTRAINT[0])
-        #print("cartesian Trajectory Execution")
-        self.thread_execute_cartesian = QThread()
-        self.worker_execute_cartesian = Worker()
-        self.worker_execute_cartesian.moveToThread(self.thread_execute_cartesian)
 
-        self.thread_execute_cartesian.started.connect(self.worker_execute_cartesian.cartesian_call_action_execution)
+    def cartesianTrajectoryExecuteButtonCallback(self, test=False):
+        try:
+            self.cartesian_gcode = []
+            if test:
+                GLOABAL_LINES_CARTESIAN[0] = self.desiredPoseTestPlainTextEdit.toPlainText()
+            else:
+                GLOABAL_LINES_CARTESIAN[0] = self.cartesianTrajectoryPlainTextEdit.toPlainText()
 
-        self.worker_execute_cartesian.finished.connect(self.thread_execute_cartesian.quit)
-        self.worker_execute_cartesian.finished.connect(self.worker_execute_cartesian.deleteLater)
-        self.thread_execute_cartesian.finished.connect(self.thread_execute_cartesian.deleteLater)
-        self.worker_execute_cartesian.progress.connect(self.cartesian_reportProgress)
+            GLOBAL_CURRENT_CONSTRAINT[0] = self.constraintsComboBox.currentText() # this line is no longer necesssary
+            print(GLOBAL_CURRENT_CONSTRAINT[0])
+            #print("cartesian Trajectory Execution")
+            self.thread_execute_cartesian = QThread()
+            self.worker_execute_cartesian = Worker()
+            self.worker_execute_cartesian.moveToThread(self.thread_execute_cartesian)
 
-        self.thread_execute_cartesian.start()
-        print("starting the thread")
+            self.thread_execute_cartesian.started.connect(self.worker_execute_cartesian.cartesian_call_action_execution)
+
+            self.worker_execute_cartesian.finished.connect(self.thread_execute_cartesian.quit)
+            self.worker_execute_cartesian.finished.connect(self.worker_execute_cartesian.deleteLater)
+            self.thread_execute_cartesian.finished.connect(self.thread_execute_cartesian.deleteLater)
+            self.worker_execute_cartesian.progress.connect(self.cartesian_reportProgress)
+
+            self.thread_execute_cartesian.start()
+            print("starting the thread")
+        except Exception as e:
+            print(e)
 
     def cartesian_reportProgress(self,rec):
         self.cartesian_gcode = rec
