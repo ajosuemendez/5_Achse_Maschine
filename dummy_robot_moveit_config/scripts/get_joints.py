@@ -25,7 +25,7 @@ class ListenerPositions:
         e = round(math.degrees(positions[4]),2)
         h = round(math.degrees(positions[5]),2)
 
-        new_msg = f"G01A{a} B{b} C{c} D{d} E{e} H{h}F100"
+        new_msg = f"G01 X{a} Y{b} Z{c} A{d} B{e} C{h}"
         #print(new_msg)
         #self.rate.sleep()
         self.pub.publish(new_msg)

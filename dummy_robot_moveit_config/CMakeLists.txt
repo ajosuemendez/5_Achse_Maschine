@@ -39,7 +39,11 @@ catkin_install_python(PROGRAMS
     scripts/execute_pose_goal.py
     scripts/dold_gui_6.py
     scripts/dold_gui_7.py
+    scripts/dold_gui_8.py
+    scripts/dold_gui_9.py
     scripts/cls_ros_ser_com.py
     scripts/get_joints.py
+    scripts/save_gcode.py
+    scripts/pilz_commander_planning.py
     DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )

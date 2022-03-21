@@ -24,6 +24,7 @@ import roslaunch
 import actionlib
 from dummy_robot_moveit_config.msg import SerialCommunicationAction, SerialCommunicationGoal, ExecuteDesiredPoseAction, ExecuteDesiredPoseGoal
 from dummy_robot_moveit_config.msg import ExecuteCartesianDesiredPoseAction, ExecuteCartesianDesiredPoseGoal
+from collections import defaultdict
 GLOBAL_LINES = ["",""]
 GLOABAL_LINES_CARTESIAN = ["",""]
 GLOBAL_CALCULATED_JOINTS = ["","","","","",""]
@@ -141,7 +142,7 @@ class Worker(QObject):
             y_list.append(float(y_val) + GLOBAL_OFFSET[1]) #self.pos_offsets[1] + self.set_offsets[1] +self.set_world_frame[1])
             z_list.append(float(z_val) + GLOBAL_OFFSET[2]) #self.pos_offsets[2] + self.set_offsets[2] +self.set_world_frame[2])
             roll_list.append(float(roll_val) + GLOBAL_OFFSET[3]) #self.pos_offsets[3] + self.set_offsets[3] +self.set_world_frame[3])
-            pitch_list.append(float(pitch_val) + GLOBAL_OFFSET[4]) #self.pos_offsets[4] + self.set_offsets[4] +self.set_world_frame[4])
+            pitch_list.append(-float(pitch_val) + GLOBAL_OFFSET[4]) #self.pos_offsets[4] + self.set_offsets[4] +self.set_world_frame[4]) #minus to match pitch from fusion360
             yaw_list.append(float(yaw_val) + GLOBAL_OFFSET[5]) #self.pos_offsets[5] + self.set_offsets[5] +self.set_world_frame[5])
 
 
@@ -238,7 +239,6 @@ class Worker(QObject):
 
     def run(self, msg):
         self.progress.emit(f"{msg.feedback}")
-
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
@@ -778,14 +778,13 @@ class Ui_MainWindow(object):
         self.offset_Label.setWordWrap(False)
         self.offset_Label.setObjectName("offset_Label")
         self.verticalLayout_25.addWidget(self.offset_Label)
-        self.verticalLayout_18 = QtWidgets.QVBoxLayout()
-        self.verticalLayout_18.setObjectName("verticalLayout_18")
         self.verticalLayout_16 = QtWidgets.QVBoxLayout()
         self.verticalLayout_16.setObjectName("verticalLayout_16")
         self.verticalLayout_14 = QtWidgets.QVBoxLayout()
-        self.verticalLayout_14.setSpacing(15)
+        self.verticalLayout_14.setSpacing(6)
         self.verticalLayout_14.setObjectName("verticalLayout_14")
         self.horizontalLayout_25 = QtWidgets.QHBoxLayout()
+        self.horizontalLayout_25.setSpacing(46)
         self.horizontalLayout_25.setObjectName("horizontalLayout_25")
         self.xOffsetLabel = QtWidgets.QLabel(self.layoutWidget3)
         font = QtGui.QFont()
@@ -798,6 +797,7 @@ class Ui_MainWindow(object):
         self.horizontalLayout_25.addWidget(self.xOffsetLineEdit)
         self.verticalLayout_14.addLayout(self.horizontalLayout_25)
         self.horizontalLayout_26 = QtWidgets.QHBoxLayout()
+        self.horizontalLayout_26.setSpacing(46)
         self.horizontalLayout_26.setObjectName("horizontalLayout_26")
         self.yOffsetLabel = QtWidgets.QLabel(self.layoutWidget3)
         font = QtGui.QFont()
@@ -810,6 +810,7 @@ class Ui_MainWindow(object):
         self.horizontalLayout_26.addWidget(self.yOffsetLineEdit)
         self.verticalLayout_14.addLayout(self.horizontalLayout_26)
         self.horizontalLayout_27 = QtWidgets.QHBoxLayout()
+        self.horizontalLayout_27.setSpacing(46)
         self.horizontalLayout_27.setObjectName("horizontalLayout_27")
         self.zOffsetLabel = QtWidgets.QLabel(self.layoutWidget3)
         font = QtGui.QFont()
@@ -822,12 +823,52 @@ class Ui_MainWindow(object):
         self.horizontalLayout_27.addWidget(self.zOffsetLineEdit)
         self.verticalLayout_14.addLayout(self.horizontalLayout_27)
         self.verticalLayout_16.addLayout(self.verticalLayout_14)
+        self.horizontalLayout_41 = QtWidgets.QHBoxLayout()
+        self.horizontalLayout_41.setSpacing(19)
+        self.horizontalLayout_41.setObjectName("horizontalLayout_41")
+        self.rollOffsetLabel = QtWidgets.QLabel(self.layoutWidget3)
+        font = QtGui.QFont()
+        font.setPointSize(18)
+        self.rollOffsetLabel.setFont(font)
+        self.rollOffsetLabel.setObjectName("rollOffsetLabel")
+        self.horizontalLayout_41.addWidget(self.rollOffsetLabel)
+        self.rollOffsetLineEdit = QtWidgets.QLineEdit(self.layoutWidget3)
+        self.rollOffsetLineEdit.setObjectName("rollOffsetLineEdit")
+        self.horizontalLayout_41.addWidget(self.rollOffsetLineEdit)
+        self.verticalLayout_16.addLayout(self.horizontalLayout_41)
+        self.horizontalLayout_42 = QtWidgets.QHBoxLayout()
+        self.horizontalLayout_42.setObjectName("horizontalLayout_42")
+        self.pitchOffsetLabel = QtWidgets.QLabel(self.layoutWidget3)
+        font = QtGui.QFont()
+        font.setPointSize(18)
+        self.pitchOffsetLabel.setFont(font)
+        self.pitchOffsetLabel.setObjectName("pitchOffsetLabel")
+        self.horizontalLayout_42.addWidget(self.pitchOffsetLabel)
+        self.pitchOffsetLineEdit = QtWidgets.QLineEdit(self.layoutWidget3)
+        self.pitchOffsetLineEdit.setObjectName("pitchOffsetLineEdit")
+        self.horizontalLayout_42.addWidget(self.pitchOffsetLineEdit)
+        self.verticalLayout_16.addLayout(self.horizontalLayout_42)
+        self.horizontalLayout_44 = QtWidgets.QHBoxLayout()
+        self.horizontalLayout_44.setSpacing(16)
+        self.horizontalLayout_44.setObjectName("horizontalLayout_44")
+        self.yawOffsetLabel = QtWidgets.QLabel(self.layoutWidget3)
+        font = QtGui.QFont()
+        font.setPointSize(18)
+        self.yawOffsetLabel.setFont(font)
+        self.yawOffsetLabel.setObjectName("yawOffsetLabel")
+        self.horizontalLayout_44.addWidget(self.yawOffsetLabel)
+        self.yawOffsetLineEdit = QtWidgets.QLineEdit(self.layoutWidget3)
+        self.yawOffsetLineEdit.setObjectName("yawOffsetLineEdit")
+        self.horizontalLayout_44.addWidget(self.yawOffsetLineEdit)
+        self.verticalLayout_16.addLayout(self.horizontalLayout_44)
         self.setOffsetButton = QtWidgets.QPushButton(self.layoutWidget3)
         self.setOffsetButton.setAutoDefault(True)
         self.setOffsetButton.setObjectName("setOffsetButton")
         self.setOffsetButton.clicked.connect(self.set_offsetCallback)
         self.verticalLayout_16.addWidget(self.setOffsetButton)
-        self.verticalLayout_18.addLayout(self.verticalLayout_16)
+        self.verticalLayout_25.addLayout(self.verticalLayout_16)
+        self.verticalLayout_18 = QtWidgets.QVBoxLayout()
+        self.verticalLayout_18.setObjectName("verticalLayout_18")
         self.verticalLayout_17 = QtWidgets.QVBoxLayout()
         self.verticalLayout_17.setContentsMargins(-1, 40, -1, -1)
         self.verticalLayout_17.setSpacing(10)
@@ -871,9 +912,10 @@ class Ui_MainWindow(object):
         self.verticalLayout_22 = QtWidgets.QVBoxLayout()
         self.verticalLayout_22.setObjectName("verticalLayout_22")
         self.verticalLayout_23 = QtWidgets.QVBoxLayout()
-        self.verticalLayout_23.setSpacing(15)
+        self.verticalLayout_23.setSpacing(6)
         self.verticalLayout_23.setObjectName("verticalLayout_23")
         self.horizontalLayout_33 = QtWidgets.QHBoxLayout()
+        self.horizontalLayout_33.setSpacing(46)
         self.horizontalLayout_33.setObjectName("horizontalLayout_33")
         self.xFrameLabel = QtWidgets.QLabel(self.layoutWidget3)
         font = QtGui.QFont()
@@ -886,6 +928,7 @@ class Ui_MainWindow(object):
         self.horizontalLayout_33.addWidget(self.xFrameLineEdit)
         self.verticalLayout_23.addLayout(self.horizontalLayout_33)
         self.horizontalLayout_34 = QtWidgets.QHBoxLayout()
+        self.horizontalLayout_34.setSpacing(46)
         self.horizontalLayout_34.setObjectName("horizontalLayout_34")
         self.yFrameLabel = QtWidgets.QLabel(self.layoutWidget3)
         font = QtGui.QFont()
@@ -898,6 +941,7 @@ class Ui_MainWindow(object):
         self.horizontalLayout_34.addWidget(self.yFrameLineEdit)
         self.verticalLayout_23.addLayout(self.horizontalLayout_34)
         self.horizontalLayout_35 = QtWidgets.QHBoxLayout()
+        self.horizontalLayout_35.setSpacing(46)
         self.horizontalLayout_35.setObjectName("horizontalLayout_35")
         self.zFrameLabel = QtWidgets.QLabel(self.layoutWidget3)
         font = QtGui.QFont()
@@ -910,6 +954,44 @@ class Ui_MainWindow(object):
         self.horizontalLayout_35.addWidget(self.zFrameLineEdit)
         self.verticalLayout_23.addLayout(self.horizontalLayout_35)
         self.verticalLayout_22.addLayout(self.verticalLayout_23)
+        self.horizontalLayout_45 = QtWidgets.QHBoxLayout()
+        self.horizontalLayout_45.setSpacing(18)
+        self.horizontalLayout_45.setObjectName("horizontalLayout_45")
+        self.rollFrameLabel = QtWidgets.QLabel(self.layoutWidget3)
+        font = QtGui.QFont()
+        font.setPointSize(18)
+        self.rollFrameLabel.setFont(font)
+        self.rollFrameLabel.setObjectName("rollFrameLabel")
+        self.horizontalLayout_45.addWidget(self.rollFrameLabel)
+        self.rollFrameLineEdit = QtWidgets.QLineEdit(self.layoutWidget3)
+        self.rollFrameLineEdit.setObjectName("rollFrameLineEdit")
+        self.horizontalLayout_45.addWidget(self.rollFrameLineEdit)
+        self.verticalLayout_22.addLayout(self.horizontalLayout_45)
+        self.horizontalLayout_46 = QtWidgets.QHBoxLayout()
+        self.horizontalLayout_46.setObjectName("horizontalLayout_46")
+        self.pitchFrameLabel = QtWidgets.QLabel(self.layoutWidget3)
+        font = QtGui.QFont()
+        font.setPointSize(18)
+        self.pitchFrameLabel.setFont(font)
+        self.pitchFrameLabel.setObjectName("pitchFrameLabel")
+        self.horizontalLayout_46.addWidget(self.pitchFrameLabel)
+        self.pitchFrameLineEdit = QtWidgets.QLineEdit(self.layoutWidget3)
+        self.pitchFrameLineEdit.setObjectName("pitchFrameLineEdit")
+        self.horizontalLayout_46.addWidget(self.pitchFrameLineEdit)
+        self.verticalLayout_22.addLayout(self.horizontalLayout_46)
+        self.horizontalLayout_60 = QtWidgets.QHBoxLayout()
+        self.horizontalLayout_60.setSpacing(16)
+        self.horizontalLayout_60.setObjectName("horizontalLayout_60")
+        self.yawFrameLabel = QtWidgets.QLabel(self.layoutWidget3)
+        font = QtGui.QFont()
+        font.setPointSize(18)
+        self.yawFrameLabel.setFont(font)
+        self.yawFrameLabel.setObjectName("yawFrameLabel")
+        self.horizontalLayout_60.addWidget(self.yawFrameLabel)
+        self.yawFrameLineEdit = QtWidgets.QLineEdit(self.layoutWidget3)
+        self.yawFrameLineEdit.setObjectName("yawFrameLineEdit")
+        self.horizontalLayout_60.addWidget(self.yawFrameLineEdit)
+        self.verticalLayout_22.addLayout(self.horizontalLayout_60)
         self.setFrameButton = QtWidgets.QPushButton(self.layoutWidget3)
         self.setFrameButton.setAutoDefault(True)
         self.setFrameButton.setObjectName("setFrameButton")
@@ -959,6 +1041,9 @@ class Ui_MainWindow(object):
         self.chosenFilelabel.setAlignment(QtCore.Qt.AlignCenter)
         self.chosenFilelabel.setObjectName("chosenFilelabel")
         self.verticalLayout_19.addWidget(self.chosenFilelabel)
+        self.simulateCheckBox = QtWidgets.QCheckBox(self.layoutWidget4)
+        self.simulateCheckBox.setObjectName("simulateCheckBox")
+        self.verticalLayout_19.addWidget(self.simulateCheckBox)
         self.generateGcodeButton = QtWidgets.QPushButton(self.layoutWidget4)
         self.generateGcodeButton.setAutoDefault(False)
         self.generateGcodeButton.setObjectName("generateGcodeButton")
@@ -1040,6 +1125,19 @@ class Ui_MainWindow(object):
         self.allCheckBox = QtWidgets.QCheckBox(self.layoutWidget6)
         self.allCheckBox.setObjectName("allCheckBox")
         self.horizontalLayout_59.addWidget(self.allCheckBox)
+        self.groupBox_2 = QtWidgets.QGroupBox(self.Gcode)
+        self.groupBox_2.setGeometry(QtCore.QRect(640, 10, 151, 61))
+        self.groupBox_2.setObjectName("groupBox_2")
+        self.gcodeGenerationConstraintsComboBox = QtWidgets.QComboBox(self.groupBox_2)
+        self.gcodeGenerationConstraintsComboBox.setGeometry(QtCore.QRect(10, 27, 131, 28))
+        font = QtGui.QFont()
+        font.setPointSize(13)
+        self.gcodeGenerationConstraintsComboBox.setFont(font)
+        self.gcodeGenerationConstraintsComboBox.setObjectName("gcodeGenerationConstraintsComboBox")
+        self.gcodeGenerationConstraintsComboBox.addItem("")
+        self.gcodeGenerationConstraintsComboBox.addItem("")
+        self.gcodeGenerationConstraintsComboBox.addItem("")
+        self.gcodeGenerationConstraintsComboBox.addItem("")
         self.tabWidget.addTab(self.Gcode, "")
         self.LoadGcode = QtWidgets.QWidget()
         self.LoadGcode.setObjectName("LoadGcode")
@@ -1116,6 +1214,126 @@ class Ui_MainWindow(object):
         self.sendGcodeButton.setObjectName("sendGcodeButton")
         self.sendGcodeButton.clicked.connect(self.sendGcodeCallback)
         self.tabWidget.addTab(self.LoadGcode, "")
+        self.tab_2 = QtWidgets.QWidget()
+        self.tab_2.setObjectName("tab_2")
+        self.groupBox_8 = QtWidgets.QGroupBox(self.tab_2)
+        self.groupBox_8.setGeometry(QtCore.QRect(20, 10, 771, 311))
+        self.groupBox_8.setObjectName("groupBox_8")
+        self.jointConstraintTableWidget = QtWidgets.QTableWidget(self.groupBox_8)
+        self.jointConstraintTableWidget.setGeometry(QtCore.QRect(20, 40, 491, 221))
+        self.jointConstraintTableWidget.setObjectName("jointConstraintTableWidget")
+        self.jointConstraintTableWidget.setColumnCount(3)
+        self.jointConstraintTableWidget.setRowCount(6)
+        item = QtWidgets.QTableWidgetItem()
+        self.jointConstraintTableWidget.setVerticalHeaderItem(0, item)
+        item = QtWidgets.QTableWidgetItem()
+        self.jointConstraintTableWidget.setVerticalHeaderItem(1, item)
+        item = QtWidgets.QTableWidgetItem()
+        self.jointConstraintTableWidget.setVerticalHeaderItem(2, item)
+        item = QtWidgets.QTableWidgetItem()
+        self.jointConstraintTableWidget.setVerticalHeaderItem(3, item)
+        item = QtWidgets.QTableWidgetItem()
+        self.jointConstraintTableWidget.setVerticalHeaderItem(4, item)
+        item = QtWidgets.QTableWidgetItem()
+        self.jointConstraintTableWidget.setVerticalHeaderItem(5, item)
+        item = QtWidgets.QTableWidgetItem()
+        self.jointConstraintTableWidget.setHorizontalHeaderItem(0, item)
+        item = QtWidgets.QTableWidgetItem()
+        self.jointConstraintTableWidget.setHorizontalHeaderItem(1, item)
+        item = QtWidgets.QTableWidgetItem()
+        self.jointConstraintTableWidget.setHorizontalHeaderItem(2, item)
+        item = QtWidgets.QTableWidgetItem()
+        self.jointConstraintTableWidget.setItem(0, 0, item)
+        item = QtWidgets.QTableWidgetItem()
+        self.jointConstraintTableWidget.setItem(1, 0, item)
+        item = QtWidgets.QTableWidgetItem()
+        self.jointConstraintTableWidget.setItem(2, 0, item)
+        item = QtWidgets.QTableWidgetItem()
+        self.jointConstraintTableWidget.setItem(3, 0, item)
+        item = QtWidgets.QTableWidgetItem()
+        self.jointConstraintTableWidget.setItem(4, 0, item)
+        item = QtWidgets.QTableWidgetItem()
+        self.jointConstraintTableWidget.setItem(5, 0, item)
+        self.jointConstraintTableWidget.horizontalHeader().setDefaultSectionSize(163)
+        self.jointConstraintTableWidget.verticalHeader().setVisible(False)
+        self.jointConstraintTableWidget.verticalHeader().setDefaultSectionSize(33)
+        self.jointConstraintTableWidget.verticalHeader().setHighlightSections(False)
+        self.jointConstraintEnableXCheckBox = QtWidgets.QCheckBox(self.groupBox_8)
+        self.jointConstraintEnableXCheckBox.setGeometry(QtCore.QRect(520, 60, 81, 31))
+        self.jointConstraintEnableXCheckBox.setObjectName("jointConstraintEnableXCheckBox")
+        self.jointConstraintEnableYCheckBox = QtWidgets.QCheckBox(self.groupBox_8)
+        self.jointConstraintEnableYCheckBox.setGeometry(QtCore.QRect(520, 90, 92, 41))
+        self.jointConstraintEnableYCheckBox.setObjectName("jointConstraintEnableYCheckBox")
+        self.jointConstraintEnableZCheckBox = QtWidgets.QCheckBox(self.groupBox_8)
+        self.jointConstraintEnableZCheckBox.setGeometry(QtCore.QRect(520, 130, 92, 31))
+        self.jointConstraintEnableZCheckBox.setObjectName("jointConstraintEnableZCheckBox")
+        self.jointConstraintEnableACheckBox = QtWidgets.QCheckBox(self.groupBox_8)
+        self.jointConstraintEnableACheckBox.setGeometry(QtCore.QRect(520, 160, 92, 31))
+        self.jointConstraintEnableACheckBox.setObjectName("jointConstraintEnableACheckBox")
+        self.jointConstraintEnableCCheckBox = QtWidgets.QCheckBox(self.groupBox_8)
+        self.jointConstraintEnableCCheckBox.setGeometry(QtCore.QRect(520, 230, 92, 31))
+        self.jointConstraintEnableCCheckBox.setObjectName("jointConstraintEnableCCheckBox")
+        self.jointConstraintEnableBCheckBox = QtWidgets.QCheckBox(self.groupBox_8)
+        self.jointConstraintEnableBCheckBox.setGeometry(QtCore.QRect(520, 190, 92, 41))
+        self.jointConstraintEnableBCheckBox.setObjectName("jointConstraintEnableBCheckBox")
+        self.jointConstraintCartesianCheckBox = QtWidgets.QCheckBox(self.groupBox_8)
+        self.jointConstraintCartesianCheckBox.setGeometry(QtCore.QRect(20, 270, 151, 23))
+        self.jointConstraintCartesianCheckBox.setObjectName("jointConstraintCartesianCheckBox")
+        self.jointConstraintDumperCheckBox = QtWidgets.QCheckBox(self.groupBox_8)
+        self.jointConstraintDumperCheckBox.setGeometry(QtCore.QRect(180, 270, 151, 23))
+        self.jointConstraintDumperCheckBox.setObjectName("jointConstraintDumperCheckBox")
+        self.JointConstraintSaveButton = QtWidgets.QPushButton(self.groupBox_8)
+        self.JointConstraintSaveButton.setGeometry(QtCore.QRect(620, 60, 141, 201))
+        self.JointConstraintSaveButton.setObjectName("JointConstraintSaveButton")
+        self.JointConstraintSaveButton.clicked.connect(self.JointConstraintSaveButtonCallback)
+        self.groupBox_9 = QtWidgets.QGroupBox(self.tab_2)
+        self.groupBox_9.setGeometry(QtCore.QRect(480, 330, 311, 201))
+        self.groupBox_9.setObjectName("groupBox_9")
+        self.positionConstraintTableWidget = QtWidgets.QTableWidget(self.groupBox_9)
+        self.positionConstraintTableWidget.setGeometry(QtCore.QRect(10, 40, 141, 51))
+        self.positionConstraintTableWidget.setObjectName("positionConstraintTableWidget")
+        self.positionConstraintTableWidget.setColumnCount(1)
+        self.positionConstraintTableWidget.setRowCount(1)
+        item = QtWidgets.QTableWidgetItem()
+        self.positionConstraintTableWidget.setVerticalHeaderItem(0, item)
+        item = QtWidgets.QTableWidgetItem()
+        self.positionConstraintTableWidget.setHorizontalHeaderItem(0, item)
+        self.positionConstraintTableWidget.horizontalHeader().setDefaultSectionSize(127)
+        self.positionConstraintSaveButton = QtWidgets.QPushButton(self.groupBox_9)
+        self.positionConstraintSaveButton.setGeometry(QtCore.QRect(160, 40, 141, 50))
+        self.positionConstraintSaveButton.setObjectName("positionConstraintSaveButton")
+        self.groupBox_10 = QtWidgets.QGroupBox(self.tab_2)
+        self.groupBox_10.setGeometry(QtCore.QRect(20, 330, 441, 201))
+        self.groupBox_10.setObjectName("groupBox_10")
+        self.orientationConstraintTableWidget = QtWidgets.QTableWidget(self.groupBox_10)
+        self.orientationConstraintTableWidget.setGeometry(QtCore.QRect(20, 40, 330, 131))
+        self.orientationConstraintTableWidget.setObjectName("orientationConstraintTableWidget")
+        self.orientationConstraintTableWidget.setColumnCount(2)
+        self.orientationConstraintTableWidget.setRowCount(3)
+        item = QtWidgets.QTableWidgetItem()
+        self.orientationConstraintTableWidget.setVerticalHeaderItem(0, item)
+        item = QtWidgets.QTableWidgetItem()
+        self.orientationConstraintTableWidget.setVerticalHeaderItem(1, item)
+        item = QtWidgets.QTableWidgetItem()
+        self.orientationConstraintTableWidget.setVerticalHeaderItem(2, item)
+        item = QtWidgets.QTableWidgetItem()
+        self.orientationConstraintTableWidget.setHorizontalHeaderItem(0, item)
+        item = QtWidgets.QTableWidgetItem()
+        self.orientationConstraintTableWidget.setHorizontalHeaderItem(1, item)
+        item = QtWidgets.QTableWidgetItem()
+        self.orientationConstraintTableWidget.setItem(0, 0, item)
+        item = QtWidgets.QTableWidgetItem()
+        self.orientationConstraintTableWidget.setItem(1, 0, item)
+        item = QtWidgets.QTableWidgetItem()
+        self.orientationConstraintTableWidget.setItem(2, 0, item)
+        self.orientationConstraintTableWidget.horizontalHeader().setDefaultSectionSize(164)
+        self.orientationConstraintTableWidget.verticalHeader().setVisible(False)
+        self.orientationConstraintTableWidget.verticalHeader().setDefaultSectionSize(36)
+        self.orientationConstraintTableWidget.verticalHeader().setHighlightSections(False)
+        self.orientationConstraintSaveButton = QtWidgets.QPushButton(self.groupBox_10)
+        self.orientationConstraintSaveButton.setGeometry(QtCore.QRect(360, 40, 71, 131))
+        self.orientationConstraintSaveButton.setObjectName("orientationConstraintSaveButton")
+        self.tabWidget.addTab(self.tab_2, "")
         self.layoutWidget8 = QtWidgets.QWidget(self.centralwidget)
         self.layoutWidget8.setGeometry(QtCore.QRect(20, 20, 231, 591))
         self.layoutWidget8.setObjectName("layoutWidget8")
@@ -1148,13 +1366,15 @@ class Ui_MainWindow(object):
         self.Jogging = QtWidgets.QGroupBox(self.layoutWidget8)
         self.Jogging.setObjectName("Jogging")
         self.layoutWidget9 = QtWidgets.QWidget(self.Jogging)
-        self.layoutWidget9.setGeometry(QtCore.QRect(10, 30, 211, 171))
+        self.layoutWidget9.setGeometry(QtCore.QRect(10, 10, 211, 281))
         self.layoutWidget9.setObjectName("layoutWidget9")
         self.verticalLayout_4 = QtWidgets.QVBoxLayout(self.layoutWidget9)
         self.verticalLayout_4.setSizeConstraint(QtWidgets.QLayout.SetDefaultConstraint)
         self.verticalLayout_4.setContentsMargins(0, 0, 0, 0)
+        self.verticalLayout_4.setSpacing(14)
         self.verticalLayout_4.setObjectName("verticalLayout_4")
         self.verticalLayout_3 = QtWidgets.QVBoxLayout()
+        self.verticalLayout_3.setSpacing(12)
         self.verticalLayout_3.setObjectName("verticalLayout_3")
         self.horizontalLayout_2 = QtWidgets.QHBoxLayout()
         self.horizontalLayout_2.setSizeConstraint(QtWidgets.QLayout.SetDefaultConstraint)
@@ -1202,6 +1422,21 @@ class Ui_MainWindow(object):
         self.forwardZButton.released.connect(self.releasedForwardZCallback)
         self.horizontalLayout_4.addWidget(self.forwardZButton)
         self.verticalLayout_3.addLayout(self.horizontalLayout_4)
+        self.horizontalLayout_39 = QtWidgets.QHBoxLayout()
+        self.horizontalLayout_39.setObjectName("horizontalLayout_39")
+        self.backAButton = QtWidgets.QPushButton(self.layoutWidget9)
+        self.backAButton.setEnabled(False)
+        self.backAButton.setObjectName("backAButton")
+        self.backAButton.pressed.connect(self.backACallback)
+        self.backAButton.released.connect(self.releasedBackACallback)
+        self.horizontalLayout_39.addWidget(self.backAButton)
+        self.forwardAButton = QtWidgets.QPushButton(self.layoutWidget9)
+        self.forwardAButton.setEnabled(False)
+        self.forwardAButton.setObjectName("forwardAButton")
+        self.forwardAButton.pressed.connect(self.forwardACallback)
+        self.forwardAButton.released.connect(self.releasedForwardACallback)
+        self.horizontalLayout_39.addWidget(self.forwardAButton)
+        self.verticalLayout_3.addLayout(self.horizontalLayout_39)
         self.horizontalLayout_5 = QtWidgets.QHBoxLayout()
         self.horizontalLayout_5.setObjectName("horizontalLayout_5")
         self.backBButton = QtWidgets.QPushButton(self.layoutWidget9)
@@ -1234,15 +1469,15 @@ class Ui_MainWindow(object):
         self.verticalLayout_3.addLayout(self.horizontalLayout_6)
         self.verticalLayout_4.addLayout(self.verticalLayout_3)
         self.stepLabel = QtWidgets.QLabel(self.Jogging)
-        self.stepLabel.setGeometry(QtCore.QRect(10, 240, 81, 17))
+        self.stepLabel.setGeometry(QtCore.QRect(10, 330, 81, 31))
         self.stepLabel.setAlignment(QtCore.Qt.AlignLeading|QtCore.Qt.AlignLeft|QtCore.Qt.AlignVCenter)
         self.stepLabel.setObjectName("stepLabel")
         self.stepSpinBox = QtWidgets.QSpinBox(self.Jogging)
         self.stepSpinBox.setEnabled(False)
-        self.stepSpinBox.setGeometry(QtCore.QRect(90, 235, 131, 31))
+        self.stepSpinBox.setGeometry(QtCore.QRect(90, 330, 131, 31))
         self.stepSpinBox.setObjectName("stepSpinBox")
         self.layoutWidget10 = QtWidgets.QWidget(self.Jogging)
-        self.layoutWidget10.setGeometry(QtCore.QRect(10, 200, 131, 27))
+        self.layoutWidget10.setGeometry(QtCore.QRect(10, 290, 131, 27))
         self.layoutWidget10.setObjectName("layoutWidget10")
         self.horizontalLayout_7 = QtWidgets.QHBoxLayout(self.layoutWidget10)
         self.horizontalLayout_7.setContentsMargins(0, 0, 0, 0)
@@ -1257,7 +1492,7 @@ class Ui_MainWindow(object):
         self.feedHorizontalSlider.valueChanged.connect(self.valueChangeCallback)
         self.horizontalLayout_7.addWidget(self.feedHorizontalSlider)
         self.layoutWidget11 = QtWidgets.QWidget(self.Jogging)
-        self.layoutWidget11.setGeometry(QtCore.QRect(10, 280, 213, 25))
+        self.layoutWidget11.setGeometry(QtCore.QRect(10, 380, 213, 25))
         self.layoutWidget11.setObjectName("layoutWidget11")
         self.horizontalLayout_37 = QtWidgets.QHBoxLayout(self.layoutWidget11)
         self.horizontalLayout_37.setContentsMargins(0, 0, 0, 0)
@@ -1273,7 +1508,7 @@ class Ui_MainWindow(object):
         self.onceRadioButton.setObjectName("onceRadioButton")
         self.horizontalLayout_37.addWidget(self.onceRadioButton)
         self.feedLineEdit = QtWidgets.QLineEdit(self.Jogging)
-        self.feedLineEdit.setGeometry(QtCore.QRect(148, 200, 71, 25))
+        self.feedLineEdit.setGeometry(QtCore.QRect(148, 290, 71, 25))
         self.feedLineEdit.setObjectName("feedLineEdit")
         self.verticalLayout_5.addWidget(self.Jogging)
         self.setButton = QtWidgets.QPushButton(self.layoutWidget8)
@@ -1361,7 +1596,7 @@ class Ui_MainWindow(object):
         ####################################################
         #My Initializations
         self.pos_offsets = [0,0,0,0,0,0] #central position z: 405 (-47) y:764 (-2.03) x:700 (-5.05) #x,y,z,roll,pitch,yaw
-        self.set_offsets = [0,0,0,0,180,0]
+        self.set_offsets = [0,0,0,0,0,0]
         self.abs_offset = [0,0,0,0,0,0] #corresponding x,y,z offset #joints are at X530,Y750,Z225
         self.set_world_frame = [0,0,0,0,0,0]
         self.calculated_plan = False
@@ -1445,6 +1680,9 @@ class Ui_MainWindow(object):
         self.xOffsetLabel.setText(_translate("MainWindow", "X Offset"))
         self.yOffsetLabel.setText(_translate("MainWindow", "Y Offset"))
         self.zOffsetLabel.setText(_translate("MainWindow", "Z Offset"))
+        self.rollOffsetLabel.setText(_translate("MainWindow", "Roll Offset"))
+        self.pitchOffsetLabel.setText(_translate("MainWindow", "Pitch Offset"))
+        self.yawOffsetLabel.setText(_translate("MainWindow", "Yaw Offset"))
         self.setOffsetButton.setText(_translate("MainWindow", "Set Offset"))
         self.defaultButton.setText(_translate("MainWindow", "Default"))
         self.custom1Button.setText(_translate("MainWindow", "Custom1"))
@@ -1453,6 +1691,9 @@ class Ui_MainWindow(object):
         self.xFrameLabel.setText(_translate("MainWindow", "X"))
         self.yFrameLabel.setText(_translate("MainWindow", "Y"))
         self.zFrameLabel.setText(_translate("MainWindow", "Z"))
+        self.rollFrameLabel.setText(_translate("MainWindow", "Roll"))
+        self.pitchFrameLabel.setText(_translate("MainWindow", "Pitch"))
+        self.yawFrameLabel.setText(_translate("MainWindow", "Yaw"))
         self.setFrameButton.setText(_translate("MainWindow", "Set Frame"))
         self.defaultFrameButton.setText(_translate("MainWindow", "Default"))
         self.customFrame1Button.setText(_translate("MainWindow", "Custom1"))
@@ -1460,6 +1701,7 @@ class Ui_MainWindow(object):
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.Offsets), _translate("MainWindow", "Offsets"))
         self.dumperFileButton.setText(_translate("MainWindow", "Dumper File"))
         self.chosenFilelabel.setText(_translate("MainWindow", "Chosen File"))
+        self.simulateCheckBox.setText(_translate("MainWindow", "Simulate"))
         self.generateGcodeButton.setText(_translate("MainWindow", "Generate Gcode"))
         self.saveButton.setText(_translate("MainWindow", "Save"))
         self.updateGcodeButton.setText(_translate("MainWindow", "Update Gcode"))
@@ -1475,6 +1717,11 @@ class Ui_MainWindow(object):
         self.onLinear5DCheckBox.setText(_translate("MainWindow", "onLinear5D"))
         self.onRapid5DCheckBox.setText(_translate("MainWindow", "onRapid5D"))
         self.allCheckBox.setText(_translate("MainWindow", "All"))
+        self.groupBox_2.setTitle(_translate("MainWindow", "Constraints"))
+        self.gcodeGenerationConstraintsComboBox.setItemText(0, _translate("MainWindow", "None"))
+        self.gcodeGenerationConstraintsComboBox.setItemText(1, _translate("MainWindow", "Orientation"))
+        self.gcodeGenerationConstraintsComboBox.setItemText(2, _translate("MainWindow", "Joint"))
+        self.gcodeGenerationConstraintsComboBox.setItemText(3, _translate("MainWindow", "Position"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.Gcode), _translate("MainWindow", "Gcode Generation"))
         self.calculateExtremesButton.setText(_translate("MainWindow", "Calculate Extremes"))
         self.loadGcodeButton.setText(_translate("MainWindow", "Load Gcode"))
@@ -1486,6 +1733,77 @@ class Ui_MainWindow(object):
         self.zMaxLabel.setText(_translate("MainWindow", "Z Max"))
         self.sendGcodeButton.setText(_translate("MainWindow", "Send Gcode"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.LoadGcode), _translate("MainWindow", "Load Gcode"))
+        self.groupBox_8.setTitle(_translate("MainWindow", "Joint Constraint"))
+        item = self.jointConstraintTableWidget.verticalHeaderItem(0)
+        item.setText(_translate("MainWindow", "1"))
+        item = self.jointConstraintTableWidget.verticalHeaderItem(1)
+        item.setText(_translate("MainWindow", "2"))
+        item = self.jointConstraintTableWidget.verticalHeaderItem(2)
+        item.setText(_translate("MainWindow", "3"))
+        item = self.jointConstraintTableWidget.verticalHeaderItem(3)
+        item.setText(_translate("MainWindow", "4"))
+        item = self.jointConstraintTableWidget.verticalHeaderItem(4)
+        item.setText(_translate("MainWindow", "5"))
+        item = self.jointConstraintTableWidget.verticalHeaderItem(5)
+        item.setText(_translate("MainWindow", "6"))
+        item = self.jointConstraintTableWidget.horizontalHeaderItem(0)
+        item.setText(_translate("MainWindow", "Joint"))
+        item = self.jointConstraintTableWidget.horizontalHeaderItem(1)
+        item.setText(_translate("MainWindow", "Lower Tolerance (Deg)"))
+        item = self.jointConstraintTableWidget.horizontalHeaderItem(2)
+        item.setText(_translate("MainWindow", "Upper Tolerance (Deg)"))
+        __sortingEnabled = self.jointConstraintTableWidget.isSortingEnabled()
+        self.jointConstraintTableWidget.setSortingEnabled(False)
+        item = self.jointConstraintTableWidget.item(0, 0)
+        item.setText(_translate("MainWindow", "X"))
+        item = self.jointConstraintTableWidget.item(1, 0)
+        item.setText(_translate("MainWindow", "Y"))
+        item = self.jointConstraintTableWidget.item(2, 0)
+        item.setText(_translate("MainWindow", "Z"))
+        item = self.jointConstraintTableWidget.item(3, 0)
+        item.setText(_translate("MainWindow", "A"))
+        item = self.jointConstraintTableWidget.item(4, 0)
+        item.setText(_translate("MainWindow", "B"))
+        item = self.jointConstraintTableWidget.item(5, 0)
+        item.setText(_translate("MainWindow", "C"))
+        self.jointConstraintTableWidget.setSortingEnabled(__sortingEnabled)
+        self.jointConstraintEnableXCheckBox.setText(_translate("MainWindow", "Enable X"))
+        self.jointConstraintEnableYCheckBox.setText(_translate("MainWindow", "Enable Y"))
+        self.jointConstraintEnableZCheckBox.setText(_translate("MainWindow", "Enable Z"))
+        self.jointConstraintEnableACheckBox.setText(_translate("MainWindow", "Enable A"))
+        self.jointConstraintEnableCCheckBox.setText(_translate("MainWindow", "Enable C"))
+        self.jointConstraintEnableBCheckBox.setText(_translate("MainWindow", "Enable B"))
+        self.jointConstraintCartesianCheckBox.setText(_translate("MainWindow", "Cartesian Plan"))
+        self.jointConstraintDumperCheckBox.setText(_translate("MainWindow", "Dumper File"))
+        self.JointConstraintSaveButton.setText(_translate("MainWindow", "Save"))
+        self.groupBox_9.setTitle(_translate("MainWindow", "Position Constraint"))
+        item = self.positionConstraintTableWidget.verticalHeaderItem(0)
+        item.setText(_translate("MainWindow", "r"))
+        item = self.positionConstraintTableWidget.horizontalHeaderItem(0)
+        item.setText(_translate("MainWindow", "Sphere Radio (m)"))
+        self.positionConstraintSaveButton.setText(_translate("MainWindow", "Save"))
+        self.groupBox_10.setTitle(_translate("MainWindow", "Orientation Constraint"))
+        item = self.orientationConstraintTableWidget.verticalHeaderItem(0)
+        item.setText(_translate("MainWindow", "1"))
+        item = self.orientationConstraintTableWidget.verticalHeaderItem(1)
+        item.setText(_translate("MainWindow", "2"))
+        item = self.orientationConstraintTableWidget.verticalHeaderItem(2)
+        item.setText(_translate("MainWindow", "3"))
+        item = self.orientationConstraintTableWidget.horizontalHeaderItem(0)
+        item.setText(_translate("MainWindow", "Axis"))
+        item = self.orientationConstraintTableWidget.horizontalHeaderItem(1)
+        item.setText(_translate("MainWindow", "Absolute Tolerance (m)"))
+        __sortingEnabled = self.orientationConstraintTableWidget.isSortingEnabled()
+        self.orientationConstraintTableWidget.setSortingEnabled(False)
+        item = self.orientationConstraintTableWidget.item(0, 0)
+        item.setText(_translate("MainWindow", "X"))
+        item = self.orientationConstraintTableWidget.item(1, 0)
+        item.setText(_translate("MainWindow", "Y"))
+        item = self.orientationConstraintTableWidget.item(2, 0)
+        item.setText(_translate("MainWindow", "Z"))
+        self.orientationConstraintTableWidget.setSortingEnabled(__sortingEnabled)
+        self.orientationConstraintSaveButton.setText(_translate("MainWindow", "Save"))
+        self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_2), _translate("MainWindow", "Constraint Settings"))
         self.connectButton.setText(_translate("MainWindow", "Connect"))
         self.unlockButton.setText(_translate("MainWindow", "Unlock ($X)"))
         self.homeButton.setText(_translate("MainWindow", "Home (G01X0Y0Z0B0C0)"))
@@ -1497,6 +1815,8 @@ class Ui_MainWindow(object):
         self.forwardYButton.setText(_translate("MainWindow", "Y"))
         self.backZButton.setText(_translate("MainWindow", "-Z"))
         self.forwardZButton.setText(_translate("MainWindow", "Z"))
+        self.backAButton.setText(_translate("MainWindow", "-A"))
+        self.forwardAButton.setText(_translate("MainWindow", "A"))
         self.backBButton.setText(_translate("MainWindow", "-B"))
         self.forwardBButton.setText(_translate("MainWindow", "B"))
         self.backCButton.setText(_translate("MainWindow", "-C"))
@@ -1587,7 +1907,9 @@ class Ui_MainWindow(object):
             request.pitch_input = pitch
             request.yaw_input = yaw
             request.check = 2
-            response = service_conn(request.x_input, request.y_input, request.z_input, request.roll_input, request.pitch_input, request.yaw_input, request.check)
+            request.constraint = "None"
+            request.simulate = True
+            response = service_conn(request.x_input, request.y_input, request.z_input, request.roll_input, request.pitch_input, request.yaw_input, request.check, request.constraint, request.simulate)
             #print(response)
         except rospy.ServiceException as exc:
             print("Service did not process request: " + str(exc))
@@ -1667,6 +1989,10 @@ class Ui_MainWindow(object):
             self.set_offsets[0] = float(self.xOffsetLineEdit.text())
             self.set_offsets[1] = float(self.yOffsetLineEdit.text())
             self.set_offsets[2] = float(self.zOffsetLineEdit.text())
+            self.set_offsets[3] = float(self.rollOffsetLineEdit.text())
+            self.set_offsets[4] = float(self.pitchOffsetLineEdit.text())
+            self.set_offsets[5] = float(self.yawOffsetLineEdit.text())
+
         except ValueError:
             self.showMessageBox(text="please make sure to set all the values and valid format", icon="Critical")
             return None
@@ -1676,6 +2002,9 @@ class Ui_MainWindow(object):
         self.xOffsetLineEdit.setText(str(defalutValue))
         self.yOffsetLineEdit.setText(str(defalutValue))
         self.zOffsetLineEdit.setText(str(defalutValue))
+        self.rollOffsetLineEdit.setText(str(defalutValue))
+        self.pitchOffsetLineEdit.setText(str(defalutValue))
+        self.yawOffsetLineEdit.setText(str(defalutValue))
         #self.set_offsets[0] = defalutValue
         #self.set_offsets[1] = defalutValue
         #self.set_offsets[2] = defalutValue
@@ -1736,6 +2065,9 @@ class Ui_MainWindow(object):
         self.set_world_frame[0] = float(self.xFrameLineEdit.text())
         self.set_world_frame[1] = float(self.yFrameLineEdit.text())
         self.set_world_frame[2] = float(self.zFrameLineEdit.text())
+        self.set_world_frame[3] = float(self.rollFrameLineEdit.text())
+        self.set_world_frame[4] = float(self.pitchFrameLineEdit.text())
+        self.set_world_frame[5] = float(self.yawFrameLineEdit.text())
         #print(f"setting world frame: x:{self.set_world_frame[0]} y:{self.set_world_frame[1]} z:{self.set_world_frame[2]}")
 
     def defaultFrameCallback(self):
@@ -1743,6 +2075,9 @@ class Ui_MainWindow(object):
         self.xFrameLineEdit.setText(defaultVal)
         self.yFrameLineEdit.setText(defaultVal)
         self.zFrameLineEdit.setText(defaultVal)
+        self.rollFrameLineEdit.setText(defaultVal)
+        self.pitchFrameLineEdit.setText(defaultVal)
+        self.yawFrameLineEdit.setText(defaultVal)
 
 
 
@@ -1809,6 +2144,7 @@ class Ui_MainWindow(object):
 
             #counter = 0
             total_lines = 0
+            #print("I made it 1")
 
             for line in lines:
                 cw= True
@@ -1886,15 +2222,21 @@ class Ui_MainWindow(object):
                             #counter +=1
                         total_lines +=1
 
-
+            #print("I made it 2")
             gcode = ""
             count = 1
             add_degrees = 0
             cyclic_count = 1
+            print(self.full_list)
 
             for i in range(len(self.full_list)):
                 ####Im not so sure if world frame offset should be place here  so future alejandro keep that in mind
-                abs_pos = [self.set_world_frame[k] + self.set_offsets[k] +self.pos_offsets[k] + self.full_list[i][k] for k in range(len(self.pos_offsets))] #[x,y,z] abs offset
+                if len(self.full_list[i])>= 8:
+                    abs_pos = [self.set_world_frame[k] + self.set_offsets[k] +self.pos_offsets[k] + self.full_list[i][k] for k in range(len(self.pos_offsets))] #[x,y,z] abs offset
+                elif len(self.full_list[i])< 8:
+                    abs_pos = [self.set_world_frame[k] + self.set_offsets[k] +self.pos_offsets[k] + self.full_list[i][k] for k in range(3)]
+
+                #print("I made it 3..",i)
 
                 # if i>=3 and len(self.full_list[i])>8:
 
@@ -2000,106 +2342,112 @@ class Ui_MainWindow(object):
 
 
                 #if len(self.full_list[i])>=8: #either Rapid5d or Linear5D can come in
-                rospy.wait_for_service('/calc_pose')
-                service_conn = rospy.ServiceProxy('/calc_pose', CalculateJoints)
-                try:
-                    request = CalculateJoints()
-                    request.x_input = abs_pos[0]
-                    request.y_input = abs_pos[1]
-                    request.z_input = abs_pos[2]
-                    request.roll_input = 0
-                    request.check = 2
-                    if len(self.full_list[i])>= 8: #onlinear5d or onRapid5D
-                        request.pitch_input = abs_pos[4] + self.full_list[i][-1] *(-1) #to fix the pitch dirction to match Fusion then (-1)
-                        request.yaw_input = abs_pos[5] + self.full_list[i][-2] + add_degrees
-                    elif len(self.full_list[i])< 7:# onLinear or onRapid
-                        request.pitch_input = 0
-                        request.yaw_input = 0
-                    elif len(self.full_list[i])== 7: #onCircular
-                    ####not so sure about set_world_frame in this section of the code
-                        abs_pos_circular_start = [self.set_world_frame[k] + self.set_offsets[k] +self.pos_offsets[k] + self.full_list[i][k] for k in range(len(self.pos_offsets))] #[x,y,z] abs offset
-                        abs_pos_circular_end = [self.set_world_frame[k] + self.set_offsets[k] +self.pos_offsets[k] + self.full_list[i][3+k] for k in range(len(self.pos_offsets))] #[x,y,z] abs offset
-                        request.x_input = abs_pos_circular_end[0]
-                        request.y_input = abs_pos_circular_end[1]
-                        request.z_input = abs_pos_circular_end[2]
-                        request.pitch_input = 0
-                        request.yaw_input = 0
-                        r = round(math.sqrt((abs_pos_circular_end[0]-abs_pos_circular_start[0])**2 +(abs_pos_circular_end[1]-abs_pos_circular_start[1])**2 +(abs_pos_circular_end[2]-abs_pos_circular_start[2])**2),5)
-                        #print(r)
-                    response_srv = service_conn(request.x_input, request.y_input, request.z_input, request.roll_input, request.pitch_input, request.yaw_input, request.check)
-                    #print(response)
-                except rospy.ServiceException as exc:
-                    print("Service did not process request: " + str(exc))
+                if i%3 == 0:
+                    rospy.wait_for_service('/calc_pose')
+                    service_conn = rospy.ServiceProxy('/calc_pose', CalculateJoints)
+                    try:
+                        request = CalculateJoints()
+                        request.x_input = abs_pos[0]
+                        request.y_input = abs_pos[1]
+                        request.z_input = abs_pos[2]
+                        request.roll_input = 0
+                        request.check = 2
+                        request.constraint = self.gcodeGenerationConstraintsComboBox.currentText()
+                        request.simulate = self.simulateCheckBox.isChecked()
+                        if len(self.full_list[i])>= 8: #onlinear5d or onRapid5D
+                            request.pitch_input = abs_pos[4] - self.full_list[i][-1] #to fix the pitch dirction to match Fusion then (-1)
+                            print("my ptich:",request.pitch_input)
+                            request.yaw_input = abs_pos[5] + self.full_list[i][-2] + add_degrees
+                        elif len(self.full_list[i])< 7:# onLinear or onRapid
+                            request.pitch_input = self.set_world_frame[4] + self.set_offsets[4] +self.pos_offsets[4]
+                            request.yaw_input = self.set_world_frame[5] + self.set_offsets[5] +self.pos_offsets[5]
+                        elif len(self.full_list[i])== 7: #onCircular
+                        ####not so sure about set_world_frame in this section of the code
+                            abs_pos_circular_start = [self.set_world_frame[k] + self.set_offsets[k] +self.pos_offsets[k] + self.full_list[i][k] for k in range(3)]#len(self.pos_offsets))] #[x,y,z] abs offset
+                            abs_pos_circular_end = [self.set_world_frame[k] + self.set_offsets[k] +self.pos_offsets[k] + self.full_list[i][3+k] for k in range(3)]#len(self.pos_offsets))] #[x,y,z] abs offset
+                            request.x_input = abs_pos_circular_end[0]
+                            request.y_input = abs_pos_circular_end[1]
+                            request.z_input = abs_pos_circular_end[2]
+                            request.pitch_input = self.set_world_frame[4] + self.set_offsets[4] +self.pos_offsets[4]
+                            request.yaw_input = self.set_world_frame[5] + self.set_offsets[5] +self.pos_offsets[5]
+                            r = round(math.sqrt((abs_pos_circular_end[0]-abs_pos_circular_start[0])**2 +(abs_pos_circular_end[1]-abs_pos_circular_start[1])**2 +(abs_pos_circular_end[2]-abs_pos_circular_start[2])**2),5)
+                            #print(r)
+                        response_srv = service_conn(request.x_input, request.y_input, request.z_input, request.roll_input, request.pitch_input, request.yaw_input, request.check, request.constraint, request.simulate)
+                        #print(response)
+                    except rospy.ServiceException as exc:
+                        print("Service did not process request: " + str(exc))
 
-                if response_srv.success:
+                    if response_srv.success:
 
-                    x_no_offset = round(response_srv.joints[6],2)
-                    y_no_offset = round(response_srv.joints[7],2)
-                    z_no_offset = round(response_srv.joints[8],2)
-                    a_no_offset = round(response_srv.joints[9],2)
-                    b_no_offset = round(response_srv.joints[10],2)
-                    c_no_offset = round(response_srv.joints[11],2)
+                        x_no_offset = round(response_srv.joints[6],2)
+                        y_no_offset = round(response_srv.joints[7],2)
+                        z_no_offset = round(response_srv.joints[8],2)
+                        a_no_offset = round(response_srv.joints[9],2)
+                        b_no_offset = round(response_srv.joints[10],2)
+                        c_no_offset = round(response_srv.joints[11],2)
 
-                    gcode += f"G01 X{x_no_offset} Y{y_no_offset} Z{z_no_offset} A{a_no_offset} B{b_no_offset} C{c_no_offset}\n"
+                        gcode += f"G01 X{x_no_offset} Y{y_no_offset} Z{z_no_offset} A{a_no_offset} B{b_no_offset} C{c_no_offset}\n"
 
-                    progress = int(count/total_lines *100)
-                    print(progress)
-                    self.progressBar.setValue(progress)
-                    count +=1
+                        progress = int(count/total_lines *100)
+                        print(progress)
+                        self.progressBar.setValue(progress)
+                        count +=1
 
-                    #print(len(self.full_list[i]))
-                    # if len(self.full_list[i])== 3: #onlinear
-                    #     gcode += f"G00X{x_no_offset}Y{y_no_offset}Z{z_no_offset}\n"
-                    #
-                    #     progress = int(count/total_lines *100)
-                    #     print(progress)
-                    #     self.progressBar.setValue(progress)
-                    #     count +=1
-                    #
-                    # elif len(self.full_list[i])== 4: #onlinear
-                    #     f_no_offset = round(self.full_list[i][-1],2)
-                    #     gcode += f"G01X{x_no_offset}Y{y_no_offset}Z{z_no_offset}F{f_no_offset}\n"
-                    #
-                    #     progress = int(count/total_lines *100)
-                    #     print(progress)
-                    #     self.progressBar.setValue(progress)
-                    #     count +=1
-                    #
-                    # elif len(self.full_list[i])==8: #onRapid5D
-                    #     b_no_offset = round(response_srv.joints[8],2)
-                    #     c_no_offset = round(response_srv.joints[9],2)
-                    #     gcode += f"G00X{x_no_offset}Y{y_no_offset}Z{z_no_offset}B{b_no_offset}C{c_no_offset}\n"
-                    #
-                    #
-                    #     progress = int(count/total_lines *100)
-                    #     print(progress)
-                    #     self.progressBar.setValue(progress)
-                    #     count +=1
-                    #
-                    # elif len(self.full_list[i])==10: #onLinear5D
-                    #     f_no_offset = round(self.full_list[i][6],2)
-                    #     b_no_offset = round(response_srv.joints[8],2)
-                    #     c_no_offset = round(response_srv.joints[9],2)
-                    #     gcode += f"G01X{x_no_offset}Y{y_no_offset}Z{z_no_offset}B{b_no_offset}C{c_no_offset}F{f_no_offset}\n"
-                    #
-                    #     progress = int(count/total_lines *100)
-                    #     print(progress)
-                    #     self.progressBar.setValue(progress)
-                    #     count +=1
-                    #
-                    # elif len(self.full_list[i])==7:
-                    #     if cw:
-                    #         gcode += f"G02X{x_no_offset}Y{y_no_offset}Z{z_no_offset}R{r}F{f_no_offset}\n"
-                    #     else:
-                    #         gcode += f"G03X{x_no_offset}Y{y_no_offset}Z{z_no_offset}R{r}F{f_no_offset}\n"
-                    #     self.progressBar.setValue(progress)
-                    #     count +=1
+                        #print(len(self.full_list[i]))
+                        # if len(self.full_list[i])== 3: #onlinear
+                        #     gcode += f"G00X{x_no_offset}Y{y_no_offset}Z{z_no_offset}\n"
+                        #
+                        #     progress = int(count/total_lines *100)
+                        #     print(progress)
+                        #     self.progressBar.setValue(progress)
+                        #     count +=1
+                        #
+                        # elif len(self.full_list[i])== 4: #onlinear
+                        #     f_no_offset = round(self.full_list[i][-1],2)
+                        #     gcode += f"G01X{x_no_offset}Y{y_no_offset}Z{z_no_offset}F{f_no_offset}\n"
+                        #
+                        #     progress = int(count/total_lines *100)
+                        #     print(progress)
+                        #     self.progressBar.setValue(progress)
+                        #     count +=1
+                        #
+                        # elif len(self.full_list[i])==8: #onRapid5D
+                        #     b_no_offset = round(response_srv.joints[8],2)
+                        #     c_no_offset = round(response_srv.joints[9],2)
+                        #     gcode += f"G00X{x_no_offset}Y{y_no_offset}Z{z_no_offset}B{b_no_offset}C{c_no_offset}\n"
+                        #
+                        #
+                        #     progress = int(count/total_lines *100)
+                        #     print(progress)
+                        #     self.progressBar.setValue(progress)
+                        #     count +=1
+                        #
+                        # elif len(self.full_list[i])==10: #onLinear5D
+                        #     f_no_offset = round(self.full_list[i][6],2)
+                        #     b_no_offset = round(response_srv.joints[8],2)
+                        #     c_no_offset = round(response_srv.joints[9],2)
+                        #     gcode += f"G01X{x_no_offset}Y{y_no_offset}Z{z_no_offset}B{b_no_offset}C{c_no_offset}F{f_no_offset}\n"
+                        #
+                        #     progress = int(count/total_lines *100)
+                        #     print(progress)
+                        #     self.progressBar.setValue(progress)
+                        #     count +=1
+                        #
+                        # elif len(self.full_list[i])==7:
+                        #     if cw:
+                        #         gcode += f"G02X{x_no_offset}Y{y_no_offset}Z{z_no_offset}R{r}F{f_no_offset}\n"
+                        #     else:
+                        #         gcode += f"G03X{x_no_offset}Y{y_no_offset}Z{z_no_offset}R{r}F{f_no_offset}\n"
+                        #     self.progressBar.setValue(progress)
+                        #     count +=1
 
 
-                else:
-                    self.showMessageBox(text=f"No Motion Plan Found for point {i} x{self.full_list[i][0]}y{self.full_list[i][1]}z{self.full_list[i][2]}pitch{self.full_list[i][-1]}yaw{self.full_list[i][-2]}f{self.full_list[i][6]}", icon="Critical")
-                    print(gcode)
-                    return None
+                    else:
+                        #self.showMessageBox(text=f"No Motion Plan Found for point {i} x{self.full_list[i][0]}y{self.full_list[i][1]}z{self.full_list[i][2]}pitch{self.full_list[i][-1]}yaw{self.full_list[i][-2]}f{self.full_list[i][6]}", icon="Critical")
+                        #self.showMessageBox(text=f"No Motion Plan Found for point {i} x{self.full_list[i][0]}y{self.full_list[i][1]}z{self.full_list[i][2]}pitch{self.full_list[i][-1]}yaw{self.full_list[i][-2]}", icon="Critical")
+                        self.showMessageBox(text=f"No Motion Plan Found for point {i} x{self.full_list[i][0]}y{self.full_list[i][1]}z{self.full_list[i][2]}", icon="Critical")
+                        print(gcode)
+                        return None
 
 
 
@@ -2527,6 +2875,8 @@ class Ui_MainWindow(object):
                 self.forwardYButton.setEnabled(True)
                 self.backZButton.setEnabled(True)
                 self.forwardZButton.setEnabled(True)
+                self.backAButton.setEnabled(True)
+                self.forwardAButton.setEnabled(True)
                 self.backBButton.setEnabled(True)
                 self.forwardBButton.setEnabled(True)
                 self.backCButton.setEnabled(True)
@@ -2568,7 +2918,7 @@ class Ui_MainWindow(object):
 
     def homeCallBack(self):
         if self.SerialConnected:
-            self.communicationCommand(cmd="G01X0Y0Z0B0C0F1000")
+            self.communicationCommand(cmd="G01X0Y0Z0A0B0C0F1000")
         else:
             self.showMessageBox(text="No Serial Communication", icon="Critical")
 
@@ -2763,6 +3113,69 @@ class Ui_MainWindow(object):
             #rospy.sleep(1.0)
         self.communicationCommand(cmd="?")
 
+    def backACallback(self):
+        if self.SerialConnected:
+            if self.onceRadioButton.isChecked():
+                ##########NON CONTINUOUS STATE######################
+                self.backAButton.setAutoRepeat(False)
+                self.coming_from_continuous_state = False
+                gcode = f"$J=G91A-{self.stepSpinBox.value()}F{self.feedLineEdit.text()}"
+                self.communicationCommand(gcode)
+            else:
+                ######CONTINUOUS STATE#################
+                self.backAButton.setAutoRepeat(True)
+                self.coming_from_continuous_state = True
+                #print(f"continuous, counter: {self.joggingCounter}")
+                if self.joggingCounter == 0:
+                    #print(f"$J=G90X-400F{self.feedLineEdit.text()}")
+                    gcode = f"$J=G90A-359F{self.feedLineEdit.text()}"
+                    self.communicationCommand(gcode)
+                self.joggingCounter +=1
+        else:
+            self.showMessageBox(text="No Serial Communication", icon="Critical")
+
+    def releasedBackACallback(self):
+        #print("Button State DOWN",self.backBButton.isDown())
+        if not self.backAButton.isDown() and self.coming_from_continuous_state:
+            self.joggingCounter = 0
+            #print("sending cancel command")
+            self.continuous_state = False
+            self.communicationCommand(cmd="cancel")
+            #rospy.sleep(1.0)
+        self.communicationCommand(cmd="?")
+
+
+    def forwardACallback(self):
+        if self.SerialConnected:
+            if self.onceRadioButton.isChecked():
+                ##########NON CONTINUOUS STATE######################
+                self.forwardAButton.setAutoRepeat(False)
+                self.coming_from_continuous_state = False
+                gcode = f"$J=G91A{self.stepSpinBox.value()}F{self.feedLineEdit.text()}"
+                self.communicationCommand(gcode)
+            else:
+                ######CONTINUOUS STATE#################
+                self.forwardAButton.setAutoRepeat(True)
+                self.coming_from_continuous_state = True
+                #print(f"continuous, counter: {self.joggingCounter}")
+                if self.joggingCounter == 0:
+                    #print(f"$J=G90X-400F{self.feedLineEdit.text()}")
+                    gcode = f"$J=G90A359F{self.feedLineEdit.text()}"
+                    self.communicationCommand(gcode)
+                self.joggingCounter +=1
+        else:
+            self.showMessageBox(text="No Serial Communication", icon="Critical")
+
+    def releasedForwardACallback(self):
+        #print("Button State DOWN",self.forwardBButton.isDown())
+        if not self.forwardAButton.isDown() and self.coming_from_continuous_state:
+            self.joggingCounter = 0
+            #print("sending cancel command")
+            self.continuous_state = False
+            self.communicationCommand(cmd="cancel")
+            #rospy.sleep(1.0)
+        self.communicationCommand(cmd="?")
+
 
     def backBCallback(self):
         if self.SerialConnected:
@@ -2897,8 +3310,9 @@ class Ui_MainWindow(object):
             global_coordinates[2] = 0
             global_coordinates[3] = 0
             global_coordinates[4] = 0
+            global_coordinates[5] = 0
 
-            gcode = f"G92X{global_coordinates[0]}Y{global_coordinates[1]}Z{global_coordinates[2]}B{global_coordinates[3]}C{global_coordinates[4]}"
+            gcode = f"G92X{global_coordinates[0]}Y{global_coordinates[1]}Z{global_coordinates[2]}A{global_coordinates[3]}B{global_coordinates[4]}C{global_coordinates[5]}"
             rospy.wait_for_service('/cmd_input')
             service_conn = rospy.ServiceProxy('/cmd_input', SendCommand)
 
@@ -2994,11 +3408,13 @@ class Ui_MainWindow(object):
             request.y_input = y + self.pos_offsets[1] + self.set_offsets[1] +self.set_world_frame[1]
             request.z_input = z + self.pos_offsets[2] + self.set_offsets[2] +self.set_world_frame[2]
             request.roll_input = roll + self.pos_offsets[3] + self.set_offsets[3] +self.set_world_frame[3]
-            request.pitch_input = pitch + self.pos_offsets[4] + self.set_offsets[4] +self.set_world_frame[4]
+            request.pitch_input = -pitch + self.pos_offsets[4] + self.set_offsets[4] +self.set_world_frame[4]
             request.yaw_input = yaw +self.pos_offsets[5] + self.set_offsets[5] +self.set_world_frame[5]
             request.check = 1
+            request.constraint = self.constraintsComboBox.currentText()
+            request.simulate = False
 
-            response = service_conn(request.x_input, request.y_input, request.z_input, request.roll_input, request.pitch_input, request.yaw_input, request.check)
+            response = service_conn(request.x_input, request.y_input, request.z_input, request.roll_input, request.pitch_input, request.yaw_input, request.check, request.constraint, request.simulate)
             #print(response)
         except rospy.ServiceException as exc:
             print("Service did not process request: " + str(exc))
@@ -3331,6 +3747,38 @@ class Ui_MainWindow(object):
                 return response.message
         except rospy.ServiceException as exc:
             print("Service did not process request: " + str(exc))
+
+#############CONSTRAINT SETTINGS#####################################
+#####################################################################
+
+    def JointConstraintSaveButtonCallback(self):
+        #self.joint_constraint_dict = defaultdict(tuple)
+        self.joint_constraint_values = []
+        self.enable_joints = [self.jointConstraintEnableXCheckBox.isChecked(), self.jointConstraintEnableYCheckBox.isChecked(),self.jointConstraintEnableZCheckBox.isChecked(), self.jointConstraintEnableACheckBox.isChecked(),self.jointConstraintEnableBCheckBox.isChecked(), self.jointConstraintEnableCCheckBox.isChecked()]
+        r = 6
+        c = 3
+        for i in range(r):
+            for j in range(1,c,1):
+                #print(f"row:{i} column {j} : {self.jointConstraintTableWidget.item(i,j).text()}")
+                try:
+                    val = float(self.jointConstraintTableWidget.item(i,j).text())
+                    if val < 0:
+                        self.showMessageBox(text="please make sure to set all the values positive", icon="Critical")
+                        return None
+                    else:
+                        #self.joint_constraint_dict[(i,j)] =  (val, enable_joints[i])
+                        self.joint_constraint_values.append(val)
+                except AttributeError:
+                    #self.joint_constraint_dict[(i,j)] = (360, False)
+                    self.joint_constraint_values.append(360)
+                except ValueError as e:
+                    print(e)
+                    self.showMessageBox(text="please make sure to use a valid format", icon="Critical")
+                    return None
+
+        print("constraints values:", self.joint_constraint_values)
+        print("enable_joints:", self.enable_joints)
+
 
 if __name__ == "__main__":
     import sys

@@ -1243,85 +1243,157 @@
           </widget>
          </item>
          <item>
-          <layout class="QVBoxLayout" name="verticalLayout_18">
+          <layout class="QVBoxLayout" name="verticalLayout_16">
            <item>
-            <layout class="QVBoxLayout" name="verticalLayout_16">
+            <layout class="QVBoxLayout" name="verticalLayout_14">
+             <property name="spacing">
+              <number>6</number>
+             </property>
              <item>
-              <layout class="QVBoxLayout" name="verticalLayout_14">
+              <layout class="QHBoxLayout" name="horizontalLayout_25">
                <property name="spacing">
-                <number>15</number>
+                <number>46</number>
                </property>
                <item>
-                <layout class="QHBoxLayout" name="horizontalLayout_25">
-                 <item>
-                  <widget class="QLabel" name="xOffsetLabel">
-                   <property name="font">
-                    <font>
-                     <pointsize>18</pointsize>
-                    </font>
-                   </property>
-                   <property name="text">
-                    <string>X Offset</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item>
-                  <widget class="QLineEdit" name="xOffsetLineEdit"/>
-                 </item>
-                </layout>
+                <widget class="QLabel" name="xOffsetLabel">
+                 <property name="font">
+                  <font>
+                   <pointsize>18</pointsize>
+                  </font>
+                 </property>
+                 <property name="text">
+                  <string>X Offset</string>
+                 </property>
+                </widget>
                </item>
                <item>
-                <layout class="QHBoxLayout" name="horizontalLayout_26">
-                 <item>
-                  <widget class="QLabel" name="yOffsetLabel">
-                   <property name="font">
-                    <font>
-                     <pointsize>18</pointsize>
-                    </font>
-                   </property>
-                   <property name="text">
-                    <string>Y Offset</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item>
-                  <widget class="QLineEdit" name="yOffsetLineEdit"/>
-                 </item>
-                </layout>
-               </item>
-               <item>
-                <layout class="QHBoxLayout" name="horizontalLayout_27">
-                 <item>
-                  <widget class="QLabel" name="zOffsetLabel">
-                   <property name="font">
-                    <font>
-                     <pointsize>18</pointsize>
-                    </font>
-                   </property>
-                   <property name="text">
-                    <string>Z Offset</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item>
-                  <widget class="QLineEdit" name="zOffsetLineEdit"/>
-                 </item>
-                </layout>
+                <widget class="QLineEdit" name="xOffsetLineEdit"/>
                </item>
               </layout>
              </item>
              <item>
-              <widget class="QPushButton" name="setOffsetButton">
-               <property name="text">
-                <string>Set Offset</string>
+              <layout class="QHBoxLayout" name="horizontalLayout_26">
+               <property name="spacing">
+                <number>46</number>
                </property>
-               <property name="autoDefault">
-                <bool>true</bool>
+               <item>
+                <widget class="QLabel" name="yOffsetLabel">
+                 <property name="font">
+                  <font>
+                   <pointsize>18</pointsize>
+                  </font>
+                 </property>
+                 <property name="text">
+                  <string>Y Offset</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QLineEdit" name="yOffsetLineEdit"/>
+               </item>
+              </layout>
+             </item>
+             <item>
+              <layout class="QHBoxLayout" name="horizontalLayout_27">
+               <property name="spacing">
+                <number>46</number>
                </property>
-              </widget>
+               <item>
+                <widget class="QLabel" name="zOffsetLabel">
+                 <property name="font">
+                  <font>
+                   <pointsize>18</pointsize>
+                  </font>
+                 </property>
+                 <property name="text">
+                  <string>Z Offset</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QLineEdit" name="zOffsetLineEdit"/>
+               </item>
+              </layout>
              </item>
             </layout>
            </item>
+           <item>
+            <layout class="QHBoxLayout" name="horizontalLayout_41">
+             <property name="spacing">
+              <number>19</number>
+             </property>
+             <item>
+              <widget class="QLabel" name="rollOffsetLabel">
+               <property name="font">
+                <font>
+                 <pointsize>18</pointsize>
+                </font>
+               </property>
+               <property name="text">
+                <string>Roll Offset</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLineEdit" name="rollOffsetLineEdit"/>
+             </item>
+            </layout>
+           </item>
+           <item>
+            <layout class="QHBoxLayout" name="horizontalLayout_42">
+             <item>
+              <widget class="QLabel" name="pitchOffsetLabel">
+               <property name="font">
+                <font>
+                 <pointsize>18</pointsize>
+                </font>
+               </property>
+               <property name="text">
+                <string>Pitch Offset</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLineEdit" name="pitchOffsetLineEdit"/>
+             </item>
+            </layout>
+           </item>
+           <item>
+            <layout class="QHBoxLayout" name="horizontalLayout_44">
+             <property name="spacing">
+              <number>16</number>
+             </property>
+             <item>
+              <widget class="QLabel" name="yawOffsetLabel">
+               <property name="font">
+                <font>
+                 <pointsize>18</pointsize>
+                </font>
+               </property>
+               <property name="text">
+                <string>Yaw Offset</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLineEdit" name="yawOffsetLineEdit"/>
+             </item>
+            </layout>
+           </item>
+           <item>
+            <widget class="QPushButton" name="setOffsetButton">
+             <property name="text">
+              <string>Set Offset</string>
+             </property>
+             <property name="autoDefault">
+              <bool>true</bool>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+         <item>
+          <layout class="QVBoxLayout" name="verticalLayout_18">
            <item>
             <layout class="QVBoxLayout" name="verticalLayout_17">
              <property name="spacing">
@@ -1407,10 +1479,13 @@
              <item>
               <layout class="QVBoxLayout" name="verticalLayout_23">
                <property name="spacing">
-                <number>15</number>
+                <number>6</number>
                </property>
                <item>
                 <layout class="QHBoxLayout" name="horizontalLayout_33">
+                 <property name="spacing">
+                  <number>46</number>
+                 </property>
                  <item>
                   <widget class="QLabel" name="xFrameLabel">
                    <property name="font">
@@ -1430,6 +1505,9 @@
                </item>
                <item>
                 <layout class="QHBoxLayout" name="horizontalLayout_34">
+                 <property name="spacing">
+                  <number>46</number>
+                 </property>
                  <item>
                   <widget class="QLabel" name="yFrameLabel">
                    <property name="font">
@@ -1449,6 +1527,9 @@
                </item>
                <item>
                 <layout class="QHBoxLayout" name="horizontalLayout_35">
+                 <property name="spacing">
+                  <number>46</number>
+                 </property>
                  <item>
                   <widget class="QLabel" name="zFrameLabel">
                    <property name="font">
@@ -1465,6 +1546,69 @@
                   <widget class="QLineEdit" name="zFrameLineEdit"/>
                  </item>
                 </layout>
+               </item>
+              </layout>
+             </item>
+             <item>
+              <layout class="QHBoxLayout" name="horizontalLayout_45">
+               <property name="spacing">
+                <number>18</number>
+               </property>
+               <item>
+                <widget class="QLabel" name="rollFrameLabel">
+                 <property name="font">
+                  <font>
+                   <pointsize>18</pointsize>
+                  </font>
+                 </property>
+                 <property name="text">
+                  <string>Roll</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QLineEdit" name="rollFrameLineEdit"/>
+               </item>
+              </layout>
+             </item>
+             <item>
+              <layout class="QHBoxLayout" name="horizontalLayout_46">
+               <item>
+                <widget class="QLabel" name="pitchFrameLabel">
+                 <property name="font">
+                  <font>
+                   <pointsize>18</pointsize>
+                  </font>
+                 </property>
+                 <property name="text">
+                  <string>Pitch</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QLineEdit" name="pitchFrameLineEdit"/>
+               </item>
+              </layout>
+             </item>
+             <item>
+              <layout class="QHBoxLayout" name="horizontalLayout_60">
+               <property name="spacing">
+                <number>16</number>
+               </property>
+               <item>
+                <widget class="QLabel" name="yawFrameLabel">
+                 <property name="font">
+                  <font>
+                   <pointsize>18</pointsize>
+                  </font>
+                 </property>
+                 <property name="text">
+                  <string>Yaw</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QLineEdit" name="yawFrameLineEdit"/>
                </item>
               </layout>
              </item>
@@ -1577,6 +1721,13 @@
          </property>
          <property name="margin">
           <number>0</number>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QCheckBox" name="simulateCheckBox">
+         <property name="text">
+          <string>Simulate</string>
          </property>
         </widget>
        </item>
@@ -1794,6 +1945,54 @@
        </layout>
       </widget>
      </widget>
+     <widget class="QGroupBox" name="groupBox_2">
+      <property name="geometry">
+       <rect>
+        <x>640</x>
+        <y>10</y>
+        <width>151</width>
+        <height>61</height>
+       </rect>
+      </property>
+      <property name="title">
+       <string>Constraints</string>
+      </property>
+      <widget class="QComboBox" name="gcodeGenerationConstraintsComboBox">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>27</y>
+         <width>131</width>
+         <height>28</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>13</pointsize>
+        </font>
+       </property>
+       <item>
+        <property name="text">
+         <string>None</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Orientation</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Joint</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Position</string>
+        </property>
+       </item>
+      </widget>
+     </widget>
     </widget>
     <widget class="QWidget" name="LoadGcode">
      <attribute name="title">
@@ -1951,6 +2150,375 @@
       </property>
      </widget>
     </widget>
+    <widget class="QWidget" name="tab_2">
+     <attribute name="title">
+      <string>Constraint Settings</string>
+     </attribute>
+     <widget class="QGroupBox" name="groupBox_8">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>10</y>
+        <width>771</width>
+        <height>311</height>
+       </rect>
+      </property>
+      <property name="title">
+       <string>Joint Constraint</string>
+      </property>
+      <widget class="QTableWidget" name="jointConstraintTableWidget">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>40</y>
+         <width>491</width>
+         <height>221</height>
+        </rect>
+       </property>
+       <attribute name="horizontalHeaderDefaultSectionSize">
+        <number>163</number>
+       </attribute>
+       <attribute name="verticalHeaderVisible">
+        <bool>false</bool>
+       </attribute>
+       <attribute name="verticalHeaderDefaultSectionSize">
+        <number>33</number>
+       </attribute>
+       <attribute name="verticalHeaderHighlightSections">
+        <bool>false</bool>
+       </attribute>
+       <row>
+        <property name="text">
+         <string>1</string>
+        </property>
+       </row>
+       <row>
+        <property name="text">
+         <string>2</string>
+        </property>
+       </row>
+       <row>
+        <property name="text">
+         <string>3</string>
+        </property>
+       </row>
+       <row>
+        <property name="text">
+         <string>4</string>
+        </property>
+       </row>
+       <row>
+        <property name="text">
+         <string>5</string>
+        </property>
+       </row>
+       <row>
+        <property name="text">
+         <string>6</string>
+        </property>
+       </row>
+       <column>
+        <property name="text">
+         <string>Joint</string>
+        </property>
+       </column>
+       <column>
+        <property name="text">
+         <string>Lower Tolerance (Deg)</string>
+        </property>
+       </column>
+       <column>
+        <property name="text">
+         <string>Upper Tolerance (Deg)</string>
+        </property>
+       </column>
+       <item row="0" column="0">
+        <property name="text">
+         <string>X</string>
+        </property>
+       </item>
+       <item row="1" column="0">
+        <property name="text">
+         <string>Y</string>
+        </property>
+       </item>
+       <item row="2" column="0">
+        <property name="text">
+         <string>Z</string>
+        </property>
+       </item>
+       <item row="3" column="0">
+        <property name="text">
+         <string>A</string>
+        </property>
+       </item>
+       <item row="4" column="0">
+        <property name="text">
+         <string>B</string>
+        </property>
+       </item>
+       <item row="5" column="0">
+        <property name="text">
+         <string>C</string>
+        </property>
+       </item>
+      </widget>
+      <widget class="QCheckBox" name="jointConstraintEnableXCheckBox">
+       <property name="geometry">
+        <rect>
+         <x>520</x>
+         <y>60</y>
+         <width>81</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Enable X</string>
+       </property>
+      </widget>
+      <widget class="QCheckBox" name="jointConstraintEnableYCheckBox">
+       <property name="geometry">
+        <rect>
+         <x>520</x>
+         <y>90</y>
+         <width>92</width>
+         <height>41</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Enable Y</string>
+       </property>
+      </widget>
+      <widget class="QCheckBox" name="jointConstraintEnableZCheckBox">
+       <property name="geometry">
+        <rect>
+         <x>520</x>
+         <y>130</y>
+         <width>92</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Enable Z</string>
+       </property>
+      </widget>
+      <widget class="QCheckBox" name="jointConstraintEnableACheckBox">
+       <property name="geometry">
+        <rect>
+         <x>520</x>
+         <y>160</y>
+         <width>92</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Enable A</string>
+       </property>
+      </widget>
+      <widget class="QCheckBox" name="jointConstraintEnableCCheckBox">
+       <property name="geometry">
+        <rect>
+         <x>520</x>
+         <y>230</y>
+         <width>92</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Enable C</string>
+       </property>
+      </widget>
+      <widget class="QCheckBox" name="jointConstraintEnableBCheckBox">
+       <property name="geometry">
+        <rect>
+         <x>520</x>
+         <y>190</y>
+         <width>92</width>
+         <height>41</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Enable B</string>
+       </property>
+      </widget>
+      <widget class="QCheckBox" name="jointConstraintCartesianCheckBox">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>270</y>
+         <width>151</width>
+         <height>23</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Cartesian Plan</string>
+       </property>
+      </widget>
+      <widget class="QCheckBox" name="jointConstraintDumperCheckBox">
+       <property name="geometry">
+        <rect>
+         <x>180</x>
+         <y>270</y>
+         <width>151</width>
+         <height>23</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Dumper File</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="JointConstraintSaveButton">
+       <property name="geometry">
+        <rect>
+         <x>620</x>
+         <y>60</y>
+         <width>141</width>
+         <height>201</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Save</string>
+       </property>
+      </widget>
+     </widget>
+     <widget class="QGroupBox" name="groupBox_9">
+      <property name="geometry">
+       <rect>
+        <x>480</x>
+        <y>330</y>
+        <width>311</width>
+        <height>201</height>
+       </rect>
+      </property>
+      <property name="title">
+       <string>Position Constraint</string>
+      </property>
+      <widget class="QTableWidget" name="positionConstraintTableWidget">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>40</y>
+         <width>141</width>
+         <height>51</height>
+        </rect>
+       </property>
+       <attribute name="horizontalHeaderDefaultSectionSize">
+        <number>127</number>
+       </attribute>
+       <row>
+        <property name="text">
+         <string>r</string>
+        </property>
+       </row>
+       <column>
+        <property name="text">
+         <string>Sphere Radio (m)</string>
+        </property>
+       </column>
+      </widget>
+      <widget class="QPushButton" name="positionConstraintSaveButton">
+       <property name="geometry">
+        <rect>
+         <x>160</x>
+         <y>40</y>
+         <width>141</width>
+         <height>50</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Save</string>
+       </property>
+      </widget>
+     </widget>
+     <widget class="QGroupBox" name="groupBox_10">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>330</y>
+        <width>441</width>
+        <height>201</height>
+       </rect>
+      </property>
+      <property name="title">
+       <string>Orientation Constraint</string>
+      </property>
+      <widget class="QTableWidget" name="orientationConstraintTableWidget">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>40</y>
+         <width>330</width>
+         <height>131</height>
+        </rect>
+       </property>
+       <attribute name="horizontalHeaderDefaultSectionSize">
+        <number>164</number>
+       </attribute>
+       <attribute name="verticalHeaderVisible">
+        <bool>false</bool>
+       </attribute>
+       <attribute name="verticalHeaderDefaultSectionSize">
+        <number>36</number>
+       </attribute>
+       <attribute name="verticalHeaderHighlightSections">
+        <bool>false</bool>
+       </attribute>
+       <row>
+        <property name="text">
+         <string>1</string>
+        </property>
+       </row>
+       <row>
+        <property name="text">
+         <string>2</string>
+        </property>
+       </row>
+       <row>
+        <property name="text">
+         <string>3</string>
+        </property>
+       </row>
+       <column>
+        <property name="text">
+         <string>Axis</string>
+        </property>
+       </column>
+       <column>
+        <property name="text">
+         <string>Absolute Tolerance (m)</string>
+        </property>
+       </column>
+       <item row="0" column="0">
+        <property name="text">
+         <string>X</string>
+        </property>
+       </item>
+       <item row="1" column="0">
+        <property name="text">
+         <string>Y</string>
+        </property>
+       </item>
+       <item row="2" column="0">
+        <property name="text">
+         <string>Z</string>
+        </property>
+       </item>
+      </widget>
+      <widget class="QPushButton" name="orientationConstraintSaveButton">
+       <property name="geometry">
+        <rect>
+         <x>360</x>
+         <y>40</y>
+         <width>71</width>
+         <height>131</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Save</string>
+       </property>
+      </widget>
+     </widget>
+    </widget>
    </widget>
    <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
@@ -2019,17 +2587,23 @@
           <property name="geometry">
            <rect>
             <x>10</x>
-            <y>30</y>
+            <y>10</y>
             <width>211</width>
-            <height>171</height>
+            <height>281</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_4">
+           <property name="spacing">
+            <number>14</number>
+           </property>
            <property name="sizeConstraint">
             <enum>QLayout::SetDefaultConstraint</enum>
            </property>
            <item>
             <layout class="QVBoxLayout" name="verticalLayout_3">
+             <property name="spacing">
+              <number>12</number>
+             </property>
              <item>
               <layout class="QHBoxLayout" name="horizontalLayout_2">
                <property name="sizeConstraint">
@@ -2106,6 +2680,30 @@
               </layout>
              </item>
              <item>
+              <layout class="QHBoxLayout" name="horizontalLayout_39">
+               <item>
+                <widget class="QPushButton" name="backAButton">
+                 <property name="enabled">
+                  <bool>false</bool>
+                 </property>
+                 <property name="text">
+                  <string>-A</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QPushButton" name="forwardAButton">
+                 <property name="enabled">
+                  <bool>false</bool>
+                 </property>
+                 <property name="text">
+                  <string>A</string>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </item>
+             <item>
               <layout class="QHBoxLayout" name="horizontalLayout_5">
                <item>
                 <widget class="QPushButton" name="backBButton">
@@ -2161,9 +2759,9 @@
           <property name="geometry">
            <rect>
             <x>10</x>
-            <y>240</y>
+            <y>330</y>
             <width>81</width>
-            <height>17</height>
+            <height>31</height>
            </rect>
           </property>
           <property name="text">
@@ -2180,7 +2778,7 @@
           <property name="geometry">
            <rect>
             <x>90</x>
-            <y>235</y>
+            <y>330</y>
             <width>131</width>
             <height>31</height>
            </rect>
@@ -2190,7 +2788,7 @@
           <property name="geometry">
            <rect>
             <x>10</x>
-            <y>200</y>
+            <y>290</y>
             <width>131</width>
             <height>27</height>
            </rect>
@@ -2219,7 +2817,7 @@
           <property name="geometry">
            <rect>
             <x>10</x>
-            <y>280</y>
+            <y>380</y>
             <width>213</width>
             <height>25</height>
            </rect>
@@ -2257,7 +2855,7 @@
           <property name="geometry">
            <rect>
             <x>148</x>
-            <y>200</y>
+            <y>290</y>
             <width>71</width>
             <height>25</height>
            </rect>

@@ -1,0 +1,3851 @@
+Post Engine Version = 4.5834.0
+Program Name = hallo_world_gavrieren
+Program Comment =
+-1: onOpen()
+0: onParameter('product-id', 'fusion360')
+1: onParameter('generated-by', 'Fusion 360 CAM 2.0.12392')
+2: onParameter('generated-at', 'Freitag, 18. März 2022 16:06:16')
+3: onParameter('hostname', 'DESKTOP-4MFM8CC')
+4: onParameter('username', 'Praktikant 2')
+5: onParameter('document-path', 'Hallo World Gavrieren v1')
+6: onParameter('document-id', '5fd6b3ce-3aed-42eb-b309-860466ab48c8')
+7: onParameter('model-version', '5c2c7ee9-c89c-447c-ae11-712af41a5610')
+9: onParameter('leads-supported', 1)
+10: onParameter('job-description', 'Setup1')
+11: onParameter('stock-type', 'box')
+13: onParameter('stock', '((-100, -100, -30), (100, 100, 0))')
+15: onParameter('stock-lower-x', -100)
+17: onParameter('stock-lower-y', -100)
+19: onParameter('stock-lower-z', -30)
+21: onParameter('stock-upper-x', 100)
+23: onParameter('stock-upper-y', 100)
+25: onParameter('stock-upper-z', 0)
+27: onParameter('part-lower-x', -100)
+29: onParameter('part-lower-y', -100)
+31: onParameter('part-lower-z', -30)
+33: onParameter('part-upper-x', 100)
+35: onParameter('part-upper-y', 100)
+37: onParameter('part-upper-z', 0)
+42: onParameter('notes', '')
+43: onParameter('operation-strategy', 'engrave')
+44: onParameter('operation-comment', 'Gravieren1')
+45: onParameter('autodeskcam:operation-id', 3)
+46: onParameter('leads-supported', 1)
+47: onParameter('autodeskcam:path', 'Setups\Setup1\Gravieren1')
+48: onParameter('operation:is2DStrategy', 1)
+49: onParameter('operation:is3DStrategy', 0)
+50: onParameter('operation:isRoughingStrategy', 0)
+51: onParameter('operation:isFinishingStrategy', 1)
+52: onParameter('operation:isMillingStrategy', 1)
+53: onParameter('operation:isTurningStrategy', 0)
+54: onParameter('operation:isJetStrategy', 0)
+55: onParameter('operation:isAdditiveStrategy', 0)
+56: onParameter('operation:isProbingStrategy', 0)
+57: onParameter('operation:isInspectionStrategy', 0)
+58: onParameter('operation:isDrillingStrategy', 0)
+59: onParameter('operation:isHoleMillingStrategy', 0)
+60: onParameter('operation:isThreadStrategy', 0)
+61: onParameter('operation:isSamplingStrategy', 0)
+62: onParameter('operation:isRotaryStrategy', 1)
+63: onParameter('operation:isSecondarySpindleStrategy', 0)
+64: onParameter('operation:isSurfaceStrategy', 0)
+65: onParameter('operation:isCheckSurfaceStrategy', 0)
+66: onParameter('operation:isMultiAxisStrategy', 0)
+67: onParameter('operation:advancedMode', 0)
+68: onParameter('operation:betaMode', 0)
+69: onParameter('operation:alphaMode', 0)
+70: onParameter('operation:isXpress', 0)
+71: onParameter('operation:licenseMultiaxis', 1)
+72: onParameter('operation:license3D', 1)
+73: onParameter('operation:metric', 1)
+74: onParameter('operation:isAssemblyDocument', 1)
+75: onParameter('operation:context', 'operation')
+76: onParameter('operation:strategy', 'engrave')
+77: onParameter('operation:operation_description', '')
+78: onParameter('operation:tool_type', 'chamfer mill')
+79: onParameter('operation:undercut', 0)
+80: onParameter('operation:tool_isTurning', 0)
+81: onParameter('operation:tool_isMill', 1)
+82: onParameter('operation:tool_isDrill', 0)
+83: onParameter('operation:tool_isJet', 0)
+84: onParameter('operation:tool_isDepositing', 0)
+85: onParameter('operation:tool_taperedType', 'tapered_bull_nose')
+86: onParameter('operation:tool_unit', 'millimeters')
+87: onParameter('operation:tool_number', 1)
+88: onParameter('operation:tool_diameterOffset', 1)
+89: onParameter('operation:tool_lengthOffset', 1)
+90: onParameter('operation:tool_compensationOffset', 1)
+91: onParameter('operation:tool_turret', 0)
+92: onParameter('operation:tool_manualToolChange', 0)
+93: onParameter('operation:tool_breakControl', 0)
+94: onParameter('operation:tool_live', 1)
+95: onParameter('operation:tool_coolant', 'flood')
+96: onParameter('operation:tool_material', 'hss')
+97: onParameter('operation:tool_description', '')
+98: onParameter('operation:tool_comment', '')
+99: onParameter('operation:tool_vendor', '')
+100: onParameter('operation:tool_productId', '')
+102: onParameter('operation:tool_diameter', 10)
+104: onParameter('operation:tool_tipDiameter', 0)
+106: onParameter('operation:tool_tipOffset', 0)
+108: onParameter('operation:tool_cornerRadius', 0)
+110: onParameter('operation:tool_inclusiveAngle', 90)
+112: onParameter('operation:tool_taperAngle', 45)
+114: onParameter('operation:tool_tipAngle', 0)
+116: onParameter('operation:tool_threadProfileAngle', 0)
+118: onParameter('operation:tool_tipLength', 0)
+120: onParameter('operation:tool_fluteLength', 20)
+122: onParameter('operation:tool_shoulderLength', 30)
+124: onParameter('operation:tool_bodyLength', 50)
+126: onParameter('operation:tool_overallLength', 50)
+128: onParameter('operation:tool_shaftDiameter', 10)
+130: onParameter('operation:tool_segmentHeight', 5)
+132: onParameter('operation:tool_segmentDiameterLower', 20)
+134: onParameter('operation:tool_segmentDiameterUpper', 20)
+136: onParameter('operation:tool_shaftSegmentHeight', 10)
+138: onParameter('operation:tool_shaftSegmentDiameterLower', 10)
+140: onParameter('operation:tool_shaftSegmentDiameterUpper', 10)
+142: onParameter('operation:tool_threadPitch', 0)
+143: onParameter('operation:tool_numberOfTeeth', 0)
+144: onParameter('operation:tool_numberOfFlutes', 3)
+145: onParameter('operation:holder_attached', 0)
+146: onParameter('operation:holder_description', '')
+147: onParameter('operation:holder_comment', '')
+148: onParameter('operation:holder_vendor', '')
+149: onParameter('operation:holder_productId', '')
+150: onParameter('operation:holder_productLink', '')
+151: onParameter('operation:holder_libraryName', '')
+152: onParameter('operation:tool_productLink', '')
+154: onParameter('operation:tool_spindleSpeed', 5000)
+156: onParameter('operation:tool_stockDiameter', 10)
+158: onParameter('operation:tool_surfaceSpeed', 157079.63267948967)
+160: onParameter('operation:tool_rampSpindleSpeed', 5000)
+162: onParameter('operation:tool_feedCutting', 1000)
+164: onParameter('operation:tool_feedPerTooth', 0.06666666666666667)
+166: onParameter('operation:tool_feedProbeLink', 3000)
+168: onParameter('operation:tool_feedEntry', 1000)
+170: onParameter('operation:tool_feedExit', 1000)
+172: onParameter('operation:tool_feedProbeMeasure', 300)
+174: onParameter('operation:tool_feedRamp', 333.3333333333333)
+176: onParameter('operation:tool_feedPlunge', 333.3333333333333)
+178: onParameter('operation:tool_feedPerRevolution', 0.06666666666666667)
+180: onParameter('operation:tool_feedRetract', 333.3333333333333)
+181: onParameter('operation:tool_clockwise', 1)
+182: onParameter('operation:featureOperationId', 'none')
+184: onParameter('operation:surfaceZHigh', 0)
+186: onParameter('operation:surfaceZLow', -30)
+188: onParameter('operation:surfaceXLow', -100)
+190: onParameter('operation:surfaceXHigh', 100)
+192: onParameter('operation:surfaceYLow', -100)
+194: onParameter('operation:surfaceYHigh', 100)
+196: onParameter('operation:stockZHigh', 0)
+198: onParameter('operation:stockZLow', -30)
+200: onParameter('operation:stockXLow', -100)
+202: onParameter('operation:stockXHigh', 100)
+204: onParameter('operation:stockYLow', -100)
+206: onParameter('operation:stockYHigh', 100)
+207: onParameter('operation:unwrap', 0)
+209: onParameter('operation:wrap_cylinder_radius', 0)
+211: onParameter('operation:wrap_nominalRadius_offset', 0)
+213: onParameter('operation:wrap_nominalRadius_value', 0)
+214: onParameter('operation:view_orientation_mode', 'useWCS')
+215: onParameter('operation:view_orientation_flipZ', 0)
+217: onParameter('operation:view_turn_from_recipe', 0)
+219: onParameter('operation:view_tilt_from_recipe', 0)
+220: onParameter('operation:view_orientation_flipX', 0)
+221: onParameter('operation:view_orientation_flipY', 0)
+222: onParameter('operation:view_origin_mode', 'jobOrigin')
+223: onParameter('operation:view_origin_boxPoint', 'top center')
+224: onParameter('operation:clearanceHeight_mode', 'from retract height')
+226: onParameter('operation:clearanceHeight_offset', 10)
+228: onParameter('operation:clearanceHeight_value', 15)
+230: onParameter('operation:zClearance', 15)
+232: onParameter('operation:relativeZClearance', 15)
+233: onParameter('operation:clearanceHeight_absolute', 1)
+234: onParameter('operation:retractHeight_mode', 'from stock top')
+236: onParameter('operation:retractHeight_offset', 5)
+238: onParameter('operation:retractHeight_value', 5)
+240: onParameter('operation:zRetract', 5)
+242: onParameter('operation:relativeZRetract', 5)
+243: onParameter('operation:retractHeight_absolute', 1)
+244: onParameter('operation:feedHeight_mode', 'from top')
+246: onParameter('operation:feedHeight_offset', 5)
+248: onParameter('operation:feedHeight_value', 5)
+249: onParameter('operation:useZFeed', 1)
+250: onParameter('operation:feedHeight_absolute', 0)
+251: onParameter('operation:topHeight_mode', 'from contour')
+253: onParameter('operation:topHeight_offset', 0)
+255: onParameter('operation:topHeight_value', 0)
+256: onParameter('operation:topHeight_absolute', 0)
+257: onParameter('operation:bottomHeight_mode', 'from stock top')
+259: onParameter('operation:bottomHeight_offset', -1)
+261: onParameter('operation:bottomHeight_value', -1)
+262: onParameter('operation:bottomHeight_absolute', 1)
+264: onParameter('operation:tolerance', 0.01)
+266: onParameter('operation:contourTolerance', 0.005)
+268: onParameter('operation:calculationTolerance', 0.01)
+270: onParameter('operation:thinningTolerance', 0.0001)
+272: onParameter('operation:chainingTolerance', 0.01)
+274: onParameter('operation:gougingTolerance', 0.01)
+276: onParameter('operation:sharpCornerAngle', 165)
+278: onParameter('operation:maximumStepdown', 0)
+279: onParameter('operation:highFeedrateMode', 'disabled')
+281: onParameter('operation:highFeedrate', 1000)
+282: onParameter('operation:keepToolDown', 1)
+284: onParameter('operation:stayDownDistance', 50)
+285: onParameter('operation:use_tool_stepdown', 0)
+287: onParameter('operation:tool_stepdown', 1)
+289: onParameter('operation:tool_finishingStepdown', 0.2)
+290: onParameter('operation:use_tool_stepover', 0)
+292: onParameter('operation:tool_stepover', 5)
+294: onParameter('operation:tool_finishingStepover', 1)
+295: onParameter('operation:tool_rampType', 'helix')
+297: onParameter('operation:tool_rampAngle', 2)
+300: onParameter('movement:lead_in', 1000)
+301: onParameter('movement:cutting', 1000)
+302: onParameter('movement:lead_out', 1000)
+303: onParameter('movement:transition', 1000)
+304: onParameter('movement:direct', 1000)
+305: onParameter('movement:helix_ramp', 333.3333333333333)
+306: onParameter('movement:profile_ramp', 333.3333333333333)
+307: onParameter('movement:zigzag_ramp', 333.3333333333333)
+308: onParameter('movement:ramp', 333.3333333333333)
+309: onParameter('movement:plunge', 333.3333333333333)
+310: onParameter('movement:predrill', 1000)
+311: onParameter('movement:extended', 1000)
+312: onParameter('movement:reduced', 1000)
+313: onParameter('movement:finish_cutting', 1000)
+314: onParameter('movement:high_feed', 0)
+315: onParameter('movement:depositing', 0)
+316: onSection()
+currentSection.unit=1
+currentSection.workOrigin=(0, 0, 0)
+currentSection.workPlane=[[1, 0, 0], [0, 1, 0], [0, 0, 1]]
+currentSection.wcsOrigin=(0, 0, 0)
+currentSection.wcsPlane=[[1, 0, 0], [0, 1, 0], [0, 0, 1]]
+currentSection.workOffset=0
+currentSection.probeWorkOffset=0
+currentSection.wcs=''
+currentSection.wcsIndex=-1
+currentSection.dynamicWCSOrigin=(0, 0, 0)
+currentSection.dynamicWCSPlane=[[1, 0, 0], [0, 1, 0], [0, 0, 1]]
+currentSection.dynamicWorkOffset=0
+currentSection.fcsOrigin=(-100, -100, -30)
+currentSection.fcsPlane=[[1, 0, 0], [0, 1, 0], [0, 0, 1]]
+currentSection.modelOrigin=(-100, -100, -30)
+currentSection.modelPlane=[[1, -0, 0], [0, 1, -0], [0, 0, 1]]
+currentSection.type=0 (TYPE_MILLING)
+currentSection.quality=0 ({AUTO})
+currentSection.jetMode=0 (JET_MODE_THROUGH)
+currentSection.tailstock=false
+currentSection.partCatcher=false
+currentSection.spindle=0
+currentSection.feedMode=0
+currentSection.toolOrientation=0
+currentSection.properties=[object Object]
+currentSection.strategy='engrave' (STRATEGY_2D STRATEGY_FINISHING STRATEGY_MILLING STRATEGY_ROTARY )
+tool.toolId='1'
+tool.number=1
+tool.diameterOffset=1
+tool.lengthOffset=1
+tool.secondaryLengthOffset=0
+tool.turningTool=false
+tool.jetTool=false
+tool.holderNumber=0
+tool.surfaceSpeed=0
+tool.maximumSpindleSpeed=0
+tool.spindleRPM=5000
+tool.rampingSpindleRPM=5000
+tool.clockwise=true
+tool.numberOfFlutes=3
+tool.threadPitch=0
+tool.coolant=1
+tool.material=0
+tool.description=''
+tool.comment=''
+tool.vendor=''
+tool.productId=''
+tool.holderDescription=''
+tool.holderComment=''
+tool.holderVendor=''
+tool.holderProductId=''
+tool.aggregateId=''
+tool.unit=1
+tool.type=8 (TOOL_MILLING_CHAMFER, Fasenfräser)
+tool.diameter=10
+tool.tipDiameter=0
+tool.cornerRadius=0
+tool.taperAngle=0.7853981633974483
+tool.fluteLength=20
+tool.shoulderLength=30
+tool.shaftDiameter=10
+tool.bodyLength=50
+tool.overallLength=50
+tool.shaft=[object Shaft]
+tool.jetDiameter=0
+tool.jetDistance=0
+tool.holderTipDiameter=0
+tool.holderDiameter=0
+tool.holderLength=0
+tool.holder=[object Holder]
+tool.boringBarOrientation=0
+tool.compensationOffset=0
+tool.secondaryCompensationOffset=0
+tool.turret=0
+tool.insertType=3 (TURNING_INSERT_ISO_C)
+tool.holderType=0 (TURNING_INSERT_USER_DEFINED)
+tool.compensationMode=0 (TOOL_COMPENSATION_INSERT_CENTER)
+tool.inscribedCircleDiameter=0
+tool.edgeLength=0
+tool.noseRadius=0
+tool.reliefAngle=0
+tool.thickness=0
+tool.grooveWidth=0
+tool.crossSection=''
+tool.tolerance='M'
+tool.pitch=0
+tool.hand='R'
+tool.clamping=''
+tool.manualToolChange=false
+tool.breakControl=false
+tool.liveTool=true
+tool.tappingFeedrate=0
+STATE position=[-63.670353, -8.411301, 15]
+STATE spindleSpeed=5000
+STATE radiusCompensation=RADIUS_COMPENSATION_OFF // off
+317: onRapid(-63.670352935791016, -8.411300659179688, 15)
+318: onRapid(-63.670352935791016, -8.411300659179688, 5)
+319: onMovement(MOVEMENT_LEAD_IN /*lead in*/)
+319: onLinear(-63.670352935791016, -8.411300659179688, -0.0006507342332042754, 1000)
+320: onMovement(MOVEMENT_CUTTING /*cutting*/)
+320: onLinear(-62.371246337890625, -9.410650253295898, -1, 1000)
+321: onLinear(-54.9415397644043, -37.41059875488281, -1, 1000)
+322: onLinear(-55.710201263427734, -38.40982437133789, -0.0007764480542391539, 1000)
+323: onLinear(-54.9415397644043, -37.41059875488281, -1, 1000)
+324: onLinear(-52.418514251708984, -37.41059875488281, -1, 1000)
+325: onLinear(-51.65949249267578, -38.409820556640625, -0.0007786662899889052, 1000)
+326: onLinear(-52.418514251708984, -37.41059875488281, -1, 1000)
+327: onLinear(-46.25996398925781, -15.291126251220703, -1, 1000)
+328: onLinear(-45.8032112121582, -13.555532455444336, -1, 1000)
+329: onLinear(-45.38775634765625, -11.802140235900879, -1, 1000)
+330: onCircular(true, -44.41469955444336, -12.032699584960938, -1, -43.44635009765625, -11.783105850219727, -1, 1000)
+direction: CW
+sweep: 152.216486deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 0.999999
+331: onLinear(-42.9939079284668, -13.53843879699707, -1, 1000)
+332: onLinear(-42.509727478027344, -15.28541374206543, -1, 1000)
+333: onLinear(-42.50959777832031, -15.285881042480469, -1, 1000)
+334: onLinear(-36.38917541503906, -37.41059875488281, -1, 1000)
+335: onLinear(-37.14950942993164, -38.409820556640625, -0.0007783653563819826, 1000)
+336: onLinear(-36.38917541503906, -37.41059875488281, -1, 1000)
+337: onLinear(-34.086002349853516, -37.41059875488281, -1, 1000)
+338: onLinear(-33.32389450073242, -38.409820556640625, -0.0007779571460559964, 1000)
+339: onLinear(-34.086002349853516, -37.41059875488281, -1, 1000)
+340: onLinear(-26.408029556274414, -9.410650253295898, -1, 1000)
+341: onLinear(-25.097749710083008, -8.411297798156738, -0.0006481762393377721, 1000)
+342: onLinear(-26.408029556274414, -9.410650253295898, -1, 1000)
+343: onLinear(-28.302085876464844, -9.410650253295898, -1, 1000)
+344: onLinear(-29.086692810058594, -8.411422729492188, -0.0007727593765594065, 1000)
+345: onLinear(-28.302085876464844, -9.410650253295898, -1, 1000)
+346: onLinear(-32.82253646850586, -27.924795150756836, -1, 1000)
+347: onLinear(-32.82274627685547, -27.925649642944336, -1, 1000)
+348: onLinear(-33.220394134521484, -29.548059463500977, -1, 1000)
+349: onLinear(-33.603336334228516, -31.166444778442383, -1, 1000)
+350: onLinear(-33.963111877441406, -32.789573669433594, -1, 1000)
+351: onLinear(-34.309669494628906, -34.42313003540039, -1, 1000)
+352: onCircular(true, -35.287899017333984, -34.215599060058594, -1, -36.273616790771484, -34.38400650024414, -1, 1000)
+direction: CW
+sweep: 158.327078deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1
+353: onLinear(-36.730525970458984, -31.709646224975586, -1, 1000)
+354: onLinear(-36.978275299072266, -30.39108657836914, -1, 1000)
+355: onLinear(-37.25128936767578, -29.081424713134766, -1, 1000)
+356: onLinear(-37.55479431152344, -27.777589797973633, -1, 1000)
+357: onLinear(-37.88310241699219, -26.475122451782227, -1, 1000)
+358: onLinear(-38.58475875854492, -23.860570907592773, -1, 1000)
+359: onLinear(-42.67435836791992, -9.410650253295898, -1, 1000)
+360: onLinear(-41.9186897277832, -8.411429405212402, -0.0007794356206431985, 1000)
+361: onLinear(-42.67435836791992, -9.410650253295898, -1, 1000)
+362: onLinear(-45.94956588745117, -9.410650253295898, -1, 1000)
+363: onLinear(-46.706111907958984, -8.411429405212402, -0.0007792349788360298, 1000)
+364: onLinear(-45.94956588745117, -9.410650253295898, -1, 1000)
+365: onLinear(-51.44937515258789, -28.92619514465332, -1, 1000)
+366: onLinear(-52.13288879394531, -31.67612648010254, -1, 1000)
+367: onLinear(-52.79399108886719, -34.447628021240234, -1, 1000)
+368: onCircular(true, -53.766700744628906, -34.215599060058594, -1, -54.750057220458984, -34.397281646728516, -1, 1000)
+direction: CW
+sweep: 156.115667deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 0.999999
+369: onLinear(-55.03380584716797, -32.861480712890625, -1, 1000)
+370: onLinear(-55.33344268798828, -31.338733673095703, -1, 1000)
+371: onLinear(-55.662105560302734, -29.82186508178711, -1, 1000)
+372: onLinear(-56.00997543334961, -28.300901412963867, -1, 1000)
+373: onLinear(-60.3934211730957, -9.410650253295898, -1, 1000)
+374: onLinear(-59.59951400756836, -8.411420822143555, -0.0007705971365794539, 1000)
+375: onLinear(-60.3934211730957, -9.410650253295898, -1, 1000)
+376: onLinear(-62.371246337890625, -9.410650253295898, -1, 1000)
+377: onMovement(MOVEMENT_RAPID /*rapid*/)
+377: onRapid(-62.371246337890625, -9.410650253295898, 5)
+378: onRapid(-16.894588470458984, -23.263017654418945, 5)
+379: onMovement(MOVEMENT_LEAD_IN /*lead in*/)
+379: onLinear(-16.894588470458984, -23.263017654418945, -1, 1000)
+380: onMovement(MOVEMENT_CUTTING /*cutting*/)
+380: onLinear(-16.967388153076172, -23.50983238220215, -1, 1000)
+381: onLinear(-17.09730339050293, -24.044652938842773, -1, 1000)
+382: onLinear(-17.198137283325195, -24.592782974243164, -1, 1000)
+383: onLinear(-17.275890350341797, -25.16141128540039, -1, 1000)
+384: onLinear(-17.33477020263672, -25.748023986816406, -1, 1000)
+385: onLinear(-17.37889289855957, -26.347965240478516, -1, 1000)
+386: onLinear(-17.440753936767578, -27.545982360839844, -1, 1000)
+387: onLinear(-17.387741088867188, -28.644285202026367, -1, 1000)
+388: onLinear(-17.350027084350586, -29.197572708129883, -1, 1000)
+389: onLinear(-17.300012588500977, -29.739952087402344, -1, 1000)
+390: onLinear(-17.234071731567383, -30.267560958862305, -1, 1000)
+391: onLinear(-17.1486873626709, -30.77876853942871, -1, 1000)
+392: onLinear(-17.040674209594727, -31.2720947265625, -1, 1000)
+393: onLinear(-16.90448570251465, -31.755247116088867, -1, 1000)
+394: onLinear(-16.829633712768555, -31.97760581970215, -1, 1000)
+395: onLinear(-16.747047424316406, -32.196407318115234, -1, 1000)
+396: onLinear(-16.54612159729004, -32.655479431152344, -1, 1000)
+397: onLinear(-16.3159236907959, -33.10586166381836, -1, 1000)
+398: onLinear(-16.056297302246094, -33.55725860595703, -1, 1000)
+399: onLinear(-15.771430015563965, -34.01099395751953, -1, 1000)
+400: onLinear(-15.467260360717773, -34.46586608886719, -1, 1000)
+401: onLinear(-14.889636039733887, -35.287227630615234, -1, 1000)
+402: onLinear(-14.201118469238281, -35.84801483154297, -1, 1000)
+403: onLinear(-13.814495086669922, -36.14788055419922, -1, 1000)
+404: onLinear(-13.429052352905273, -36.42961120605469, -1, 1000)
+405: onLinear(-13.045260429382324, -36.68750762939453, -1, 1000)
+406: onLinear(-12.662328720092773, -36.91822814941406, -1, 1000)
+407: onLinear(-12.279351234436035, -37.11825942993164, -1, 1000)
+408: onLinear(-11.891769409179688, -37.28662872314453, -1, 1000)
+409: onLinear(-11.490018844604492, -37.426109313964844, -1, 1000)
+410: onLinear(-11.067914009094238, -37.541603088378906, -1, 1000)
+411: onLinear(-10.625626564025879, -37.63616943359375, -1, 1000)
+412: onLinear(-10.164949417114258, -37.71259689331055, -1, 1000)
+413: onLinear(-9.687788009643555, -37.77395248413086, -1, 1000)
+414: onLinear(-9.1980562210083, -37.82359313964844, -1, 1000)
+415: onLinear(-8.242172241210938, -37.89936447143555, -1, 1000)
+416: onLinear(-7.6363844871521, -37.86210250854492, -1, 1000)
+417: onLinear(-6.980299472808838, -37.80635070800781, -1, 1000)
+418: onLinear(-6.671770095825195, -37.77013397216797, -1, 1000)
+419: onLinear(-6.367582321166992, -37.72530746459961, -1, 1000)
+420: onLinear(-6.072207450866699, -37.67085266113281, -1, 1000)
+421: onLinear(-5.785045623779297, -37.605430603027344, -1, 1000)
+422: onLinear(-5.501841068267822, -37.526947021484375, -1, 1000)
+423: onLinear(-5.216772556304932, -37.43461608886719, -1, 1000)
+424: onLinear(-4.92840051651001, -37.32958221435547, -1, 1000)
+425: onLinear(-4.640655040740967, -37.21476745605469, -1, 1000)
+426: onLinear(-4.038079738616943, -36.9511833190918, -1, 1000)
+427: onLinear(-3.4890172481536865, -36.695281982421875, -1, 1000)
+428: onLinear(-2.99918794631958, -36.37556838989258, -1, 1000)
+429: onLinear(-2.4780633449554443, -36.0150146484375, -1, 1000)
+430: onLinear(-2.241917371749878, -35.83817672729492, -1, 1000)
+431: onLinear(-2.0149943828582764, -35.655845642089844, -1, 1000)
+432: onLinear(-1.8023438453674316, -35.4697265625, -1, 1000)
+433: onLinear(-1.6039594411849976, -35.27828598022461, -1, 1000)
+434: onLinear(-1.4164133071899414, -35.07662582397461, -1, 1000)
+435: onLinear(-1.2346068620681763, -34.86072540283203, -1, 1000)
+436: onLinear(-1.0567458868026733, -34.63056564331055, -1, 1000)
+437: onLinear(-0.8847969770431519, -34.39133834838867, -1, 1000)
+438: onLinear(-0.5346912741661072, -33.8634033203125, -1, 1000)
+439: onLinear(-0.237949937582016, -33.38851547241211, -1, 1000)
+440: onLinear(0.02874579466879368, -32.694828033447266, -1, 1000)
+441: onLinear(0.3039141893386841, -31.9234619140625, -1, 1000)
+442: onLinear(0.4223828613758087, -31.552074432373047, -1, 1000)
+443: onLinear(0.5284851789474487, -31.179964065551758, -1, 1000)
+444: onLinear(0.6190260052680969, -30.81061363220215, -1, 1000)
+445: onLinear(0.693520724773407, -30.439268112182617, -1, 1000)
+446: onLinear(0.7537955045700073, -30.06118392944336, -1, 1000)
+447: onLinear(0.8015996217727661, -29.67520523071289, -1, 1000)
+448: onLinear(0.8385124802589417, -29.281843185424805, -1, 1000)
+449: onLinear(0.8659080862998962, -28.88494873046875, -1, 1000)
+450: onLinear(0.9006755352020264, -28.058273315429688, -1, 1000)
+451: onLinear(0.9188526272773743, -27.2551326751709, -1, 1000)
+452: onLinear(0.8566544651985168, -26.18516731262207, -1, 1000)
+453: onLinear(0.8147451877593994, -25.6514892578125, -1, 1000)
+454: onLinear(0.7607296109199524, -25.129148483276367, -1, 1000)
+455: onLinear(0.69111168384552, -24.621889114379883, -1, 1000)
+456: onLinear(0.6024898290634155, -24.1315860748291, -1, 1000)
+457: onLinear(0.4917406439781189, -23.659582138061523, -1, 1000)
+458: onLinear(0.3558548390865326, -23.206804275512695, -1, 1000)
+459: onLinear(0.19047771394252777, -22.769569396972656, -1, 1000)
+460: onLinear(-0.00787913054227829, -22.338512420654297, -1, 1000)
+461: onLinear(-0.23810771107673645, -21.90756607055664, -1, 1000)
+462: onLinear(-0.4967290759086609, -21.475662231445312, -1, 1000)
+463: onLinear(-0.779801607131958, -21.04176139831543, -1, 1000)
+464: onLinear(-1.0816240310668945, -20.60658073425293, -1, 1000)
+465: onLinear(-1.657397747039795, -19.81639289855957, -1, 1000)
+466: onLinear(-2.3479344844818115, -19.252056121826172, -1, 1000)
+467: onLinear(-2.7318150997161865, -18.95311164855957, -1, 1000)
+468: onLinear(-3.1148226261138916, -18.67195701599121, -1, 1000)
+469: onLinear(-3.49609375, -18.41413688659668, -1, 1000)
+470: onLinear(-3.876516580581665, -18.183252334594727, -1, 1000)
+471: onLinear(-4.256969928741455, -17.982540130615234, -1, 1000)
+472: onLinear(-4.641566276550293, -17.813350677490234, -1, 1000)
+473: onLinear(-5.04011344909668, -17.672842025756836, -1, 1000)
+474: onLinear(-5.45871114730835, -17.55609893798828, -1, 1000)
+475: onLinear(-5.897323131561279, -17.460325241088867, -1, 1000)
+476: onLinear(-6.354526996612549, -17.382488250732422, -1, 1000)
+477: onLinear(-6.828344821929932, -17.31956672668457, -1, 1000)
+478: onLinear(-7.314629077911377, -17.268239974975586, -1, 1000)
+479: onLinear(-8.254504203796387, -17.1900634765625, -1, 1000)
+480: onLinear(-9.102137565612793, -17.25465965270996, -1, 1000)
+481: onLinear(-9.545514106750488, -17.297260284423828, -1, 1000)
+482: onLinear(-9.978802680969238, -17.3494815826416, -1, 1000)
+483: onLinear(-10.398540496826172, -17.41388702392578, -1, 1000)
+484: onLinear(-10.803237915039062, -17.49327850341797, -1, 1000)
+485: onLinear(-11.19210147857666, -17.589988708496094, -1, 1000)
+486: onLinear(-11.565037727355957, -17.706573486328125, -1, 1000)
+487: onLinear(-11.927833557128906, -17.84693717956543, -1, 1000)
+488: onLinear(-12.288861274719238, -18.013032913208008, -1, 1000)
+489: onLinear(-12.651294708251953, -18.20355796813965, -1, 1000)
+490: onLinear(-13.01601505279541, -18.41596031188965, -1, 1000)
+491: onLinear(-13.383598327636719, -18.64716148376465, -1, 1000)
+492: onLinear(-13.753097534179688, -18.892797470092773, -1, 1000)
+493: onLinear(-14.400897979736328, -19.34321403503418, -1, 1000)
+494: onLinear(-15.098654747009277, -20.19426155090332, -1, 1000)
+495: onLinear(-15.461956977844238, -20.661922454833984, -1, 1000)
+496: onLinear(-15.801753044128418, -21.12952995300293, -1, 1000)
+497: onLinear(-16.11082649230957, -21.59658432006836, -1, 1000)
+498: onLinear(-16.389026641845703, -22.07245635986328, -1, 1000)
+499: onLinear(-16.507509231567383, -22.30025863647461, -1, 1000)
+500: onLinear(-16.619056701660156, -22.535547256469727, -1, 1000)
+501: onLinear(-16.720012664794922, -22.77277946472168, -1, 1000)
+502: onLinear(-16.81151008605957, -23.014925003051758, -1, 1000)
+503: onLinear(-16.894588470458984, -23.263017654418945, -1, 1000)
+504: onMovement(MOVEMENT_RAPID /*rapid*/)
+504: onRapid(-16.894588470458984, -23.263017654418945, 5)
+505: onRapid(-15.210241317749023, -23.780811309814453, 5)
+506: onMovement(MOVEMENT_LEAD_IN /*lead in*/)
+506: onLinear(-15.210241317749023, -23.780811309814453, -1, 1000)
+507: onMovement(MOVEMENT_CUTTING /*cutting*/)
+507: onLinear(-15.143853187561035, -23.564855575561523, -1, 1000)
+508: onCircular(true, -14.187999725341797, -23.858699798583984, -1, -15.122550010681152, -23.50286865234375, -1, 1000)
+direction: CW
+sweep: 3.756149deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1
+509: onLinear(-14.977749824523926, -23.122568130493164, -1, 1000)
+510: onCircular(true, -14.04319953918457, -23.4783992767334, -1, -14.955879211425781, -23.06972312927246, -1, 1000)
+direction: CW
+sweep: 3.277303deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1
+511: onLinear(-14.788679122924805, -22.69632339477539, -1, 1000)
+512: onCircular(true, -13.87600040435791, -23.104999542236328, -1, -14.768377304077148, -22.653711318969727, -1, 1000)
+direction: CW
+sweep: 2.704683deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 0.999999
+513: onLinear(-14.5825777053833, -22.28631019592285, -1, 1000)
+514: onCircular(true, -13.690199851989746, -22.737600326538086, -1, -14.565129280090332, -22.25334930419922, -1, 1000)
+direction: CW
+sweep: 2.136931deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1
+515: onLinear(-14.36432933807373, -21.89055061340332, -1, 1000)
+516: onCircular(true, -13.489399909973145, -22.374799728393555, -1, -14.350760459899902, -21.866806030273438, -1, 1000)
+direction: CW
+sweep: 1.566981deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1
+517: onLinear(-14.138860702514648, -21.507505416870117, -1, 1000)
+518: onCircular(true, -13.27750015258789, -22.015499114990234, -1, -14.126981735229492, -21.487882614135742, -1, 1000)
+direction: CW
+sweep: 1.314296deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 0.999999
+519: onLinear(-13.684381484985352, -20.77528190612793, -1, 1000)
+520: onCircular(true, -12.83489990234375, -21.302900314331055, -1, -13.512182235717773, -20.567176818847656, -1, 1000)
+direction: CW
+sweep: 15.523694deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1
+521: onLinear(-13.024982452392578, -20.118677139282227, -1, 1000)
+522: onCircular(true, -12.347700119018555, -20.854400634765625, -1, -12.995906829833984, -20.09293556213379, -1, 1000)
+direction: CW
+sweep: 2.22512deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1
+523: onLinear(-12.49770736694336, -19.66883659362793, -1, 1000)
+524: onCircular(true, -11.849499702453613, -20.430299758911133, -1, -12.455337524414062, -19.63471221923828, -1, 1000)
+direction: CW
+sweep: 3.117443deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 0.999999
+525: onLinear(-12.198738098144531, -19.439311981201172, -1, 1000)
+526: onCircular(true, -11.592900276184082, -20.234899520874023, -1, -12.157393455505371, -19.409461975097656, -1, 1000)
+direction: CW
+sweep: 2.922067deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1
+527: onLinear(-11.893893241882324, -19.22926139831543, -1, 1000)
+528: onCircular(true, -11.329400062561035, -20.05470085144043, -1, -11.841523170471191, -19.19578742980957, -1, 1000)
+direction: CW
+sweep: 3.561736deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1.000001
+529: onLinear(-11.569823265075684, -19.033788681030273, -1, 1000)
+530: onCircular(true, -11.057700157165527, -19.8927001953125, -1, -11.505294799804688, -18.998462677001953, -1, 1000)
+direction: CW
+sweep: 4.21593deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1.000001
+531: onLinear(-11.223995208740234, -18.857664108276367, -1, 1000)
+532: onCircular(true, -10.776399612426758, -19.75189971923828, -1, -11.15003776550293, -18.824325561523438, -1, 1000)
+direction: CW
+sweep: 4.649361deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1
+533: onLinear(-10.85833740234375, -18.706825256347656, -1, 1000)
+534: onCircular(true, -10.484700202941895, -19.6343994140625, -1, -10.789142608642578, -18.681869506835938, -1, 1000)
+direction: CW
+sweep: 4.215489deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 0.999999
+535: onLinear(-10.48784351348877, -18.585569381713867, -1, 1000)
+536: onCircular(true, -10.18340015411377, -19.53809928894043, -1, -10.428028106689453, -18.568483352661133, -1, 1000)
+direction: CW
+sweep: 3.564824deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 0.999999
+537: onLinear(-10.118468284606934, -18.49038314819336, -1, 1000)
+538: onCircular(true, -9.87384033203125, -19.459999084472656, -1, -10.069145202636719, -18.479257583618164, -1, 1000)
+direction: CW
+sweep: 2.897317deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 0.999999
+539: onLinear(-9.752785682678223, -18.416257858276367, -1, 1000)
+540: onCircular(true, -9.557479858398438, -19.39699935913086, -1, -9.698995590209961, -18.40706443786621, -1, 1000)
+direction: CW
+sweep: 3.127026deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 0.999999
+541: onLinear(-9.05123519897461, -18.314464569091797, -1, 1000)
+542: onCircular(true, -8.909720420837402, -19.304399490356445, -1, -9.013007164001465, -18.30974769592285, -1, 1000)
+direction: CW
+sweep: 2.207053deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1
+543: onLinear(-8.354316711425781, -18.241348266601562, -1, 1000)
+544: onCircular(true, -8.251029968261719, -19.236000061035156, -1, -8.143888473510742, -18.241756439208984, -1, 1000)
+direction: CW
+sweep: 12.079029deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1
+545: onLinear(-7.488738536834717, -18.31235694885254, -1, 1000)
+546: onCircular(true, -7.595880031585693, -19.30660057067871, -1, -7.450275421142578, -18.317256927490234, -1, 1000)
+direction: CW
+sweep: 2.221724deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1.000001
+547: onLinear(-6.806135654449463, -18.412057876586914, -1, 1000)
+548: onCircular(true, -6.95173978805542, -19.401399612426758, -1, -6.752323150634766, -18.421485900878906, -1, 1000)
+direction: CW
+sweep: 3.130585deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 0.999999
+549: onLinear(-6.437833309173584, -18.485485076904297, -1, 1000)
+550: onCircular(true, -6.637249946594238, -19.46540069580078, -1, -6.387912750244141, -18.49698257446289, -1, 1000)
+direction: CW
+sweep: 2.935436deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1.000001
+551: onLinear(-6.080302715301514, -18.576183319091797, -1, 1000)
+552: onCircular(true, -6.329639911651611, -19.544599533081055, -1, -6.020521640777588, -18.593576431274414, -1, 1000)
+direction: CW
+sweep: 3.567809deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1
+553: onLinear(-5.7211713790893555, -18.690876007080078, -1, 1000)
+554: onCircular(true, -6.030290126800537, -19.64189910888672, -1, -5.651694297790527, -18.716337203979492, -1, 1000)
+direction: CW
+sweep: 4.2406deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1
+555: onLinear(-5.36199426651001, -18.834836959838867, -1, 1000)
+556: onCircular(true, -5.7405900955200195, -19.760400772094727, -1, -5.288031578063965, -18.86866569519043, -1, 1000)
+direction: CW
+sweep: 4.66125deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1
+557: onLinear(-5.008821487426758, -19.010364532470703, -1, 1000)
+558: onCircular(true, -5.4613800048828125, -19.902099609375, -1, -4.945008277893066, -19.04573631286621, -1, 1000)
+direction: CW
+sweep: 4.181279deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 0.999999
+559: onLinear(-4.675348281860352, -19.208335876464844, -1, 1000)
+560: onCircular(true, -5.191720008850098, -20.064699172973633, -1, -4.623413562774658, -19.24188232421875, -1, 1000)
+direction: CW
+sweep: 3.542993deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1
+561: onLinear(-4.361933708190918, -19.422483444213867, -1, 1000)
+562: onCircular(true, -4.930240154266357, -20.24530029296875, -1, -4.321101188659668, -19.45223617553711, -1, 1000)
+direction: CW
+sweep: 2.895032deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1
+563: onLinear(-4.066441535949707, -19.647836685180664, -1, 1000)
+564: onCircular(true, -4.675580024719238, -20.440900802612305, -1, -4.024444580078125, -19.68193817138672, -1, 1000)
+direction: CW
+sweep: 3.099996deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1.000001
+565: onLinear(-3.5301148891448975, -20.10603904724121, -1, 1000)
+566: onCircular(true, -4.181250095367432, -20.864999771118164, -1, -3.501450300216675, -20.131601333618164, -1, 1000)
+direction: CW
+sweep: 2.200688deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1.000001
+567: onLinear(-3.0180203914642334, -20.579702377319336, -1, 1000)
+568: onCircular(true, -3.697819948196411, -21.313100814819336, -1, -2.852684497833252, -20.778547286987305, -1, 1000)
+direction: CW
+sweep: 14.858425deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1.000001
+569: onLinear(-2.412524461746216, -21.47444725036621, -1, 1000)
+570: onCircular(true, -3.257659912109375, -22.009000778198242, -1, -2.400717258453369, -21.493589401245117, -1, 1000)
+direction: CW
+sweep: 1.28865deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1
+571: onLinear(-2.189727306365967, -21.844388961791992, -1, 1000)
+572: onCircular(true, -3.0466699600219727, -22.359800338745117, -1, -2.1758620738983154, -21.86817741394043, -1, 1000)
+direction: CW
+sweep: 1.577647deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1
+573: onLinear(-1.975782036781311, -22.222576141357422, -1, 1000)
+574: onCircular(true, -2.846590042114258, -22.71419906616211, -1, -1.9582111835479736, -22.255088806152344, -1, 1000)
+direction: CW
+sweep: 2.117592deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1
+575: onLinear(-1.7726812362670898, -22.61408805847168, -1, 1000)
+576: onCircular(true, -2.661060094833374, -23.073200225830078, -1, -1.7521368265151978, -22.65623664855957, -1, 1000)
+direction: CW
+sweep: 2.686786deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1
+577: onLinear(-1.5847867727279663, -23.02103614807129, -1, 1000)
+578: onCircular(true, -2.4937100410461426, -23.437999725341797, -1, -1.562479019165039, -23.073570251464844, -1, 1000)
+direction: CW
+sweep: 3.270556deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1
+579: onLinear(-1.4169390201568604, -23.445470809936523, -1, 1000)
+580: onCircular(true, -2.348170042037964, -23.809900283813477, -1, -1.3951243162155151, -23.50707244873047, -1, 1000)
+direction: CW
+sweep: 3.744954deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1
+581: onLinear(-1.274444341659546, -23.886873245239258, -1, 1000)
+582: onCircular(true, -2.227489948272705, -24.189699172973633, -1, -1.2574448585510254, -23.946775436401367, -1, 1000)
+direction: CW
+sweep: 3.568249deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1
+583: onLinear(-1.1604548692703247, -24.334075927734375, -1, 1000)
+584: onCircular(true, -2.130500078201294, -24.57699966430664, -1, -1.148707389831543, -24.387042999267578, -1, 1000)
+direction: CW
+sweep: 3.108916deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1
+585: onLinear(-1.0724574327468872, -24.781143188476562, -1, 1000)
+586: onCircular(true, -2.0542500019073486, -24.971099853515625, -1, -1.0647844076156616, -24.826332092285156, -1, 1000)
+direction: CW
+sweep: 2.626423deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1
+587: onLinear(-1.006304383277893, -25.226032257080078, -1, 1000)
+588: onCircular(true, -1.99576997756958, -25.370800018310547, -1, -1.0015500783920288, -25.263437271118164, -1, 1000)
+direction: CW
+sweep: 2.16052deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1
+589: onLinear(-0.9578800797462463, -25.667837142944336, -1, 1000)
+590: onCircular(true, -1.9521000385284424, -25.77519989013672, -1, -0.9543240070343018, -25.70854377746582, -1, 1000)
+direction: CW
+sweep: 2.341364deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1
+591: onLinear(-0.8995839953422546, -26.527942657470703, -1, 1000)
+592: onCircular(true, -1.8973599672317505, -26.594600677490234, -1, -0.8980640769004822, -26.55708122253418, -1, 1000)
+direction: CW
+sweep: 1.671846deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1
+593: onLinear(-0.8670141100883484, -27.38408088684082, -1, 1000)
+594: onCircular(true, -1.8663100004196167, -27.421600341796875, -1, -0.8667771816253662, -27.452163696289062, -1, 1000)
+direction: CW
+sweep: 3.901635deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1
+595: onLinear(-0.8930071592330933, -28.30996322631836, -1, 1000)
+596: onCircular(true, -1.8925399780273438, -28.279399871826172, -1, -0.8942743539810181, -28.33827018737793, -1, 1000)
+direction: CW
+sweep: 1.623548deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1
+597: onLinear(-0.9444243311882019, -29.188669204711914, -1, 1000)
+598: onCircular(true, -1.9426900148391724, -29.12980079650879, -1, -0.9475362300872803, -29.228130340576172, -1, 1000)
+direction: CW
+sweep: 2.268124deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1
+599: onLinear(-0.9890462160110474, -29.648231506347656, -1, 1000)
+600: onCircular(true, -1.9842000007629395, -29.54990005493164, -1, -0.9933095574378967, -29.6845703125, -1, 1000)
+direction: CW
+sweep: 2.096457deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1
+601: onLinear(-1.0497795343399048, -30.10007095336914, -1, 1000)
+602: onCircular(true, -2.0406699180603027, -29.96540069580078, -1, -1.0567344427108765, -30.143924713134766, -1, 1000)
+direction: CW
+sweep: 2.544247deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1
+603: onLinear(-1.131124496459961, -30.553924560546875, -1, 1000)
+604: onCircular(true, -2.1150600910186768, -30.37540054321289, -1, -1.1418523788452148, -30.605327606201172, -1, 1000)
+direction: CW
+sweep: 3.00898deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1
+605: onLinear(-1.237182378768921, -31.008827209472656, -1, 1000)
+606: onCircular(true, -2.210390090942383, -30.778900146484375, -1, -1.2528369426727295, -31.067157745361328, -1, 1000)
+direction: CW
+sweep: 3.460886deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1
+607: onLinear(-1.3720769882202148, -31.4632568359375, -1, 1000)
+608: onCircular(true, -2.329629898071289, -31.174999237060547, -1, -1.3926794528961182, -31.52446174621582, -1, 1000)
+direction: CW
+sweep: 3.700772deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1
+609: onLinear(-1.5374693870544434, -31.912662506103516, -1, 1000)
+610: onCircular(true, -2.4744200706481934, -31.563199996948242, -1, -1.5589420795440674, -31.96556854248047, -1, 1000)
+direction: CW
+sweep: 3.27189deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1
+611: onLinear(-1.7264420986175537, -32.3466682434082, -1, 1000)
+612: onCircular(true, -2.6419200897216797, -31.944299697875977, -1, -1.7463313341140747, -32.389183044433594, -1, 1000)
+direction: CW
+sweep: 2.689543deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1
+613: onLinear(-1.932761311531067, -32.76448440551758, -1, 1000)
+614: onCircular(true, -2.828350067138672, -32.31959915161133, -1, -1.9498175382614136, -32.79728317260742, -1, 1000)
+direction: CW
+sweep: 2.118261deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1.000001
+615: onLinear(-2.1513776779174805, -33.16798400878906, -1, 1000)
+616: onCircular(true, -3.029910087585449, -32.69029998779297, -1, -2.1648807525634766, -33.192020416259766, -1, 1000)
+direction: CW
+sweep: 1.579671deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1
+617: onLinear(-2.377800941467285, -33.559120178222656, -1, 1000)
+618: onCircular(true, -3.2428300380706787, -33.05739974975586, -1, -2.3893535137176514, -33.57853317260742, -1, 1000)
+direction: CW
+sweep: 1.294362deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1.000001
+619: onLinear(-2.834113597869873, -34.30693054199219, -1, 1000)
+620: onCircular(true, -3.6875898838043213, -33.78580093383789, -1, -3.0053482055664062, -34.51692581176758, -1, 1000)
+direction: CW
+sweep: 15.572771deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 0.999999
+621: onLinear(-3.4888782501220703, -34.9681282043457, -1, 1000)
+622: onCircular(true, -4.1711201667785645, -34.23699951171875, -1, -3.5176355838775635, -34.99393844604492, -1, 1000)
+direction: CW
+sweep: 2.214122deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 0.999999
+623: onLinear(-4.012235641479492, -35.42094039916992, -1, 1000)
+624: onCircular(true, -4.665719985961914, -34.66400146484375, -1, -4.054419994354248, -35.45539855957031, -1, 1000)
+direction: CW
+sweep: 3.12124deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 0.999999
+625: onLinear(-4.309329986572266, -35.65229797363281, -1, 1000)
+626: onCircular(true, -4.920629978179932, -34.86090087890625, -1, -4.350728511810303, -35.682613372802734, -1, 1000)
+direction: CW
+sweep: 2.940253deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1
+627: onLinear(-4.612568378448486, -35.86421203613281, -1, 1000)
+628: onCircular(true, -5.182469844818115, -35.04249954223633, -1, -4.664666652679443, -35.89799880981445, -1, 1000)
+direction: CW
+sweep: 3.558349deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1
+629: onLinear(-4.9347968101501465, -36.061500549316406, -1, 1000)
+630: onCircular(true, -5.452600002288818, -35.20600128173828, -1, -4.999319076538086, -36.09736633300781, -1, 1000)
+direction: CW
+sweep: 4.230574deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 0.999998
+631: onLinear(-5.279149055480957, -36.23966598510742, -1, 1000)
+632: onCircular(true, -5.7324299812316895, -35.34830093383789, -1, -5.353591442108154, -36.27376174926758, -1, 1000)
+direction: CW
+sweep: 4.692649deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 0.999998
+633: onLinear(-5.6440510749816895, -36.392662048339844, -1, 1000)
+634: onCircular(true, -6.022890090942383, -35.467201232910156, -1, -5.7137131690979, -36.41820526123047, -1, 1000)
+direction: CW
+sweep: 4.252182deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1
+635: onLinear(-6.013923168182373, -36.515804290771484, -1, 1000)
+636: onCircular(true, -6.3231000900268555, -35.56480026245117, -1, -6.073894023895264, -36.53324890136719, -1, 1000)
+direction: CW
+sweep: 3.579081deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 0.999998
+637: onLinear(-6.382453918457031, -36.61265182495117, -1, 1000)
+638: onCircular(true, -6.631659984588623, -35.64419937133789, -1, -6.432570457458496, -36.62417984008789, -1, 1000)
+direction: CW
+sweep: 2.946776deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 0.999999
+639: onLinear(-6.7480902671813965, -36.68828201293945, -1, 1000)
+640: onCircular(true, -6.947179794311523, -35.70830154418945, -1, -6.787913799285889, -36.69553756713867, -1, 1000)
+direction: CW
+sweep: 2.31944deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1
+641: onLinear(-7.10900354385376, -36.747337341308594, -1, 1000)
+642: onCircular(true, -7.268270015716553, -35.760101318359375, -1, -7.137811660766602, -36.75155258178711, -1, 1000)
+direction: CW
+sweep: 1.66822deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 0.999997
+643: onLinear(-7.463081359863281, -36.79435348510742, -1, 1000)
+644: onCircular(true, -7.593540191650391, -35.80289840698242, -1, -7.4873738288879395, -36.79724884033203, -1, 1000)
+direction: CW
+sweep: 1.40174deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1.000002
+645: onLinear(-8.144864082336426, -36.86744689941406, -1, 1000)
+646: onCircular(true, -8.251029968261719, -35.87310028076172, -1, -8.35495662689209, -36.86768341064453, -1, 1000)
+direction: CW
+sweep: 12.059695deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 0.999998
+647: onLinear(-9.014336585998535, -36.79878616333008, -1, 1000)
+648: onCircular(true, -8.910409927368164, -35.80419921875, -1, -9.03839111328125, -36.79597473144531, -1, 1000)
+direction: CW
+sweep: 1.387638deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 0.999999
+649: onLinear(-9.364641189575195, -36.753875732421875, -1, 1000)
+650: onCircular(true, -9.23666000366211, -35.76210021972656, -1, -9.393641471862793, -36.74970245361328, -1, 1000)
+direction: CW
+sweep: 1.678771deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1.000001
+651: onLinear(-9.715750694274902, -36.69850158691406, -1, 1000)
+652: onCircular(true, -9.558770179748535, -35.710899353027344, -1, -9.75512409210205, -36.69143295288086, -1, 1000)
+direction: CW
+sweep: 2.292148deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1
+653: onLinear(-10.071723937988281, -36.62803268432617, -1, 1000)
+654: onCircular(true, -9.875370025634766, -35.647499084472656, -1, -10.121342658996582, -36.61677551269531, -1, 1000)
+direction: CW
+sweep: 2.915505deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1
+655: onLinear(-10.431073188781738, -36.538177490234375, -1, 1000)
+656: onCircular(true, -10.185099601745605, -35.56890106201172, -1, -10.491170883178711, -36.52090835571289, -1, 1000)
+direction: CW
+sweep: 3.583271deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 0.999999
+657: onLinear(-10.792570114135742, -36.424007415771484, -1, 1000)
+658: onCircular(true, -10.486499786376953, -35.47200012207031, -1, -10.861666679382324, -36.398956298828125, -1, 1000)
+direction: CW
+sweep: 4.212055deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 0.999999
+659: onLinear(-11.153467178344727, -36.28085708618164, -1, 1000)
+660: onCircular(true, -10.778300285339355, -35.35390090942383, -1, -11.227799415588379, -36.2471809387207, -1, 1000)
+direction: CW
+sweep: 4.67692deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 0.999999
+661: onLinear(-11.50899887084961, -36.105682373046875, -1, 1000)
+662: onCircular(true, -11.059499740600586, -35.212398529052734, -1, -11.573763847351074, -36.07003402709961, -1, 1000)
+direction: CW
+sweep: 4.236699deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1.000003
+663: onLinear(-11.845263481140137, -35.907230377197266, -1, 1000)
+664: onCircular(true, -11.331000328063965, -35.049598693847656, -1, -11.897488594055176, -35.8736686706543, -1, 1000)
+direction: CW
+sweep: 3.557459deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1
+665: onLinear(-12.160788536071777, -35.69266891479492, -1, 1000)
+666: onCircular(true, -11.594300270080566, -34.86859893798828, -1, -12.202198028564453, -35.66261672973633, -1, 1000)
+direction: CW
+sweep: 2.931868deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1.000002
+667: onLinear(-12.458598136901855, -35.46631622314453, -1, 1000)
+668: onCircular(true, -11.850700378417969, -34.672298431396484, -1, -12.489646911621094, -35.441551208496094, -1, 1000)
+direction: CW
+sweep: 2.275685deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1.000001
+669: onLinear(-12.740547180175781, -35.233150482177734, -1, 1000)
+670: onCircular(true, -12.10159969329834, -34.46390151977539, -1, -12.762919425964355, -35.21400451660156, -1, 1000)
+direction: CW
+sweep: 1.687212deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 0.999999
+671: onLinear(-13.00961971282959, -34.99650573730469, -1, 1000)
+672: onCircular(true, -12.348299980163574, -34.24639892578125, -1, -13.027582168579102, -34.98027801513672, -1, 1000)
+direction: CW
+sweep: 1.387002deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1.000001
+673: onLinear(-13.514182090759277, -34.529876708984375, -1, 1000)
+674: onCircular(true, -12.83489990234375, -33.79600143432617, -1, -13.685124397277832, -34.32242202758789, -1, 1000)
+direction: CW
+sweep: 15.44843deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1
+675: onLinear(-14.127324104309082, -33.608219146728516, -1, 1000)
+676: onCircular(true, -13.277099609375, -33.0817985534668, -1, -14.138997077941895, -33.58888244628906, -1, 1000)
+direction: CW
+sweep: 1.294159deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1.000001
+677: onLinear(-14.350797653198242, -33.2288818359375, -1, 1000)
+678: onCircular(true, -13.488900184631348, -32.7218017578125, -1, -14.364428520202637, -33.2049674987793, -1, 1000)
+direction: CW
+sweep: 1.577191deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 0.999999
+679: onLinear(-14.565028190612793, -32.84146499633789, -1, 1000)
+680: onCircular(true, -13.689499855041504, -32.358299255371094, -1, -14.582369804382324, -32.808616638183594, -1, 1000)
+direction: CW
+sweep: 2.12837deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1.000001
+681: onLinear(-14.768070220947266, -32.44041442871094, -1, 1000)
+682: onCircular(true, -13.875200271606445, -31.990100860595703, -1, -14.78812313079834, -32.398231506347656, -1, 1000)
+direction: CW
+sweep: 2.676343deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 0.999999
+683: onLinear(-14.955323219299316, -32.02423095703125, -1, 1000)
+684: onCircular(true, -14.042400360107422, -31.616100311279297, -1, -14.977279663085938, -31.971065521240234, -1, 1000)
+direction: CW
+sweep: 3.296158deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1
+685: onLinear(-15.121979713439941, -31.589963912963867, -1, 1000)
+686: onCircular(true, -14.187100410461426, -31.235000610351562, -1, -15.142921447753906, -31.528947830200195, -1, 1000)
+direction: CW
+sweep: 3.696785deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 0.999999
+687: onLinear(-15.262521743774414, -31.140047073364258, -1, 1000)
+688: onCircular(true, -14.306699752807617, -30.846099853515625, -1, -15.278772354125977, -31.080780029296875, -1, 1000)
+direction: CW
+sweep: 3.521642deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1
+689: onLinear(-15.374472618103027, -30.68437957763672, -1, 1000)
+690: onCircular(true, -14.402400016784668, -30.44969940185547, -1, -15.385555267333984, -30.632471084594727, -1, 1000)
+direction: CW
+sweep: 3.041526deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1
+691: onLinear(-15.460455894470215, -30.229570388793945, -1, 1000)
+692: onCircular(true, -14.477299690246582, -30.04680061340332, -1, -15.467676162719727, -30.185199737548828, -1, 1000)
+direction: CW
+sweep: 2.575907deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1
+693: onLinear(-15.524776458740234, -29.776599884033203, -1, 1000)
+694: onCircular(true, -14.53439998626709, -29.638200759887695, -1, -15.52922534942627, -29.73980140686035, -1, 1000)
+direction: CW
+sweep: 2.123872deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1
+695: onLinear(-15.571425437927246, -29.326601028442383, -1, 1000)
+696: onCircular(true, -14.576600074768066, -29.225000381469727, -1, -15.574695587158203, -29.286680221557617, -1, 1000)
+direction: CW
+sweep: 2.295109deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1
+697: onLinear(-15.626396179199219, -28.45008087158203, -1, 1000)
+698: onCircular(true, -14.628299713134766, -28.388399124145508, -1, -15.627754211425781, -28.42143440246582, -1, 1000)
+direction: CW
+sweep: 1.643221deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1
+699: onLinear(-15.655653953552246, -27.577335357666016, -1, 1000)
+700: onCircular(true, -14.656200408935547, -27.544300079345703, -1, -15.655660629272461, -27.511459350585938, -1, 1000)
+direction: CW
+sweep: 3.775102deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1
+701: onLinear(-15.627960205078125, -26.668458938598633, -1, 1000)
+702: onCircular(true, -14.628499984741211, -26.7012996673584, -1, -15.626612663269043, -26.639896392822266, -1, 1000)
+direction: CW
+sweep: 1.63839deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1
+703: onLinear(-15.575213432312012, -25.80439567565918, -1, 1000)
+704: onCircular(true, -14.577099800109863, -25.865800857543945, -1, -15.57191276550293, -25.764076232910156, -1, 1000)
+direction: CW
+sweep: 2.318019deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1
+705: onLinear(-15.529712677001953, -25.351377487182617, -1, 1000)
+706: onCircular(true, -14.534899711608887, -25.453100204467773, -1, -15.525310516357422, -25.314943313598633, -1, 1000)
+direction: CW
+sweep: 2.102824deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1
+707: onLinear(-15.46841049194336, -24.90704345703125, -1, 1000)
+708: onCircular(true, -14.477999687194824, -25.04520034790039, -1, -15.461114883422852, -24.86220932006836, -1, 1000)
+direction: CW
+sweep: 2.602817deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1.000001
+709: onLinear(-15.386214256286621, -24.459810256958008, -1, 1000)
+710: onCircular(true, -14.40310001373291, -24.642799377441406, -1, -15.375078201293945, -24.40772819519043, -1, 1000)
+direction: CW
+sweep: 3.051895deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1
+711: onLinear(-15.279377937316895, -24.012027740478516, -1, 1000)
+712: onCircular(true, -14.30739974975586, -24.247100830078125, -1, -15.263253211975098, -23.953256607055664, -1, 1000)
+direction: CW
+sweep: 3.492318deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1
+713: onLinear(-15.210241317749023, -23.780811309814453, -1, 1000)
+714: onMovement(MOVEMENT_RAPID /*rapid*/)
+714: onRapid(-15.210241317749023, -23.780811309814453, 5)
+715: onRapid(11.74692153930664, -38.40987777709961, 5)
+716: onMovement(MOVEMENT_LEAD_IN /*lead in*/)
+716: onLinear(11.74692153930664, -38.40987777709961, -0.0007216872763819993, 1000)
+717: onMovement(MOVEMENT_CUTTING /*cutting*/)
+717: onLinear(12.746199607849121, -37.41059875488281, -1, 1000)
+718: onLinear(12.746199607849121, -17.67799949645996, -1, 1000)
+719: onLinear(11.74692153930664, -16.678722381591797, -0.0007216872763819993, 1000)
+720: onLinear(12.746199607849121, -17.67799949645996, -1, 1000)
+721: onLinear(14.061400413513184, -17.67799949645996, -1, 1000)
+722: onLinear(15.060678482055664, -16.678722381591797, -0.0007216872763819993, 1000)
+723: onLinear(14.061400413513184, -17.67799949645996, -1, 1000)
+724: onLinear(14.061400413513184, -19.972700119018555, -1, 1000)
+725: onCircular(false, 15.061400413513184, -19.972700119018555, -1, 15.931539535522461, -20.465505599975586, -1, 1000)
+direction: CCW
+sweep: 150.474844deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1
+726: onLinear(16.400840759277344, -19.636865615844727, -1, 1000)
+727: onLinear(16.632078170776367, -19.26598358154297, -1, 1000)
+728: onLinear(16.873210906982422, -18.920169830322266, -1, 1000)
+729: onLinear(17.130531311035156, -18.600419998168945, -1, 1000)
+730: onLinear(17.417896270751953, -18.291427612304688, -1, 1000)
+731: onLinear(17.73849868774414, -17.97850227355957, -1, 1000)
+732: onLinear(17.998188018798828, -17.737060546875, -1, 1000)
+733: onLinear(18.41539764404297, -17.50263023376465, -1, 1000)
+734: onLinear(18.627309799194336, -17.402448654174805, -1, 1000)
+735: onLinear(18.827516555786133, -17.32808494567871, -1, 1000)
+736: onLinear(19.034215927124023, -17.27549934387207, -1, 1000)
+737: onLinear(19.265098571777344, -17.23761749267578, -1, 1000)
+738: onLinear(19.76595115661621, -17.191354751586914, -1, 1000)
+739: onLinear(20.16218376159668, -17.229663848876953, -1, 1000)
+740: onLinear(20.621416091918945, -17.286563873291016, -1, 1000)
+741: onLinear(21.057477951049805, -17.364887237548828, -1, 1000)
+742: onLinear(21.246868133544922, -17.410451889038086, -1, 1000)
+743: onLinear(21.437580108642578, -17.4663028717041, -1, 1000)
+744: onLinear(21.627838134765625, -17.532453536987305, -1, 1000)
+745: onLinear(21.81423568725586, -17.60654640197754, -1, 1000)
+746: onLinear(22.222721099853516, -17.79439353942871, -1, 1000)
+747: onLinear(22.31350326538086, -17.841663360595703, -1, 1000)
+748: onLinear(22.835939407348633, -17.64045524597168, -0.5802602767944336, 1000)
+749: onLinear(23.55324935913086, -17.374042510986328, -0.000526397954672575, 1000)
+750: onLinear(22.835939407348633, -17.64045524597168, -0.5802602767944336, 1000)
+751: onLinear(22.31350326538086, -17.841663360595703, -1, 1000)
+752: onLinear(21.730226516723633, -19.4127140045166, -1, 1000)
+753: onLinear(21.935556411743164, -19.896957397460938, -0.6389659643173218, 1000)
+754: onLinear(22.28458595275879, -20.78998565673828, -0.0009387211757712066, 1000)
+755: onLinear(21.935556411743164, -19.896957397460938, -0.6389659643173218, 1000)
+756: onLinear(21.730226516723633, -19.4127140045166, -1, 1000)
+757: onLinear(21.719308853149414, -19.40796661376953, -1, 1000)
+758: onCircular(false, 21.320499420166016, -20.325000762939453, -1, 21.6514949798584, -19.381366729736328, -1, 1000)
+direction: CCW
+sweep: 4.174584deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1.000002
+759: onLinear(21.31879425048828, -19.264667510986328, -1, 1000)
+760: onCircular(false, 20.98780059814453, -20.20829963684082, -1, 21.22960090637207, -19.237974166870117, -1, 1000)
+direction: CCW
+sweep: 5.336285deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 0.999999
+761: onLinear(20.8877010345459, -19.152774810791016, -1, 1000)
+762: onCircular(false, 20.64590072631836, -20.12310028076172, -1, 20.81039047241211, -19.136720657348633, -1, 1000)
+direction: CCW
+sweep: 4.525242deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1.000001
+763: onLinear(20.460790634155273, -19.078420639038086, -1, 1000)
+764: onCircular(false, 20.296300888061523, -20.064800262451172, -1, 20.39630126953125, -19.069812774658203, -1, 1000)
+direction: CCW
+sweep: 3.728394deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1
+765: onLinear(19.683900833129883, -18.998212814331055, -1, 1000)
+766: onCircular(false, 19.583900451660156, -19.993200302124023, -1, 19.487449645996094, -18.997861862182617, -1, 1000)
+direction: CCW
+sweep: 11.274016deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1.000001
+767: onLinear(18.903350830078125, -19.054462432861328, -1, 1000)
+768: onCircular(false, 18.999799728393555, -20.049800872802734, -1, 18.828006744384766, -19.064666748046875, -1, 1000)
+direction: CCW
+sweep: 4.357357deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1.000001
+769: onLinear(18.543006896972656, -19.11436653137207, -1, 1000)
+770: onCircular(false, 18.714799880981445, -20.09950065612793, -1, 18.452598571777344, -19.13448715209961, -1, 1000)
+direction: CCW
+sweep: 5.308643deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1
+771: onLinear(18.176198959350586, -19.20958709716797, -1, 1000)
+772: onCircular(false, 18.438400268554688, -20.17460060119629, -1, 18.066587448120117, -19.246292114257812, -1, 1000)
+direction: CCW
+sweep: 6.62673deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1.000001
+773: onLinear(17.800687789916992, -19.352792739868164, -1, 1000)
+774: onCircular(false, 18.172500610351562, -20.281099319458008, -1, 17.71631622314453, -19.39121437072754, -1, 1000)
+direction: CCW
+sweep: 5.313688deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1
+775: onLinear(17.459016799926758, -19.523113250732422, -1, 1000)
+776: onCircular(false, 17.915199279785156, -20.413000106811523, -1, 17.392709732055664, -19.560354232788086, -1, 1000)
+direction: CCW
+sweep: 4.358361deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1
+777: onLinear(16.892210006713867, -19.867053985595703, -1, 1000)
+778: onCircular(false, 17.41469955444336, -20.71969985961914, -1, 16.728260040283203, -19.99251365661621, -1, 1000)
+direction: CCW
+sweep: 11.849561deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 0.999999
+779: onLinear(16.274959564208984, -20.420413970947266, -1, 1000)
+780: onCircular(false, 16.96139907836914, -21.147600173950195, -1, 16.22284507751465, -20.473407745361328, -1, 1000)
+direction: CCW
+sweep: 4.259514deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 0.999999
+781: onLinear(16.015443801879883, -20.700607299804688, -1, 1000)
+782: onCircular(false, 16.753999710083008, -21.374799728393555, -1, 15.956960678100586, -20.770872116088867, -1, 1000)
+direction: CCW
+sweep: 5.239744deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1
+783: onLinear(15.772760391235352, -21.013973236083984, -1, 1000)
+784: onCircular(false, 16.569799423217773, -21.617900848388672, -1, 15.711960792541504, -21.10398292541504, -1, 1000)
+direction: CCW
+sweep: 6.226542deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 0.999999
+785: onLinear(15.555060386657715, -21.365882873535156, -1, 1000)
+786: onCircular(false, 16.412900924682617, -21.87980079650879, -1, 15.514293670654297, -21.441043853759766, -1, 1000)
+direction: CCW
+sweep: 4.900561deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1.000001
+787: onLinear(15.379094123840332, -21.71794319152832, -1, 1000)
+788: onCircular(false, 16.277700424194336, -22.156700134277344, -1, 15.3506441116333, -21.781776428222656, -1, 1000)
+direction: CCW
+sweep: 4.004999deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1.000001
+789: onLinear(15.116644859313965, -22.360376358032227, -1, 1000)
+790: onCircular(false, 16.043699264526367, -22.735300064086914, -1, 15.074061393737793, -22.490758895874023, -1, 1000)
+direction: CCW
+sweep: 7.86489deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 0.999999
+791: onLinear(14.807260513305664, -23.54865837097168, -1, 1000)
+792: onCircular(false, 15.776900291442871, -23.79319953918457, -1, 14.79896354675293, -23.584299087524414, -1, 1000)
+direction: CCW
+sweep: 2.096782deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1
+793: onLinear(14.685362815856934, -24.116098403930664, -1, 1000)
+794: onCircular(false, 15.663299560546875, -24.325000762939453, -1, 14.67711067199707, -24.15937614440918, -1, 1000)
+direction: CCW
+sweep: 2.524511deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1
+795: onLinear(14.587210655212402, -24.69467544555664, -1, 1000)
+796: onCircular(false, 15.573399543762207, -24.860300064086914, -1, 14.579922676086426, -24.74627113342285, -1, 1000)
+direction: CCW
+sweep: 2.985899deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 0.999999
+797: onLinear(14.518022537231445, -25.28557014465332, -1, 1000)
+798: onCircular(false, 15.511500358581543, -25.399599075317383, -1, 14.514152526855469, -25.326810836791992, -1, 1000)
+direction: CCW
+sweep: 2.373467deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1
+799: onLinear(14.474552154541016, -25.86941146850586, -1, 1000)
+800: onCircular(false, 15.47189998626709, -25.94219970703125, -1, 14.472647666931152, -25.903532028198242, -1, 1000)
+direction: CCW
+sweep: 1.958102deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1
+801: onLinear(14.430447578430176, -26.99403190612793, -1, 1000)
+802: onCircular(false, 15.429699897766113, -27.032699584960938, -1, 14.429699897766113, -27.032699584960938, -1, 1000)
+direction: CCW
+sweep: 2.216047deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1
+803: onLinear(14.429699897766113, -37.41059875488281, -1, 1000)
+804: onLinear(12.746199607849121, -37.41059875488281, -1, 1000)
+805: onLinear(14.429699897766113, -37.41059875488281, -1, 1000)
+806: onLinear(15.428977966308594, -38.40987777709961, -0.0007216872763819993, 1000)
+807: onMovement(MOVEMENT_RAPID /*rapid*/)
+807: onRapid(15.428977966308594, -38.40987777709961, 5)
+808: onRapid(31.212221145629883, -38.40987777709961, 5)
+809: onMovement(MOVEMENT_LEAD_IN /*lead in*/)
+809: onLinear(31.212221145629883, -38.40987777709961, -0.0007216872763819993, 1000)
+810: onMovement(MOVEMENT_CUTTING /*cutting*/)
+810: onLinear(32.21149826049805, -37.41059875488281, -1, 1000)
+811: onLinear(32.21149826049805, -9.410650253295898, -1, 1000)
+812: onLinear(31.212221145629883, -8.411371231079102, -0.0007216872763819993, 1000)
+813: onLinear(32.21149826049805, -9.410650253295898, -1, 1000)
+814: onLinear(33.894901275634766, -9.410650253295898, -1, 1000)
+815: onLinear(34.8941764831543, -8.411371231079102, -0.0007216872763819993, 1000)
+816: onLinear(33.894901275634766, -9.410650253295898, -1, 1000)
+817: onLinear(33.894901275634766, -37.41059875488281, -1, 1000)
+818: onLinear(32.21149826049805, -37.41059875488281, -1, 1000)
+819: onLinear(33.894901275634766, -37.41059875488281, -1, 1000)
+820: onLinear(34.8941764831543, -38.40987777709961, -0.0007216872763819993, 1000)
+821: onMovement(MOVEMENT_RAPID /*rapid*/)
+821: onRapid(34.8941764831543, -38.40987777709961, 5)
+822: onRapid(60.0089225769043, -8.411371231079102, 5)
+823: onMovement(MOVEMENT_LEAD_IN /*lead in*/)
+823: onLinear(60.0089225769043, -8.411371231079102, -0.0007216872763819993, 1000)
+824: onMovement(MOVEMENT_CUTTING /*cutting*/)
+824: onLinear(61.008201599121094, -9.410650253295898, -1, 1000)
+825: onLinear(61.008201599121094, -19.17460060119629, -1, 1000)
+826: onCircular(true, 60.008201599121094, -19.17460060119629, -1, 59.244197845458984, -19.819812774658203, -1, 1000)
+direction: CW
+sweep: 139.818426deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1
+827: onLinear(58.72262954711914, -19.20221519470215, -1, 1000)
+828: onLinear(58.47914123535156, -18.943302154541016, -1, 1000)
+829: onLinear(58.229793548583984, -18.710559844970703, -1, 1000)
+830: onLinear(57.962154388427734, -18.49736213684082, -1, 1000)
+831: onLinear(57.66899490356445, -18.292701721191406, -1, 1000)
+832: onLinear(57.04180908203125, -17.901273727416992, -1, 1000)
+833: onLinear(56.69927215576172, -17.749319076538086, -1, 1000)
+834: onLinear(56.31209945678711, -17.58847999572754, -1, 1000)
+835: onLinear(55.94327163696289, -17.455596923828125, -1, 1000)
+836: onLinear(55.58674240112305, -17.355661392211914, -1, 1000)
+837: onLinear(55.22053909301758, -17.286428451538086, -1, 1000)
+838: onLinear(54.82727813720703, -17.239534378051758, -1, 1000)
+839: onLinear(54.40652847290039, -17.208507537841797, -1, 1000)
+840: onLinear(54.0213737487793, -17.188690185546875, -1, 1000)
+841: onLinear(53.45008087158203, -17.228471755981445, -1, 1000)
+842: onLinear(52.84169006347656, -17.286943435668945, -1, 1000)
+843: onLinear(52.55998992919922, -17.3245792388916, -1, 1000)
+844: onLinear(52.28343963623047, -17.370981216430664, -1, 1000)
+845: onLinear(52.01728057861328, -17.427082061767578, -1, 1000)
+846: onLinear(51.76060104370117, -17.494108200073242, -1, 1000)
+847: onLinear(51.508392333984375, -17.57457160949707, -1, 1000)
+848: onLinear(51.25453186035156, -17.6694393157959, -1, 1000)
+849: onLinear(50.99692153930664, -17.778308868408203, -1, 1000)
+850: onLinear(50.73979949951172, -17.897417068481445, -1, 1000)
+851: onLinear(50.196136474609375, -18.17470932006836, -1, 1000)
+852: onLinear(49.71528625488281, -18.436491012573242, -1, 1000)
+853: onLinear(49.26980209350586, -18.78821563720703, -1, 1000)
+854: onLinear(48.78792953491211, -19.191781997680664, -1, 1000)
+855: onLinear(48.57264709472656, -19.387277603149414, -1, 1000)
+856: onLinear(48.36760330200195, -19.58768081665039, -1, 1000)
+857: onLinear(48.1778564453125, -19.790542602539062, -1, 1000)
+858: onLinear(48.00307846069336, -19.99800682067871, -1, 1000)
+859: onLinear(47.83937072753906, -20.21609115600586, -1, 1000)
+860: onLinear(47.68218231201172, -20.448562622070312, -1, 1000)
+861: onLinear(47.53034591674805, -20.695035934448242, -1, 1000)
+862: onLinear(47.385189056396484, -20.94992446899414, -1, 1000)
+863: onLinear(47.093936920166016, -21.509891510009766, -1, 1000)
+864: onLinear(46.83559799194336, -22.041353225708008, -1, 1000)
+865: onLinear(46.615936279296875, -22.690568923950195, -1, 1000)
+866: onLinear(46.39556884765625, -23.384214401245117, -1, 1000)
+867: onLinear(46.205162048339844, -24.072450637817383, -1, 1000)
+868: onLinear(46.12799835205078, -24.40248680114746, -1, 1000)
+869: onLinear(46.061344146728516, -24.737024307250977, -1, 1000)
+870: onLinear(46.00626754760742, -25.074785232543945, -1, 1000)
+871: onLinear(45.96185302734375, -25.41313362121582, -1, 1000)
+872: onLinear(45.89542770385742, -26.12715721130371, -1, 1000)
+873: onLinear(45.85334014892578, -26.85613441467285, -1, 1000)
+874: onLinear(45.8248405456543, -27.564008712768555, -1, 1000)
+875: onLinear(45.85462188720703, -28.275733947753906, -1, 1000)
+876: onLinear(45.89933776855469, -29.00601577758789, -1, 1000)
+877: onLinear(45.97098159790039, -29.718955993652344, -1, 1000)
+878: onLinear(46.01905822753906, -30.054580688476562, -1, 1000)
+879: onLinear(46.07879638671875, -30.389190673828125, -1, 1000)
+880: onLinear(46.151180267333984, -30.71940803527832, -1, 1000)
+881: onLinear(46.236900329589844, -31.05040168762207, -1, 1000)
+882: onLinear(46.3350830078125, -31.38450050354004, -1, 1000)
+883: onLinear(46.44289779663086, -31.718324661254883, -1, 1000)
+884: onLinear(46.689151763916016, -32.410770416259766, -1, 1000)
+885: onLinear(46.932098388671875, -33.05073165893555, -1, 1000)
+886: onLinear(47.212982177734375, -33.568206787109375, -1, 1000)
+887: onLinear(47.53013229370117, -34.1190185546875, -1, 1000)
+888: onLinear(47.687294006347656, -34.37147903442383, -1, 1000)
+889: onLinear(47.85053634643555, -34.61572265625, -1, 1000)
+890: onLinear(48.01876449584961, -34.847469329833984, -1, 1000)
+891: onLinear(48.19281005859375, -35.06588363647461, -1, 1000)
+892: onLinear(48.377037048339844, -35.27424240112305, -1, 1000)
+893: onLinear(48.574928283691406, -35.477848052978516, -1, 1000)
+894: onLinear(48.78689193725586, -35.67889404296875, -1, 1000)
+895: onLinear(49.00799560546875, -35.87504196166992, -1, 1000)
+896: onLinear(49.496944427490234, -36.2779426574707, -1, 1000)
+897: onLinear(49.951820373535156, -36.63322067260742, -1, 1000)
+898: onLinear(50.429954528808594, -36.89910888671875, -1, 1000)
+899: onLinear(50.96435546875, -37.17774963378906, -1, 1000)
+900: onLinear(51.21689987182617, -37.29764175415039, -1, 1000)
+901: onLinear(51.47005844116211, -37.40730667114258, -1, 1000)
+902: onLinear(51.71962356567383, -37.503265380859375, -1, 1000)
+903: onLinear(51.96702194213867, -37.58478546142578, -1, 1000)
+904: onLinear(52.21856689453125, -37.65287399291992, -1, 1000)
+905: onLinear(52.479759216308594, -37.71009063720703, -1, 1000)
+906: onLinear(52.7513542175293, -37.75778579711914, -1, 1000)
+907: onLinear(53.02806091308594, -37.79658126831055, -1, 1000)
+908: onLinear(53.62765121459961, -37.857810974121094, -1, 1000)
+909: onLinear(54.15904235839844, -37.89771270751953, -1, 1000)
+910: onLinear(54.97648239135742, -37.80849075317383, -1, 1000)
+911: onLinear(55.40096664428711, -37.7503547668457, -1, 1000)
+912: onLinear(55.80862808227539, -37.680328369140625, -1, 1000)
+913: onLinear(56.193904876708984, -37.595741271972656, -1, 1000)
+914: onLinear(56.55390167236328, -37.49394226074219, -1, 1000)
+915: onLinear(56.89759063720703, -37.368831634521484, -1, 1000)
+916: onLinear(57.044063568115234, -37.3045654296875, -1, 1000)
+917: onLinear(57.19342803955078, -37.23042678833008, -1, 1000)
+918: onLinear(57.338165283203125, -37.14937973022461, -1, 1000)
+919: onLinear(57.4722900390625, -37.06544494628906, -1, 1000)
+920: onLinear(57.766761779785156, -36.85287094116211, -1, 1000)
+921: onLinear(58.05038833618164, -36.61347961425781, -1, 1000)
+922: onLinear(58.33384704589844, -36.34283447265625, -1, 1000)
+923: onLinear(58.61768341064453, -36.044639587402344, -1, 1000)
+924: onLinear(58.901058197021484, -35.72541046142578, -1, 1000)
+925: onLinear(59.48737335205078, -35.02604675292969, -1, 1000)
+926: onCircular(true, 60.253700256347656, -35.66849899291992, -1, 61.253700256347656, -35.66849899291992, -1, 1000)
+direction: CW
+sweep: 140.025122deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1
+927: onLinear(61.253700256347656, -37.41059875488281, -1, 1000)
+928: onLinear(60.25442123413086, -38.40987777709961, -0.0007216872763819993, 1000)
+929: onLinear(61.253700256347656, -37.41059875488281, -1, 1000)
+930: onLinear(62.671199798583984, -37.41059875488281, -1, 1000)
+931: onLinear(63.67047882080078, -38.40987777709961, -0.0007216872763819993, 1000)
+932: onLinear(62.671199798583984, -37.41059875488281, -1, 1000)
+933: onLinear(62.671199798583984, -9.410650253295898, -1, 1000)
+934: onLinear(61.008201599121094, -9.410650253295898, -1, 1000)
+935: onLinear(62.671199798583984, -9.410650253295898, -1, 1000)
+936: onLinear(63.67047882080078, -8.411371231079102, -0.0007216872763819993, 1000)
+937: onMovement(MOVEMENT_RAPID /*rapid*/)
+937: onRapid(63.67047882080078, -8.411371231079102, 5)
+938: onRapid(57.48289489746094, -19.057519912719727, 5)
+939: onMovement(MOVEMENT_LEAD_IN /*lead in*/)
+939: onLinear(57.48289489746094, -19.057519912719727, -1, 1000)
+940: onMovement(MOVEMENT_CUTTING /*cutting*/)
+940: onCircular(false, 56.98040008544922, -19.922100067138672, -1, 57.46339797973633, -19.046478271484375, -1, 1000)
+direction: CCW
+sweep: 1.28382deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1
+941: onLinear(57.20469665527344, -18.903778076171875, -1, 1000)
+942: onCircular(false, 56.72169876098633, -19.779399871826172, -1, 57.12906265258789, -18.866134643554688, -1, 1000)
+direction: CCW
+sweep: 4.842013deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 0.999999
+943: onLinear(56.8593635559082, -18.745834350585938, -1, 1000)
+944: onCircular(false, 56.45199966430664, -19.659099578857422, -1, 56.786651611328125, -18.716758728027344, -1, 1000)
+direction: CCW
+sweep: 4.48797deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 0.999999
+945: onLinear(56.506752014160156, -18.61735725402832, -1, 1000)
+946: onCircular(false, 56.17210006713867, -19.55970001220703, -1, 56.44356155395508, -18.59724998474121, -1, 1000)
+direction: CCW
+sweep: 3.800115deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1.000001
+947: onLinear(56.15496063232422, -18.515850067138672, -1, 1000)
+948: onCircular(false, 55.88349914550781, -19.478300094604492, -1, 56.102386474609375, -18.50255012512207, -1, 1000)
+direction: CCW
+sweep: 3.10755deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1
+949: onLinear(55.8063850402832, -18.43614959716797, -1, 1000)
+950: onCircular(false, 55.587501525878906, -19.41189956665039, -1, 55.74968719482422, -18.425140380859375, -1, 1000)
+direction: CCW
+sweep: 3.309685deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 0.999999
+951: onLinear(55.14188766479492, -18.325239181518555, -1, 1000)
+952: onCircular(false, 54.979698181152344, -19.312000274658203, -1, 55.10146713256836, -18.319440841674805, -1, 1000)
+direction: CCW
+sweep: 2.339793deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1.000001
+953: onLinear(54.48196792602539, -18.243440628051758, -1, 1000)
+954: onCircular(false, 54.360198974609375, -19.236000061035156, -1, 54.24163055419922, -18.243053436279297, -1, 1000)
+direction: CCW
+sweep: 13.803682deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1.000001
+955: onLinear(53.64202880859375, -18.314655303955078, -1, 1000)
+956: onCircular(false, 53.76060104370117, -19.307600021362305, -1, 53.601863861083984, -18.32027816772461, -1, 1000)
+direction: CCW
+sweep: 2.323882deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1.000001
+957: onLinear(53.01346206665039, -18.414878845214844, -1, 1000)
+958: onCircular(false, 53.17219924926758, -19.40220069885254, -1, 52.95685577392578, -18.425661087036133, -1, 1000)
+direction: CCW
+sweep: 3.302067deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1.000001
+959: onLinear(52.670257568359375, -18.488861083984375, -1, 1000)
+960: onCircular(false, 52.88560104370117, -19.46540069580078, -1, 52.617759704589844, -18.501935958862305, -1, 1000)
+direction: CCW
+sweep: 3.100164deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1.000002
+961: onLinear(52.338260650634766, -18.579635620117188, -1, 1000)
+962: onCircular(false, 52.60609817504883, -19.543100357055664, -1, 52.275394439697266, -18.599367141723633, -1, 1000)
+direction: CCW
+sweep: 3.775904deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 0.999999
+963: onLinear(52.00429153442383, -18.694366455078125, -1, 1000)
+964: onCircular(false, 52.334999084472656, -19.638099670410156, -1, 51.93130111694336, -18.723209381103516, -1, 1000)
+direction: CCW
+sweep: 4.49788deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 0.999998
+965: onLinear(51.66999816894531, -18.83850860595703, -1, 1000)
+966: onCircular(false, 52.073699951171875, -19.753400802612305, -1, 51.59430694580078, -18.87579917907715, -1, 1000)
+direction: CCW
+sweep: 4.835967deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1.000001
+967: onLinear(51.343509674072266, -19.012798309326172, -1, 1000)
+968: onCircular(false, 51.822898864746094, -19.890399932861328, -1, 51.27851104736328, -19.05156707763672, -1, 1000)
+direction: CCW
+sweep: 4.337326deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 0.999999
+969: onLinear(51.03721237182617, -19.208168029785156, -1, 1000)
+970: onCircular(false, 51.581600189208984, -20.047000885009766, -1, 50.984745025634766, -19.244651794433594, -1, 1000)
+direction: CCW
+sweep: 3.662128deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1
+971: onLinear(50.751644134521484, -19.418052673339844, -1, 1000)
+972: onCircular(false, 51.3484992980957, -20.220399856567383, -1, 50.71086120605469, -19.450063705444336, -1, 1000)
+direction: CCW
+sweep: 2.970862deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1
+973: onLinear(50.48446273803711, -19.637462615966797, -1, 1000)
+974: onCircular(false, 51.122100830078125, -20.407800674438477, -1, 50.44247817993164, -19.674238204956055, -1, 1000)
+direction: CCW
+sweep: 3.19829deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1
+975: onLinear(50.00457763671875, -20.079936981201172, -1, 1000)
+976: onCircular(false, 50.684200286865234, -20.813499450683594, -1, 49.97626495361328, -20.107221603393555, -1, 1000)
+direction: CCW
+sweep: 2.253012deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1
+977: onLinear(49.54926681518555, -20.535221099853516, -1, 1000)
+978: onCircular(false, 50.257198333740234, -21.241500854492188, -1, 49.38480758666992, -20.75269317626953, -1, 1000)
+direction: CCW
+sweep: 15.670813deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 0.999999
+979: onLinear(48.974609375, -21.484792709350586, -1, 1000)
+980: onCircular(false, 49.84700012207031, -21.973600387573242, -1, 48.964012145996094, -21.50420570373535, -1, 1000)
+direction: CCW
+sweep: 1.267242deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1
+981: onLinear(48.76801300048828, -21.872905731201172, -1, 1000)
+982: onCircular(false, 49.6510009765625, -22.342300415039062, -1, 48.75594711303711, -21.896339416503906, -1, 1000)
+direction: CCW
+sweep: 1.510222deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1.000001
+983: onLinear(48.57074737548828, -22.26803970336914, -1, 1000)
+984: onCircular(false, 49.46580123901367, -22.714000701904297, -1, 48.55528259277344, -22.300525665283203, -1, 1000)
+direction: CCW
+sweep: 2.061559deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1.000003
+985: onLinear(48.38458251953125, -22.67642593383789, -1, 1000)
+986: onCircular(false, 49.295101165771484, -23.08989906311035, -1, 48.36684036254883, -22.71796417236328, -1, 1000)
+direction: CCW
+sweep: 2.588189deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1.000002
+987: onLinear(48.214141845703125, -23.099063873291016, -1, 1000)
+988: onCircular(false, 49.142398834228516, -23.47100067138672, -1, 48.195072174072266, -23.150737762451172, -1, 1000)
+direction: CCW
+sweep: 3.156274deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 0.999998
+989: onLinear(48.064170837402344, -23.537939071655273, -1, 1000)
+990: onCircular(false, 49.01150131225586, -23.858200073242188, -1, 48.04645538330078, -23.596118927001953, -1, 1000)
+direction: CCW
+sweep: 3.485105deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1
+991: onLinear(47.939453125, -23.99011993408203, -1, 1000)
+992: onCircular(false, 48.90449905395508, -24.252199172973633, -1, 47.926300048828125, -24.044540405273438, -1, 1000)
+direction: CCW
+sweep: 3.208266deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 0.999998
+993: onLinear(47.8412971496582, -24.4449405670166, -1, 1000)
+994: onCircular(false, 48.81949996948242, -24.652599334716797, -1, 47.83235549926758, -24.492778778076172, -1, 1000)
+direction: CCW
+sweep: 2.788672deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 0.999998
+995: onLinear(47.76665496826172, -24.898578643798828, -1, 1000)
+996: onCircular(false, 48.75379943847656, -25.058399200439453, -1, 47.76093292236328, -24.939159393310547, -1, 1000)
+direction: CCW
+sweep: 2.348271deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1.000001
+997: onLinear(47.71163558959961, -25.349658966064453, -1, 1000)
+998: onCircular(false, 48.704498291015625, -25.468900680541992, -1, 47.708126068115234, -25.383806228637695, -1, 1000)
+direction: CCW
+sweep: 1.9669deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 0.999999
+999: onLinear(47.672725677490234, -25.79830551147461, -1, 1000)
+1000: onCircular(false, 48.66910171508789, -25.883399963378906, -1, 47.6702766418457, -25.83486557006836, -1, 1000)
+direction: CCW
+sweep: 2.099542deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1.000004
+1001: onLinear(47.62957763671875, -26.672466278076172, -1, 1000)
+1002: onCircular(false, 48.62839889526367, -26.72100067138672, -1, 47.62864303588867, -26.698963165283203, -1, 1000)
+direction: CCW
+sweep: 1.51915deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 0.999999
+1003: onLinear(47.610042572021484, -27.542762756347656, -1, 1000)
+1004: onCircular(false, 48.609798431396484, -27.564800262451172, -1, 47.61027145385742, -27.59552574157715, -1, 1000)
+direction: CCW
+sweep: 3.023479deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 0.999999
+1005: onLinear(47.636070251464844, -28.434825897216797, -1, 1000)
+1006: onCircular(false, 48.63560104370117, -28.40410041809082, -1, 47.63731384277344, -28.46263885498047, -1, 1000)
+direction: CCW
+sweep: 1.595205deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1.000002
+1007: onLinear(47.68611526489258, -29.29483985900879, -1, 1000)
+1008: onCircular(false, 48.68439865112305, -29.236299514770508, -1, 47.68916320800781, -29.333791732788086, -1, 1000)
+direction: CCW
+sweep: 2.238745deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 0.999999
+1009: onLinear(47.72946548461914, -29.74519157409668, -1, 1000)
+1010: onCircular(false, 48.724700927734375, -29.6476993560791, -1, 47.73361587524414, -29.780933380126953, -1, 1000)
+direction: CCW
+sweep: 2.061727deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1
+1011: onLinear(47.78831481933594, -30.18783187866211, -1, 1000)
+1012: onCircular(false, 48.77939987182617, -30.05459976196289, -1, 47.79509353637695, -30.231069564819336, -1, 1000)
+direction: CCW
+sweep: 2.507797deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1
+1013: onLinear(47.86709213256836, -30.63266944885254, -1, 1000)
+1014: onCircular(false, 48.85139846801758, -30.456199645996094, -1, 47.87751388549805, -30.68323516845703, -1, 1000)
+direction: CCW
+sweep: 2.958428deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 0.999998
+1015: onLinear(47.9697151184082, -31.0787353515625, -1, 1000)
+1016: onCircular(false, 48.943599700927734, -30.851699829101562, -1, 47.984928131103516, -31.13621711730957, -1, 1000)
+direction: CCW
+sweep: 3.407358deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1.000001
+1017: onLinear(48.10022735595703, -31.524717330932617, -1, 1000)
+1018: onCircular(false, 49.05889892578125, -31.24020004272461, -1, 48.120182037353516, -31.584888458251953, -1, 1000)
+direction: CCW
+sweep: 3.632796deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1
+1019: onLinear(48.26008224487305, -31.96588897705078, -1, 1000)
+1020: onCircular(false, 49.19879913330078, -31.621200561523438, -1, 48.28089141845703, -32.01799011230469, -1, 1000)
+direction: CCW
+sweep: 3.214892deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 0.999998
+1021: onLinear(48.44268798828125, -32.39228820800781, -1, 1000)
+1022: onCircular(false, 49.360599517822266, -31.995500564575195, -1, 48.4619255065918, -32.43411636352539, -1, 1000)
+direction: CCW
+sweep: 2.638127deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 0.999999
+1023: onLinear(48.64192581176758, -32.80291748046875, -1, 1000)
+1024: onCircular(false, 49.54059982299805, -32.36429977416992, -1, 48.65840148925781, -32.83517837524414, -1, 1000)
+direction: CCW
+sweep: 2.075623deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1
+1025: onLinear(48.852901458740234, -33.19957733154297, -1, 1000)
+1026: onCircular(false, 49.73509979248047, -32.72869873046875, -1, 48.86604309082031, -33.223411560058594, -1, 1000)
+direction: CCW
+sweep: 1.559475deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1
+1027: onLinear(49.0715446472168, -33.58441162109375, -1, 1000)
+1028: onCircular(false, 49.94060134887695, -33.089698791503906, -1, 49.0826530456543, -33.60343933105469, -1, 1000)
+direction: CCW
+sweep: 1.262418deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1.000002
+1029: onLinear(49.51175308227539, -34.320037841796875, -1, 1000)
+1030: onCircular(false, 50.36970138549805, -33.80630111694336, -1, 49.6640625, -34.51487350463867, -1, 1000)
+direction: CCW
+sweep: 14.205808deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1.000001
+1031: onLinear(50.09846115112305, -34.947471618652344, -1, 1000)
+1032: onCircular(false, 50.804100036621094, -34.23889923095703, -1, 50.12579345703125, -34.97367858886719, -1, 1000)
+direction: CCW
+sweep: 2.169711deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1
+1033: onLinear(50.57079315185547, -35.38447952270508, -1, 1000)
+1034: onCircular(false, 51.24909973144531, -34.64970016479492, -1, 50.6107292175293, -35.419429779052734, -1, 1000)
+direction: CCW
+sweep: 3.041035deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1
+1035: onLinear(50.840431213378906, -35.609928131103516, -1, 1000)
+1036: onCircular(false, 51.47880172729492, -34.8401985168457, -1, 50.879451751708984, -35.64068603515625, -1, 1000)
+direction: CCW
+sweep: 2.847063deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1
+1037: onLinear(51.115848541259766, -35.81768798828125, -1, 1000)
+1038: onCircular(false, 51.7151985168457, -35.0172004699707, -1, 51.16587829589844, -35.85280990600586, -1, 1000)
+direction: CCW
+sweep: 3.502875deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 0.999998
+1039: onLinear(51.410179138183594, -36.01341247558594, -1, 1000)
+1040: onCircular(false, 51.95949935913086, -35.177799224853516, -1, 51.471988677978516, -36.0509147644043, -1, 1000)
+direction: CCW
+sweep: 4.14321deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 0.999999
+1041: onLinear(51.7255859375, -36.1925163269043, -1, 1000)
+1042: onCircular(false, 52.21310043334961, -35.319400787353516, -1, 51.798309326171875, -36.22931671142578, -1, 1000)
+direction: CCW
+sweep: 4.671149deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 0.999999
+1043: onLinear(52.06221008300781, -36.34961700439453, -1, 1000)
+1044: onCircular(false, 52.47700119018555, -35.439701080322266, -1, 52.134761810302734, -36.37931442260742, -1, 1000)
+direction: CCW
+sweep: 4.492822deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1.000001
+1045: onLinear(52.40876007080078, -36.4791145324707, -1, 1000)
+1046: onCircular(false, 52.750999450683594, -35.53950119018555, -1, 52.47089385986328, -36.49946975708008, -1, 1000)
+direction: CCW
+sweep: 3.74684deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 0.999999
+1047: onLinear(52.7532958984375, -36.581871032714844, -1, 1000)
+1048: onCircular(false, 53.03340148925781, -35.62189865112305, -1, 52.80576705932617, -36.595645904541016, -1, 1000)
+direction: CCW
+sweep: 3.108623deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1.000001
+1049: onLinear(53.095367431640625, -36.66334533691406, -1, 1000)
+1050: onCircular(false, 53.323001861572266, -35.68960189819336, -1, 53.15153884887695, -36.67478942871094, -1, 1000)
+direction: CCW
+sweep: 3.28496deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 0.999997
+1051: onLinear(53.746238708496094, -36.778289794921875, -1, 1000)
+1052: onCircular(false, 53.917701721191406, -35.79309844970703, -1, 53.786865234375, -36.78450393676758, -1, 1000)
+direction: CCW
+sweep: 2.354964deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1.000002
+1053: onLinear(54.39306640625, -36.864505767822266, -1, 1000)
+1054: onCircular(false, 54.52389907836914, -35.87310028076172, -1, 54.64366912841797, -36.865901947021484, -1, 1000)
+direction: CCW
+sweep: 14.396536deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1
+1055: onLinear(55.23966979980469, -36.794002532958984, -1, 1000)
+1056: onCircular(false, 55.11989974975586, -35.80120086669922, -1, 55.279483795166016, -36.78838348388672, -1, 1000)
+direction: CCW
+sweep: 2.303938deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 0.999998
+1057: onLinear(55.864681243896484, -36.693782806396484, -1, 1000)
+1058: onCircular(false, 55.705101013183594, -35.706600189208984, -1, 55.92047119140625, -36.68313217163086, -1, 1000)
+direction: CCW
+sweep: 3.254698deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1
+1059: onLinear(56.20566940307617, -36.62023162841797, -1, 1000)
+1060: onCircular(false, 55.990299224853516, -35.643699645996094, -1, 56.25710678100586, -36.607452392578125, -1, 1000)
+direction: CCW
+sweep: 3.037089deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1.000003
+1061: onLinear(56.535606384277344, -36.53034973144531, -1, 1000)
+1062: onCircular(false, 56.268798828125, -35.56660079956055, -1, 56.5971565246582, -36.51115417480469, -1, 1000)
+direction: CCW
+sweep: 3.694727deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1
+1063: onLinear(56.867557525634766, -36.417152404785156, -1, 1000)
+1064: onCircular(false, 56.53919982910156, -35.472599029541016, -1, 56.93887710571289, -36.38925552368164, -1, 1000)
+direction: CCW
+sweep: 4.388866deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1.000001
+1065: onLinear(57.19987487792969, -36.275455474853516, -1, 1000)
+1066: onCircular(false, 56.800201416015625, -35.35879898071289, -1, 57.27429962158203, -36.2392692565918, -1, 1000)
+direction: CCW
+sweep: 4.742905deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 0.999999
+1067: onLinear(57.52519989013672, -36.10417175292969, -1, 1000)
+1068: onCircular(false, 57.05110168457031, -35.22370147705078, -1, 57.588134765625, -36.0672607421875, -1, 1000)
+direction: CCW
+sweep: 4.181258deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 0.999998
+1069: onLinear(57.83003234863281, -35.91326141357422, -1, 1000)
+1070: onCircular(false, 57.292999267578125, -35.069698333740234, -1, 57.88111114501953, -35.87847900390625, -1, 1000)
+direction: CCW
+sweep: 3.541262deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1.000001
+1071: onLinear(58.11531066894531, -35.70817947387695, -1, 1000)
+1072: onCircular(false, 57.527198791503906, -34.89939880371094, -1, 58.155887603759766, -35.677059173583984, -1, 1000)
+direction: CCW
+sweep: 2.930231deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1.000003
+1073: onLinear(58.383487701416016, -35.49305725097656, -1, 1000)
+1074: onCircular(false, 57.754798889160156, -34.71540069580078, -1, 58.42424774169922, -35.45825958251953, -1, 1000)
+direction: CCW
+sweep: 3.071046deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1.000001
+1075: onLinear(58.865447998046875, -35.0606575012207, -1, 1000)
+1076: onCircular(false, 58.19599914550781, -34.31779861450195, -1, 58.89347839355469, -35.03440475463867, -1, 1000)
+direction: CCW
+sweep: 2.200553deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1.000001
+1077: onLinear(59.324378967285156, -34.61500549316406, -1, 1000)
+1078: onCircular(false, 58.62689971923828, -33.898399353027344, -1, 59.48543167114258, -34.411163330078125, -1, 1000)
+direction: CCW
+sweep: 14.92689deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1.000002
+1079: onLinear(59.89873123168945, -33.71916198730469, -1, 1000)
+1080: onCircular(false, 59.040199279785156, -33.20640182495117, -1, 59.910003662109375, -33.69979476928711, -1, 1000)
+direction: CCW
+sweep: 1.283961deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 0.999998
+1081: onLinear(60.10780334472656, -33.351097106933594, -1, 1000)
+1082: onCircular(false, 59.237998962402344, -32.85770034790039, -1, 60.120853424072266, -33.32735061645508, -1, 1000)
+direction: CCW
+sweep: 1.55254deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1.000002
+1083: onLinear(60.30805206298828, -32.97544860839844, -1, 1000)
+1084: onCircular(false, 59.425201416015625, -32.50579833984375, -1, 60.32461929321289, -32.94288635253906, -1, 1000)
+direction: CCW
+sweep: 2.093395deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 0.999999
+1085: onLinear(60.497718811035156, -32.58668518066406, -1, 1000)
+1086: onCircular(false, 59.59830093383789, -32.149600982666016, -1, 60.51700973510742, -32.544532775878906, -1, 1000)
+direction: CCW
+sweep: 2.6563deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 0.999998
+1087: onLinear(60.67240905761719, -32.18303298950195, -1, 1000)
+1088: onCircular(false, 59.753700256347656, -31.78809928894043, -1, 60.693180084228516, -32.13070297241211, -1, 1000)
+direction: CCW
+sweep: 3.22627deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1
+1089: onLinear(60.8273811340332, -31.76270294189453, -1, 1000)
+1090: onCircular(false, 59.887901306152344, -31.42009925842285, -1, 60.847232818603516, -31.702377319335938, -1, 1000)
+direction: CCW
+sweep: 3.639356deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 0.999999
+1091: onLinear(60.95763397216797, -31.327177047729492, -1, 1000)
+1092: onCircular(false, 59.99829864501953, -31.04490089416504, -1, 60.972652435302734, -31.269927978515625, -1, 1000)
+direction: CCW
+sweep: 3.391611deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1.000001
+1093: onLinear(61.06085205078125, -30.88802719116211, -1, 1000)
+1094: onCircular(false, 60.08649826049805, -30.663000106811523, -1, 61.07112503051758, -30.837682723999023, -1, 1000)
+direction: CCW
+sweep: 2.944285deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1.000002
+1095: onLinear(61.139923095703125, -30.44988250732422, -1, 1000)
+1096: onCircular(false, 60.15530014038086, -30.27519989013672, -1, 61.14662170410156, -30.406652450561523, -1, 1000)
+direction: CCW
+sweep: 2.506662deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 0.999999
+1097: onLinear(61.19872283935547, -30.01375389099121, -1, 1000)
+1098: onCircular(false, 60.207401275634766, -29.882299423217773, -1, 61.20280075073242, -29.978078842163086, -1, 1000)
+direction: CCW
+sweep: 2.057455deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 0.999997
+1099: onLinear(61.24100112915039, -29.581079483032227, -1, 1000)
+1100: onCircular(false, 60.245601654052734, -29.485300064086914, -1, 61.24397277832031, -29.542339324951172, -1, 1000)
+direction: CCW
+sweep: 2.226313deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 0.999999
+1101: onLinear(61.28987121582031, -28.73893928527832, -1, 1000)
+1102: onCircular(false, 60.291500091552734, -28.681900024414062, -1, 61.29107666015625, -28.71101951599121, -1, 1000)
+direction: CCW
+sweep: 1.601227deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1.000001
+1103: onLinear(61.314674377441406, -27.90091896057129, -1, 1000)
+1104: onCircular(false, 60.315101623535156, -27.87179946899414, -1, 61.31483840942383, -27.848936080932617, -1, 1000)
+direction: CCW
+sweep: 2.978757deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 0.999998
+1105: onLinear(61.294837951660156, -26.974435806274414, -1, 1000)
+1106: onCircular(false, 60.295101165771484, -26.997299194335938, -1, 61.29387664794922, -26.94781494140625, -1, 1000)
+direction: CCW
+sweep: 1.526303deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1.000001
+1107: onLinear(61.25087356567383, -26.07991600036621, -1, 1000)
+1108: onCircular(false, 60.25210189819336, -26.1294002532959, -1, 61.24836730957031, -26.0430908203125, -1, 1000)
+direction: CCW
+sweep: 2.114935deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 0.999997
+1109: onLinear(61.2111701965332, -25.613691329956055, -1, 1000)
+1110: onCircular(false, 60.214900970458984, -25.700000762939453, -1, 61.207618713378906, -25.579557418823242, -1, 1000)
+direction: CCW
+sweep: 1.966384deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 0.999998
+1111: onLinear(61.15602111816406, -25.15425682067871, -1, 1000)
+1112: onCircular(false, 60.163299560546875, -25.274700164794922, -1, 61.15017318725586, -25.113195419311523, -1, 1000)
+direction: CCW
+sweep: 2.376552deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1.000002
+1113: onLinear(61.08137130737305, -24.692794799804688, -1, 1000)
+1114: onCircular(false, 60.09450149536133, -24.854299545288086, -1, 61.072322845458984, -24.644866943359375, -1, 1000)
+direction: CCW
+sweep: 2.794857deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 0.999998
+1115: onLinear(60.983524322509766, -24.230268478393555, -1, 1000)
+1116: onCircular(false, 60.005699157714844, -24.439699172973633, -1, 60.97014617919922, -24.17542266845703, -1, 1000)
+direction: CCW
+sweep: 3.234994deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1
+1117: onLinear(60.85834503173828, -23.767423629760742, -1, 1000)
+1118: onCircular(false, 59.89390182495117, -24.031700134277344, -1, 60.84046173095703, -23.70917510986328, -1, 1000)
+direction: CCW
+sweep: 3.491692deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 0.999999
+1119: onLinear(60.703861236572266, -23.30827522277832, -1, 1000)
+1120: onCircular(false, 59.757301330566406, -23.630800247192383, -1, 60.68463897705078, -23.256574630737305, -1, 1000)
+direction: CCW
+sweep: 3.160745deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1
+1121: onLinear(60.52543640136719, -22.86207389831543, -1, 1000)
+1122: onCircular(false, 59.59809875488281, -23.236299514770508, -1, 60.507511138916016, -22.820402145385742, -1, 1000)
+direction: CCW
+sweep: 2.599361deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1.000001
+1123: onLinear(60.329612731933594, -22.4314022064209, -1, 1000)
+1124: onCircular(false, 59.42020034790039, -22.847299575805664, -1, 60.31416320800781, -22.39915657043457, -1, 1000)
+direction: CCW
+sweep: 2.048757deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1.000001
+1125: onLinear(60.12126159667969, -22.01435661315918, -1, 1000)
+1126: onCircular(false, 59.227298736572266, -22.462499618530273, -1, 60.10904312133789, -21.990772247314453, -1, 1000)
+direction: CCW
+sweep: 1.521906deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1
+1127: onLinear(59.904945373535156, -21.609272003173828, -1, 1000)
+1128: onCircular(false, 59.02320098876953, -22.08099937438965, -1, 59.894386291503906, -21.590045928955078, -1, 1000)
+direction: CCW
+sweep: 1.256798deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1
+1129: onLinear(59.467384338378906, -20.832345962524414, -1, 1000)
+1130: onCircular(false, 58.59619903564453, -21.323299407958984, -1, 59.30546188354492, -20.618356704711914, -1, 1000)
+direction: CCW
+sweep: 15.42169deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 0.999999
+1131: onLinear(58.86476135253906, -20.174955368041992, -1, 1000)
+1132: onCircular(false, 58.15549850463867, -20.879899978637695, -1, 58.836795806884766, -20.147891998291016, -1, 1000)
+direction: CCW
+sweep: 2.229893deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1.000001
+1133: onLinear(58.38499450683594, -19.727392196655273, -1, 1000)
+1134: onCircular(false, 57.70370101928711, -20.459400177001953, -1, 58.343204498291016, -19.69061279296875, -1, 1000)
+direction: CCW
+sweep: 3.190062deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 0.999999
+1135: onLinear(58.10950469970703, -19.496212005615234, -1, 1000)
+1136: onCircular(false, 57.470001220703125, -20.264999389648438, -1, 58.06925582885742, -19.464441299438477, -1, 1000)
+direction: CCW
+sweep: 2.938289deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1
+1137: onLinear(57.82865524291992, -19.28434181213379, -1, 1000)
+1138: onCircular(false, 57.229400634765625, -20.08489990234375, -1, 57.77663040161133, -19.2479190826416, -1, 1000)
+direction: CCW
+sweep: 3.639325deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 0.999999
+1139: onLinear(57.52762985229492, -19.085119247436523, -1, 1000)
+1140: onCircular(false, 56.98040008544922, -19.922100067138672, -1, 57.48289489746094, -19.057519912719727, -1, 1000)
+direction: CCW
+sweep: 3.012025deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1
+1141: onMovement(MOVEMENT_RAPID /*rapid*/)
+1141: onRapid(57.48289489746094, -19.057519912719727, 5)
+1142: onRapid(52.62761306762695, 10.126558303833008, 5)
+1143: onMovement(MOVEMENT_LEAD_IN /*lead in*/)
+1143: onLinear(52.62761306762695, 10.126558303833008, -1, 1000)
+1144: onMovement(MOVEMENT_CUTTING /*cutting*/)
+1144: onLinear(52.62306213378906, 10.125811576843262, -1, 1000)
+1145: onLinear(52.30195999145508, 10.073911666870117, -1, 1000)
+1146: onCircular(true, 52.142398834228516, 11.061100006103516, -1, 52.27254867553711, 10.069604873657227, -1, 1000)
+direction: CW
+sweep: 1.703177deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1.000001
+1147: onLinear(51.94724655151367, 10.026905059814453, -1, 1000)
+1148: onCircular(true, 51.817100524902344, 11.018400192260742, -1, 51.92326354980469, 10.024051666259766, -1, 1000)
+direction: CW
+sweep: 1.38385deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1
+1149: onLinear(51.26576614379883, 9.953851699829102, -1, 1000)
+1150: onCircular(true, 51.15959930419922, 10.948200225830078, -1, 51.0556755065918, 9.953614234924316, -1, 1000)
+direction: CW
+sweep: 12.059557deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1.000001
+1151: onLinear(50.396278381347656, 10.022514343261719, -1, 1000)
+1152: onCircular(true, 50.50019836425781, 11.01710033416748, -1, 50.37220001220703, 10.025325775146484, -1, 1000)
+direction: CW
+sweep: 1.388995deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1
+1153: onLinear(50.04600143432617, 10.067425727844238, -1, 1000)
+1154: onCircular(true, 50.17399978637695, 11.059200286865234, -1, 50.01701354980469, 10.071599006652832, -1, 1000)
+direction: CW
+sweep: 1.678067deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1
+1155: onLinear(49.694915771484375, 10.122798919677734, -1, 1000)
+1156: onCircular(true, 49.851898193359375, 11.110400199890137, -1, 49.65554428100586, 10.129866600036621, -1, 1000)
+direction: CW
+sweep: 2.292031deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1
+1157: onLinear(49.33894729614258, 10.193266868591309, -1, 1000)
+1158: onCircular(true, 49.535301208496094, 11.173800468444824, -1, 49.289306640625, 10.20452880859375, -1, 1000)
+direction: CW
+sweep: 2.91679deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1
+1159: onLinear(48.97960662841797, 10.28312873840332, -1, 1000)
+1160: onCircular(true, 49.22560119628906, 11.252400398254395, -1, 48.919620513916016, 10.300361633300781, -1, 1000)
+direction: CW
+sweep: 3.576545deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1.000001
+1161: onLinear(48.61812210083008, 10.397261619567871, -1, 1000)
+1162: onCircular(true, 48.92409896850586, 11.349300384521484, -1, 48.548824310302734, 10.42238712310791, -1, 1000)
+direction: CW
+sweep: 4.224351deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1
+1163: onLinear(48.25712203979492, 10.540487289428711, -1, 1000)
+1164: onCircular(true, 48.63240051269531, 11.467399597167969, -1, 48.182899475097656, 10.574119567871094, -1, 1000)
+direction: CW
+sweep: 4.670149deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1
+1165: onLinear(47.90169906616211, 10.715619087219238, -1, 1000)
+1166: onCircular(true, 48.351200103759766, 11.60890007019043, -1, 47.837074279785156, 10.751184463500977, -1, 1000)
+direction: CW
+sweep: 4.227372deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1.000001
+1167: onLinear(47.56547546386719, 10.913984298706055, -1, 1000)
+1168: onCircular(true, 48.0796012878418, 11.771699905395508, -1, 47.51311111450195, 10.947630882263184, -1, 1000)
+direction: CW
+sweep: 3.566801deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1
+1169: onLinear(47.24980926513672, 11.128630638122559, -1, 1000)
+1170: onCircular(true, 47.81629943847656, 11.952699661254883, -1, 47.20840072631836, 11.158684730529785, -1, 1000)
+direction: CW
+sweep: 2.93189deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1
+1171: onLinear(46.952003479003906, 11.354985237121582, -1, 1000)
+1172: onCircular(true, 47.559898376464844, 12.14900016784668, -1, 46.92095184326172, 11.379749298095703, -1, 1000)
+direction: CW
+sweep: 2.275785deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1
+1173: onLinear(46.67005157470703, 11.588149070739746, -1, 1000)
+1174: onCircular(true, 47.308998107910156, 12.357399940490723, -1, 46.64767837524414, 11.607295989990234, -1, 1000)
+direction: CW
+sweep: 1.687288deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1
+1175: onLinear(46.40098190307617, 11.824795722961426, -1, 1000)
+1176: onCircular(true, 47.06230163574219, 12.574899673461914, -1, 46.38309860229492, 11.840947151184082, -1, 1000)
+direction: CW
+sweep: 1.380707deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1.000002
+1177: onLinear(45.89649963378906, 12.291247367858887, -1, 1000)
+1178: onCircular(true, 46.57569885253906, 13.025199890136719, -1, 45.725440979003906, 12.498832702636719, -1, 1000)
+direction: CW
+sweep: 15.458533deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1
+1179: onLinear(45.283241271972656, 13.213132858276367, -1, 1000)
+1180: onCircular(true, 46.13349914550781, 13.739500045776367, -1, 45.271602630615234, 13.232417106628418, -1, 1000)
+direction: CW
+sweep: 1.29057deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 0.999999
+1181: onLinear(45.0598030090332, 13.592416763305664, -1, 1000)
+1182: onCircular(true, 45.92169952392578, 14.099499702453613, -1, 45.046173095703125, 13.616333961486816, -1, 1000)
+direction: CW
+sweep: 1.577307deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 0.999998
+1183: onLinear(44.8455696105957, 13.979833602905273, -1, 1000)
+1184: onCircular(true, 45.721099853515625, 14.463000297546387, -1, 44.82823181152344, 14.01268482208252, -1, 1000)
+direction: CW
+sweep: 2.128413deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 0.999999
+1185: onLinear(44.64252853393555, 14.380885124206543, -1, 1000)
+1186: onCircular(true, 45.535400390625, 14.831199645996094, -1, 44.62238693237305, 14.423273086547852, -1, 1000)
+direction: CW
+sweep: 2.689136deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 0.999999
+1187: onLinear(44.455284118652344, 14.797272682189941, -1, 1000)
+1188: onCircular(true, 45.36830139160156, 15.2052001953125, -1, 44.43353271484375, 14.849939346313477, -1, 1000)
+direction: CW
+sweep: 3.26524deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1.000001
+1189: onLinear(44.288734436035156, 15.230938911437988, -1, 1000)
+1190: onCircular(true, 45.2234992980957, 15.586199760437012, -1, 44.2675895690918, 15.292546272277832, -1, 1000)
+direction: CW
+sweep: 3.73263deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 0.999998
+1191: onLinear(44.14808654785156, 15.681546211242676, -1, 1000)
+1192: onCircular(true, 45.104000091552734, 15.975199699401855, -1, 44.131927490234375, 15.740519523620605, -1, 1000)
+direction: CW
+sweep: 3.504014deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1
+1193: onLinear(44.03622817993164, 16.136919021606445, -1, 1000)
+1194: onCircular(true, 45.00830078125, 16.371599197387695, -1, 44.025142669677734, 16.18882942199707, -1, 1000)
+direction: CW
+sweep: 3.041663deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1.000002
+1195: onLinear(43.95024490356445, 16.59173011779785, -1, 1000)
+1196: onCircular(true, 44.93339920043945, 16.774499893188477, -1, 43.943023681640625, 16.636098861694336, -1, 1000)
+direction: CW
+sweep: 2.575811deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 0.999999
+1197: onLinear(43.88592529296875, 17.04469871520996, -1, 1000)
+1198: onCircular(true, 44.87630081176758, 17.1830997467041, -1, 43.88147735595703, 17.08147430419922, -1, 1000)
+direction: CW
+sweep: 2.122563deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1.000001
+1199: onLinear(43.83927917480469, 17.49457359313965, -1, 1000)
+1200: onCircular(true, 44.83409881591797, 17.596200942993164, -1, 43.836002349853516, 17.534526824951172, -1, 1000)
+direction: CW
+sweep: 2.296995deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1
+1201: onLinear(43.7843017578125, 18.371227264404297, -1, 1000)
+1202: onCircular(true, 44.78239822387695, 18.432899475097656, -1, 43.78295135498047, 18.39974594116211, -1, 1000)
+direction: CW
+sweep: 1.635889deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 0.999997
+1203: onLinear(43.75495147705078, 19.243846893310547, -1, 1000)
+1204: onCircular(true, 44.754398345947266, 19.277000427246094, -1, 43.754940032958984, 19.30984115600586, -1, 1000)
+direction: CW
+sweep: 3.78189deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 0.999998
+1205: onLinear(43.78263854980469, 20.152841567993164, -1, 1000)
+1206: onCircular(true, 44.782100677490234, 20.1200008392334, -1, 43.783992767333984, 20.181522369384766, -1, 1000)
+direction: CW
+sweep: 1.645173deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1.000002
+1207: onLinear(43.83549499511719, 21.01702308654785, -1, 1000)
+1208: onCircular(true, 44.83359909057617, 20.95549964904785, -1, 43.83876419067383, 21.057008743286133, -1, 1000)
+direction: CW
+sweep: 2.298809deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1
+1209: onLinear(43.88086700439453, 21.469608306884766, -1, 1000)
+1210: onCircular(true, 44.875701904296875, 21.368099212646484, -1, 43.885318756103516, 21.50646209716797, -1, 1000)
+direction: CW
+sweep: 2.127036deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1.000002
+1211: onLinear(43.942317962646484, 21.91446304321289, -1, 1000)
+1212: onCircular(true, 44.932701110839844, 21.776100158691406, -1, 43.94955062866211, 21.958898544311523, -1, 1000)
+direction: CW
+sweep: 2.579688deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1
+1213: onLinear(44.024349212646484, 22.36119842529297, -1, 1000)
+1214: onCircular(true, 45.00749969482422, 22.17840003967285, -1, 44.03550720214844, 22.413415908813477, -1, 1000)
+direction: CW
+sweep: 3.059745deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1.000001
+1215: onLinear(44.13121032714844, 22.80921745300293, -1, 1000)
+1216: onCircular(true, 45.10319900512695, 22.574199676513672, -1, 44.14741516113281, 22.868268966674805, -1, 1000)
+direction: CW
+sweep: 3.509038deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1
+1217: onLinear(44.26691436767578, 23.256668090820312, -1, 1000)
+1218: onCircular(true, 45.22269821166992, 22.962600708007812, -1, 44.288150787353516, 23.318431854248047, -1, 1000)
+direction: CW
+sweep: 3.742814deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 0.999997
+1219: onLinear(44.43294906616211, 23.698732376098633, -1, 1000)
+1220: onCircular(true, 45.36750030517578, 23.342899322509766, -1, 44.454769134521484, 23.75146484375, -1, 1000)
+direction: CW
+sweep: 3.27023deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1.000002
+1221: onLinear(44.62187194824219, 24.12476348876953, -1, 1000)
+1222: onCircular(true, 45.53459930419922, 23.71619987487793, -1, 44.642269134521484, 24.167585372924805, -1, 1000)
+direction: CW
+sweep: 2.717888deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1.000001
+1223: onLinear(44.82817077636719, 24.535085678100586, -1, 1000)
+1224: onCircular(true, 45.72050094604492, 24.08370018005371, -1, 44.84546661376953, 24.567766189575195, -1, 1000)
+direction: CW
+sweep: 2.118637deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1.000002
+1225: onLinear(45.04616928100586, 24.930564880371094, -1, 1000)
+1226: onCircular(true, 45.921199798583984, 24.446500778198242, -1, 45.05994415283203, 24.95467185974121, -1, 1000)
+direction: CW
+sweep: 1.590868deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1
+1227: onLinear(45.27194595336914, 25.31397247314453, -1, 1000)
+1228: onCircular(true, 46.133201599121094, 24.80579948425293, -1, 45.28366470336914, 25.333332061767578, -1, 1000)
+direction: CW
+sweep: 1.296637deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1.000002
+1229: onLinear(45.726165771484375, 26.04593276977539, -1, 1000)
+1230: onCircular(true, 46.57569885253906, 25.518400192260742, -1, 45.89841842651367, 26.25412368774414, -1, 1000)
+direction: CW
+sweep: 15.529509deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 0.999999
+1231: onLinear(46.385616302490234, 26.70262336730957, -1, 1000)
+1232: onCircular(true, 47.06290054321289, 25.966899871826172, -1, 46.41469192504883, 26.728363037109375, -1, 1000)
+direction: CW
+sweep: 2.225046deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1
+1233: onLinear(46.91289138793945, 27.152463912963867, -1, 1000)
+1234: onCircular(true, 47.561100006103516, 26.391000747680664, -1, 46.95541000366211, 27.186702728271484, -1, 1000)
+direction: CW
+sweep: 3.128195deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1.000001
+1235: onLinear(47.21211242675781, 27.382102966308594, -1, 1000)
+1236: onCircular(true, 47.81779861450195, 26.58639907836914, -1, 47.2531623840332, 27.4117374420166, -1, 1000)
+direction: CW
+sweep: 2.901143deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 0.999999
+1237: onLinear(47.51655960083008, 27.591938018798828, -1, 1000)
+1238: onCircular(true, 48.081199645996094, 26.766599655151367, -1, 47.56907653808594, 27.625513076782227, -1, 1000)
+direction: CW
+sweep: 3.571951deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1.000001
+1239: onLinear(47.84077835083008, 27.787511825561523, -1, 1000)
+1240: onCircular(true, 48.352901458740234, 26.928600311279297, -1, 47.905303955078125, 27.82283592224121, -1, 1000)
+direction: CW
+sweep: 4.215734deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1
+1241: onLinear(48.18660354614258, 27.96363639831543, -1, 1000)
+1242: onCircular(true, 48.63420104980469, 27.069400787353516, -1, 48.260562896728516, 27.99697494506836, -1, 1000)
+direction: CW
+sweep: 4.649459deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1
+1243: onLinear(48.55226135253906, 28.11447525024414, -1, 1000)
+1244: onCircular(true, 48.925899505615234, 27.186899185180664, -1, 48.62154769897461, 28.13945960998535, -1, 1000)
+direction: CW
+sweep: 4.220976deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1.000001
+1245: onLinear(48.92294692993164, 28.235759735107422, -1, 1000)
+1246: onCircular(true, 49.227298736572266, 27.283199310302734, -1, 48.982627868652344, 28.252805709838867, -1, 1000)
+direction: CW
+sweep: 3.556778deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1
+1247: onLinear(49.2921257019043, 28.33090591430664, -1, 1000)
+1248: onCircular(true, 49.536800384521484, 27.361299514770508, -1, 49.34151840209961, 28.3420467376709, -1, 1000)
+direction: CW
+sweep: 2.901397deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1
+1249: onLinear(49.65791702270508, 28.405046463012695, -1, 1000)
+1250: onCircular(true, 49.85319900512695, 27.424299240112305, -1, 49.711669921875, 28.414234161376953, -1, 1000)
+direction: CW
+sweep: 3.124865deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1.000001
+1251: onLinear(50.359371185302734, 28.506834030151367, -1, 1000)
+1252: onCircular(true, 50.50090026855469, 27.51689910888672, -1, 50.397613525390625, 28.511550903320312, -1, 1000)
+direction: CW
+sweep: 2.207864deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1
+1253: onLinear(51.05631637573242, 28.579952239990234, -1, 1000)
+1254: onCircular(true, 51.15959930419922, 27.58530044555664, -1, 51.2667350769043, 28.579544067382812, -1, 1000)
+direction: CW
+sweep: 12.078485deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 0.999999
+1255: onLinear(51.921932220458984, 28.50894546508789, -1, 1000)
+1256: onCircular(true, 51.81480026245117, 27.514699935913086, -1, 51.96041488647461, 28.50404167175293, -1, 1000)
+direction: CW
+sweep: 2.222862deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1
+1257: onLinear(52.604515075683594, 28.40924072265625, -1, 1000)
+1258: onCircular(true, 52.458900451660156, 27.41990089416504, -1, 52.65830993652344, 28.399816513061523, -1, 1000)
+direction: CW
+sweep: 3.129551deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 0.999999
+1259: onLinear(52.972808837890625, 28.3358154296875, -1, 1000)
+1260: onCircular(true, 52.773399353027344, 27.355899810791016, -1, 53.022743225097656, 28.32431411743164, -1, 1000)
+direction: CW
+sweep: 2.936263deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 0.999999
+1261: onLinear(53.330345153808594, 28.245115280151367, -1, 1000)
+1262: onCircular(true, 53.08100128173828, 27.27669906616211, -1, 53.390071868896484, 28.227739334106445, -1, 1000)
+direction: CW
+sweep: 3.564536deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1.000001
+1263: onLinear(53.68947219848633, 28.13043785095215, -1, 1000)
+1264: onCircular(true, 53.380401611328125, 27.179399490356445, -1, 53.75926971435547, 28.10485076904297, -1, 1000)
+direction: CW
+sweep: 4.260333deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1.000001
+1265: onLinear(54.04896926879883, 27.986249923706055, -1, 1000)
+1266: onCircular(true, 53.670101165771484, 27.060800552368164, -1, 54.12241744995117, 27.95265769958496, -1, 1000)
+direction: CW
+sweep: 4.628787deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1
+1267: onLinear(54.40161895751953, 27.811058044433594, -1, 1000)
+1268: onCircular(true, 53.94929885864258, 26.919200897216797, -1, 54.465755462646484, 27.7755126953125, -1, 1000)
+direction: CW
+sweep: 4.202314deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 0.999999
+1269: onLinear(54.735355377197266, 27.612913131713867, -1, 1000)
+1270: onCircular(true, 54.21889877319336, 26.75659942626953, -1, 54.78717803955078, 27.579437255859375, -1, 1000)
+direction: CW
+sweep: 3.535397deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1.000002
+1271: onLinear(55.048675537109375, 27.39883804321289, -1, 1000)
+1272: onCircular(true, 54.48040008544922, 26.576000213623047, -1, 55.0894775390625, 27.369110107421875, -1, 1000)
+direction: CW
+sweep: 2.892783deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 0.999999
+1273: onLinear(55.34417724609375, 27.17350959777832, -1, 1000)
+1274: onCircular(true, 54.73509979248047, 26.380399703979492, -1, 55.38625717163086, 27.139341354370117, -1, 1000)
+direction: CW
+sweep: 3.106104deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 0.999999
+1275: onLinear(55.880558013916016, 26.715242385864258, -1, 1000)
+1276: onCircular(true, 55.229400634765625, 25.956300735473633, -1, 55.90922164916992, 26.68967628479004, -1, 1000)
+direction: CW
+sweep: 2.200796deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 0.999998
+1277: onLinear(56.39262390136719, 26.2415771484375, -1, 1000)
+1278: onCircular(true, 55.712799072265625, 25.50819969177246, -1, 56.55791473388672, 26.042787551879883, -1, 1000)
+direction: CW
+sweep: 14.854277deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1.000002
+1279: onLinear(56.998111724853516, 25.346887588500977, -1, 1000)
+1280: onCircular(true, 56.15299987792969, 24.812299728393555, -1, 57.0099983215332, 25.327621459960938, -1, 1000)
+direction: CW
+sweep: 1.297084deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1.000001
+1281: onLinear(57.22099685668945, 24.976720809936523, -1, 1000)
+1282: onCircular(true, 56.36399841308594, 24.46139907836914, -1, 57.23472595214844, 24.95316505432129, -1, 1000)
+direction: CW
+sweep: 1.562197deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1
+1283: onLinear(57.4348258972168, 24.598865509033203, -1, 1000)
+1284: onCircular(true, 56.5640983581543, 24.107099533081055, -1, 57.452510833740234, 24.566152572631836, -1, 1000)
+direction: CW
+sweep: 2.130793deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1.000003
+1285: onLinear(57.63800811767578, 24.2071533203125, -1, 1000)
+1286: onCircular(true, 56.74959945678711, 23.74810028076172, -1, 57.65861511230469, 24.164865493774414, -1, 1000)
+direction: CW
+sweep: 2.69553deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1.000001
+1287: onLinear(57.82591247558594, 23.79996681213379, -1, 1000)
+1288: onCircular(true, 56.916900634765625, 23.38319969177246, -1, 57.848045349121094, 23.747844696044922, -1, 1000)
+direction: CW
+sweep: 3.244908deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 0.999998
+1289: onLinear(57.993648529052734, 23.37604522705078, -1, 1000)
+1290: onCircular(true, 57.0625, 23.01140022277832, -1, 58.01552963256836, 23.314271926879883, -1, 1000)
+direction: CW
+sweep: 3.755501deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 0.999998
+1291: onLinear(58.13623046875, 22.934473037719727, -1, 1000)
+1292: onCircular(true, 57.18320083618164, 22.63159942626953, -1, 58.15331268310547, 22.87425422668457, -1, 1000)
+direction: CW
+sweep: 3.587006deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 0.999999
+1293: onLinear(58.250213623046875, 22.486852645874023, -1, 1000)
+1294: onCircular(true, 57.28010177612305, 22.244199752807617, -1, 58.26185989379883, 22.434322357177734, -1, 1000)
+direction: CW
+sweep: 3.083224deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 0.999998
+1295: onLinear(58.33816146850586, 22.04032325744629, -1, 1000)
+1296: onCircular(true, 57.35639953613281, 21.850200653076172, -1, 58.34585952758789, 21.99501609802246, -1, 1000)
+direction: CW
+sweep: 2.633341deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1.000001
+1297: onLinear(58.40435791015625, 21.595317840576172, -1, 1000)
+1298: onCircular(true, 57.41490173339844, 21.45050048828125, -1, 58.409141540527344, 21.557666778564453, -1, 1000)
+direction: CW
+sweep: 2.174723deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 0.999999
+1299: onLinear(58.45273971557617, 21.153165817260742, -1, 1000)
+1300: onCircular(true, 57.458499908447266, 21.04599952697754, -1, 58.45627212524414, 21.11273765563965, -1, 1000)
+direction: CW
+sweep: 2.325347deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1.000002
+1301: onLinear(58.511070251464844, 20.293437957763672, -1, 1000)
+1302: onCircular(true, 57.513301849365234, 20.226699829101562, -1, 58.51259994506836, 20.264158248901367, -1, 1000)
+direction: CW
+sweep: 1.679954deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1
+1303: onLinear(58.54359817504883, 19.437158584594727, -1, 1000)
+1304: onCircular(true, 57.5443000793457, 19.399700164794922, -1, 58.5438346862793, 19.369171142578125, -1, 1000)
+direction: CW
+sweep: 3.896166deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1.000001
+1305: onLinear(58.517635345458984, 18.511371612548828, -1, 1000)
+1306: onCircular(true, 57.51810073852539, 18.541900634765625, -1, 58.5163688659668, 18.483089447021484, -1, 1000)
+direction: CW
+sweep: 1.622127deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 0.999999
+1307: onLinear(58.466270446777344, 17.632688522338867, -1, 1000)
+1308: onCircular(true, 57.46799850463867, 17.691499710083008, -1, 58.463134765625, 17.592958450317383, -1, 1000)
+direction: CW
+sweep: 2.283588deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1.000003
+1309: onLinear(58.421531677246094, 17.1728572845459, -1, 1000)
+1310: onCircular(true, 57.42639923095703, 17.271400451660156, -1, 58.41731262207031, 17.13689422607422, -1, 1000)
+direction: CW
+sweep: 2.074776deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1.000001
+1311: onLinear(58.36091232299805, 16.721393585205078, -1, 1000)
+1312: onCircular(true, 57.369998931884766, 16.855899810791016, -1, 58.35393142700195, 16.677352905273438, -1, 1000)
+direction: CW
+sweep: 2.555058deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1.000001
+1313: onLinear(58.2795295715332, 16.267353057861328, -1, 1000)
+1314: onCircular(true, 57.29560089111328, 16.445899963378906, -1, 58.26882553100586, 16.216041564941406, -1, 1000)
+direction: CW
+sweep: 3.003567deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1.000001
+1315: onLinear(58.17352294921875, 15.812541007995605, -1, 1000)
+1316: onCircular(true, 57.20029830932617, 16.042400360107422, -1, 58.157814025878906, 15.754010200500488, -1, 1000)
+direction: CW
+sweep: 3.472776deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1.000003
+1317: onLinear(58.03851318359375, 15.35791015625, -1, 1000)
+1318: onCircular(true, 57.08100128173828, 15.646300315856934, -1, 58.0179443359375, 15.2968168258667, -1, 1000)
+direction: CW
+sweep: 3.694096deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1
+1319: onLinear(57.87314224243164, 14.90861701965332, -1, 1000)
+1320: onCircular(true, 56.93619918823242, 15.258099555969238, -1, 57.85167694091797, 14.855731964111328, -1, 1000)
+direction: CW
+sweep: 3.270617deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1
+1321: onLinear(57.68417739868164, 14.474631309509277, -1, 1000)
+1322: onCircular(true, 56.768699645996094, 14.876999855041504, -1, 57.664363861083984, 14.432269096374512, -1, 1000)
+direction: CW
+sweep: 2.679785deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1
+1323: onLinear(57.47796630859375, 14.056869506835938, -1, 1000)
+1324: onCircular(true, 56.582298278808594, 14.50160026550293, -1, 57.46073913574219, 14.023744583129883, -1, 1000)
+direction: CW
+sweep: 2.139359deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1.000002
+1325: onLinear(57.25914001464844, 13.653144836425781, -1, 1000)
+1326: onCircular(true, 56.380699157714844, 14.130999565124512, -1, 57.245750427246094, 13.629313468933105, -1, 1000)
+direction: CW
+sweep: 1.56624deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1.000001
+1327: onLinear(57.0328483581543, 13.262213706970215, -1, 1000)
+1328: onCircular(true, 56.16780090332031, 13.763899803161621, -1, 57.02130889892578, 13.242819786071777, -1, 1000)
+direction: CW
+sweep: 1.29304deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1
+1329: onLinear(56.57660675048828, 12.514419555664062, -1, 1000)
+1330: onCircular(true, 55.72309875488281, 13.035499572753906, -1, 56.40536880493164, 12.304399490356445, -1, 1000)
+direction: CW
+sweep: 15.573985deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1
+1331: onLinear(55.92176818847656, 11.853099822998047, -1, 1000)
+1332: onCircular(true, 55.239498138427734, 12.584199905395508, -1, 55.89289855957031, 11.827184677124023, -1, 1000)
+direction: CW
+sweep: 2.222926deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1.000002
+1333: onLinear(55.39829635620117, 11.400284767150879, -1, 1000)
+1334: onCircular(true, 54.74489974975586, 12.157299995422363, -1, 55.35621643066406, 11.365912437438965, -1, 1000)
+direction: CW
+sweep: 3.113487deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1.000001
+1335: onLinear(55.101314544677734, 11.169013023376465, -1, 1000)
+1336: onCircular(true, 54.4900016784668, 11.960399627685547, -1, 55.059959411621094, 11.138728141784668, -1, 1000)
+direction: CW
+sweep: 2.937216deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 0.999998
+1337: onLinear(54.798160552978516, 10.957127571105957, -1, 1000)
+1338: onCircular(true, 54.22819900512695, 11.778800010681152, -1, 54.745906829833984, 10.923240661621094, -1, 1000)
+direction: CW
+sweep: 3.568943deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1.000002
+1339: onLinear(54.475704193115234, 10.759740829467773, -1, 1000)
+1340: onCircular(true, 53.95800018310547, 11.615300178527832, -1, 54.411319732666016, 10.723952293395996, -1, 1000)
+direction: CW
+sweep: 4.221512deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1
+1341: onLinear(54.13151931762695, 10.58165168762207, -1, 1000)
+1342: onCircular(true, 53.678199768066406, 11.472999572753906, -1, 54.057106018066406, 10.547564506530762, -1, 1000)
+direction: CW
+sweep: 4.690918deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1
+1343: onLinear(53.76670455932617, 10.428665161132812, -1, 1000)
+1344: onCircular(true, 53.38779830932617, 11.354100227355957, -1, 53.69727325439453, 10.403191566467285, -1, 1000)
+direction: CW
+sweep: 4.238377deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1.000001
+1345: onLinear(53.397071838378906, 10.30549144744873, -1, 1000)
+1346: onCircular(true, 53.08760070800781, 11.256400108337402, -1, 53.336483001708984, 10.28786563873291, -1, 1000)
+direction: CW
+sweep: 3.615993deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1.000001
+1347: onLinear(53.02788162231445, 10.208565711975098, -1, 1000)
+1348: onCircular(true, 52.77899932861328, 11.17710018157959, -1, 52.97810363769531, 10.197121620178223, -1, 1000)
+direction: CW
+sweep: 2.926788deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1
+1349: onLinear(52.662601470947266, 10.133021354675293, -1, 1000)
+1350: onCircular(true, 52.4635009765625, 11.11299991607666, -1, 52.62761306762695, 10.126558303833008, -1, 1000)
+direction: CW
+sweep: 2.03871deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1
+1351: onMovement(MOVEMENT_RAPID /*rapid*/)
+1351: onRapid(52.62761306762695, 10.126558303833008, 5)
+1352: onRapid(52.78526306152344, 9.057978630065918, 5)
+1353: onMovement(MOVEMENT_LEAD_IN /*lead in*/)
+1353: onLinear(52.78526306152344, 9.057978630065918, -1, 1000)
+1354: onMovement(MOVEMENT_CUTTING /*cutting*/)
+1354: onLinear(53.0430793762207, 9.096014976501465, -1, 1000)
+1355: onLinear(53.3385009765625, 9.15044116973877, -1, 1000)
+1356: onLinear(53.62548828125, 9.21585750579834, -1, 1000)
+1357: onLinear(53.90886306762695, 9.294405937194824, -1, 1000)
+1358: onLinear(54.193973541259766, 9.386672019958496, -1, 1000)
+1359: onLinear(54.48228073120117, 9.491719245910645, -1, 1000)
+1360: onLinear(54.77001953125, 9.60650634765625, -1, 1000)
+1361: onLinear(55.37254333496094, 9.870115280151367, -1, 1000)
+1362: onLinear(55.92162322998047, 10.125978469848633, -1, 1000)
+1363: onLinear(56.41141891479492, 10.445730209350586, -1, 1000)
+1364: onLinear(56.932708740234375, 10.806340217590332, -1, 1000)
+1365: onLinear(57.16869354248047, 10.982989311218262, -1, 1000)
+1366: onLinear(57.39553451538086, 11.165362358093262, -1, 1000)
+1367: onLinear(57.608272552490234, 11.351553916931152, -1, 1000)
+1368: onLinear(57.80666732788086, 11.543033599853516, -1, 1000)
+1369: onLinear(57.994300842285156, 11.744731903076172, -1, 1000)
+1370: onLinear(58.176063537597656, 11.960573196411133, -1, 1000)
+1371: onLinear(58.3538703918457, 12.19067096710205, -1, 1000)
+1372: onLinear(58.5257682800293, 12.429905891418457, -1, 1000)
+1373: onLinear(58.87592697143555, 12.957902908325195, -1, 1000)
+1374: onLinear(59.17268371582031, 13.432815551757812, -1, 1000)
+1375: onLinear(59.43943405151367, 14.126481056213379, -1, 1000)
+1376: onLinear(59.714561462402344, 14.897884368896484, -1, 1000)
+1377: onLinear(59.83307647705078, 15.269213676452637, -1, 1000)
+1378: onLinear(59.93910217285156, 15.641314506530762, -1, 1000)
+1379: onLinear(60.029727935791016, 16.010787963867188, -1, 1000)
+1380: onLinear(60.10419845581055, 16.381877899169922, -1, 1000)
+1381: onLinear(60.16442108154297, 16.76007652282715, -1, 1000)
+1382: onLinear(60.212257385253906, 17.14597511291504, -1, 1000)
+1383: onLinear(60.249122619628906, 17.5394229888916, -1, 1000)
+1384: onLinear(60.27655029296875, 17.936420440673828, -1, 1000)
+1385: onLinear(60.31137466430664, 18.7630558013916, -1, 1000)
+1386: onLinear(60.32954406738281, 19.566131591796875, -1, 1000)
+1387: onLinear(60.26727294921875, 20.63616371154785, -1, 1000)
+1388: onLinear(60.22542953491211, 21.16987419128418, -1, 1000)
+1389: onLinear(60.17142105102539, 21.69212532043457, -1, 1000)
+1390: onLinear(60.101776123046875, 22.19937515258789, -1, 1000)
+1391: onLinear(60.01313781738281, 22.68973159790039, -1, 1000)
+1392: onLinear(59.90242385864258, 23.161691665649414, -1, 1000)
+1393: onLinear(59.76649475097656, 23.614444732666016, -1, 1000)
+1394: onLinear(59.6010856628418, 24.0517635345459, -1, 1000)
+1395: onLinear(59.40278625488281, 24.482776641845703, -1, 1000)
+1396: onLinear(59.172515869140625, 24.9137020111084, -1, 1000)
+1397: onLinear(58.9139404296875, 25.345550537109375, -1, 1000)
+1398: onLinear(58.630794525146484, 25.779565811157227, -1, 1000)
+1399: onLinear(58.329010009765625, 26.214746475219727, -1, 1000)
+1400: onLinear(57.753292083740234, 27.004873275756836, -1, 1000)
+1401: onLinear(57.06269454956055, 27.56915283203125, -1, 1000)
+1402: onLinear(56.67873001098633, 27.868236541748047, -1, 1000)
+1403: onLinear(56.295799255371094, 28.149362564086914, -1, 1000)
+1404: onLinear(55.914573669433594, 28.407163619995117, -1, 1000)
+1405: onLinear(55.53413009643555, 28.638050079345703, -1, 1000)
+1406: onLinear(55.15370559692383, 28.838762283325195, -1, 1000)
+1407: onLinear(54.76911544799805, 29.0079402923584, -1, 1000)
+1408: onLinear(54.370506286621094, 29.148454666137695, -1, 1000)
+1409: onLinear(53.95191192626953, 29.26520347595215, -1, 1000)
+1410: onLinear(53.51331329345703, 29.36097526550293, -1, 1000)
+1411: onLinear(53.056114196777344, 29.438812255859375, -1, 1000)
+1412: onLinear(52.582271575927734, 29.50173568725586, -1, 1000)
+1413: onLinear(52.0960578918457, 29.55306053161621, -1, 1000)
+1414: onLinear(51.1561279296875, 29.631235122680664, -1, 1000)
+1415: onLinear(50.30852508544922, 29.566640853881836, -1, 1000)
+1416: onLinear(49.86515808105469, 29.524038314819336, -1, 1000)
+1417: onLinear(49.43191146850586, 29.471830368041992, -1, 1000)
+1418: onLinear(49.01215362548828, 29.407316207885742, -1, 1000)
+1419: onLinear(48.60726547241211, 29.32799530029297, -1, 1000)
+1420: onLinear(48.218624114990234, 29.231319427490234, -1, 1000)
+1421: onLinear(47.84562301635742, 29.114713668823242, -1, 1000)
+1422: onLinear(47.48277282714844, 28.974363327026367, -1, 1000)
+1423: onLinear(47.12187957763672, 28.80828857421875, -1, 1000)
+1424: onLinear(46.75940704345703, 28.61774253845215, -1, 1000)
+1425: onLinear(46.39463424682617, 28.405311584472656, -1, 1000)
+1426: onLinear(46.026954650878906, 28.17410659790039, -1, 1000)
+1427: onLinear(45.65756607055664, 27.928543090820312, -1, 1000)
+1428: onLinear(45.00982666015625, 27.478029251098633, -1, 1000)
+1429: onLinear(44.31203079223633, 26.627017974853516, -1, 1000)
+1430: onLinear(43.9487419128418, 26.159378051757812, -1, 1000)
+1431: onLinear(43.60890579223633, 25.691715240478516, -1, 1000)
+1432: onLinear(43.299739837646484, 25.22465705871582, -1, 1000)
+1433: onLinear(43.02157211303711, 24.748844146728516, -1, 1000)
+1434: onLinear(42.903194427490234, 24.521238327026367, -1, 1000)
+1435: onLinear(42.79170227050781, 24.285797119140625, -1, 1000)
+1436: onLinear(42.69060134887695, 24.048315048217773, -1, 1000)
+1437: onLinear(42.59911346435547, 23.806425094604492, -1, 1000)
+1438: onLinear(42.51610565185547, 23.55818748474121, -1, 1000)
+1439: onLinear(42.44318771362305, 23.311344146728516, -1, 1000)
+1440: onLinear(42.313411712646484, 22.77672576904297, -1, 1000)
+1441: onLinear(42.212547302246094, 22.228437423706055, -1, 1000)
+1442: onLinear(42.13471221923828, 21.659887313842773, -1, 1000)
+1443: onLinear(42.07593536376953, 21.073354721069336, -1, 1000)
+1444: onLinear(42.031803131103516, 20.473295211791992, -1, 1000)
+1445: onLinear(41.9698486328125, 19.27532196044922, -1, 1000)
+1446: onLinear(42.02295684814453, 18.17705726623535, -1, 1000)
+1447: onLinear(42.060672760009766, 17.62372589111328, -1, 1000)
+1448: onLinear(42.110694885253906, 17.081260681152344, -1, 1000)
+1449: onLinear(42.17654037475586, 16.553653717041016, -1, 1000)
+1450: onLinear(42.26191329956055, 16.042531967163086, -1, 1000)
+1451: onLinear(42.36992645263672, 15.549205780029297, -1, 1000)
+1452: onLinear(42.50606918334961, 15.066217422485352, -1, 1000)
+1453: onLinear(42.58100509643555, 14.843854904174805, -1, 1000)
+1454: onLinear(42.66365432739258, 14.624894142150879, -1, 1000)
+1455: onLinear(42.86457824707031, 14.16581916809082, -1, 1000)
+1456: onLinear(43.09479522705078, 13.715399742126465, -1, 1000)
+1457: onLinear(43.35444259643555, 13.26387882232666, -1, 1000)
+1458: onLinear(43.63918685913086, 12.810281753540039, -1, 1000)
+1459: onLinear(43.94335174560547, 12.355414390563965, -1, 1000)
+1460: onLinear(44.52094268798828, 11.534013748168945, -1, 1000)
+1461: onLinear(45.209598541259766, 10.973268508911133, -1, 1000)
+1462: onLinear(45.5960807800293, 10.673401832580566, -1, 1000)
+1463: onLinear(45.981658935546875, 10.391716957092285, -1, 1000)
+1464: onLinear(46.365413665771484, 10.133689880371094, -1, 1000)
+1465: onLinear(46.74827194213867, 9.903067588806152, -1, 1000)
+1466: onLinear(47.13127517700195, 9.702973365783691, -1, 1000)
+1467: onLinear(47.518768310546875, 9.534667015075684, -1, 1000)
+1468: onLinear(47.92056655883789, 9.39520263671875, -1, 1000)
+1469: onLinear(48.342796325683594, 9.279654502868652, -1, 1000)
+1470: onLinear(48.7850227355957, 9.185111999511719, -1, 1000)
+1471: onLinear(49.245635986328125, 9.108735084533691, -1, 1000)
+1472: onLinear(49.722869873046875, 9.047340393066406, -1, 1000)
+1473: onLinear(50.212650299072266, 8.99766731262207, -1, 1000)
+1474: onLinear(51.16843795776367, 8.921943664550781, -1, 1000)
+1475: onLinear(51.77430725097656, 8.959210395812988, -1, 1000)
+1476: onLinear(52.43035888671875, 9.014893531799316, -1, 1000)
+1477: onLinear(52.738765716552734, 9.051117897033691, -1, 1000)
+1478: onLinear(52.78526306152344, 9.057978630065918, -1, 1000)
+1479: onMovement(MOVEMENT_RAPID /*rapid*/)
+1479: onRapid(52.78526306152344, 9.057978630065918, 5)
+1480: onRapid(27.397722244262695, 8.411361694335938, 5)
+1481: onMovement(MOVEMENT_LEAD_IN /*lead in*/)
+1481: onLinear(27.397722244262695, 8.411361694335938, -0.0007216872763819993, 1000)
+1482: onMovement(MOVEMENT_CUTTING /*cutting*/)
+1482: onLinear(28.39699935913086, 9.410639762878418, -1, 1000)
+1483: onLinear(28.39699935913086, 37.41059875488281, -1, 1000)
+1484: onLinear(27.397722244262695, 38.40987777709961, -0.0007216872763819993, 1000)
+1485: onLinear(28.39699935913086, 37.41059875488281, -1, 1000)
+1486: onLinear(30.08049964904785, 37.41059875488281, -1, 1000)
+1487: onLinear(31.07977867126465, 38.40987777709961, -0.0007216872763819993, 1000)
+1488: onLinear(30.08049964904785, 37.41059875488281, -1, 1000)
+1489: onLinear(30.08049964904785, 9.410639762878418, -1, 1000)
+1490: onLinear(28.39699935913086, 9.410639762878418, -1, 1000)
+1491: onLinear(30.08049964904785, 9.410639762878418, -1, 1000)
+1492: onLinear(31.07977867126465, 8.411361694335938, -0.0007216872763819993, 1000)
+1493: onMovement(MOVEMENT_RAPID /*rapid*/)
+1493: onRapid(31.07977867126465, 8.411361694335938, 5)
+1494: onRapid(12.536921501159668, 8.411361694335938, 5)
+1495: onMovement(MOVEMENT_LEAD_IN /*lead in*/)
+1495: onLinear(12.536921501159668, 8.411361694335938, -0.0007216872763819993, 1000)
+1496: onMovement(MOVEMENT_CUTTING /*cutting*/)
+1496: onLinear(13.536199569702148, 9.410639762878418, -1, 1000)
+1497: onLinear(15.219599723815918, 9.410639762878418, -1, 1000)
+1498: onLinear(16.2188777923584, 8.411361694335938, -0.0007216872763819993, 1000)
+1499: onLinear(15.219599723815918, 9.410639762878418, -1, 1000)
+1500: onLinear(15.219599723815918, 37.41059875488281, -1, 1000)
+1501: onLinear(16.2188777923584, 38.40987777709961, -0.0007216872763819993, 1000)
+1502: onLinear(15.219599723815918, 37.41059875488281, -1, 1000)
+1503: onLinear(13.536199569702148, 37.41059875488281, -1, 1000)
+1504: onLinear(12.536921501159668, 38.40987777709961, -0.0007216872763819993, 1000)
+1505: onLinear(13.536199569702148, 37.41059875488281, -1, 1000)
+1506: onLinear(13.536199569702148, 9.410639762878418, -1, 1000)
+1507: onMovement(MOVEMENT_RAPID /*rapid*/)
+1507: onRapid(13.536199569702148, 9.410639762878418, 5)
+1508: onRapid(-16.853139877319336, 23.943283081054688, 5)
+1509: onMovement(MOVEMENT_LEAD_IN /*lead in*/)
+1509: onLinear(-16.853139877319336, 23.943283081054688, -0.0006940555176697671, 1000)
+1510: onMovement(MOVEMENT_CUTTING /*cutting*/)
+1510: onLinear(-16.28487205505371, 24.32829475402832, -0.45895159244537354, 1000)
+1511: onLinear(-15.738492012023926, 24.690677642822266, -0.8918304443359375, 1000)
+1512: onLinear(-15.596967697143555, 24.780550003051758, -1, 1000)
+1513: onLinear(-13.964056015014648, 24.557891845703125, -1, 1000)
+1514: onLinear(-13.652166366577148, 24.06511688232422, -0.553879976272583, 1000)
+1515: onLinear(-13.252843856811523, 23.452280044555664, -0.0006145272636786103, 1000)
+1516: onLinear(-13.652166366577148, 24.06511688232422, -0.553879976272583, 1000)
+1517: onLinear(-13.964056015014648, 24.557891845703125, -1, 1000)
+1518: onLinear(-13.929165840148926, 24.667848587036133, -1, 1000)
+1519: onCircular(true, -12.97599983215332, 24.365400314331055, -1, -13.910942077636719, 24.72020149230957, -1, 1000)
+direction: CW
+sweep: 3.176542deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1
+1520: onLinear(-13.744041442871094, 25.160001754760742, -1, 1000)
+1521: onCircular(true, -12.809100151062012, 24.805200576782227, -1, -13.721205711364746, 25.21515464782715, -1, 1000)
+direction: CW
+sweep: 3.420695deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 0.999999
+1522: onLinear(-13.625605583190918, 25.427854537963867, -1, 1000)
+1523: onCircular(true, -12.713500022888184, 25.017900466918945, -1, -13.604016304016113, 25.472850799560547, -1, 1000)
+direction: CW
+sweep: 2.859789deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1
+1524: onLinear(-13.49841594696045, 25.67955207824707, -1, 1000)
+1525: onCircular(true, -12.60789966583252, 25.224599838256836, -1, -13.470941543579102, 25.729732513427734, -1, 1000)
+direction: CW
+sweep: 3.278305deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1
+1526: onLinear(-13.353941917419434, 25.92963218688965, -1, 1000)
+1527: onCircular(true, -12.490900039672852, 25.42449951171875, -1, -13.3212890625, 25.9816837310791, -1, 1000)
+direction: CW
+sweep: 3.521132deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1
+1528: onLinear(-13.191988945007324, 26.17438316345215, -1, 1000)
+1529: onCircular(true, -12.361599922180176, 25.61720085144043, -1, -13.160516738891602, 26.21864128112793, -1, 1000)
+direction: CW
+sweep: 3.111963deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 0.999999
+1530: onLinear(-13.020417213439941, 26.404741287231445, -1, 1000)
+1531: onCircular(true, -12.221500396728516, 25.803300857543945, -1, -12.992406845092773, 26.440248489379883, -1, 1000)
+direction: CW
+sweep: 2.59145deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1
+1532: onLinear(-12.843107223510742, 26.620946884155273, -1, 1000)
+1533: onCircular(true, -12.072199821472168, 25.983999252319336, -1, -12.811623573303223, 26.657241821289062, -1, 1000)
+direction: CW
+sweep: 2.75317deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1.000002
+1534: onLinear(-12.493223190307617, 27.006940841674805, -1, 1000)
+1535: onCircular(true, -11.753800392150879, 26.33370018005371, -1, -12.46925163269043, 27.03236198425293, -1, 1000)
+direction: CW
+sweep: 2.002072deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 0.999999
+1536: onLinear(-12.136351585388184, 27.373262405395508, -1, 1000)
+1537: onCircular(true, -11.420900344848633, 26.67460060119629, -1, -11.871679306030273, 27.567235946655273, -1, 1000)
+direction: CW
+sweep: 18.886548deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1
+1538: onLinear(-11.421579360961914, 27.79453468322754, -1, 1000)
+1539: onCircular(true, -10.970800399780273, 26.901899337768555, -1, -11.392362594604492, 27.808698654174805, -1, 1000)
+direction: CW
+sweep: 1.86042deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1
+1540: onLinear(-10.93806266784668, 28.019899368286133, -1, 1000)
+1541: onCircular(true, -10.516500473022461, 27.113100051879883, -1, -10.896400451660156, 28.038127899169922, -1, 1000)
+direction: CW
+sweep: 2.605778deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1
+1542: onLinear(-10.666300773620605, 28.132627487182617, -1, 1000)
+1543: onCircular(true, -10.286399841308594, 27.207599639892578, -1, -10.627851486206055, 28.147499084472656, -1, 1000)
+direction: CW
+sweep: 2.362193deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1
+1544: onLinear(-10.395251274108887, 28.23200035095215, -1, 1000)
+1545: onCircular(true, -10.053799629211426, 27.29210090637207, -1, -10.347304344177246, 28.248058319091797, -1, 1000)
+direction: CW
+sweep: 2.89744deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1
+1546: onLinear(-10.111495018005371, 28.320457458496094, -1, 1000)
+1547: onCircular(true, -9.81799030303955, 27.364500045776367, -1, -10.057812690734863, 28.335315704345703, -1, 1000)
+direction: CW
+sweep: 3.191826deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 0.999999
+1548: onLinear(-9.818572998046875, 28.39441680908203, -1, 1000)
+1549: onCircular(true, -9.578749656677246, 27.423599243164062, -1, -9.768693923950195, 28.4053955078125, -1, 1000)
+direction: CW
+sweep: 2.926583deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1.000001
+1550: onLinear(-9.526273727416992, 28.452295303344727, -1, 1000)
+1551: onCircular(true, -9.33633041381836, 27.470500946044922, -1, -9.48238754272461, 28.459775924682617, -1, 1000)
+direction: CW
+sweep: 2.550974deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 0.999999
+1552: onLinear(-9.237196922302246, 28.495975494384766, -1, 1000)
+1553: onCircular(true, -9.091139793395996, 27.50670051574707, -1, -9.184270858764648, 28.50235366821289, -1, 1000)
+direction: CW
+sweep: 3.054745deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 0.999999
+1554: onLinear(-8.687140464782715, 28.54885482788086, -1, 1000)
+1555: onCircular(true, -8.594010353088379, 27.553199768066406, -1, -8.637863159179688, 28.55223846435547, -1, 1000)
+direction: CW
+sweep: 2.830315deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1.000001
+1556: onLinear(-8.134392738342285, 28.574338912963867, -1, 1000)
+1557: onCircular(true, -8.090539932250977, 27.575300216674805, -1, -8.110274314880371, 28.575105667114258, -1, 1000)
+direction: CW
+sweep: 1.382615deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1
+1558: onLinear(-7.603633880615234, 28.585105895996094, -1, 1000)
+1559: onCircular(true, -7.583899974822998, 27.58530044555664, -1, -7.547985076904297, 28.58465576171875, -1, 1000)
+direction: CW
+sweep: 3.188956deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1
+1560: onLinear(-6.980344772338867, 28.564254760742188, -1, 1000)
+1561: onCircular(true, -7.016260147094727, 27.564899444580078, -1, -6.951327323913574, 28.562789916992188, -1, 1000)
+direction: CW
+sweep: 1.664752deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1.000001
+1562: onLinear(-6.388857364654541, 28.52618980407715, -1, 1000)
+1563: onCircular(true, -6.453790187835693, 27.52829933166504, -1, -6.348501205444336, 28.522741317749023, -1, 1000)
+direction: CW
+sweep: 2.320821deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1
+1564: onLinear(-6.070821285247803, 28.49334144592285, -1, 1000)
+1565: onCircular(true, -6.176109790802002, 27.498899459838867, -1, -6.033300399780273, 28.488649368286133, -1, 1000)
+direction: CW
+sweep: 2.166662deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1
+1566: onLinear(-5.758850574493408, 28.449050903320312, -1, 1000)
+1567: onCircular(true, -5.901659965515137, 27.459299087524414, -1, -5.71398401260376, 28.441530227661133, -1, 1000)
+direction: CW
+sweep: 2.606752deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1
+1568: onLinear(-5.443404197692871, 28.38983154296875, -1, 1000)
+1569: onCircular(true, -5.631080150604248, 27.40760040283203, -1, -5.390648365020752, 28.378265380859375, -1, 1000)
+direction: CW
+sweep: 3.094856deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 0.999999
+1570: onLinear(-5.124598026275635, 28.312366485595703, -1, 1000)
+1571: onCircular(true, -5.365029811859131, 27.341699600219727, -1, -5.064517974853516, 28.29547882080078, -1, 1000)
+direction: CW
+sweep: 3.576314deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1.000001
+1572: onLinear(-4.803627967834473, 28.21327781677246, -1, 1000)
+1573: onCircular(true, -5.104139804840088, 27.25950050354004, -1, -4.7421183586120605, 28.191669464111328, -1, 1000)
+direction: CW
+sweep: 3.736048deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 0.999999
+1574: onLinear(-4.486688137054443, 28.092470169067383, -1, 1000)
+1575: onCircular(true, -4.848710060119629, 27.16029930114746, -1, -4.434086799621582, 28.070293426513672, -1, 1000)
+direction: CW
+sweep: 3.271176deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1.000001
+1576: onLinear(-4.183446407318115, 27.956092834472656, -1, 1000)
+1577: onCircular(true, -4.59807014465332, 27.046100616455078, -1, -4.140860557556152, 27.93545913696289, -1, 1000)
+direction: CW
+sweep: 2.711564deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1
+1578: onLinear(-3.8942105770111084, 27.808658599853516, -1, 1000)
+1579: onCircular(true, -4.351419925689697, 26.919300079345703, -1, -3.849581718444824, 27.78426170349121, -1, 1000)
+direction: CW
+sweep: 2.914493deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1
+1580: onLinear(-3.365081787109375, 27.503162384033203, -1, 1000)
+1581: onCircular(true, -3.866919994354248, 26.638200759887695, -1, -3.3338940143585205, 27.484298706054688, -1, 1000)
+direction: CW
+sweep: 2.088479deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 0.999999
+1582: onLinear(-2.8557841777801514, 27.1830997467041, -1, 1000)
+1583: onCircular(true, -3.3888099193573, 26.336999893188477, -1, -2.5855655670166016, 26.932649612426758, -1, 1000)
+direction: CW
+sweep: 21.230943deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1
+1584: onLinear(-2.3260955810546875, 26.58275032043457, -1, 1000)
+1585: onCircular(true, -3.1293399333953857, 25.98710060119629, -1, -2.3011085987091064, 26.5474853515625, -1, 1000)
+direction: CW
+sweep: 2.476517deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 0.999999
+1586: onLinear(-2.059898614883423, 26.19098663330078, -1, 1000)
+1587: onCircular(true, -2.888129949569702, 25.630599975585938, -1, -2.027432441711426, 26.13971710205078, -1, 1000)
+direction: CW
+sweep: 3.477503deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1
+1588: onLinear(-1.9193624258041382, 25.957015991210938, -1, 1000)
+1589: onCircular(true, -2.780060052871704, 25.447900772094727, -1, -1.8917988538742065, 25.907238006591797, -1, 1000)
+direction: CW
+sweep: 3.260566deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 0.999999
+1590: onLinear(-1.7951488494873047, 25.720338821411133, -1, 1000)
+1591: onCircular(true, -2.6834099292755127, 25.26099967956543, -1, -1.765528917312622, 25.657855987548828, -1, 1000)
+direction: CW
+sweep: 3.962677deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1
+1592: onLinear(-1.6825588941574097, 25.46595573425293, -1, 1000)
+1593: onCircular(true, -2.60044002532959, 25.06909942626953, -1, -1.6547653675079346, 25.394214630126953, -1, 1000)
+direction: CW
+sweep: 4.409239deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1
+1594: onLinear(-1.5869354009628296, 25.196914672851562, -1, 1000)
+1595: onCircular(true, -2.5326099395751953, 24.87179946899414, -1, -1.5663195848464966, 25.129255294799805, -1, 1000)
+direction: CW
+sweep: 4.053403deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1
+1596: onLinear(-1.512419581413269, 24.92695426940918, -1, 1000)
+1597: onCircular(true, -2.4787099361419678, 24.66950035095215, -1, -1.4984774589538574, 24.867347717285156, -1, 1000)
+direction: CW
+sweep: 3.507932deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1
+1598: onLinear(-1.4567574262619019, 24.660648345947266, -1, 1000)
+1599: onCircular(true, -2.4369900226593018, 24.462799072265625, -1, -1.444942593574524, 24.588665008544922, -1, 1000)
+direction: CW
+sweep: 4.180453deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1
+1600: onLinear(-1.391122579574585, 24.164464950561523, -1, 1000)
+1601: onCircular(true, -2.3831698894500732, 24.03860092163086, -1, -1.3849538564682007, 24.098304748535156, -1, 1000)
+direction: CW
+sweep: 3.807843deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1
+1602: onLinear(-1.3589838743209839, 23.664104461669922, -1, 1000)
+1603: onCircular(true, -2.3571999073028564, 23.604400634765625, -1, -1.3575754165649414, 23.631797790527344, -1, 1000)
+direction: CW
+sweep: 1.852875deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1
+1604: onLinear(-1.345535397529602, 23.19249725341797, -1, 1000)
+1605: onCircular(true, -2.3451600074768066, 23.16510009765625, -1, -1.3453861474990845, 23.143831253051758, -1, 1000)
+direction: CW
+sweep: 2.788645deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1
+1606: onLinear(-1.3658461570739746, 22.182031631469727, -1, 1000)
+1607: onCircular(true, -2.3656198978424072, 22.20330047607422, -1, -2.1064653396606445, 21.237464904785156, -1, 1000)
+direction: CW
+sweep: 73.761386deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1
+1608: onLinear(-3.7250454425811768, 20.803163528442383, -1, 1000)
+1609: onCircular(true, -3.9842000007629395, 21.768999099731445, -1, -3.752234697341919, 20.796276092529297, -1, 1000)
+direction: CW
+sweep: 1.607088deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 0.999999
+1610: onLinear(-4.5661749839782715, 20.602176666259766, -1, 1000)
+1611: onCircular(true, -4.798140048980713, 21.574899673461914, -1, -4.598083972930908, 20.595115661621094, -1, 1000)
+direction: CW
+sweep: 1.872563deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1
+1612: onLinear(-5.417443752288818, 20.42781639099121, -1, 1000)
+1613: onCircular(true, -5.617499828338623, 21.40760040283203, -1, -5.448728084564209, 20.421945571899414, -1, 1000)
+direction: CW
+sweep: 1.823827deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1
+1614: onLinear(-6.27335786819458, 20.280744552612305, -1, 1000)
+1615: onCircular(true, -6.442130088806152, 21.266399383544922, -1, -6.297048568725586, 20.276979446411133, -1, 1000)
+direction: CW
+sweep: 1.374446deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1
+1616: onLinear(-7.125648498535156, 20.155479431152344, -1, 1000)
+1617: onCircular(true, -7.270730018615723, 21.144899368286133, -1, -7.145270824432373, 20.152801513671875, -1, 1000)
+direction: CW
+sweep: 1.134717deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 0.999999
+1618: onLinear(-8.809036254882812, 19.94240379333496, -1, 1000)
+1619: onLinear(-9.623403549194336, 19.839380264282227, -1, 1000)
+1620: onLinear(-10.415973663330078, 19.722742080688477, -1, 1000)
+1621: onLinear(-11.199508666992188, 19.576614379882812, -1, 1000)
+1622: onLinear(-11.947245597839355, 19.41539192199707, -1, 1000)
+1623: onLinear(-12.576725006103516, 19.20960235595703, -1, 1000)
+1624: onLinear(-12.880547523498535, 19.097564697265625, -1, 1000)
+1625: onLinear(-13.169510841369629, 18.975936889648438, -1, 1000)
+1626: onLinear(-13.450392723083496, 18.83863067626953, -1, 1000)
+1627: onLinear(-13.732953071594238, 18.683801651000977, -1, 1000)
+1628: onLinear(-14.286831855773926, 18.351579666137695, -1, 1000)
+1629: onLinear(-14.775796890258789, 17.96068572998047, -1, 1000)
+1630: onLinear(-14.996094703674316, 17.763277053833008, -1, 1000)
+1631: onLinear(-15.192057609558105, 17.562030792236328, -1, 1000)
+1632: onLinear(-15.37148380279541, 17.34445571899414, -1, 1000)
+1633: onLinear(-15.545366287231445, 17.10271644592285, -1, 1000)
+1634: onLinear(-15.879189491271973, 16.580774307250977, -1, 1000)
+1635: onLinear(-16.14739990234375, 15.979823112487793, -1, 1000)
+1636: onLinear(-16.25710105895996, 15.688222885131836, -1, 1000)
+1637: onLinear(-16.34071159362793, 15.404858589172363, -1, 1000)
+1638: onLinear(-16.399307250976562, 15.114083290100098, -1, 1000)
+1639: onLinear(-16.439390182495117, 14.802722930908203, -1, 1000)
+1640: onLinear(-16.485095977783203, 14.152405738830566, -1, 1000)
+1641: onLinear(-16.434555053710938, 13.61574935913086, -1, 1000)
+1642: onLinear(-16.35765266418457, 13.033124923706055, -1, 1000)
+1643: onLinear(-16.309877395629883, 12.776422500610352, -1, 1000)
+1644: onLinear(-16.251123428344727, 12.528980255126953, -1, 1000)
+1645: onLinear(-16.18146324157715, 12.29845905303955, -1, 1000)
+1646: onLinear(-16.099817276000977, 12.084177017211914, -1, 1000)
+1647: onLinear(-16.001874923706055, 11.878103256225586, -1, 1000)
+1648: onLinear(-15.884124755859375, 11.670811653137207, -1, 1000)
+1649: onLinear(-15.745983123779297, 11.459342956542969, -1, 1000)
+1650: onLinear(-15.593427658081055, 11.249526977539062, -1, 1000)
+1651: onLinear(-15.223770141601562, 10.795376777648926, -1, 1000)
+1652: onLinear(-14.901047706604004, 10.428624153137207, -1, 1000)
+1653: onLinear(-14.397883415222168, 10.093663215637207, -1, 1000)
+1654: onLinear(-14.105225563049316, 9.908366203308105, -1, 1000)
+1655: onLinear(-13.81590461730957, 9.736186981201172, -1, 1000)
+1656: onLinear(-13.531440734863281, 9.58103084564209, -1, 1000)
+1657: onLinear(-13.251419067382812, 9.445151329040527, -1, 1000)
+1658: onLinear(-12.974950790405273, 9.33020305633545, -1, 1000)
+1659: onLinear(-12.695603370666504, 9.235458374023438, -1, 1000)
+1660: onLinear(-12.40507698059082, 9.15755844116211, -1, 1000)
+1661: onLinear(-12.100383758544922, 9.09410285949707, -1, 1000)
+1662: onLinear(-11.782018661499023, 9.043578147888184, -1, 1000)
+1663: onLinear(-11.456521987915039, 9.004993438720703, -1, 1000)
+1664: onLinear(-10.750109672546387, 8.95161247253418, -1, 1000)
+1665: onLinear(-10.062601089477539, 8.92064094543457, -1, 1000)
+1666: onLinear(-9.09289836883545, 8.969375610351562, -1, 1000)
+1667: onLinear(-8.623394966125488, 9.012602806091309, -1, 1000)
+1668: onLinear(-8.168664932250977, 9.077656745910645, -1, 1000)
+1669: onLinear(-7.71989107131958, 9.170891761779785, -1, 1000)
+1670: onLinear(-7.265674591064453, 9.290245056152344, -1, 1000)
+1671: onLinear(-6.3597731590271, 9.57056999206543, -1, 1000)
+1672: onLinear(-5.384440898895264, 10.027939796447754, -1, 1000)
+1673: onLinear(-4.910527229309082, 10.275374412536621, -1, 1000)
+1674: onLinear(-4.4575653076171875, 10.542339324951172, -1, 1000)
+1675: onLinear(-4.017611980438232, 10.837091445922852, -1, 1000)
+1676: onLinear(-3.581540584564209, 11.158257484436035, -1, 1000)
+1677: onLinear(-2.6809582710266113, 11.874188423156738, -1, 1000)
+1678: onCircular(true, -2.0586700439453125, 11.091400146484375, -1, -1.069474458694458, 11.238001823425293, -1, 1000)
+direction: CW
+sweep: 120.053383deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1
+1679: onLinear(-0.9696903824806213, 10.564709663391113, -1, 1000)
+1680: onLinear(-0.9130538702011108, 10.265003204345703, -1, 1000)
+1681: onLinear(-0.8448551893234253, 9.979944229125977, -1, 1000)
+1682: onLinear(-0.7600836753845215, 9.701971054077148, -1, 1000)
+1683: onLinear(-0.6574629545211792, 9.419797897338867, -1, 1000)
+1684: onLinear(-0.6536713242530823, 9.410639762878418, -1, 1000)
+1685: onLinear(-1.3214359283447266, 8.411438941955566, -0.0007991460734046996, 1000)
+1686: onLinear(-0.6536713242530823, 9.410639762878418, -1, 1000)
+1687: onLinear(0.9832906723022461, 9.410639762878418, -1, 1000)
+1688: onLinear(1.0847610235214233, 9.338116645812988, -0.9274762272834778, 1000)
+1689: onLinear(1.463403344154358, 9.080097198486328, -0.6694572567939758, 1000)
+1690: onLinear(1.8279067277908325, 8.8438720703125, -0.4332316517829895, 1000)
+1691: onLinear(2.5244743824005127, 8.41112232208252, -0.0004818914458155632, 1000)
+1692: onLinear(1.8279067277908325, 8.8438720703125, -0.4332316517829895, 1000)
+1693: onLinear(1.463403344154358, 9.080097198486328, -0.6694572567939758, 1000)
+1694: onLinear(1.0847610235214233, 9.338116645812988, -0.9274762272834778, 1000)
+1695: onLinear(0.9832906723022461, 9.410639762878418, -1, 1000)
+1696: onLinear(0.8905134797096252, 9.696368217468262, -1, 1000)
+1697: onCircular(true, 1.841629981994629, 10.005200386047363, -1, 0.8767831325531006, 9.742386817932129, -1, 1000)
+direction: CW
+sweep: 2.751795deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1
+1698: onLinear(0.7855331301689148, 10.077386856079102, -1, 1000)
+1699: onCircular(true, 1.750380039215088, 10.340200424194336, -1, 0.7758035063743591, 10.116145133972168, -1, 1000)
+direction: CW
+sweep: 2.28974deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1
+1700: onLinear(0.6195635199546814, 10.795744895935059, -1, 1000)
+1701: onCircular(true, 1.5941400527954102, 11.019800186157227, -1, 0.5975030064582825, 10.937856674194336, -1, 1000)
+direction: CW
+sweep: 8.247043deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1
+1702: onLinear(0.46423301100730896, 12.558756828308105, -1, 1000)
+1703: onCircular(true, 1.4608700275421143, 12.640700340270996, -1, 0.4627584218978882, 12.579273223876953, -1, 1000)
+direction: CW
+sweep: 1.178556deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1
+1704: onLinear(0.4128284156322479, 13.390572547912598, -1, 1000)
+1705: onCircular(true, 1.4109400510787964, 13.45199966430664, -1, 0.4117420017719269, 13.411958694458008, -1, 1000)
+direction: CW
+sweep: 1.226939deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1
+1706: onLinear(0.3792019784450531, 14.223958015441895, -1, 1000)
+1707: onCircular(true, 1.3783999681472778, 14.263999938964844, -1, 0.37863975763320923, 14.24210262298584, -1, 1000)
+direction: CW
+sweep: 1.040123deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1
+1708: onLinear(0.36083975434303284, 15.054802894592285, -1, 1000)
+1709: onCircular(true, 1.3605999946594238, 15.076700210571289, -1, 0.36063435673713684, 15.068411827087402, -1, 1000)
+direction: CW
+sweep: 0.779829deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1
+1710: onLinear(0.35389435291290283, 15.881611824035645, -1, 1000)
+1711: onCircular(true, 1.3538600206375122, 15.889900207519531, -1, 0.3538646101951599, 15.892935752868652, -1, 1000)
+direction: CW
+sweep: 0.648819deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1
+1712: onLinear(0.3587999939918518, 17.518617630004883, -1, 1000)
+1713: onLinear(0.3587999939918518, 22.427719116210938, -1, 1000)
+1714: onLinear(0.3576580584049225, 23.266544342041016, -1, 1000)
+1715: onLinear(0.33586278557777405, 24.087316513061523, -1, 1000)
+1716: onLinear(0.31175386905670166, 24.480545043945312, -1, 1000)
+1717: onLinear(0.27627480030059814, 24.87812614440918, -1, 1000)
+1718: onLinear(0.18976883590221405, 25.635814666748047, -1, 1000)
+1719: onLinear(0.032766543328762054, 26.210535049438477, -1, 1000)
+1720: onLinear(-0.05777987092733383, 26.484119415283203, -1, 1000)
+1721: onLinear(-0.1595369130373001, 26.736099243164062, -1, 1000)
+1722: onLinear(-0.28001368045806885, 26.975616455078125, -1, 1000)
+1723: onLinear(-0.42408865690231323, 27.217588424682617, -1, 1000)
+1724: onLinear(-0.7404625415802002, 27.68454360961914, -1, 1000)
+1725: onLinear(-0.9341179728507996, 27.871017456054688, -1, 1000)
+1726: onLinear(-1.1891099214553833, 28.104047775268555, -1, 1000)
+1727: onLinear(-1.4331711530685425, 28.3044376373291, -1, 1000)
+1728: onLinear(-1.677017092704773, 28.473941802978516, -1, 1000)
+1729: onLinear(-1.9413511753082275, 28.625560760498047, -1, 1000)
+1730: onLinear(-2.231844902038574, 28.767629623413086, -1, 1000)
+1731: onLinear(-2.862250328063965, 29.03451919555664, -1, 1000)
+1732: onLinear(-3.3476366996765137, 29.172502517700195, -1, 1000)
+1733: onLinear(-3.876467704772949, 29.312402725219727, -1, 1000)
+1734: onLinear(-4.390476226806641, 29.428552627563477, -1, 1000)
+1735: onLinear(-4.89763879776001, 29.514270782470703, -1, 1000)
+1736: onLinear(-5.414527416229248, 29.5705623626709, -1, 1000)
+1737: onLinear(-5.945987701416016, 29.604551315307617, -1, 1000)
+1738: onLinear(-7.0463104248046875, 29.63389778137207, -1, 1000)
+1739: onLinear(-8.251319885253906, 29.58842658996582, -1, 1000)
+1740: onLinear(-8.833624839782715, 29.5443058013916, -1, 1000)
+1741: onLinear(-9.401115417480469, 29.47479820251465, -1, 1000)
+1742: onLinear(-9.960752487182617, 29.37251091003418, -1, 1000)
+1743: onLinear(-10.527941703796387, 29.238447189331055, -1, 1000)
+1744: onLinear(-11.108659744262695, 29.08005142211914, -1, 1000)
+1745: onLinear(-11.651899337768555, 28.922039031982422, -1, 1000)
+1746: onLinear(-12.053522109985352, 28.75596046447754, -1, 1000)
+1747: onLinear(-12.476359367370605, 28.569154739379883, -1, 1000)
+1748: onLinear(-12.873452186584473, 28.370025634765625, -1, 1000)
+1749: onLinear(-13.045453071594238, 28.272197723388672, -1, 1000)
+1750: onLinear(-13.213704109191895, 28.166484832763672, -1, 1000)
+1751: onLinear(-13.374238967895508, 28.054214477539062, -1, 1000)
+1752: onLinear(-13.525428771972656, 27.93700408935547, -1, 1000)
+1753: onLinear(-13.85400676727295, 27.649629592895508, -1, 1000)
+1754: onLinear(-14.180702209472656, 27.330459594726562, -1, 1000)
+1755: onLinear(-14.453340530395508, 27.04944610595703, -1, 1000)
+1756: onLinear(-14.6776123046875, 26.707366943359375, -1, 1000)
+1757: onLinear(-14.931378364562988, 26.300537109375, -1, 1000)
+1758: onLinear(-15.158468246459961, 25.896257400512695, -1, 1000)
+1759: onLinear(-15.252145767211914, 25.708574295043945, -1, 1000)
+1760: onLinear(-15.33614444732666, 25.52155113220215, -1, 1000)
+1761: onLinear(-15.496538162231445, 25.10099220275879, -1, 1000)
+1762: onLinear(-15.596967697143555, 24.780550003051758, -1, 1000)
+1763: onMovement(MOVEMENT_RAPID /*rapid*/)
+1763: onRapid(-15.596967697143555, 24.780550003051758, 5)
+1764: onRapid(-12.061179161071777, 18.07418441772461, 5)
+1765: onMovement(MOVEMENT_LEAD_IN /*lead in*/)
+1765: onLinear(-12.061179161071777, 18.07418441772461, -1, 1000)
+1766: onMovement(MOVEMENT_CUTTING /*cutting*/)
+1766: onCircular(true, -11.594799995422363, 17.189599990844727, -1, -11.90077018737793, 18.14164161682129, -1, 1000)
+direction: CW
+sweep: 9.982996deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1.000001
+1767: onLinear(-11.11417007446289, 18.394441604614258, -1, 1000)
+1768: onCircular(true, -10.808199882507324, 17.442399978637695, -1, -11.081254959106445, 18.40439796447754, -1, 1000)
+direction: CW
+sweep: 1.970384deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1
+1769: onLinear(-10.684555053710938, 18.516998291015625, -1, 1000)
+1770: onCircular(true, -10.411499977111816, 17.55500030517578, -1, -10.646203994750977, 18.527067184448242, -1, 1000)
+direction: CW
+sweep: 2.271973deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1
+1771: onLinear(-10.24570369720459, 18.623767852783203, -1, 1000)
+1772: onCircular(true, -10.01099967956543, 17.65169906616211, -1, -10.209181785583496, 18.631864547729492, -1, 1000)
+direction: CW
+sweep: 2.14348deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1
+1773: onLinear(-9.8051118850708, 18.713565826416016, -1, 1000)
+1774: onCircular(true, -9.606929779052734, 17.733400344848633, -1, -9.77791976928711, 18.718673706054688, -1, 1000)
+direction: CW
+sweep: 1.585292deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1.000001
+1775: onLinear(-9.371109962463379, 18.78927230834961, -1, 1000)
+1776: onCircular(true, -9.200119972229004, 17.804000854492188, -1, -9.3479642868042, 18.793010711669922, -1, 1000)
+direction: CW
+sweep: 1.343368deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 0.999999
+1777: onLinear(-8.531694412231445, 18.9150333404541, -1, 1000)
+1778: onLinear(-7.013715744018555, 19.147789001464844, -1, 1000)
+1779: onLinear(-6.277369499206543, 19.278242111206055, -1, 1000)
+1780: onLinear(-5.5527801513671875, 19.427490234375, -1, 1000)
+1781: onLinear(-4.8391642570495605, 19.602346420288086, -1, 1000)
+1782: onLinear(-4.129245281219482, 19.804527282714844, -1, 1000)
+1783: onLinear(-2.6697824001312256, 20.270519256591797, -1, 1000)
+1784: onCircular(true, -2.3656198978424072, 19.317899703979492, -1, -1.3656200170516968, 19.317899703979492, -1, 1000)
+direction: CW
+sweep: 107.707796deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1
+1785: onLinear(-1.3656200170516968, 17.967300415039062, -1, 1000)
+1786: onCircular(true, -2.3656198978424072, 17.967300415039062, -1, -1.3658429384231567, 17.946184158325195, -1, 1000)
+direction: CW
+sweep: 1.209962deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1
+1787: onLinear(-1.385772943496704, 17.002582550048828, -1, 1000)
+1788: onCircular(true, -2.385550022125244, 17.023700714111328, -1, -1.3875861167907715, 16.959918975830078, -1, 1000)
+direction: CW
+sweep: 2.446835deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1
+1789: onLinear(-1.4175161123275757, 16.49161720275879, -1, 1000)
+1790: onCircular(true, -2.415479898452759, 16.555400848388672, -1, -1.4221570491790771, 16.440032958984375, -1, 1000)
+direction: CW
+sweep: 2.967829deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1
+1791: onLinear(-1.4760470390319824, 15.976033210754395, -1, 1000)
+1792: onCircular(true, -2.469369888305664, 16.091400146484375, -1, -1.4863582849502563, 15.907856941223145, -1, 1000)
+direction: CW
+sweep: 3.95142deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1
+1793: onLinear(-1.5719482898712158, 15.449457168579102, -1, 1000)
+1794: onCircular(true, -2.554960012435913, 15.633000373840332, -1, -1.5867253541946411, 15.382956504821777, -1, 1000)
+direction: CW
+sweep: 3.903897deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1
+1795: onLinear(-1.7036854028701782, 14.93005657196045, -1, 1000)
+1796: onCircular(true, -2.67192006111145, 15.180100440979004, -1, -1.7161800861358643, 14.885887145996094, -1, 1000)
+direction: CW
+sweep: 2.63026deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1
+1797: onLinear(-1.854430079460144, 14.436786651611328, -1, 1000)
+1798: onCircular(true, -2.8101699352264404, 14.730999946594238, -1, -1.861380696296692, 14.415090560913086, -1, 1000)
+direction: CW
+sweep: 1.305356deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1
+1799: onLinear(-2.0102806091308594, 13.967890739440918, -1, 1000)
+1800: onCircular(true, -2.9590699672698975, 14.28380012512207, -1, -2.098412275314331, 13.774616241455078, -1, 1000)
+direction: CW
+sweep: 12.193764deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1
+1801: onLinear(-2.3286120891571045, 13.385516166687012, -1, 1000)
+1802: onCircular(true, -3.18927001953125, 13.894700050354004, -1, -2.343613386154175, 13.36097240447998, -1, 1000)
+direction: CW
+sweep: 1.64818deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1
+1803: onLinear(-2.583383560180664, 12.981072425842285, -1, 1000)
+1804: onCircular(true, -3.42903995513916, 13.514800071716309, -1, -2.615905523300171, 12.932723999023438, -1, 1000)
+direction: CW
+sweep: 3.339026deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1
+1805: onLinear(-2.8748254776000977, 12.571023941040039, -1, 1000)
+1806: onCircular(true, -3.687959909439087, 13.15310001373291, -1, -2.913043737411499, 12.521036148071289, -1, 1000)
+direction: CW
+sweep: 3.605868deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1
+1807: onLinear(-3.0526835918426514, 12.349836349487305, -1, 1000)
+1808: onCircular(true, -3.8276000022888184, 12.981900215148926, -1, -3.0868616104125977, 12.31010627746582, -1, 1000)
+direction: CW
+sweep: 3.00311deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1
+1809: onLinear(-3.2348716259002686, 12.146906852722168, -1, 1000)
+1810: onCircular(true, -3.9756100177764893, 12.818699836730957, -1, -3.273808002471924, 12.106328010559082, -1, 1000)
+direction: CW
+sweep: 3.222611deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1
+1811: onLinear(-3.430838108062744, 11.951627731323242, -1, 1000)
+1812: onCircular(true, -4.1326398849487305, 12.663999557495117, -1, -3.4680235385894775, 11.916815757751465, -1, 1000)
+direction: CW
+sweep: 2.918821deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 0.999999
+1813: onLinear(-3.6331734657287598, 11.769915580749512, -1, 1000)
+1814: onCircular(true, -4.297790050506592, 12.51710033416748, -1, -3.6798622608184814, 11.730865478515625, -1, 1000)
+direction: CW
+sweep: 3.487943deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1
+1815: onLinear(-4.029892444610596, 11.455764770507812, -1, 1000)
+1816: onCircular(true, -4.647819995880127, 12.241999626159668, -1, -4.075273036956787, 11.422127723693848, -1, 1000)
+direction: CW
+sweep: 3.236932deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1
+1817: onLinear(-4.4438629150390625, 11.164728164672852, -1, 1000)
+1818: onCircular(true, -5.016409873962402, 11.984600067138672, -1, -4.46679162979126, 11.149184226989746, -1, 1000)
+direction: CW
+sweep: 1.587196deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1
+1819: onLinear(-4.844661235809326, 10.90058422088623, -1, 1000)
+1820: onCircular(true, -5.394279956817627, 11.736000061035156, -1, -4.975311279296875, 10.827999114990234, -1, 1000)
+direction: CW
+sweep: 8.571366deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1
+1821: onLinear(-5.425661087036133, 10.620199203491211, -1, 1000)
+1822: onCircular(true, -5.844629764556885, 11.528200149536133, -1, -5.44777774810791, 10.61031723022461, -1, 1000)
+direction: CW
+sweep: 1.387964deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1
+1823: onLinear(-5.9011077880859375, 10.41431713104248, -1, 1000)
+1824: onCircular(true, -6.297959804534912, 11.332200050354004, -1, -5.94708251953125, 10.39577865600586, -1, 1000)
+direction: CW
+sweep: 2.840538deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1
+1825: onLinear(-6.4063825607299805, 10.223678588867188, -1, 1000)
+1826: onCircular(true, -6.757259845733643, 11.160099983215332, -1, -6.456571578979492, 10.206377983093262, -1, 1000)
+direction: CW
+sweep: 3.042029deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1
+1827: onLinear(-6.6893815994262695, 10.132977485656738, -1, 1000)
+1828: onCircular(true, -6.99006986618042, 11.086700439453125, -1, -6.731952667236328, 10.120586395263672, -1, 1000)
+direction: CW
+sweep: 2.540572deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1
+1829: onLinear(-6.967382907867432, 10.057686805725098, -1, 1000)
+1830: onCircular(true, -7.225500106811523, 11.023799896240234, -1, -7.012585163116455, 10.04672908782959, -1, 1000)
+direction: CW
+sweep: 2.665151deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1
+1831: onLinear(-7.2507548332214355, 9.994829177856445, -1, 1000)
+1832: onCircular(true, -7.463669776916504, 10.97189998626709, -1, -7.290940284729004, 9.986930847167969, -1, 1000)
+direction: CW
+sweep: 2.346672deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1
+1833: onLinear(-7.531579971313477, 9.944730758666992, -1, 1000)
+1834: onCircular(true, -7.704309940338135, 10.929699897766113, -1, -7.581488609313965, 9.937271118164062, -1, 1000)
+direction: CW
+sweep: 2.891626deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1
+1835: onLinear(-8.06872844696045, 9.876971244812012, -1, 1000)
+1836: onCircular(true, -8.191550254821777, 10.869400024414062, -1, -8.11487865447998, 9.872344017028809, -1, 1000)
+direction: CW
+sweep: 2.657709deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1
+1837: onLinear(-8.607738494873047, 9.834444046020508, -1, 1000)
+1838: onCircular(true, -8.684410095214844, 10.831500053405762, -1, -8.63082218170166, 9.832937240600586, -1, 1000)
+direction: CW
+sweep: 1.325443deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1
+1839: onLinear(-9.126492500305176, 9.806336402893066, -1, 1000)
+1840: onCircular(true, -9.18008041381836, 10.804900169372559, -1, -9.218514442443848, 9.805639266967773, -1, 1000)
+direction: CW
+sweep: 5.274481deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1
+1841: onLinear(-9.660494804382324, 9.822638511657715, -1, 1000)
+1842: onCircular(true, -9.62205982208252, 10.821900367736816, -1, -9.689495086669922, 9.824176788330078, -1, 1000)
+direction: CW
+sweep: 1.663988deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1
+1843: onLinear(-10.127435684204102, 9.853775978088379, -1, 1000)
+1844: onCircular(true, -10.0600004196167, 10.851499557495117, -1, -10.186960220336914, 9.85959243774414, -1, 1000)
+direction: CW
+sweep: 3.427261deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 0.999999
+1845: onLinear(-10.616660118103027, 9.914591789245605, -1, 1000)
+1846: onCircular(true, -10.489700317382812, 10.906499862670898, -1, -10.680793762207031, 9.924928665161133, -1, 1000)
+direction: CW
+sweep: 3.722666deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 0.999999
+1847: onLinear(-10.89139461517334, 9.965928077697754, -1, 1000)
+1848: onCircular(true, -10.700300216674805, 10.947500228881836, -1, -10.944378852844238, 9.977744102478027, -1, 1000)
+direction: CW
+sweep: 3.110727deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1.000001
+1849: onLinear(-11.151378631591797, 10.029844284057617, -1, 1000)
+1850: onCircular(true, -10.907299995422363, 10.999600410461426, -1, -11.211530685424805, 10.047001838684082, -1, 1000)
+direction: CW
+sweep: 3.584502deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1
+1851: onLinear(-11.414430618286133, 10.111801147460938, -1, 1000)
+1852: onCircular(true, -11.110199928283691, 11.064399719238281, -1, -11.475765228271484, 10.133614540100098, -1, 1000)
+direction: CW
+sweep: 3.730504deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1
+1853: onLinear(-11.674365043640137, 10.211614608764648, -1, 1000)
+1854: onCircular(true, -11.308799743652344, 11.142399787902832, -1, -11.726705551147461, 10.233909606933594, -1, 1000)
+direction: CW
+sweep: 3.26006deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1
+1855: onLinear(-11.92170524597168, 10.323609352111816, -1, 1000)
+1856: onCircular(true, -11.503800392150879, 11.232099533081055, -1, -11.96392822265625, 10.344247817993164, -1, 1000)
+direction: CW
+sweep: 2.692984deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 0.999999
+1857: onLinear(-12.155728340148926, 10.443647384643555, -1, 1000)
+1858: onCircular(true, -11.695599555969238, 11.331500053405762, -1, -12.20008373260498, 10.46807861328125, -1, 1000)
+direction: CW
+sweep: 2.901697deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1
+1859: onLinear(-12.576784133911133, 10.688179016113281, -1, 1000)
+1860: onCircular(true, -12.07229995727539, 11.551600456237793, -1, -12.60755729675293, 10.706911087036133, -1, 1000)
+direction: CW
+sweep: 2.064253deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1
+1861: onLinear(-12.979357719421387, 10.942510604858398, -1, 1000)
+1862: onCircular(true, -12.444100379943848, 11.787199974060059, -1, -13.178256034851074, 11.108219146728516, -1, 1000)
+direction: CW
+sweep: 14.874579deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1
+1863: onLinear(-13.419455528259277, 11.3690185546875, -1, 1000)
+1864: onCircular(true, -12.68529987335205, 12.04800033569336, -1, -13.444998741149902, 11.397725105285645, -1, 1000)
+direction: CW
+sweep: 2.201756deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1
+1865: onLinear(-13.673198699951172, 11.664324760437012, -1, 1000)
+1866: onCircular(true, -12.91349983215332, 12.314599990844727, -1, -13.722575187683105, 11.72689437866211, -1, 1000)
+direction: CW
+sweep: 4.568007deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1
+1867: onLinear(-13.924875259399414, 12.00539493560791, -1, 1000)
+1868: onCircular(true, -13.115799903869629, 12.593099594116211, -1, -13.97329330444336, 12.078604698181152, -1, 1000)
+direction: CW
+sweep: 5.030598deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1
+1869: onLinear(-14.060592651367188, 12.224103927612305, -1, 1000)
+1870: onCircular(true, -13.203100204467773, 12.73859977722168, -1, -14.095623016357422, 12.28759765625, -1, 1000)
+direction: CW
+sweep: 4.155776deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1
+1871: onLinear(-14.171722412109375, 12.438197135925293, -1, 1000)
+1872: onCircular(true, -13.279199600219727, 12.889200210571289, -1, -14.205659866333008, 12.51280689239502, -1, 1000)
+direction: CW
+sweep: 4.697599deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1
+1873: onLinear(-14.269160270690918, 12.669107437133789, -1, 1000)
+1874: onCircular(true, -13.342700004577637, 13.045499801635742, -1, -14.294347763061523, 12.73830795288086, -1, 1000)
+direction: CW
+sweep: 4.220321deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1
+1875: onLinear(-14.346447944641113, 12.899707794189453, -1, 1000)
+1876: onCircular(true, -13.394800186157227, 13.206899642944336, -1, -14.369712829589844, 12.984312057495117, -1, 1000)
+direction: CW
+sweep: 5.029016deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1
+1877: onLinear(-14.44631290435791, 13.319811820983887, -1, 1000)
+1878: onCircular(true, -13.471400260925293, 13.542400360107422, -1, -14.460987091064453, 13.398465156555176, -1, 1000)
+direction: CW
+sweep: 4.585488deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1
+1879: onLinear(-14.511487007141113, 13.745665550231934, -1, 1000)
+1880: onCircular(true, -13.521900177001953, 13.889599800109863, -1, -14.516340255737305, 13.784299850463867, -1, 1000)
+direction: CW
+sweep: 2.231122deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1
+1881: onLinear(-14.553740501403809, 14.137499809265137, -1, 1000)
+1882: onCircular(true, -13.559300422668457, 14.242799758911133, -1, -14.555778503417969, 14.326645851135254, -1, 1000)
+direction: CW
+sweep: 10.854128deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 0.999999
+1883: onLinear(-14.516778945922852, 14.790145874023438, -1, 1000)
+1884: onCircular(true, -13.520299911499023, 14.706299781799316, -1, -14.50892162322998, 14.85672378540039, -1, 1000)
+direction: CW
+sweep: 3.841825deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1
+1885: onLinear(-14.474321365356445, 15.084123611450195, -1, 1000)
+1886: onCircular(true, -13.485699653625488, 14.933699607849121, -1, -14.458759307861328, 15.164254188537598, -1, 1000)
+direction: CW
+sweep: 4.678223deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1
+1887: onLinear(-14.406159400939941, 15.386253356933594, -1, 1000)
+1888: onCircular(true, -13.433099746704102, 15.155699729919434, -1, -14.377490043640137, 15.484526634216309, -1, 1000)
+direction: CW
+sweep: 5.867919deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1
+1889: onLinear(-14.302490234375, 15.699926376342773, -1, 1000)
+1890: onCircular(true, -13.358099937438965, 15.371100425720215, -1, -14.272109031677246, 15.77679443359375, -1, 1000)
+direction: CW
+sweep: 4.737086deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1
+1891: onLinear(-14.178808212280273, 15.986994743347168, -1, 1000)
+1892: onCircular(true, -13.264800071716309, 15.581299781799316, -1, -14.149115562438965, 16.048189163208008, -1, 1000)
+direction: CW
+sweep: 3.897881deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1
+1893: onLinear(-13.932015419006348, 16.459388732910156, -1, 1000)
+1894: onCircular(true, -13.047699928283691, 15.992500305175781, -1, -13.827531814575195, 16.618488311767578, -1, 1000)
+direction: CW
+sweep: 10.922244deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 0.999999
+1895: onLinear(-13.52683162689209, 16.99308967590332, -1, 1000)
+1896: onCircular(true, -12.746999740600586, 16.36709976196289, -1, -13.480962753295898, 17.046289443969727, -1, 1000)
+direction: CW
+sweep: 4.02549deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1
+1897: onLinear(-13.31976318359375, 17.220489501953125, -1, 1000)
+1898: onCircular(true, -12.585800170898438, 16.54129981994629, -1, -13.259021759033203, 17.28074073791504, -1, 1000)
+direction: CW
+sweep: 4.903461deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1
+1899: onLinear(-13.084821701049805, 17.439340591430664, -1, 1000)
+1900: onCircular(true, -12.411600112915039, 16.699899673461914, -1, -13.005131721496582, 17.504711151123047, -1, 1000)
+direction: CW
+sweep: 5.908196deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1.000001
+1901: onLinear(-12.815431594848633, 17.644611358642578, -1, 1000)
+1902: onCircular(true, -12.22189998626709, 16.839799880981445, -1, -12.7476167678833, 17.690460205078125, -1, 1000)
+direction: CW
+sweep: 4.691508deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1.000001
+1903: onLinear(-12.545516967773438, 17.815359115600586, -1, 1000)
+1904: onCircular(true, -12.019800186157227, 16.96470069885254, -1, -12.48752498626709, 17.848573684692383, -1, 1000)
+direction: CW
+sweep: 3.829806deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 0.999999
+1905: onLinear(-12.062524795532227, 18.07347297668457, -1, 1000)
+1906: onLinear(-12.061179161071777, 18.07418441772461, -1, 1000)
+1907: onMovement(MOVEMENT_RAPID /*rapid*/)
+1907: onRapid(-12.061179161071777, 18.07418441772461, 5)
+1908: onRapid(-51.46177673339844, 8.411361694335938, 5)
+1909: onMovement(MOVEMENT_LEAD_IN /*lead in*/)
+1909: onLinear(-51.46177673339844, 8.411361694335938, -0.0007216872763819993, 1000)
+1910: onMovement(MOVEMENT_CUTTING /*cutting*/)
+1910: onLinear(-50.462501525878906, 9.410639762878418, -1, 1000)
+1911: onLinear(-50.462501525878906, 37.41059875488281, -1, 1000)
+1912: onLinear(-51.46177673339844, 38.40987777709961, -0.0007216872763819993, 1000)
+1913: onLinear(-50.462501525878906, 37.41059875488281, -1, 1000)
+1914: onLinear(-48.49250030517578, 37.41059875488281, -1, 1000)
+1915: onLinear(-47.493221282958984, 38.40987777709961, -0.0007216872763819993, 1000)
+1916: onLinear(-48.49250030517578, 37.41059875488281, -1, 1000)
+1917: onLinear(-48.49250030517578, 26.091400146484375, -1, 1000)
+1918: onCircular(false, -47.49250030517578, 26.091400146484375, -1, -47.49250030517578, 25.091400146484375, -1, 1000)
+direction: CCW
+sweep: 90deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1
+1919: onLinear(-31.89900016784668, 25.091400146484375, -1, 1000)
+1920: onCircular(false, -31.89900016784668, 26.091400146484375, -1, -30.89900016784668, 26.091400146484375, -1, 1000)
+direction: CCW
+sweep: 90deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1
+1921: onLinear(-30.89900016784668, 37.41059875488281, -1, 1000)
+1922: onLinear(-31.898279190063477, 38.40987777709961, -0.0007216872763819993, 1000)
+1923: onLinear(-30.89900016784668, 37.41059875488281, -1, 1000)
+1924: onLinear(-28.929100036621094, 37.41059875488281, -1, 1000)
+1925: onLinear(-27.929821014404297, 38.40987777709961, -0.0007216872763819993, 1000)
+1926: onLinear(-28.929100036621094, 37.41059875488281, -1, 1000)
+1927: onLinear(-28.929100036621094, 9.410639762878418, -1, 1000)
+1928: onLinear(-27.929821014404297, 8.411361694335938, -0.0007216872763819993, 1000)
+1929: onLinear(-28.929100036621094, 9.410639762878418, -1, 1000)
+1930: onLinear(-30.89900016784668, 9.410639762878418, -1, 1000)
+1931: onLinear(-31.898279190063477, 8.411361694335938, -0.0007216872763819993, 1000)
+1932: onLinear(-30.89900016784668, 9.410639762878418, -1, 1000)
+1933: onLinear(-30.89900016784668, 22.55120086669922, -1, 1000)
+1934: onCircular(false, -31.89900016784668, 22.55120086669922, -1, -31.89900016784668, 23.55120086669922, -1, 1000)
+direction: CCW
+sweep: 90deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1
+1935: onLinear(-47.49250030517578, 23.55120086669922, -1, 1000)
+1936: onCircular(false, -47.49250030517578, 22.55120086669922, -1, -48.49250030517578, 22.55120086669922, -1, 1000)
+direction: CCW
+sweep: 90deg
+normal: X=0 Y=0 Z=1 (XY)
+radius: 1
+1937: onLinear(-48.49250030517578, 9.410639762878418, -1, 1000)
+1938: onLinear(-47.493221282958984, 8.411361694335938, -0.0007216872763819993, 1000)
+1939: onLinear(-48.49250030517578, 9.410639762878418, -1, 1000)
+1940: onLinear(-50.462501525878906, 9.410639762878418, -1, 1000)
+1941: onMovement(MOVEMENT_RAPID /*rapid*/)
+1941: onRapid(-50.462501525878906, 9.410639762878418, 15)
+1942: onSectionEnd()
+STATE position=[-50.462502, 9.41064, 15]
+STATE spindleSpeed=5000
+STATE radiusCompensation=RADIUS_COMPENSATION_OFF // off
+1942: onClose()

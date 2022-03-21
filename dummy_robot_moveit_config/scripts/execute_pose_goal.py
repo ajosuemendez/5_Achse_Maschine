@@ -146,7 +146,7 @@ class MoveGroupPythonInterfaceTutorial(object):
             #print("about to publish")
             self.publish_tcp_coordinate.publish(point_stamped)
             #print("after publish ")
-            time.sleep(0.04)
+            time.sleep(0.08)
             if stop():
                 #print("exiting loop")
                 break
@@ -500,6 +500,7 @@ class MoveGroupPythonInterfaceTutorial(object):
             calculated_joints_list = []
             valid_plan = False
             self.pose_goal = geometry_msgs.msg.PoseStamped()
+            self.move_group.set_max_velocity_scaling_factor(0.5)
 
             quaternion = tf.transformations.quaternion_from_euler(math.radians(req.roll_input) ,math.radians(req.pitch_input) ,math.radians(req.yaw_input)) ##added-1 and -1
             self.pose_goal.pose.orientation.x = quaternion[0]
@@ -511,6 +512,104 @@ class MoveGroupPythonInterfaceTutorial(object):
             self.pose_goal.pose.position.z = req.z_input*self.scale_m
 
             self.move_group.set_pose_target(self.pose_goal.pose)
+
+            if req.check!=1:
+                if req.constraint == "Joint":
+                    ######JOINT1 COINSTRAINT#############
+                    self.fixed_base_constraint = Constraints()
+                    self.fixed_base_constraint.name= "fixed_base"
+                    #joint X cosntraint
+                    joint_constraint_X = JointConstraint()
+                    joint_constraint_X.joint_name = self.move_group.get_joints()[1]
+                    joint_constraint_X.position = self.move_group.get_current_joint_values()[0]
+                    print(joint_constraint_X.position)
+                    joint_constraint_X.tolerance_above = math.radians(80)
+                    joint_constraint_X.tolerance_below = math.radians(80)
+                    joint_constraint_X.weight = 1
+                    self.fixed_base_constraint.joint_constraints.append(joint_constraint_X)
+                    #joint Y cosntraint
+                    joint_constraint_Y = JointConstraint()
+                    joint_constraint_Y.joint_name = self.move_group.get_joints()[2]
+                    joint_constraint_Y.position = self.move_group.get_current_joint_values()[1]
+                    print(joint_constraint_Y.position)
+                    joint_constraint_Y.tolerance_above = math.radians(70)
+                    joint_constraint_Y.tolerance_below = math.radians(70)
+                    joint_constraint_Y.weight = 1
+                    self.fixed_base_constraint.joint_constraints.append(joint_constraint_Y)
+                    #joint Z cosntraint
+                    joint_constraint_Z = JointConstraint()
+                    joint_constraint_Z.joint_name = self.move_group.get_joints()[3]
+                    joint_constraint_Z.position = self.move_group.get_current_joint_values()[2]
+                    print(joint_constraint_Z.position)
+                    joint_constraint_Z.tolerance_above = math.radians(40)
+                    joint_constraint_Z.tolerance_below = math.radians(10)
+                    joint_constraint_Z.weight = 1
+                    self.fixed_base_constraint.joint_constraints.append(joint_constraint_Z)
+                    #joint A cosntraint
+                    joint_constraint_A = JointConstraint()
+                    joint_constraint_A.joint_name = self.move_group.get_joints()[4]
+                    joint_constraint_A.position = self.move_group.get_current_joint_values()[3]
+                    print(joint_constraint_A.position)
+                    joint_constraint_A.tolerance_above = math.radians(45)
+                    joint_constraint_A.tolerance_below = math.radians(45)
+                    joint_constraint_A.weight = 1
+                    self.fixed_base_constraint.joint_constraints.append(joint_constraint_A)
+                    #joint B cosntraint
+                    joint_constraint_B = JointConstraint()
+                    joint_constraint_B.joint_name = self.move_group.get_joints()[5]
+                    joint_constraint_B.position = self.move_group.get_current_joint_values()[4]
+                    print(joint_constraint_B.position)
+                    joint_constraint_B.tolerance_above = math.radians(45)
+                    joint_constraint_B.tolerance_below = math.radians(45)
+                    joint_constraint_B.weight = 1
+                    self.fixed_base_constraint.joint_constraints.append(joint_constraint_B)
+                    #######ENABLING JOINT CONSTGRAINT########
+
+                    self.move_group.set_path_constraints(self.fixed_base_constraint)
+
+                elif req.constraint == "Orientation":
+                    #####ORIENTATION CONSTRAINT########
+                    self.upright_constraints = Constraints()
+                    self.upright_constraints.name = "upright"
+                    orientation_constraint = OrientationConstraint()
+                    orientation_constraint.header = self.pose_goal.header
+                    orientation_constraint.link_name = self.move_group.get_end_effector_link()
+                    orientation_constraint.orientation = self.pose_goal.pose.orientation
+                    orientation_constraint.absolute_x_axis_tolerance = 0.4
+                    orientation_constraint.absolute_y_axis_tolerance = 0.4
+                    orientation_constraint.absolute_z_axis_tolerance = 0.4
+                    orientation_constraint.weight = 1
+                    #######ENABLING ORIENTATION CONSTGRAINT########
+                    self.upright_constraints.orientation_constraints.append(orientation_constraint)
+                    self.move_group.set_path_constraints(self.upright_constraints)
+
+                elif req.constraint == "Position":
+                    ####POISTION CONSTRAINT###########
+                    self.fixed_point_constraint = Constraints()
+                    self.fixed_point_constraint.name = "fixed_point"
+                    point_constraint = PositionConstraint()
+                    point_constraint.header = self.pose_goal.header
+                    point_constraint.link_name = self.move_group.get_end_effector_link()
+                    point_constraint.target_point_offset = self.pose_goal.pose.position
+                    bounding_region = SolidPrimitive()
+                    bounding_region.type = SolidPrimitive.SPHERE
+                    bounding_region.dimensions.append(0.01)
+                    point_constraint.constraint_region.primitives.append(bounding_region)
+                    point_constraint.constraint_region.primitive_poses.append(self.pose_goal.pose)
+                    point_constraint.weight = 1
+                    #######ENABLING POSITION CONSTGRAINT########
+                    self.fixed_point_constraint.position_constraints.append(point_constraint)
+                    self.move_group.set_path_constraints(self.fixed_point_constraint)
+
+                if req.constraint == "None":
+                    ########DISABLING ALL CONSTRAINTS##############
+                    self.move_group.set_path_constraints(None)
+
+
+
+            else:
+                self.move_group.set_path_constraints(None)
+
 
             # my_scale = 1000
             calc_plan = self.move_group.plan()
@@ -544,6 +643,20 @@ class MoveGroupPythonInterfaceTutorial(object):
                             current_joints_list.append(k)
                         else:
                             calculated_joints_list.append(k)
+
+            if req.check!=1 and req.simulate:
+                self.move_group.set_max_velocity_scaling_factor(0.9)
+                stop_threads = False
+                p2 = Thread(target=self.display_path, args=(1, lambda: stop_threads))
+                p2.start()
+                print("about to start movoving object")
+                self.move_group.go(wait=True)
+                self.move_group.stop()
+                stop_threads = True
+                p2.join()
+                self.move_group.clear_pose_targets()
+                current_pose = self.move_group.get_current_pose().pose
+                #all_close(self.pose_goal.pose, current_pose, 0.01)
 
             return CalculateJointsResponse([*current_joints_list, *calculated_joints_list], valid_plan)
 
