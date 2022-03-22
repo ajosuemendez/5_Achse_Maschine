@@ -1616,6 +1616,8 @@ class Ui_MainWindow(object):
         self.testButtonPressed = False
         self.desiredPoseAddButtonPressed = False
         self.generated_sim_gcode = ""
+        self.joint_constraint_values = []
+        self.enable_joints = [False,False,False,False,False,False]
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
@@ -1909,7 +1911,9 @@ class Ui_MainWindow(object):
             request.check = 2
             request.constraint = "None"
             request.simulate = True
-            response = service_conn(request.x_input, request.y_input, request.z_input, request.roll_input, request.pitch_input, request.yaw_input, request.check, request.constraint, request.simulate)
+            request.enable_joints = self.enable_joints
+            request.constraints_values = self.joint_constraint_values
+            response = service_conn(request.x_input, request.y_input, request.z_input, request.roll_input, request.pitch_input, request.yaw_input, request.check, request.constraint, request.simulate, request.enable_joints, request.constraints_values)
             #print(response)
         except rospy.ServiceException as exc:
             print("Service did not process request: " + str(exc))
@@ -2354,6 +2358,9 @@ class Ui_MainWindow(object):
                         request.check = 2
                         request.constraint = self.gcodeGenerationConstraintsComboBox.currentText()
                         request.simulate = self.simulateCheckBox.isChecked()
+                        request.enable_joints = self.enable_joints
+                        request.constraints_values = self.joint_constraint_values
+
                         if len(self.full_list[i])>= 8: #onlinear5d or onRapid5D
                             request.pitch_input = abs_pos[4] - self.full_list[i][-1] #to fix the pitch dirction to match Fusion then (-1)
                             print("my ptich:",request.pitch_input)
@@ -2372,7 +2379,7 @@ class Ui_MainWindow(object):
                             request.yaw_input = self.set_world_frame[5] + self.set_offsets[5] +self.pos_offsets[5]
                             r = round(math.sqrt((abs_pos_circular_end[0]-abs_pos_circular_start[0])**2 +(abs_pos_circular_end[1]-abs_pos_circular_start[1])**2 +(abs_pos_circular_end[2]-abs_pos_circular_start[2])**2),5)
                             #print(r)
-                        response_srv = service_conn(request.x_input, request.y_input, request.z_input, request.roll_input, request.pitch_input, request.yaw_input, request.check, request.constraint, request.simulate)
+                        response_srv = service_conn(request.x_input, request.y_input, request.z_input, request.roll_input, request.pitch_input, request.yaw_input, request.check, request.constraint, request.simulate, request.enable_joints, request.constraints_values)
                         #print(response)
                     except rospy.ServiceException as exc:
                         print("Service did not process request: " + str(exc))
@@ -3413,8 +3420,10 @@ class Ui_MainWindow(object):
             request.check = 1
             request.constraint = self.constraintsComboBox.currentText()
             request.simulate = False
+            request.enable_joints = self.enable_joints
+            request.constraints_values = self.joint_constraint_values
 
-            response = service_conn(request.x_input, request.y_input, request.z_input, request.roll_input, request.pitch_input, request.yaw_input, request.check, request.constraint, request.simulate)
+            response = service_conn(request.x_input, request.y_input, request.z_input, request.roll_input, request.pitch_input, request.yaw_input, request.check, request.constraint, request.simulate, request.enable_joints, request.constraints_values)
             #print(response)
         except rospy.ServiceException as exc:
             print("Service did not process request: " + str(exc))
@@ -3754,7 +3763,13 @@ class Ui_MainWindow(object):
     def JointConstraintSaveButtonCallback(self):
         #self.joint_constraint_dict = defaultdict(tuple)
         self.joint_constraint_values = []
-        self.enable_joints = [self.jointConstraintEnableXCheckBox.isChecked(), self.jointConstraintEnableYCheckBox.isChecked(),self.jointConstraintEnableZCheckBox.isChecked(), self.jointConstraintEnableACheckBox.isChecked(),self.jointConstraintEnableBCheckBox.isChecked(), self.jointConstraintEnableCCheckBox.isChecked()]
+        self.enable_joints[0] = self.jointConstraintEnableXCheckBox.isChecked()
+        self.enable_joints[1] = self.jointConstraintEnableYCheckBox.isChecked()
+        self.enable_joints[2] = self.jointConstraintEnableZCheckBox.isChecked()
+        self.enable_joints[3] = self.jointConstraintEnableACheckBox.isChecked()
+        self.enable_joints[4] = self.jointConstraintEnableBCheckBox.isChecked()
+        self.enable_joints[5] = self.jointConstraintEnableCCheckBox.isChecked()
+
         r = 6
         c = 3
         for i in range(r):
