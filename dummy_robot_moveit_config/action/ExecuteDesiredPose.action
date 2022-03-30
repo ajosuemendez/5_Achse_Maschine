@@ -9,6 +9,10 @@ float64 yaw_input
 float64 check
 float64 sim_vel
 string constraint
+float64[] constraints_values
+float64[] enable_joints
+float64[] orientation_constraints_values
+float64 position_constraint_value
 ---
 # Define the result
 float64[] result

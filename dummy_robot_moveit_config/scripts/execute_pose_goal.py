@@ -23,6 +23,7 @@ from moveit_msgs.msg import Constraints, OrientationConstraint, JointConstraint,
 from shape_msgs.msg import SolidPrimitive
 from nav_msgs.msg import Path
 import time
+from pilz_robot_programming import *
 
 # import multiprocessing
 from threading import Thread
@@ -91,6 +92,8 @@ class MoveGroupPythonInterfaceTutorial(object):
         self.robot = robot
         self.scene = scene
         self.move_group = move_group
+        # self.move_group.set_planning_pipeline_id("pilz_industrial_motion_planner")
+        # self.move_group.set_planner_id("LIN")
         self.display_trajectory_publisher = display_trajectory_publisher
         self.planning_frame = planning_frame
         self.eef_link = eef_link
@@ -173,12 +176,12 @@ class MoveGroupPythonInterfaceTutorial(object):
 
             self.move_group.set_pose_target(self.pose_goal.pose)
             chosen_constraint = goal.constraint
+
             self.move_group.set_path_constraints(None)
 
             if chosen_constraint == "None":
                 ########DISABLING ALL CONSTRAINTS##############
-                #self.move_group.set_path_constraints(None)
-                pass
+                self.move_group.set_path_constraints(None)
 
 
             elif chosen_constraint == "Orientation":
@@ -189,9 +192,9 @@ class MoveGroupPythonInterfaceTutorial(object):
                 orientation_constraint.header = self.pose_goal.header
                 orientation_constraint.link_name = self.move_group.get_end_effector_link()
                 orientation_constraint.orientation = self.pose_goal.pose.orientation
-                orientation_constraint.absolute_x_axis_tolerance = 0.4
-                orientation_constraint.absolute_y_axis_tolerance = 0.4
-                orientation_constraint.absolute_z_axis_tolerance = 0.4
+                orientation_constraint.absolute_x_axis_tolerance = goal.orientation_constraints_values[0] #0.4
+                orientation_constraint.absolute_y_axis_tolerance = goal.orientation_constraints_values[1] #0.4
+                orientation_constraint.absolute_z_axis_tolerance = goal.orientation_constraints_values[2] #0.4
                 orientation_constraint.weight = 1
                 #######ENABLING ORIENTATION CONSTGRAINT########
                 self.upright_constraints.orientation_constraints.append(orientation_constraint)
@@ -207,7 +210,7 @@ class MoveGroupPythonInterfaceTutorial(object):
                 point_constraint.target_point_offset = self.pose_goal.pose.position
                 bounding_region = SolidPrimitive()
                 bounding_region.type = SolidPrimitive.SPHERE
-                bounding_region.dimensions.append(0.01)
+                bounding_region.dimensions.append(goal.position_constraint_value) #0.01
                 point_constraint.constraint_region.primitives.append(bounding_region)
                 point_constraint.constraint_region.primitive_poses.append(self.pose_goal.pose)
                 point_constraint.weight = 1
@@ -217,17 +220,92 @@ class MoveGroupPythonInterfaceTutorial(object):
 
             elif chosen_constraint == "Joint":
                 ######JOINT1 COINSTRAINT#############
+                # self.fixed_base_constraint = Constraints()
+                # self.fixed_base_constraint.name= "fixed_base"
+                # joint_constraint = JointConstraint()
+                # joint_constraint.joint_name = self.move_group.get_joints()[1]
+                # joint_constraint.position = self.move_group.get_current_joint_values()[0]
+                # #print(joint_constraint.position)
+                # joint_constraint.tolerance_above = 0.174533
+                # joint_constraint.tolerance_below = 0.174533
+                # joint_constraint.weight = 1
+                # #######ENABLING JOINT CONSTGRAINT########
+                # self.fixed_base_constraint.joint_constraints.append(joint_constraint)
+                # self.move_group.set_path_constraints(self.fixed_base_constraint)
+
+                print("im in joint constraint")
+                ######JOINT1 COINSTRAINT#############
                 self.fixed_base_constraint = Constraints()
                 self.fixed_base_constraint.name= "fixed_base"
-                joint_constraint = JointConstraint()
-                joint_constraint.joint_name = self.move_group.get_joints()[1]
-                joint_constraint.position = self.move_group.get_current_joint_values()[0]
-                print(joint_constraint.position)
-                joint_constraint.tolerance_above = 0.174533
-                joint_constraint.tolerance_below = 0.174533
-                joint_constraint.weight = 1
+                #joint X cosntraint
+                joint_constraint_X = JointConstraint()
+                joint_constraint_X.joint_name = self.move_group.get_joints()[1]
+                joint_constraint_X.position = self.move_group.get_current_joint_values()[0]
+                #print(joint_constraint_X.position)
+                joint_constraint_X.tolerance_above = math.radians(goal.constraints_values[0]) #80 deg
+                joint_constraint_X.tolerance_below = math.radians(goal.constraints_values[1]) #80 deg
+                joint_constraint_X.weight = 1
+                if goal.enable_joints[0] == 1:
+                    self.fixed_base_constraint.joint_constraints.append(joint_constraint_X)
+                    print("joint X Enabled")
+                #joint Y cosntraint
+                joint_constraint_Y = JointConstraint()
+                joint_constraint_Y.joint_name = self.move_group.get_joints()[2]
+                joint_constraint_Y.position = self.move_group.get_current_joint_values()[1]
+                #print(joint_constraint_Y.position)
+                joint_constraint_Y.tolerance_above = math.radians(goal.constraints_values[2]) #70 deg
+                joint_constraint_Y.tolerance_below = math.radians(goal.constraints_values[3]) #70 deg
+                joint_constraint_Y.weight = 1
+                if goal.enable_joints[1] == 1:
+                    self.fixed_base_constraint.joint_constraints.append(joint_constraint_Y)
+                    print("joint Y Enabled")
+                #joint Z cosntraint
+                joint_constraint_Z = JointConstraint()
+                joint_constraint_Z.joint_name = self.move_group.get_joints()[3]
+                joint_constraint_Z.position = self.move_group.get_current_joint_values()[2]
+                #print(joint_constraint_Z.position)
+                joint_constraint_Z.tolerance_above = math.radians(goal.constraints_values[4]) #40 deg
+                joint_constraint_Z.tolerance_below = math.radians(goal.constraints_values[5]) #10 deg
+                joint_constraint_Z.weight = 1
+                if goal.enable_joints[2] == 1:
+                    self.fixed_base_constraint.joint_constraints.append(joint_constraint_Z)
+                    print("joint Z Enabled")
+                #joint A cosntraint
+                joint_constraint_A = JointConstraint()
+                joint_constraint_A.joint_name = self.move_group.get_joints()[4]
+                joint_constraint_A.position = self.move_group.get_current_joint_values()[3]
+                #print(joint_constraint_A.position)
+                joint_constraint_A.tolerance_above = math.radians(goal.constraints_values[6]) #45 deg
+                joint_constraint_A.tolerance_below = math.radians(goal.constraints_values[7]) #45 deg
+                joint_constraint_A.weight = 1
+                if goal.enable_joints[3] == 1:
+                    self.fixed_base_constraint.joint_constraints.append(joint_constraint_A)
+                    print("joint A Enabled")
+                #joint B cosntraint
+                joint_constraint_B = JointConstraint()
+                joint_constraint_B.joint_name = self.move_group.get_joints()[5]
+                joint_constraint_B.position = self.move_group.get_current_joint_values()[4]
+                #print(joint_constraint_B.position)
+                joint_constraint_B.tolerance_above = math.radians(goal.constraints_values[8]) #45 deg
+                joint_constraint_B.tolerance_below = math.radians(goal.constraints_values[9]) #45 deg
+                joint_constraint_B.weight = 1
+                if goal.enable_joints[4] == 1:
+                    self.fixed_base_constraint.joint_constraints.append(joint_constraint_B)
+                    print("joint B Enabled")
+                #joint C cosntraint
+                joint_constraint_C = JointConstraint()
+                joint_constraint_C.joint_name = self.move_group.get_joints()[6]
+                joint_constraint_C.position = self.move_group.get_current_joint_values()[5]
+                #print(joint_constraint_C.position)
+                joint_constraint_C.tolerance_above = math.radians(goal.constraints_values[10]) #45 deg
+                joint_constraint_C.tolerance_below = math.radians(goal.constraints_values[11]) #45 deg
+                joint_constraint_C.weight = 1
+
+                if goal.enable_joints[5] == 1:
+                    self.fixed_base_constraint.joint_constraints.append(joint_constraint_C)
+                    print("joint C Enabled")
+
                 #######ENABLING JOINT CONSTGRAINT########
-                self.fixed_base_constraint.joint_constraints.append(joint_constraint)
                 self.move_group.set_path_constraints(self.fixed_base_constraint)
 
 
@@ -294,6 +372,10 @@ class MoveGroupPythonInterfaceTutorial(object):
             # print("abs_joint6:",abs_joint6)
             #
             # print("counter:", counting)
+
+
+
+
             calc_plan = self.move_group.plan()
 
         except Exception as e:
@@ -304,6 +386,8 @@ class MoveGroupPythonInterfaceTutorial(object):
         feedback_action = ExecuteDesiredPoseFeedback()
         result_action = ExecuteDesiredPoseResult()
         rate = rospy.Rate(100)
+
+        self.action_server_execute.set_succeeded(result_action)
 
         if goal.command: ##command true means normal execution
             feedback_action.feedback = "Executing....."
@@ -335,12 +419,12 @@ class MoveGroupPythonInterfaceTutorial(object):
                 #print("here starts!!")
                 #print(calc_plan[1].joint_trajectory.points)
                 for i in range(len(calc_plan[1].joint_trajectory.points)):
-                    print("Positions: ",calc_plan[1].joint_trajectory.points[i].positions)
+                    #print("Positions: ",calc_plan[1].joint_trajectory.points[i].positions)
                     for j in range(6):
                         modified_coodinates.append(round(math.degrees(calc_plan[1].joint_trajectory.points[i].positions[j]),2))
 
                 result_action.result = modified_coodinates
-                print("result: ",result_action.result)
+                #print("result: ",result_action.result)
                 self.action_server_execute.set_succeeded(result_action)
             else:
                 modified_coodinates = []
@@ -512,9 +596,12 @@ class MoveGroupPythonInterfaceTutorial(object):
             self.pose_goal.pose.position.z = req.z_input*self.scale_m
 
             self.move_group.set_pose_target(self.pose_goal.pose)
+            self.move_group.set_path_constraints(None)
+
 
             if req.check!=1:
                 if req.constraint == "Joint":
+                    print("im in joint constraint")
                     ######JOINT1 COINSTRAINT#############
                     self.fixed_base_constraint = Constraints()
                     self.fixed_base_constraint.name= "fixed_base"
@@ -522,47 +609,70 @@ class MoveGroupPythonInterfaceTutorial(object):
                     joint_constraint_X = JointConstraint()
                     joint_constraint_X.joint_name = self.move_group.get_joints()[1]
                     joint_constraint_X.position = self.move_group.get_current_joint_values()[0]
-                    print(joint_constraint_X.position)
-                    joint_constraint_X.tolerance_above = math.radians(80)
-                    joint_constraint_X.tolerance_below = math.radians(80)
+                    #print(joint_constraint_X.position)
+                    joint_constraint_X.tolerance_above = math.radians(req.constraints_values[0]) #80 deg
+                    joint_constraint_X.tolerance_below = math.radians(req.constraints_values[1]) #80 deg
                     joint_constraint_X.weight = 1
-                    self.fixed_base_constraint.joint_constraints.append(joint_constraint_X)
+                    if req.enable_joints[0] == 1:
+                        self.fixed_base_constraint.joint_constraints.append(joint_constraint_X)
+                        print("joint X Enabled")
                     #joint Y cosntraint
                     joint_constraint_Y = JointConstraint()
                     joint_constraint_Y.joint_name = self.move_group.get_joints()[2]
                     joint_constraint_Y.position = self.move_group.get_current_joint_values()[1]
-                    print(joint_constraint_Y.position)
-                    joint_constraint_Y.tolerance_above = math.radians(70)
-                    joint_constraint_Y.tolerance_below = math.radians(70)
+                    #print(joint_constraint_Y.position)
+                    joint_constraint_Y.tolerance_above = math.radians(req.constraints_values[2]) #70 deg
+                    joint_constraint_Y.tolerance_below = math.radians(req.constraints_values[3]) #70 deg
                     joint_constraint_Y.weight = 1
-                    self.fixed_base_constraint.joint_constraints.append(joint_constraint_Y)
+                    if req.enable_joints[1] == 1:
+                        self.fixed_base_constraint.joint_constraints.append(joint_constraint_Y)
+                        print("joint Y Enabled")
                     #joint Z cosntraint
                     joint_constraint_Z = JointConstraint()
                     joint_constraint_Z.joint_name = self.move_group.get_joints()[3]
                     joint_constraint_Z.position = self.move_group.get_current_joint_values()[2]
-                    print(joint_constraint_Z.position)
-                    joint_constraint_Z.tolerance_above = math.radians(40)
-                    joint_constraint_Z.tolerance_below = math.radians(10)
+                    #print(joint_constraint_Z.position)
+                    joint_constraint_Z.tolerance_above = math.radians(req.constraints_values[4]) #40 deg
+                    joint_constraint_Z.tolerance_below = math.radians(req.constraints_values[5]) #10 deg
                     joint_constraint_Z.weight = 1
-                    self.fixed_base_constraint.joint_constraints.append(joint_constraint_Z)
+                    if req.enable_joints[2] == 1:
+                        self.fixed_base_constraint.joint_constraints.append(joint_constraint_Z)
+                        print("joint Z Enabled")
                     #joint A cosntraint
                     joint_constraint_A = JointConstraint()
                     joint_constraint_A.joint_name = self.move_group.get_joints()[4]
                     joint_constraint_A.position = self.move_group.get_current_joint_values()[3]
-                    print(joint_constraint_A.position)
-                    joint_constraint_A.tolerance_above = math.radians(45)
-                    joint_constraint_A.tolerance_below = math.radians(45)
+                    #print(joint_constraint_A.position)
+                    joint_constraint_A.tolerance_above = math.radians(req.constraints_values[6]) #45 deg
+                    joint_constraint_A.tolerance_below = math.radians(req.constraints_values[7]) #45 deg
                     joint_constraint_A.weight = 1
-                    self.fixed_base_constraint.joint_constraints.append(joint_constraint_A)
+                    if req.enable_joints[3] == 1:
+                        self.fixed_base_constraint.joint_constraints.append(joint_constraint_A)
+                        print("joint A Enabled")
                     #joint B cosntraint
                     joint_constraint_B = JointConstraint()
                     joint_constraint_B.joint_name = self.move_group.get_joints()[5]
                     joint_constraint_B.position = self.move_group.get_current_joint_values()[4]
-                    print(joint_constraint_B.position)
-                    joint_constraint_B.tolerance_above = math.radians(45)
-                    joint_constraint_B.tolerance_below = math.radians(45)
+                    #print(joint_constraint_B.position)
+                    joint_constraint_B.tolerance_above = math.radians(req.constraints_values[8]) #45 deg
+                    joint_constraint_B.tolerance_below = math.radians(req.constraints_values[9]) #45 deg
                     joint_constraint_B.weight = 1
-                    self.fixed_base_constraint.joint_constraints.append(joint_constraint_B)
+                    if req.enable_joints[4] == 1:
+                        self.fixed_base_constraint.joint_constraints.append(joint_constraint_B)
+                        print("joint B Enabled")
+                    #joint C cosntraint
+                    joint_constraint_C = JointConstraint()
+                    joint_constraint_C.joint_name = self.move_group.get_joints()[6]
+                    joint_constraint_C.position = self.move_group.get_current_joint_values()[5]
+                    #print(joint_constraint_C.position)
+                    joint_constraint_C.tolerance_above = math.radians(req.constraints_values[10]) #45 deg
+                    joint_constraint_C.tolerance_below = math.radians(req.constraints_values[11]) #45 deg
+                    joint_constraint_C.weight = 1
+
+                    if req.enable_joints[5] == 1:
+                        self.fixed_base_constraint.joint_constraints.append(joint_constraint_C)
+                        print("joint C Enabled")
+
                     #######ENABLING JOINT CONSTGRAINT########
 
                     self.move_group.set_path_constraints(self.fixed_base_constraint)
@@ -575,9 +685,9 @@ class MoveGroupPythonInterfaceTutorial(object):
                     orientation_constraint.header = self.pose_goal.header
                     orientation_constraint.link_name = self.move_group.get_end_effector_link()
                     orientation_constraint.orientation = self.pose_goal.pose.orientation
-                    orientation_constraint.absolute_x_axis_tolerance = 0.4
-                    orientation_constraint.absolute_y_axis_tolerance = 0.4
-                    orientation_constraint.absolute_z_axis_tolerance = 0.4
+                    orientation_constraint.absolute_x_axis_tolerance = req.orientation_constraints_values[0] #0.4
+                    orientation_constraint.absolute_y_axis_tolerance = req.orientation_constraints_values[1] #0.4
+                    orientation_constraint.absolute_z_axis_tolerance = req.orientation_constraints_values[2] #0.4
                     orientation_constraint.weight = 1
                     #######ENABLING ORIENTATION CONSTGRAINT########
                     self.upright_constraints.orientation_constraints.append(orientation_constraint)
@@ -593,7 +703,7 @@ class MoveGroupPythonInterfaceTutorial(object):
                     point_constraint.target_point_offset = self.pose_goal.pose.position
                     bounding_region = SolidPrimitive()
                     bounding_region.type = SolidPrimitive.SPHERE
-                    bounding_region.dimensions.append(0.01)
+                    bounding_region.dimensions.append(req.position_constraint_value) #0.01
                     point_constraint.constraint_region.primitives.append(bounding_region)
                     point_constraint.constraint_region.primitive_poses.append(self.pose_goal.pose)
                     point_constraint.weight = 1

@@ -8,7 +8,9 @@ float64 check
 string constraint
 bool simulate
 float64[] constraints_values
-bool[] enable_joints
+float64[] enable_joints
+float64[] orientation_constraints_values
+float64 position_constraint_value
 ---
 float64[] joints
 bool success

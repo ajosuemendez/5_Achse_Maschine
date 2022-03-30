@@ -30,6 +30,11 @@ GLOABAL_LINES_CARTESIAN = ["",""]
 GLOBAL_CALCULATED_JOINTS = ["","","","","",""]
 GLOBAL_CURRENT_CONSTRAINT = ["",""]
 GLOBAL_OFFSET = [0,0,0,0,0,0]
+GLOBAL_ENABLE_JOINT_CONSTRAINTS = [0,0,0,0,0,0]
+GLOBAL_VALUES_JOINT_CONSTRAINTS = [360,360,360,360,360,360,360,360,360,360,360,360]
+GLOBAL_VALUES_ORIENTATION_CONSTRAINTS = [0.4,0.4,0.4]
+GLOBAL_VALUE_POSITION_CONSTRAINT = 0.01
+
 
 class Finisher():
     def __init__(self):
@@ -61,7 +66,20 @@ class Worker(QObject):
 
     def call_action_execution(self):
         self.action_client_execute.wait_for_server()
-        goal = ExecuteDesiredPoseGoal(command=True, x_input=GLOBAL_CALCULATED_JOINTS[0], y_input=GLOBAL_CALCULATED_JOINTS[1], z_input=GLOBAL_CALCULATED_JOINTS[2], roll_input=GLOBAL_CALCULATED_JOINTS[3], pitch_input=GLOBAL_CALCULATED_JOINTS[4], yaw_input=GLOBAL_CALCULATED_JOINTS[5], check=2, sim_vel=0.5, constraint="None")
+        goal = ExecuteDesiredPoseGoal(command=True,
+                                    x_input=GLOBAL_CALCULATED_JOINTS[0],
+                                    y_input=GLOBAL_CALCULATED_JOINTS[1],
+                                    z_input=GLOBAL_CALCULATED_JOINTS[2],
+                                    roll_input=GLOBAL_CALCULATED_JOINTS[3],
+                                    pitch_input=GLOBAL_CALCULATED_JOINTS[4],
+                                    yaw_input=GLOBAL_CALCULATED_JOINTS[5], check=2,
+                                    sim_vel=0.5,
+                                    constraint="None",
+                                    constraints_values=GLOBAL_VALUES_JOINT_CONSTRAINTS,
+                                    enable_joints=GLOBAL_ENABLE_JOINT_CONSTRAINTS,
+                                    orientation_constraints_values=GLOBAL_VALUES_ORIENTATION_CONSTRAINTS,
+                                    position_constraint_value=GLOBAL_VALUE_POSITION_CONSTRAINT)
+
         self.action_client_execute.send_goal(goal)
         self.action_client_execute.wait_for_result()
         result = self.action_client_execute.get_result()
@@ -193,7 +211,21 @@ class Worker(QObject):
                     else:
                         print("getting the action server Non Cartesian")
                         self.action_client_execute.wait_for_server()
-                        goal = ExecuteDesiredPoseGoal(command=True, x_input=x_input, y_input=y_input, z_input=z_input, roll_input=roll_input, pitch_input=pitch_input, yaw_input=yaw_input, check=2, sim_vel=sim_vel_list[k], constraint=constraint_list[k])
+                        goal = ExecuteDesiredPoseGoal(command=True,
+                                                      x_input=x_input,
+                                                      y_input=y_input,
+                                                      z_input=z_input,
+                                                      roll_input=roll_input,
+                                                      pitch_input=pitch_input,
+                                                      yaw_input=yaw_input,
+                                                      check=2,
+                                                      sim_vel=sim_vel_list[k],
+                                                      constraint=constraint_list[k],
+                                                      constraints_values= GLOBAL_VALUES_JOINT_CONSTRAINTS,
+                                                      enable_joints=GLOBAL_ENABLE_JOINT_CONSTRAINTS,
+                                                      orientation_constraints_values=GLOBAL_VALUES_ORIENTATION_CONSTRAINTS,
+                                                      position_constraint_value=GLOBAL_VALUE_POSITION_CONSTRAINT)
+
                         self.action_client_execute.send_goal(goal)
                         self.action_client_execute.wait_for_result()
                         result = self.action_client_execute.get_result()
@@ -1302,6 +1334,7 @@ class Ui_MainWindow(object):
         self.positionConstraintSaveButton = QtWidgets.QPushButton(self.groupBox_9)
         self.positionConstraintSaveButton.setGeometry(QtCore.QRect(160, 40, 141, 50))
         self.positionConstraintSaveButton.setObjectName("positionConstraintSaveButton")
+        self.positionConstraintSaveButton.clicked.connect(self.positionConstraintSaveButtonCallback)
         self.groupBox_10 = QtWidgets.QGroupBox(self.tab_2)
         self.groupBox_10.setGeometry(QtCore.QRect(20, 330, 441, 201))
         self.groupBox_10.setObjectName("groupBox_10")
@@ -1333,6 +1366,7 @@ class Ui_MainWindow(object):
         self.orientationConstraintSaveButton = QtWidgets.QPushButton(self.groupBox_10)
         self.orientationConstraintSaveButton.setGeometry(QtCore.QRect(360, 40, 71, 131))
         self.orientationConstraintSaveButton.setObjectName("orientationConstraintSaveButton")
+        self.orientationConstraintSaveButton.clicked.connect(self.orientationConstraintSaveButtonCallback)
         self.tabWidget.addTab(self.tab_2, "")
         self.layoutWidget8 = QtWidgets.QWidget(self.centralwidget)
         self.layoutWidget8.setGeometry(QtCore.QRect(20, 20, 231, 591))
@@ -1616,8 +1650,10 @@ class Ui_MainWindow(object):
         self.testButtonPressed = False
         self.desiredPoseAddButtonPressed = False
         self.generated_sim_gcode = ""
-        self.joint_constraint_values = []
-        self.enable_joints = [False,False,False,False,False,False]
+        self.joint_constraint_values = [360.0, 360.0, 360.0, 360.0, 360.0, 360.0, 360.0, 360.0, 360.0, 360.0, 360.0, 360.0]
+        self.enable_joints = [0,0,0,0,0,0]
+        self.orientation_constraints_values = [0.4,0.4,0.4]
+        self.position_constraint_value = 0.01
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
@@ -1913,7 +1949,10 @@ class Ui_MainWindow(object):
             request.simulate = True
             request.enable_joints = self.enable_joints
             request.constraints_values = self.joint_constraint_values
-            response = service_conn(request.x_input, request.y_input, request.z_input, request.roll_input, request.pitch_input, request.yaw_input, request.check, request.constraint, request.simulate, request.enable_joints, request.constraints_values)
+            request.orientation_constraints_values = self.orientation_constraints_values
+            request.position_constraint_value = self.position_constraint_value
+
+            response = service_conn(request.x_input, request.y_input, request.z_input, request.roll_input, request.pitch_input, request.yaw_input, request.check, request.constraint, request.simulate, request.constraints_values, request.enable_joints, request.orientation_constraints_values, request.position_constraint_value)
             #print(response)
         except rospy.ServiceException as exc:
             print("Service did not process request: " + str(exc))
@@ -2346,7 +2385,8 @@ class Ui_MainWindow(object):
 
 
                 #if len(self.full_list[i])>=8: #either Rapid5d or Linear5D can come in
-                if i%3 == 0:
+                jumps = 3 # jumps must be an int greater than 0
+                if i%jumps == 0: #jump 3 lines for each iteration
                     rospy.wait_for_service('/calc_pose')
                     service_conn = rospy.ServiceProxy('/calc_pose', CalculateJoints)
                     try:
@@ -2360,6 +2400,8 @@ class Ui_MainWindow(object):
                         request.simulate = self.simulateCheckBox.isChecked()
                         request.enable_joints = self.enable_joints
                         request.constraints_values = self.joint_constraint_values
+                        request.orientation_constraints_values = self.orientation_constraints_values
+                        request.position_constraint_value = self.position_constraint_value
 
                         if len(self.full_list[i])>= 8: #onlinear5d or onRapid5D
                             request.pitch_input = abs_pos[4] - self.full_list[i][-1] #to fix the pitch dirction to match Fusion then (-1)
@@ -2379,7 +2421,7 @@ class Ui_MainWindow(object):
                             request.yaw_input = self.set_world_frame[5] + self.set_offsets[5] +self.pos_offsets[5]
                             r = round(math.sqrt((abs_pos_circular_end[0]-abs_pos_circular_start[0])**2 +(abs_pos_circular_end[1]-abs_pos_circular_start[1])**2 +(abs_pos_circular_end[2]-abs_pos_circular_start[2])**2),5)
                             #print(r)
-                        response_srv = service_conn(request.x_input, request.y_input, request.z_input, request.roll_input, request.pitch_input, request.yaw_input, request.check, request.constraint, request.simulate, request.enable_joints, request.constraints_values)
+                        response_srv = service_conn(request.x_input, request.y_input, request.z_input, request.roll_input, request.pitch_input, request.yaw_input, request.check, request.constraint, request.simulate, request.constraints_values, request.enable_joints, request.orientation_constraints_values, request.position_constraint_value)
                         #print(response)
                     except rospy.ServiceException as exc:
                         print("Service did not process request: " + str(exc))
@@ -3422,8 +3464,10 @@ class Ui_MainWindow(object):
             request.simulate = False
             request.enable_joints = self.enable_joints
             request.constraints_values = self.joint_constraint_values
+            request.orientation_constraints_values = self.orientation_constraints_values
+            request.position_constraint_value = self.position_constraint_value
 
-            response = service_conn(request.x_input, request.y_input, request.z_input, request.roll_input, request.pitch_input, request.yaw_input, request.check, request.constraint, request.simulate, request.enable_joints, request.constraints_values)
+            response = service_conn(request.x_input, request.y_input, request.z_input, request.roll_input, request.pitch_input, request.yaw_input, request.check, request.constraint, request.simulate, request.constraints_values, request.enable_joints, request.orientation_constraints_values, request.position_constraint_value)
             #print(response)
         except rospy.ServiceException as exc:
             print("Service did not process request: " + str(exc))
@@ -3670,6 +3714,16 @@ class Ui_MainWindow(object):
                 self.gcode_generation_services("/clear_gcode_buffer")
                 self.gcode_generation_services("/start_record")
 
+            for i in range(len(self.joint_constraint_values)):
+                GLOBAL_VALUES_JOINT_CONSTRAINTS[i] = self.joint_constraint_values[i]
+
+            for p in range(len(self.enable_joints)):
+                GLOBAL_ENABLE_JOINT_CONSTRAINTS[p] = self.enable_joints[p]
+
+            for k in range(len(self.orientation_constraints_values)):
+                GLOBAL_VALUES_ORIENTATION_CONSTRAINTS[k]=self.orientation_constraints_values[k]
+
+            GLOBAL_VALUE_POSITION_CONSTRAINT=self.position_constraint_value
 
 
             GLOBAL_CURRENT_CONSTRAINT[0] = self.constraintsComboBox.currentText() # this line is no longer necesssary
@@ -3763,12 +3817,12 @@ class Ui_MainWindow(object):
     def JointConstraintSaveButtonCallback(self):
         #self.joint_constraint_dict = defaultdict(tuple)
         self.joint_constraint_values = []
-        self.enable_joints[0] = self.jointConstraintEnableXCheckBox.isChecked()
-        self.enable_joints[1] = self.jointConstraintEnableYCheckBox.isChecked()
-        self.enable_joints[2] = self.jointConstraintEnableZCheckBox.isChecked()
-        self.enable_joints[3] = self.jointConstraintEnableACheckBox.isChecked()
-        self.enable_joints[4] = self.jointConstraintEnableBCheckBox.isChecked()
-        self.enable_joints[5] = self.jointConstraintEnableCCheckBox.isChecked()
+        self.enable_joints[0] = 1 if self.jointConstraintEnableXCheckBox.isChecked() else 0
+        self.enable_joints[1] = 1 if self.jointConstraintEnableYCheckBox.isChecked() else 0
+        self.enable_joints[2] = 1 if self.jointConstraintEnableZCheckBox.isChecked() else 0
+        self.enable_joints[3] = 1 if self.jointConstraintEnableACheckBox.isChecked() else 0
+        self.enable_joints[4] = 1 if self.jointConstraintEnableBCheckBox.isChecked() else 0
+        self.enable_joints[5] = 1 if self.jointConstraintEnableCCheckBox.isChecked() else 0
 
         r = 6
         c = 3
@@ -3785,14 +3839,50 @@ class Ui_MainWindow(object):
                         self.joint_constraint_values.append(val)
                 except AttributeError:
                     #self.joint_constraint_dict[(i,j)] = (360, False)
-                    self.joint_constraint_values.append(360)
+                    self.joint_constraint_values.append(360.0)
                 except ValueError as e:
                     print(e)
                     self.showMessageBox(text="please make sure to use a valid format", icon="Critical")
                     return None
 
-        print("constraints values:", self.joint_constraint_values)
-        print("enable_joints:", self.enable_joints)
+        # print("constraints values:", self.joint_constraint_values)
+        # print("enable_joints:", self.enable_joints)
+
+    def orientationConstraintSaveButtonCallback(self):
+
+        self.orientation_constraints_values = []
+
+        r=3 #rows
+
+        for i in range(r):
+            try:
+                val = float(self.orientationConstraintTableWidget.item(i,1).text())
+                if val < 0:
+                    self.showMessageBox(text="please make sure to set all the values positive", icon="Critical")
+                    return None
+                else:
+                    self.orientation_constraints_values.append(val)
+            except AttributeError:
+                self.orientation_constraints_values.append(0.1)
+            except ValueError as e:
+                print(e)
+                self.showMessageBox(text="please make sure to use a valid format", icon="Critical")
+                return None
+
+    def positionConstraintSaveButtonCallback(self):
+        try:
+            val = float(self.positionConstraintTableWidget.item(0,0).text())
+            if val < 0:
+                self.showMessageBox(text="please make sure to set all the values positive", icon="Critical")
+                return None
+            else:
+                self.position_constraint_value = val
+        except AttributeError:
+            self.position_constraint_value = 0.01
+        except ValueError as e:
+            print(e)
+            self.showMessageBox(text="please make sure to use a valid format", icon="Critical")
+            return None
 
 
 if __name__ == "__main__":
