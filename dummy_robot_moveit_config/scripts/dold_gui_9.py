@@ -30,10 +30,12 @@ GLOABAL_LINES_CARTESIAN = ["",""]
 GLOBAL_CALCULATED_JOINTS = ["","","","","",""]
 GLOBAL_CURRENT_CONSTRAINT = ["",""]
 GLOBAL_OFFSET = [0,0,0,0,0,0]
+GLOBAL_SIM_VEL = [90]
 GLOBAL_ENABLE_JOINT_CONSTRAINTS = [0,0,0,0,0,0]
 GLOBAL_VALUES_JOINT_CONSTRAINTS = [360,360,360,360,360,360,360,360,360,360,360,360]
 GLOBAL_VALUES_ORIENTATION_CONSTRAINTS = [0.4,0.4,0.4]
-GLOBAL_VALUE_POSITION_CONSTRAINT = 0.01
+GLOBAL_VALUE_POSITION_CONSTRAINT = [0.01]
+import rosnode
 
 
 class Finisher():
@@ -72,13 +74,14 @@ class Worker(QObject):
                                     z_input=GLOBAL_CALCULATED_JOINTS[2],
                                     roll_input=GLOBAL_CALCULATED_JOINTS[3],
                                     pitch_input=GLOBAL_CALCULATED_JOINTS[4],
-                                    yaw_input=GLOBAL_CALCULATED_JOINTS[5], check=2,
-                                    sim_vel=0.5,
+                                    yaw_input=GLOBAL_CALCULATED_JOINTS[5],
+                                    check=2,
+                                    sim_vel=GLOBAL_SIM_VEL[0],
                                     constraint="None",
                                     constraints_values=GLOBAL_VALUES_JOINT_CONSTRAINTS,
                                     enable_joints=GLOBAL_ENABLE_JOINT_CONSTRAINTS,
                                     orientation_constraints_values=GLOBAL_VALUES_ORIENTATION_CONSTRAINTS,
-                                    position_constraint_value=GLOBAL_VALUE_POSITION_CONSTRAINT)
+                                    position_constraint_value=GLOBAL_VALUE_POSITION_CONSTRAINT[0])
 
         self.action_client_execute.send_goal(goal)
         self.action_client_execute.wait_for_result()
@@ -224,7 +227,7 @@ class Worker(QObject):
                                                       constraints_values= GLOBAL_VALUES_JOINT_CONSTRAINTS,
                                                       enable_joints=GLOBAL_ENABLE_JOINT_CONSTRAINTS,
                                                       orientation_constraints_values=GLOBAL_VALUES_ORIENTATION_CONSTRAINTS,
-                                                      position_constraint_value=GLOBAL_VALUE_POSITION_CONSTRAINT)
+                                                      position_constraint_value=GLOBAL_VALUE_POSITION_CONSTRAINT[0])
 
                         self.action_client_execute.send_goal(goal)
                         self.action_client_execute.wait_for_result()
@@ -914,14 +917,14 @@ class Ui_MainWindow(object):
         self.custom1Button = QtWidgets.QPushButton(self.layoutWidget3)
         self.custom1Button.setAutoDefault(True)
         self.custom1Button.setObjectName("custom1Button")
-        self.custom1Button.clicked.connect(self.custom1Callback)
+        #self.custom1Button.clicked.connect(self.custom1Callback)
         self.verticalLayout_17.addWidget(self.custom1Button)
         self.custom2Button = QtWidgets.QPushButton(self.layoutWidget3)
         self.custom2Button.setAutoDefault(True)
         self.custom2Button.setDefault(False)
         self.custom2Button.setFlat(False)
         self.custom2Button.setObjectName("custom2Button")
-        self.custom2Button.clicked.connect(self.custom2ButtonCallback)
+        #self.custom2Button.clicked.connect(self.custom2ButtonCallback)
         self.verticalLayout_17.addWidget(self.custom2Button)
         self.verticalLayout_18.addLayout(self.verticalLayout_17)
         self.verticalLayout_25.addLayout(self.verticalLayout_18)
@@ -1946,7 +1949,7 @@ class Ui_MainWindow(object):
             request.yaw_input = yaw
             request.check = 2
             request.constraint = "None"
-            request.simulate = True
+            request.simulate = False
             request.enable_joints = self.enable_joints
             request.constraints_values = self.joint_constraint_values
             request.orientation_constraints_values = self.orientation_constraints_values
@@ -1975,16 +1978,7 @@ class Ui_MainWindow(object):
             self.bCalculatedJointsLineEdit.setText(str(round(response.joints[10],2)))
             self.cCalculatedJointsLineEdit.setText(str(round(response.joints[11],2)))
 
-            # A = self.xCalculatedJointsLineEdit.text()
-            # B = self.yCalculatedJointsLineEdit.text()
-            # C = self.zCalculatedJointsLineEdit.text()
-            # D = self.aCalculatedJointsLineEdit.text()
-            # E = self.bCalculatedJointsLineEdit.text()
-            # H = self.cCalculatedJointsLineEdit.text()
-
-
-
-            self.gcodeLineEdit.setText(f"G01A{self.xCalculatedJointsLineEdit.text()}B{self.yCalculatedJointsLineEdit.text()}C{self.zCalculatedJointsLineEdit.text()}D{self.aCalculatedJointsLineEdit.text()}E{self.bCalculatedJointsLineEdit.text()}H{self.cCalculatedJointsLineEdit.text()}")
+            self.gcodeLineEdit.setText(f"G01 X{self.xCalculatedJointsLineEdit.text()} Y{self.yCalculatedJointsLineEdit.text()} Z{self.zCalculatedJointsLineEdit.text()} A{self.aCalculatedJointsLineEdit.text()} B{self.bCalculatedJointsLineEdit.text()} C{self.cCalculatedJointsLineEdit.text()}")
 
             self.calculated_plan = True
         else:
@@ -1994,7 +1988,7 @@ class Ui_MainWindow(object):
 
     def executeCallback(self):
         if self.calculated_plan:
-
+            GLOBAL_SIM_VEL[0] = float(self.simSpeedSpinBox.value())
             self.thread_execute = QThread()
             self.worker_execute = Worker()
             self.worker_execute.moveToThread(self.thread_execute)
@@ -2006,18 +2000,6 @@ class Ui_MainWindow(object):
             #self.worker_execute.progress.connect(self.reportProgress_execution)
 
             self.thread_execute.start()
-            ####START SERVICE CALL#######
-            # rospy.wait_for_service('/execute_pose')
-            # service_conn = rospy.ServiceProxy('/execute_pose', SetBool)
-            #
-            # try:
-            #     request = SetBool()
-            #     request.data = True
-            #     response = service_conn(request.data)
-            #     #print(response)
-            # except rospy.ServiceException as exc:
-            #     print("Service did not process request: " + str(exc))
-            ######END SERVICE CALL#######
 
             self.calculated_plan = False
         else:
@@ -2048,9 +2030,6 @@ class Ui_MainWindow(object):
         self.rollOffsetLineEdit.setText(str(defalutValue))
         self.pitchOffsetLineEdit.setText(str(defalutValue))
         self.yawOffsetLineEdit.setText(str(defalutValue))
-        #self.set_offsets[0] = defalutValue
-        #self.set_offsets[1] = defalutValue
-        #self.set_offsets[2] = defalutValue
 
     def custom1Callback(self):
         R = 40
@@ -2087,10 +2066,6 @@ class Ui_MainWindow(object):
         yaw = 0
 
         if self.startButtonPressed:
-            #point1 = f": X{0} Y{0} Z{z} PITCH{0} YAW{0} SPEED{1500} SAMPLES{1}"
-            #point2 = f": X{0} Y{0} Z{z} PITCH{pitch} YAW{0} SPEED{1500} SAMPLES{10}"
-            #self.pointsPlainTextEdit.insertPlainText(point1 + "\n")
-            #self.pointsPlainTextEdit.insertPlainText(point2 + "\n")
 
             for i in range(len(x)):
                 points = f"{i}: X{x[i]} Y{y} Z{z[i]} PITCH{pitch[i]} YAW{yaw} SPEED{speed} SAMPLES{samples}"
@@ -2265,7 +2240,6 @@ class Ui_MainWindow(object):
                             #counter +=1
                         total_lines +=1
 
-            #print("I made it 2")
             gcode = ""
             count = 1
             add_degrees = 0
@@ -2278,110 +2252,6 @@ class Ui_MainWindow(object):
                     abs_pos = [self.set_world_frame[k] + self.set_offsets[k] +self.pos_offsets[k] + self.full_list[i][k] for k in range(len(self.pos_offsets))] #[x,y,z] abs offset
                 elif len(self.full_list[i])< 8:
                     abs_pos = [self.set_world_frame[k] + self.set_offsets[k] +self.pos_offsets[k] + self.full_list[i][k] for k in range(3)]
-
-                #print("I made it 3..",i)
-
-                # if i>=3 and len(self.full_list[i])>8:
-
-                    # #if abs(self.full_list[i][-2]- self.full_list[i-1][-2])>300:
-                    # cyclic_threshold = 280 #before 350
-                    # if (self.full_list[i][-2] - self.full_list[i-1][-2] > cyclic_threshold and self.full_list[i][-2] - self.full_list[i-2][-2] > cyclic_threshold and self.full_list[i][-2] - self.full_list[i-3][-2] >cyclic_threshold) or (self.full_list[i][-2] - self.full_list[i-1][-2] < -cyclic_threshold and self.full_list[i][-2] - self.full_list[i-2][-2] < -cyclic_threshold and self.full_list[i][-2] - self.full_list[i-3][-2] < -cyclic_threshold):
-                    #     if self.moveBackRadioButton.isChecked():
-                    #         m = math.tan(math.radians(self.full_list[i-1][-1])) #steigung
-                    #         if m<1:
-                    #             x_deviation = 100 #in mm
-                    #         else:
-                    #             x_deviation = 47.53*(m**(-0.98)) #in mm formula to make the x_deviation in dependance of the angle pitch
-                    #
-                    #         z_deviation = m*x_deviation # linear equation in mm
-                    #         # print("m", m)
-                    #         # print("x_dev: ",x_deviation)
-                    #         # print("z_dev: ",z_deviation)
-                    #         # print("b (degrees): ", self.full_list[i-1][-1])
-                    #         # print("b readians: ", math.radians(self.full_list[i-1][-1]))
-                    #
-                    #         rospy.wait_for_service('/calc_pose')
-                    #         service_conn = rospy.ServiceProxy('/calc_pose', CalculateJoints)
-                    #         try:
-                    #             request = CalculateJoints()
-                    #             request.x_input = self.set_offsets[0] +self.pos_offsets[0] + self.full_list[i-1][0] + z_deviation
-                    #             #print(f"request x: ", request.x_input)
-                    #             request.y_input = self.set_offsets[1] +self.pos_offsets[1] + self.full_list[i-1][1]
-                    #             #print(f"request y: ", request.y_input)
-                    #             request.z_input = self.set_offsets[2] +self.pos_offsets[2] + self.full_list[i-1][2] + x_deviation
-                    #             #print(f"request z: ", request.z_input)
-                    #             request.roll_input = 0
-                    #
-                    #             request.pitch_input = self.full_list[i-1][-1]
-                    #             #print(f"request b: ", request.pitch_input)
-                    #             request.yaw_input = self.full_list[i-1][-2]
-                    #             #print(f"request c: ", request.yaw_input)
-                    #             request.check = 2 #arbitrary value
-                    #             response = service_conn(request.x_input, request.y_input, request.z_input, request.roll_input, request.pitch_input, request.yaw_input, request.check)
-                    #             #print(response)
-                    #             if response.success:
-                    #                 feed_rate = 2500
-                    #                 #print(f"Completed Trajectory Planned And To Be Executed After {attempts} Attempts")
-                    #                 #tutorial.execute_plan(cartesian_plan)
-                    #                 #uncomment gcode += f"G01X{round(response.joints[5]-x_offset -self.set_world_frame[0],2)}Y{round(response.joints[6]-y_offset -self.set_world_frame[1],2)}Z{round(response.joints[7]-z_offset -self.set_world_frame[2],2)}B{round(response.joints[8],2)}C{round(response.joints[9],2)}F{feed_rate}\n"
-                    #                 #call_bool_service('/save_gcode_point')
-                    #                 #determinating the direction (from 0 to 360 or 360 to 0)
-                    #                 if self.full_list[i][-2] - self.full_list[i-1][-2] > cyclic_threshold and self.full_list[i][-2] - self.full_list[i-2][-2] > cyclic_threshold and self.full_list[i][-2] - self.full_list[i-3][-2] >cyclic_threshold: #yaw is decreasing
-                    #                     #positive then rotate the other way (go to 0)
-                    #                     #print("added -360")
-                    #                     #tutorial.go_to_joint_state(359.9)
-                    #
-                    #                     #go back with the inclination
-                    #                     gcode += f"G01X{round(response.joints[5]-x_offset -self.set_world_frame[0],2)}Y{round(response.joints[6]-y_offset -self.set_world_frame[1],2)}Z{round(response.joints[7]-z_offset -self.set_world_frame[2],2)}B{round(response.joints[8],2)}C{0.1}F{feed_rate}\n"
-                    #                     print(f"G01X{round(response.joints[5]-x_offset -self.set_world_frame[0],2)}Y{round(response.joints[6]-y_offset -self.set_world_frame[1],2)}Z{round(response.joints[7]-z_offset -self.set_world_frame[2],2)}B{round(response.joints[8],2)}C{0.1}F{feed_rate}\n")
-                    #                     #turn around
-                    #                     gcode += f"G01X{round(response.joints[5]-x_offset -self.set_world_frame[0],2)}Y{round(response.joints[6]-y_offset -self.set_world_frame[1],2)}Z{round(response.joints[7]-z_offset -self.set_world_frame[2],2)}B{round(response.joints[8],2)}C{359.9}F{feed_rate}\n"
-                    #                     print(f"G01X{round(response.joints[5]-x_offset -self.set_world_frame[0],2)}Y{round(response.joints[6]-y_offset -self.set_world_frame[1],2)}Z{round(response.joints[7]-z_offset -self.set_world_frame[2],2)}B{round(response.joints[8],2)}C{359.9}F{feed_rate}\n")
-                    #                     # go back to the initial position  but now with the new C value
-                    #                     gcode += f"G01X{round(response.joints[5]-x_offset -self.set_world_frame[0]-z_deviation,2)}Y{round(response.joints[6]-y_offset -self.set_world_frame[1],2)}Z{round(response.joints[7]-z_offset -self.set_world_frame[2]-x_deviation,2)}B{round(response.joints[8],2)}C{359.9}F{feed_rate}\n"
-                    #                     print(f"G01X{round(response.joints[5]-x_offset -self.set_world_frame[0]-z_deviation,2)}Y{round(response.joints[6]-y_offset -self.set_world_frame[1],2)}Z{round(response.joints[7]-z_offset -self.set_world_frame[2]-x_deviation,2)}B{round(response.joints[8],2)}C{359.9}F{feed_rate}\n")
-                    #                     print("cyclic_count:",cyclic_count)
-                    #                     cyclic_count+=1
-                    #                 elif self.full_list[i][-2] - self.full_list[i-1][-2] < -cyclic_threshold and self.full_list[i][-2] - self.full_list[i-2][-2] < -cyclic_threshold and self.full_list[i][-2] - self.full_list[i-3][-2] < -cyclic_threshold: #yaw is decreasing
-                    #                     #negative then rotate the other way (go to 360)
-                    #                     #print("added +360")
-                    #                     #tutorial.go_to_joint_state(0.0001)
-                    #
-                    #                     #go back with the inclination
-                    #                     gcode += f"G01X{round(response.joints[5]-x_offset -self.set_world_frame[0],2)}Y{round(response.joints[6]-y_offset -self.set_world_frame[1],2)}Z{round(response.joints[7]-z_offset -self.set_world_frame[2],2)}B{round(response.joints[8],2)}C{359.9}F{feed_rate}\n"
-                    #                     print(f"G01X{round(response.joints[5]-x_offset -self.set_world_frame[0],2)}Y{round(response.joints[6]-y_offset -self.set_world_frame[1],2)}Z{round(response.joints[7]-z_offset -self.set_world_frame[2],2)}B{round(response.joints[8],2)}C{359.9}F{feed_rate}\n")
-                    #                     #turn around
-                    #                     gcode += f"G01X{round(response.joints[5]-x_offset -self.set_world_frame[0],2)}Y{round(response.joints[6]-y_offset -self.set_world_frame[1],2)}Z{round(response.joints[7]-z_offset -self.set_world_frame[2],2)}B{round(response.joints[8],2)}C{0.1}F{feed_rate}\n"
-                    #                     print(f"G01X{round(response.joints[5]-x_offset -self.set_world_frame[0],2)}Y{round(response.joints[6]-y_offset -self.set_world_frame[1],2)}Z{round(response.joints[7]-z_offset -self.set_world_frame[2],2)}B{round(response.joints[8],2)}C{0.1}F{feed_rate}\n")
-                    #                     # go back to the initial position  but now with the new C value
-                    #                     gcode += f"G01X{round(response.joints[5]-x_offset -self.set_world_frame[0]-z_deviation,2)}Y{round(response.joints[6]-y_offset -self.set_world_frame[1],2)}Z{round(response.joints[7]-z_offset -self.set_world_frame[2]-x_deviation,2)}B{round(response.joints[8],2)}C{0.1}F{feed_rate}\n"
-                    #                     print(f"G01X{round(response.joints[5]-x_offset -self.set_world_frame[0]-z_deviation,2)}Y{round(response.joints[6]-y_offset -self.set_world_frame[1],2)}Z{round(response.joints[7]-z_offset -self.set_world_frame[2]-x_deviation,2)}B{round(response.joints[8],2)}C{0.1}F{feed_rate}\n")
-                    #                     print("cyclic_count:",cyclic_count)
-                    #                     cyclic_count+=1
-                    #             else:
-                    #                 #print(f"No proper Cartesian Plan Found after {attempts} Attempts!")
-                    #                 #ERROR_FLAG = True
-                    #                 self.showMessageBox(text="Cartesian plan Failed", icon="Critical")
-                    #                 #uncomment return None
-                    #
-                    #         except rospy.ServiceException as exc:
-                    #             print("Service did not process request: " + str(exc))
-                    #
-                    #     else:
-                    #
-                    #         if self.full_list[i][-2] - self.full_list[i-1][-2] > cyclic_threshold and self.full_list[i][-2] - self.full_list[i-2][-2] > cyclic_threshold and self.full_list[i][-2] - self.full_list[i-3][-2] >cyclic_threshold: #yaw is decreasing
-                    #             print("c_no offset ", self.full_list[i][-2])
-                    #             print("self.temp_c[-2]", self.full_list[i-1][-2])
-                    #             print("self.temp_c[-3]", self.full_list[i-2][-2])
-                    #             print("self.temp_c[-4]", self.full_list[i-3][-2])
-                    #             add_degrees -=360
-                    #
-                    #         elif self.full_list[i][-2] - self.full_list[i-1][-2] < -cyclic_threshold and self.full_list[i][-2] - self.full_list[i-2][-2] < -cyclic_threshold and self.full_list[i][-2] - self.full_list[i-3][-2] < -cyclic_threshold: #yaw is decreasing
-                    #             print("c_no offset ", self.full_list[i][-2])
-                    #             print("self.temp_c[-2]", self.full_list[i-1][-2])
-                    #             print("self.temp_c[-3]", self.full_list[i-2][-2])
-                    #             print("self.temp_c[-4]", self.full_list[i-3][-2])
-                    #             add_degrees += 360
 
 
                 #if len(self.full_list[i])>=8: #either Rapid5d or Linear5D can come in
@@ -2434,68 +2304,20 @@ class Ui_MainWindow(object):
                         a_no_offset = round(response_srv.joints[9],2)
                         b_no_offset = round(response_srv.joints[10],2)
                         c_no_offset = round(response_srv.joints[11],2)
+                        feedrate = 1000
 
-                        gcode += f"G01 X{x_no_offset} Y{y_no_offset} Z{z_no_offset} A{a_no_offset} B{b_no_offset} C{c_no_offset}\n"
+                        gcode += f"G01 X{x_no_offset} Y{y_no_offset} Z{z_no_offset} A{a_no_offset} B{b_no_offset} C{c_no_offset} F{feedrate}\n"
 
                         progress = int(count/total_lines *100)
                         print(progress)
                         self.progressBar.setValue(progress)
                         count +=1
 
-                        #print(len(self.full_list[i]))
-                        # if len(self.full_list[i])== 3: #onlinear
-                        #     gcode += f"G00X{x_no_offset}Y{y_no_offset}Z{z_no_offset}\n"
-                        #
-                        #     progress = int(count/total_lines *100)
-                        #     print(progress)
-                        #     self.progressBar.setValue(progress)
-                        #     count +=1
-                        #
-                        # elif len(self.full_list[i])== 4: #onlinear
-                        #     f_no_offset = round(self.full_list[i][-1],2)
-                        #     gcode += f"G01X{x_no_offset}Y{y_no_offset}Z{z_no_offset}F{f_no_offset}\n"
-                        #
-                        #     progress = int(count/total_lines *100)
-                        #     print(progress)
-                        #     self.progressBar.setValue(progress)
-                        #     count +=1
-                        #
-                        # elif len(self.full_list[i])==8: #onRapid5D
-                        #     b_no_offset = round(response_srv.joints[8],2)
-                        #     c_no_offset = round(response_srv.joints[9],2)
-                        #     gcode += f"G00X{x_no_offset}Y{y_no_offset}Z{z_no_offset}B{b_no_offset}C{c_no_offset}\n"
-                        #
-                        #
-                        #     progress = int(count/total_lines *100)
-                        #     print(progress)
-                        #     self.progressBar.setValue(progress)
-                        #     count +=1
-                        #
-                        # elif len(self.full_list[i])==10: #onLinear5D
-                        #     f_no_offset = round(self.full_list[i][6],2)
-                        #     b_no_offset = round(response_srv.joints[8],2)
-                        #     c_no_offset = round(response_srv.joints[9],2)
-                        #     gcode += f"G01X{x_no_offset}Y{y_no_offset}Z{z_no_offset}B{b_no_offset}C{c_no_offset}F{f_no_offset}\n"
-                        #
-                        #     progress = int(count/total_lines *100)
-                        #     print(progress)
-                        #     self.progressBar.setValue(progress)
-                        #     count +=1
-                        #
-                        # elif len(self.full_list[i])==7:
-                        #     if cw:
-                        #         gcode += f"G02X{x_no_offset}Y{y_no_offset}Z{z_no_offset}R{r}F{f_no_offset}\n"
-                        #     else:
-                        #         gcode += f"G03X{x_no_offset}Y{y_no_offset}Z{z_no_offset}R{r}F{f_no_offset}\n"
-                        #     self.progressBar.setValue(progress)
-                        #     count +=1
-
-
                     else:
                         #self.showMessageBox(text=f"No Motion Plan Found for point {i} x{self.full_list[i][0]}y{self.full_list[i][1]}z{self.full_list[i][2]}pitch{self.full_list[i][-1]}yaw{self.full_list[i][-2]}f{self.full_list[i][6]}", icon="Critical")
                         #self.showMessageBox(text=f"No Motion Plan Found for point {i} x{self.full_list[i][0]}y{self.full_list[i][1]}z{self.full_list[i][2]}pitch{self.full_list[i][-1]}yaw{self.full_list[i][-2]}", icon="Critical")
                         self.showMessageBox(text=f"No Motion Plan Found for point {i} x{self.full_list[i][0]}y{self.full_list[i][1]}z{self.full_list[i][2]}", icon="Critical")
-                        print(gcode)
+                        #print(gcode)
                         return None
 
 
@@ -2573,58 +2395,10 @@ class Ui_MainWindow(object):
 
     def sendGcodeCallback(self):
         if self.SerialConnected:
-        #if True:
             self.outputPlainTextEdit.clear()
             GLOBAL_LINES[0] = self.extremesPlainTextEdit.toPlainText()
-            #print(lines)
-            #lines = lines.split("\n")
-            #counter = 1
+
             if len(GLOBAL_LINES[0])>1:
-                # for elem in lines:
-                #     rospy.wait_for_service('/cmd_input')
-                #     service_conn = rospy.ServiceProxy('/cmd_input', SendCommand)
-                #
-                #     try:
-                #         request = SendCommand()
-                #         request.command = elem
-                #         response = service_conn(request.command)
-                #         r.sleep()
-                #
-                #         #print(response)
-                #     except rospy.ServiceException as exc:
-                #         print("Service did not process request: " + str(exc))
-                #
-                #     if response.success:
-                #         #self.outputPlainTextEdit.clear()
-                #         self.outputPlainTextEdit.insertPlainText(f"{counter}: {response.message}\n")
-                        # counter +=1
-                ############SERVER#####################
-                # rospy.wait_for_service('/cmd_input')
-                # service_conn = rospy.ServiceProxy('/cmd_input', SendCommand)
-                #
-                # try:
-                #     request = SendCommand()
-                #     request.command = lines
-                #     request.simple_stream = False
-                #     response = service_conn(request.command, request.simple_stream)
-                #     if response.success:
-                #         #self.outputPlainTextEdit.clear()
-                #         self.outputPlainTextEdit.insertPlainText(f"{response.message}")
-                #
-                #     #print(response)
-                # except rospy.ServiceException as exc:
-                #     print("Service did not process request: " + str(exc))
-
-                ########ACTION######################
-                # self.action_client.wait_for_server()
-                # goal = SerialCommunicationGoal(command="5")
-                # feed = self.action_client.send_goal(goal, feedback_cb=self.feedback_cb)
-                #
-                #
-                # self.action_client.wait_for_result()
-                # result = self.action_client.get_result()
-                # print(result)
-
                 self.thread = QThread()
                 self.worker = Worker()
                 self.worker.moveToThread(self.thread)
@@ -2637,26 +2411,11 @@ class Ui_MainWindow(object):
                 # Step 6: Start the thread
                 self.thread.start()
 
-                # Final resets
-                # self.longRunningBtn.setEnabled(False)
-                # self.thread.finished.connect(
-                #     lambda: self.longRunningBtn.setEnabled(True)
-                # )
-                # self.thread.finished.connect(
-                #     lambda: self.stepLabel.setText("Long-Running Step: 0")
-                # )
-
-
             else:
                 self.showMessageBox(text="no Gcode Found", icon="Critical")
         else:
             self.showMessageBox(text="No Serial Communication", icon="Critical")
 
-
-    # def feedback_cb(self, msg):
-    #     print("Feedback received: ", msg)
-    #     self.outputPlainTextEdit.clear()
-    #     self.outputPlainTextEdit.insertPlainText(f"{feed}")
 
     def reportProgress(self,rec):
         self.outputPlainTextEdit.clear()
@@ -2715,164 +2474,6 @@ class Ui_MainWindow(object):
             self.showMessageBox(text="No Gcode File found", icon="Critical")
 
 
-
-    # def startPointCallback(self):
-    #     self.pointsPlainTextEdit.clear()
-    #     self.secuence_counter = 1
-    #     points = f"{self.secuence_counter}: X{0} Y{0} Z{0} PITCH{0} YAW{0} SPEED{500}"
-    #     self.pointsPlainTextEdit.insertPlainText(points + "\n")
-    #     self.secuence_counter+=1
-    #     self.startButtonPressed = True
-
-    # def addButtonCallback(self):
-    #     if self.startButtonPressed:
-    #         try:
-    #             x = float(self.addXLineEdit.text())
-    #             y = float(self.addYLineEdit.text())
-    #             z = float(self.addZLineEdit.text())
-    #             pitch = float(self.addPitchLineEdit.text())
-    #             yaw = float(self.addYawLineEdit.text())
-    #             speed = float(self.addSpeedLineEdit.text())
-    #             samples = int(self.addSamplesLineEdit.text())
-    #
-    #             if speed<=0:
-    #                 self.showMessageBox(text="Speed should have a positive value", icon="Critical")
-    #                 return None
-    #             elif samples<1:
-    #                 self.showMessageBox(text="Samples should have a positive value", icon="Critical")
-    #                 return None
-    #
-    #         except ValueError:
-    #             self.showMessageBox(text="please make sure to set all the values and valid format", icon="Critical")
-    #             return None
-    #
-    #         points = f"{self.secuence_counter}: X{x} Y{y} Z{z} PITCH{pitch} YAW{yaw} SPEED{speed} SAMPLES{samples}"
-    #         self.pointsPlainTextEdit.insertPlainText(points + "\n")
-    #         self.secuence_counter+=1
-    #
-    #     else:
-    #         self.showMessageBox(text="Press the start button first", icon="Critical")
-
-
-    # def addGenerateGcodeButtonCallback(self):
-    #     x_list = []
-    #     y_list = []
-    #     z_list = []
-    #     pitch_list = []
-    #     yaw_list = []
-    #     samples= []
-    #     speed_list = []
-    #
-    #     x_list_distance = []
-    #     y_list_distance = []
-    #     z_list_distance = []
-    #     pitch_list_distance = []
-    #     yaw_list_distance = []
-    #
-    #     x_list_step = []
-    #     y_list_step = []
-    #     z_list_step = []
-    #     pitch_list_step = []
-    #     yaw_list_step = []
-    #
-    #     my_list = []
-    #
-    #     counter = 1
-    #
-    #     lines = self.pointsPlainTextEdit.toPlainText()
-    #     lines = lines.split("\n")
-    #     for i in range(len(lines)-1):
-    #         x_index = lines[i].find("X")
-    #         y_index = lines[i].find("Y")
-    #         z_index = lines[i].find("Z")
-    #         pitch_index = lines[i].find("PITCH")
-    #         yaw_index = lines[i].find("YAW")
-    #         speed_index = lines[i].find("SPEED")
-    #         samples_index = lines[i].find("SAMPLES")
-    #
-    #         x_val = lines[i][x_index+1:y_index-1]
-    #         y_val = lines[i][y_index+1:z_index-1]
-    #         z_val = lines[i][z_index+1:pitch_index-1]
-    #         pitch_val = lines[i][pitch_index+5:yaw_index-1]
-    #         yaw_val = lines[i][yaw_index+3:speed_index-1]
-    #         if samples_index >0:
-    #             speed_val = lines[i][speed_index+5:samples_index-1]
-    #             samples_val = lines[i][samples_index+7:]
-    #             #print(f"x_val:{x_val}y_val{y_val}z_val{z_val}pitch{pitch_val}yaw_val{yaw_val}speed_val{speed_val}samples_val{samples_val}")
-    #             samples.append(float(samples_val))
-    #             speed_list.append(float(speed_val))
-    #         else:
-    #             speed_val = lines[i][speed_index+5:]
-    #             speed_list.append(float(speed_val))
-    #
-    #
-    #         x_list.append(float(x_val) + self.pos_offsets[0] + self.set_offsets[0] +self.set_world_frame[0])
-    #         y_list.append(float(y_val) + self.pos_offsets[1] + self.set_offsets[1] +self.set_world_frame[1])
-    #         z_list.append(float(z_val) + self.pos_offsets[2] + self.set_offsets[2] +self.set_world_frame[2])
-    #         pitch_list.append(float(pitch_val))
-    #         yaw_list.append(float(yaw_val))
-    #
-    #
-    #     total_lines = sum(samples)#+len(samples)
-    #
-    #
-    #     for k in range(len(samples)):
-    #         x_list_distance.append(x_list[k+1] - x_list[k])
-    #         y_list_distance.append(y_list[k+1] - y_list[k])
-    #         z_list_distance.append(z_list[k+1] - z_list[k])
-    #         pitch_list_distance.append(pitch_list[k+1] - pitch_list[k])
-    #         yaw_list_distance.append(yaw_list[k+1] - yaw_list[k])
-    #
-    #         #print(f"iteration: {k}, x_list_distance = {x_list_distance}, y_list_distance = {y_list_distance}, z_list_distance = {z_list_distance}, pitch_list_distance = {pitch_list_distance}, yaw_list_distance = {yaw_list_distance}")
-    #
-    #         x_list_step.append(x_list_distance[k] / samples[k])
-    #         y_list_step.append(y_list_distance[k] / samples[k])
-    #         z_list_step.append(z_list_distance[k] / samples[k])
-    #         pitch_list_step.append(pitch_list_distance[k] / samples[k])
-    #         yaw_list_step.append(yaw_list_distance[k] / samples[k])
-    #
-    #         #print(f"iteration: {k}, x_list_step = {x_list_step}, y_list_step = {y_list_step}, z_list_step = {z_list_step}, pitch_list_step = {pitch_list_step}, yaw_list_step = {yaw_list_step}")
-    #
-    #         for i in range(int(samples[k])+1): ##for i in range(int(samples[k])+1):
-    #             rospy.wait_for_service('/calc_pose')
-    #             service_conn = rospy.ServiceProxy('/calc_pose', CalculateJoints)
-    #             if i!=0:
-    #                 try:
-    #                     request = CalculateJoints()
-    #                     request.x_input = x_list[k] + i*x_list_step[k]
-    #                     request.y_input = y_list[k] + i*y_list_step[k]
-    #                     request.z_input = z_list[k] + i*z_list_step[k]
-    #                     request.pitch_input = pitch_list[k] + i*pitch_list_step[k]
-    #                     request.yaw_input = yaw_list[k] + i*yaw_list_step[k]
-    #                     #print(f"iteration: {k},{i}, x_input = {request.x_input}, y_input = {request.y_input}, z_input = {request.z_input}, pitch_input = {request.pitch_input}, yaw_input = {request.yaw_input}")
-    #                     response = service_conn(request.x_input, request.y_input, request.z_input, request.pitch_input, request.yaw_input)
-    #                     #print(response)
-    #                 except rospy.ServiceException as exc:
-    #                     print("Service did not process request: " + str(exc))
-    #
-    #                 if response.success:
-    #                     #calculated joints
-    #                     x_response = round(response.joints[5]-self.abs_offset[0]-self.set_world_frame[0],2)
-    #                     y_response = round(response.joints[6]-self.abs_offset[1]-self.set_world_frame[1],2)
-    #                     z_response = round(response.joints[7]-self.abs_offset[2]-self.set_world_frame[2],2)
-    #                     b_response = round(response.joints[8],2)
-    #                     c_response = round(response.joints[9],2)
-    #                     #print(f"iteration: {k},{i}, G01X{x_response}Y{y_response}Z{z_response}B{b_response}C{c_response}F1500")
-    #                     #if i%2==1: #only for testing otherwise remove this line
-    #
-    #                     my_list.append(f"G01X{x_response}Y{y_response}Z{z_response}B{b_response}C{c_response}F{speed_list[k+1]}")
-    #                     progress = counter/total_lines *100
-    #                     self.addProgressBar.setValue(progress)
-    #                     counter +=1
-    #
-    #                 else:
-    #                     self.showMessageBox(text="No Motion Plan Found", icon="Critical")
-    #                     return None
-    #
-    #     self.extremesPlainTextEdit.clear()
-    #     for elem in my_list:
-    #         self.extremesPlainTextEdit.insertPlainText(elem + "\n")
-
     def sendCallback(self):
         if self.SerialConnected:
         #if True:
@@ -2904,43 +2505,45 @@ class Ui_MainWindow(object):
     def connectCallback(self):
         if not self.SerialConnected:
             try:
-                node = roslaunch.core.Node("project_praktikum_moveit_config", "cls_ros_ser_com.py")
+                node = roslaunch.core.Node("project_praktikum_moveit_config", "cls_ros_ser_com.py", name="serial_communication_node")
                 launch = roslaunch.scriptapi.ROSLaunch()
                 launch.start()
                 script = launch.launch(node)
+                time.sleep(2)
+                if "/serial_communication_node" in rosnode.get_node_names():
+                    self.outputPlainTextEdit.clear()
+                    self.outputPlainTextEdit.insertPlainText("Node Is Running")
+                    self.SerialConnected = True
+                    self.idleLabel.setText("Connected Locked")
+                    #Enabling all the Buttons for the Microcontroller communication
+                    self.refreshButton.setEnabled(True)
+                    self.unlockButton.setEnabled(True)
+                    self.homeButton.setEnabled(True)
+                    self.hButton.setEnabled(True)
+                    self.backXButton.setEnabled(True)
+                    self.forwardXButton.setEnabled(True)
+                    self.backYButton.setEnabled(True)
+                    self.forwardYButton.setEnabled(True)
+                    self.backZButton.setEnabled(True)
+                    self.forwardZButton.setEnabled(True)
+                    self.backAButton.setEnabled(True)
+                    self.forwardAButton.setEnabled(True)
+                    self.backBButton.setEnabled(True)
+                    self.forwardBButton.setEnabled(True)
+                    self.backCButton.setEnabled(True)
+                    self.forwardCButton.setEnabled(True)
+                    self.feedHorizontalSlider.setEnabled(True)
+                    self.stepSpinBox.setEnabled(True)
+                    self.continuousRadioButton.setEnabled(True)
+                    self.onceRadioButton.setEnabled(True)
+                    self.setButton.setEnabled(True)
+                    self.sendButton.setEnabled(True)
+                    self.sendGcodeButton.setEnabled(True)
 
-                self.outputPlainTextEdit.clear()
-                self.outputPlainTextEdit.insertPlainText("Node Is Running")
-                self.SerialConnected = True
-                self.idleLabel.setText("Connected Locked")
-                #Enabling all the Buttons for the Microcontroller communication
-                self.refreshButton.setEnabled(True)
-                self.unlockButton.setEnabled(True)
-                self.homeButton.setEnabled(True)
-                self.hButton.setEnabled(True)
-                self.backXButton.setEnabled(True)
-                self.forwardXButton.setEnabled(True)
-                self.backYButton.setEnabled(True)
-                self.forwardYButton.setEnabled(True)
-                self.backZButton.setEnabled(True)
-                self.forwardZButton.setEnabled(True)
-                self.backAButton.setEnabled(True)
-                self.forwardAButton.setEnabled(True)
-                self.backBButton.setEnabled(True)
-                self.forwardBButton.setEnabled(True)
-                self.backCButton.setEnabled(True)
-                self.forwardCButton.setEnabled(True)
-                self.feedHorizontalSlider.setEnabled(True)
-                self.stepSpinBox.setEnabled(True)
-                self.continuousRadioButton.setEnabled(True)
-                self.onceRadioButton.setEnabled(True)
-                self.setButton.setEnabled(True)
-                self.sendButton.setEnabled(True)
-                self.sendGcodeButton.setEnabled(True)
-
-
-            except:
+            except Exception as e:
+                print(e)
                 self.showMessageBox(text="No Connection Found", icon="Critical")
+
 
 
     def unlockCallback(self):
@@ -3431,8 +3034,8 @@ class Ui_MainWindow(object):
             elif samples<1:
                 self.showMessageBox(text="Samples should have a positive value", icon="Critical")
                 return None
-            elif cartesian_mode and samples != 1:
-                self.showMessageBox(text="Samples should be 1 when using cartesian mode", icon="Critical")
+            elif samples != 1:
+                self.showMessageBox(text="Samples should be 1", icon="Critical")
                 return None
         except ValueError:
             self.showMessageBox(text="please make sure to set all the values and valid format", icon="Critical")
@@ -3468,63 +3071,12 @@ class Ui_MainWindow(object):
             request.position_constraint_value = self.position_constraint_value
 
             response = service_conn(request.x_input, request.y_input, request.z_input, request.roll_input, request.pitch_input, request.yaw_input, request.check, request.constraint, request.simulate, request.constraints_values, request.enable_joints, request.orientation_constraints_values, request.position_constraint_value)
-            #print(response)
+
         except rospy.ServiceException as exc:
             print("Service did not process request: " + str(exc))
 
         if response.success:
             self.checkCartesian = True
-
-            # end_J = []
-            # start = 0 if self.cartesianModecheckBox.isChecked() else 6
-            # total_joints = len(response.joints)
-            # step = 1
-            # #print(response.joints)
-            # for i in range(start,total_joints,step):
-            #     end_J.append(round(response.joints[i],2))
-            #     print()
-            #     if i%6 == 5:
-            #         self.cartesianGcodePlainTextEdit.insertPlainText(f"G01J1{end_J[i-5-start]}J2{end_J[i-4-start]}J3{end_J[i-3-start]}J4{end_J[i-2-start]}J5{end_J[i-1-start]}J6{end_J[i-start]}F{speed}\n")
-
-            #display the data received from the service
-            #current_joints
-            # start_J1 = round(response.joints[0],2)
-            # start_J2 = round(response.joints[1],2)
-            # start_J3 = round(response.joints[2],2)
-            # start_J4 = round(response.joints[3],2)
-            # start_J5 = round(response.joints[4],2)
-            # start_J6 = round(response.joints[5],2)
-
-            # self.yCurrentJointsLineEdit.setText(str(round(response.joints[1]-self.abs_offset[1]-self.set_world_frame[1],2)))
-            # self.zCurrentJointsLineEdit.setText(str(round(response.joints[2]-self.abs_offset[2]-self.set_world_frame[2],2)))
-            # self.aCurrentJointsLineEdit.setText(str(round(response.joints[3],2)))
-            # self.bCurrentJointsLineEdit.setText(str(round(response.joints[4],2)))
-            # self.cCurrentJointsLineEdit.setText(str(round(response.joints[5],2)))
-
-            # end_J1 = round(response.joints[6],2)
-            # end_J2 = round(response.joints[7],2)
-            # end_J3 = round(response.joints[8],2)
-            # end_J4 = round(response.joints[9],2)
-            # end_J5 = round(response.joints[10],2)
-            # end_J6 = round(response.joints[11],2)
-
-                # end_J1 = round(response.joints[i],2)
-                # end_J2 = round(response.joints[1],2)
-                # end_J3 = round(response.joints[2],2)
-                # end_J4 = round(response.joints[3],2)
-                # end_J5 = round(response.joints[4],2)
-                # end_J6 = round(response.joints[5],2)
-
-            #calculated joints
-            # self.xCalculatedJointsLineEdit.setText(str(round(response.joints[6]-self.abs_offset[0]-self.set_world_frame[0],2)))
-            # self.yCalculatedJointsLineEdit.setText(str(round(response.joints[7]-self.abs_offset[1]-self.set_world_frame[1],2)))
-            # self.zCalculatedJointsLineEdit.setText(str(round(response.joints[8]-self.abs_offset[2]-self.set_world_frame[2],2)))
-            # self.aCalculatedJointsLineEdit.setText(str(round(response.joints[9],2)))
-            # self.bCalculatedJointsLineEdit.setText(str(round(response.joints[10],2)))
-            # self.cCalculatedJointsLineEdit.setText(str(round(response.joints[11],2)))
-
-
-
             self.calculated_plan = True
             self.showMessageBox(text="Valid Plan", icon="Information")
             return None
@@ -3583,7 +3135,6 @@ class Ui_MainWindow(object):
         else:
             self.showMessageBox(text="Press Test Button First", icon="Critical")
 
-        #print("swapped Lines:",swapped_lines)
 
 
     def swap_lines(self,line1,line2,reverse=False):
@@ -3723,7 +3274,7 @@ class Ui_MainWindow(object):
             for k in range(len(self.orientation_constraints_values)):
                 GLOBAL_VALUES_ORIENTATION_CONSTRAINTS[k]=self.orientation_constraints_values[k]
 
-            GLOBAL_VALUE_POSITION_CONSTRAINT=self.position_constraint_value
+            GLOBAL_VALUE_POSITION_CONSTRAINT[0]=self.position_constraint_value
 
 
             GLOBAL_CURRENT_CONSTRAINT[0] = self.constraintsComboBox.currentText() # this line is no longer necesssary

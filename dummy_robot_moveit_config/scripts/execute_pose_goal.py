@@ -101,7 +101,6 @@ class MoveGroupPythonInterfaceTutorial(object):
         self.pose_goal = geometry_msgs.msg.PoseStamped()
         self.getCurrentPoseService = rospy.Service("/get_pose", SetBool, self.callback_getCurrentPose)
         self.calc_pose_service = rospy.Service("/calc_pose", CalculateJoints, self.callback_calc_pose)
-        self.execute_pose_service = rospy.Service("/execute_pose", SetBool, self.execute_pose_goal)
         self.shutdown_subscriber = rospy.Subscriber("/shutdown_gui", Bool, self.shutdown)
         self.plan_cartesian_service = rospy.Service("/plan_cartesian", CalculateJoints, self.plan_cartesian)
         self.action_server_execute = actionlib.SimpleActionServer("execute_action", ExecuteDesiredPoseAction, execute_cb=self.execute_cb, auto_start = False)
@@ -114,7 +113,6 @@ class MoveGroupPythonInterfaceTutorial(object):
 
 
     def get_tcp_coordinate(self):
-        #print("getting the pose")
         current_pose_header = self.move_group.get_current_pose(end_effector_link="tcp")
         x = round(current_pose_header.pose.position.x, 5)
         y = round(current_pose_header.pose.position.y, 5)
@@ -128,42 +126,24 @@ class MoveGroupPythonInterfaceTutorial(object):
         point.y = y
         point.z = z
 
-
         point_stamped.point = point
 
         return point_stamped
 
-        # nav_path = Path()
-        # nav_path.header = current_pose_header.header
-        # nav_path.
-
-
-        # self.publish_tcp_coordinate.publish(point_stamped)
-
 
     def display_path(self,id,stop):
-        #print(f"in the process path with id:{id}")
         while True:
             point_stamped = self.get_tcp_coordinate()
-            #print("point Stamped", point_stamped)
-            #print("about to publish")
             self.publish_tcp_coordinate.publish(point_stamped)
-            #print("after publish ")
             time.sleep(0.08)
             if stop():
-                #print("exiting loop")
                 break
-        #print("Leaving Thread")
 
     def execute_cb(self,goal):
         success = True
         try:
-            # current_joints_list = []
-            # calculated_joints_list = []
-            # valid_plan = False
             self.pose_goal = geometry_msgs.msg.PoseStamped()
-            #print("my joints values:",self.move_group.get_current_joint_values())
-            self.move_group.set_max_velocity_scaling_factor(goal.sim_vel/100)
+            #self.move_group.set_max_velocity_scaling_factor(goal.sim_vel/100)
 
             quaternion = tf.transformations.quaternion_from_euler(math.radians(goal.roll_input) ,math.radians(goal.pitch_input) ,math.radians(goal.yaw_input))
             self.pose_goal.pose.orientation.x = quaternion[0]
@@ -308,74 +288,6 @@ class MoveGroupPythonInterfaceTutorial(object):
                 #######ENABLING JOINT CONSTGRAINT########
                 self.move_group.set_path_constraints(self.fixed_base_constraint)
 
-
-
-
-
-
-
-
-            # my_scale = 1000
-            # calc_plan_1 = self.move_group.plan()
-            # print("plan1:", calc_plan_1[1].joint_trajectory.points[-1].positions)
-            # calc_plan_2 = self.move_group.plan()
-            # print("plan2:", calc_plan_2[1].joint_trajectory.points[-1].positions)
-            # joint1 = calc_plan_1[1].joint_trajectory.points[-1].positions[0]
-            # joint2 = calc_plan_1[1].joint_trajectory.points[-1].positions[1]
-            # joint3 = calc_plan_1[1].joint_trajectory.points[-1].positions[2]
-            # joint4 = calc_plan_1[1].joint_trajectory.points[-1].positions[3]
-            # joint5 = calc_plan_1[1].joint_trajectory.points[-1].positions[4]
-            # joint6 = calc_plan_1[1].joint_trajectory.points[-1].positions[5]
-            #
-            # next_joint1 = calc_plan_2[1].joint_trajectory.points[-1].positions[0]
-            # next_joint2 = calc_plan_2[1].joint_trajectory.points[-1].positions[1]
-            # next_joint3 = calc_plan_2[1].joint_trajectory.points[-1].positions[2]
-            # next_joint4 = calc_plan_2[1].joint_trajectory.points[-1].positions[3]
-            # next_joint5 = calc_plan_2[1].joint_trajectory.points[-1].positions[4]
-            # next_joint6 = calc_plan_2[1].joint_trajectory.points[-1].positions[5]
-            #
-            # abs_joint1 = abs(joint1 - next_joint1)
-            # abs_joint2 = abs(joint2 - next_joint2)
-            # abs_joint3 = abs(joint3 - next_joint3)
-            # abs_joint4 = abs(joint4 - next_joint4)
-            # abs_joint5 = abs(joint5 - next_joint5)
-            # abs_joint6 = abs(joint6 - next_joint6)
-            #
-            # thresshold = 0.17
-            # counting = 0
-            #
-            # while (abs_joint1>thresshold) or (abs_joint2>thresshold) or (abs_joint3>thresshold) or (abs_joint4>thresshold) or (abs_joint5>thresshold) or (abs_joint6>thresshold):
-            #     calc_plan_3 = self.move_group.plan()
-            #
-            #     next_joint1 = calc_plan_3[1].joint_trajectory.points[-1].positions[0]
-            #     next_joint2 = calc_plan_3[1].joint_trajectory.points[-1].positions[1]
-            #     next_joint3 = calc_plan_3[1].joint_trajectory.points[-1].positions[2]
-            #     next_joint4 = calc_plan_3[1].joint_trajectory.points[-1].positions[3]
-            #     next_joint5 = calc_plan_3[1].joint_trajectory.points[-1].positions[4]
-            #     next_joint6 = calc_plan_3[1].joint_trajectory.points[-1].positions[5]
-            #
-            #     abs_joint1 = abs(joint1 - next_joint1)
-            #     abs_joint2 = abs(joint2 - next_joint2)
-            #     abs_joint3 = abs(joint3 - next_joint3)
-            #     abs_joint5 = abs(joint5 - next_joint5)
-            #     abs_joint4 = abs(joint4 - next_joint4)
-            #     abs_joint6 = abs(joint6 - next_joint6)
-            #
-            #     counting +=1
-            #
-            # print("plan3:", calc_plan_3[1].joint_trajectory.points[-1].positions)
-            # print("abs_joint1:",abs_joint1)
-            # print("abs_joint2:",abs_joint2)
-            # print("abs_joint3:",abs_joint3)
-            # print("abs_joint4:",abs_joint4)
-            # print("abs_joint5:",abs_joint5)
-            # print("abs_joint6:",abs_joint6)
-            #
-            # print("counter:", counting)
-
-
-
-
             calc_plan = self.move_group.plan()
 
         except Exception as e:
@@ -391,40 +303,18 @@ class MoveGroupPythonInterfaceTutorial(object):
 
         if goal.command: ##command true means normal execution
             feedback_action.feedback = "Executing....."
-            stop_threads = False
-            p2 = Thread(target=self.display_path, args=(1, lambda: stop_threads))
-            p2.start()
-            print("about to start movoving object")
-            self.move_group.go(wait=True)
-            self.move_group.stop()
-            stop_threads = True
-            p2.join()
-            #print('Process2 joined:', p2, p2.is_alive())
-
-            # plan = self.move_group.go(wait=True)
-
-            #self.move_group.execute(calc_plan, wait=True)
-            #print("plan:",plan)
+            self.move(sim_vel=goal.sim_vel)
             self.action_server_execute.publish_feedback(feedback_action)
             feedback_action.feedback = "Finished Executing....."
             self.action_server_execute.publish_feedback(feedback_action)
-            self.move_group.clear_pose_targets()
-            current_pose = self.move_group.get_current_pose().pose
-            all_close(self.pose_goal.pose, current_pose, 0.01)
 
             if success:
-                # result_action.result = "Execution Successfuly"
-                # self.action_server_execute.set_succeeded(result_action)
                 modified_coodinates = []
-                #print("here starts!!")
-                #print(calc_plan[1].joint_trajectory.points)
                 for i in range(len(calc_plan[1].joint_trajectory.points)):
-                    #print("Positions: ",calc_plan[1].joint_trajectory.points[i].positions)
                     for j in range(6):
                         modified_coodinates.append(round(math.degrees(calc_plan[1].joint_trajectory.points[i].positions[j]),2))
 
                 result_action.result = modified_coodinates
-                #print("result: ",result_action.result)
                 self.action_server_execute.set_succeeded(result_action)
             else:
                 modified_coodinates = []
@@ -435,7 +325,7 @@ class MoveGroupPythonInterfaceTutorial(object):
 
 
     def action_plan_cartesian(self,goal):
-        self.move_group.set_max_velocity_scaling_factor(goal.sim_vel/100)
+        #self.move_group.set_max_velocity_scaling_factor(goal.sim_vel/100)
         success = True
         feedback_action = ExecuteCartesianDesiredPoseFeedback()
         result_action = ExecuteCartesianDesiredPoseResult()
@@ -449,27 +339,13 @@ class MoveGroupPythonInterfaceTutorial(object):
             wpose.position.y = goal.y_input*self.scale_m
             wpose.position.z = goal.z_input*self.scale_m
 
-            # orientation_list = [wpose.orientation.x, wpose.orientation.y, wpose.orientation.z, wpose.orientation.w]
-            #
-            # # (roll, pitch, yaw) = tf.transformations.euler_from_quaternion(orientation_list)
-            # # roll += scale * math.radians(req.roll_input)
-            # # pitch += scale * math.radians(req.pitch_input)
-            # # yaw += scale * math.radians(req.yaw_input)*(-1)
-            #
-            # quaternion = tf.transformations.quaternion_from_euler(float(goal.roll_input) ,float(goal.pitch_input) ,float(goal.yaw_input))
-            # wpose.orientation.x = quaternion[0]
-            # wpose.orientation.y = quaternion[1]
-            # wpose.orientation.z = quaternion[2]
-            # wpose.orientation.w = quaternion[3]
-
             waypoints.append(copy.deepcopy(wpose))
 
             fraction = 0.0
             attempts = 0
             max_tries = 100
             success = False
-            #print("trying to get coordinate")
-            #print("is this is?")
+
             while fraction < 1.0 and attempts < max_tries:
                 (plan, fraction) = self.move_group.compute_cartesian_path(waypoints, 0.004, 0.0)
                 attempts += 1
@@ -481,19 +357,10 @@ class MoveGroupPythonInterfaceTutorial(object):
             if success:
                 feedback_action.feedback = "Executing....."
                 self.cartesian_action_server_execute.publish_feedback(feedback_action)
-
-                stop_threads = False
-                p2 = Thread(target=self.display_path, args=(1, lambda: stop_threads))
-                p2.start()
-                print("about to start movoving object")
-                self.move_group.execute(plan, wait=True)
-                stop_threads = True
-                p2.join()
-
+                self.move(sim_vel=goal.sim_vel, normal_execution=False, plan=plan)
                 feedback_action.feedback = "Finished Executing....."
                 self.cartesian_action_server_execute.publish_feedback(feedback_action)
-                # result_action.result = "Execution Successfuly"
-                # self.cartesian_action_server_execute.set_succeeded(result_action)
+
                 modified_coodinates = []
                 for i in range(len(plan.joint_trajectory.points)):
                     for j in range(6):
@@ -502,8 +369,6 @@ class MoveGroupPythonInterfaceTutorial(object):
                 self.cartesian_action_server_execute.set_succeeded(result_action)
 
             else:
-                # result_action.result = "Execution Successfuly"
-                # self.cartesian_action_server_execute.set_succeeded(result_action)
                 modified_coodinates = []
                 result_action.result = modified_coodinates
                 self.cartesian_action_server_execute.set_succeeded(result_action)
@@ -518,19 +383,6 @@ class MoveGroupPythonInterfaceTutorial(object):
         wpose.position.x = req.x_input*self.scale_m
         wpose.position.y = req.y_input*self.scale_m
         wpose.position.z = req.z_input*self.scale_m
-
-        # orientation_list = [wpose.orientation.x, wpose.orientation.y, wpose.orientation.z, wpose.orientation.w]
-        #
-        # (roll, pitch, yaw) = tf.transformations.euler_from_quaternion(orientation_list)
-        # roll += scale * math.radians(req.roll_input)
-        # pitch += scale * math.radians(req.pitch_input)
-        # yaw += scale * math.radians(req.yaw_input)*(-1)
-        #
-        # quaternion = tf.transformations.quaternion_from_euler(float(roll) ,float(pitch) ,float(yaw))
-        # wpose.orientation.x = quaternion[0]
-        # wpose.orientation.y = quaternion[1]
-        # wpose.orientation.z = quaternion[2]
-        # wpose.orientation.w = quaternion[3]
 
         waypoints.append(copy.deepcopy(wpose))
 
@@ -548,11 +400,6 @@ class MoveGroupPythonInterfaceTutorial(object):
             if fraction == 1.0:
                  success = True
 
-        #print(success)
-        #print(f"Number {i}: Pos:",plan.joint_trajectory.points[i].positions)
-
-        # print(plan.joint_trajectory.points)
-
         if success:
             if req.check == 0:
                 self.move_group.execute(plan, wait=True)
@@ -560,17 +407,7 @@ class MoveGroupPythonInterfaceTutorial(object):
             for i in range(len(plan.joint_trajectory.points)):
                 for j in range(6):
                     modified_coodinates.append(plan.joint_trajectory.points[i].positions[j])
-            #my_scale=1000
 
-            #print(plan.joint_trajectory.points[-1])
-            # modified_coodinates.append(round(my_scale*plan.joint_trajectory.points[-1].positions[1], 2))
-            # modified_coodinates.append(round(my_scale*plan.joint_trajectory.points[-1].positions[0],2))
-            # modified_coodinates.append(round(-my_scale*plan.joint_trajectory.points[-1].positions[2],2))
-            # modified_coodinates.append(round((-1)*math.degrees(plan.joint_trajectory.points[-1].positions[4]),2))
-            # modified_coodinates.append(0)
-
-
-        #return CalculateJointsResponse(plan.joint_trajectory.points[-1].positions, success)
         return CalculateJointsResponse(modified_coodinates, success)
 
     def shutdown(self,msg):
@@ -721,15 +558,11 @@ class MoveGroupPythonInterfaceTutorial(object):
                 self.move_group.set_path_constraints(None)
 
 
-            # my_scale = 1000
             calc_plan = self.move_group.plan()
-            #print("CALC_PLAN:",calc_plan)
             length = len(calc_plan[1].joint_trajectory.points)
-            #drehung = req.yaw_input//360.19
 
             if length:
                 valid_plan = True
-                #print(calc_plan[1].joint_trajectory.points)
 
                 for i in range(0,-2,-1):
                     joint_1 = round(math.degrees(calc_plan[1].joint_trajectory.points[i].positions[0]), 2)
@@ -738,13 +571,6 @@ class MoveGroupPythonInterfaceTutorial(object):
                     joint_4 = round(math.degrees(calc_plan[1].joint_trajectory.points[i].positions[3]),2)
                     joint_5 = round(math.degrees(calc_plan[1].joint_trajectory.points[i].positions[4]),2)
                     joint_6 = round(math.degrees(calc_plan[1].joint_trajectory.points[i].positions[5]),2)
-                    # if math.degrees(calc_plan[1].joint_trajectory.points[-2+i].positions[3])<0.19 and math.degrees(calc_plan[1].joint_trajectory.points[-2+i].positions[3])>=0:
-                    #     my_c = 0 + drehung*360
-                    # else:
-                    #     my_c = round(360-math.degrees(calc_plan[1].joint_trajectory.points[-2+i].positions[3]),2) + drehung*360
-
-                    # my_b = round(-math.degrees(calc_plan[1].joint_trajectory.points[-2+i].positions[4]),2)
-
 
                     array = [joint_1, joint_2, joint_3, joint_4,joint_5, joint_6]
 
@@ -755,18 +581,7 @@ class MoveGroupPythonInterfaceTutorial(object):
                             calculated_joints_list.append(k)
 
             if req.check!=1 and req.simulate:
-                self.move_group.set_max_velocity_scaling_factor(0.9)
-                stop_threads = False
-                p2 = Thread(target=self.display_path, args=(1, lambda: stop_threads))
-                p2.start()
-                print("about to start movoving object")
-                self.move_group.go(wait=True)
-                self.move_group.stop()
-                stop_threads = True
-                p2.join()
-                self.move_group.clear_pose_targets()
-                current_pose = self.move_group.get_current_pose().pose
-                #all_close(self.pose_goal.pose, current_pose, 0.01)
+                self.move()
 
             return CalculateJointsResponse([*current_joints_list, *calculated_joints_list], valid_plan)
 
@@ -775,22 +590,21 @@ class MoveGroupPythonInterfaceTutorial(object):
             return CalculateJointsResponse([0,0,0,0,0,0,0,0,0,0], False)
 
 
-
-
-
-    def execute_pose_goal(self,req):
-        if req.data:
-            plan = self.move_group.go(wait=True)
-
+    def move(self, sim_vel=90, normal_execution=True, plan=None):
+        self.move_group.set_max_velocity_scaling_factor(sim_vel/100)
+        stop_threads = False
+        p2 = Thread(target=self.display_path, args=(1, lambda: stop_threads))
+        p2.start()
+        print("about to start movoving object")
+        if normal_execution:
+            self.move_group.go(wait=True)
             self.move_group.stop()
-
             self.move_group.clear_pose_targets()
+        else:
+            self.move_group.execute(plan, wait=True)
+        stop_threads = True
+        p2.join()
 
-            current_pose = self.move_group.get_current_pose().pose
-            all_close(self.pose_goal.pose, current_pose, 0.01)
-
-            return True, "Execution Successfuly"
-        return False, "Execution Failed"
 
     def callback_getCurrentPose(self,req):
         if req.data:
@@ -803,7 +617,6 @@ class MoveGroupPythonInterfaceTutorial(object):
             roll = round(math.degrees(roll),2)
             pitch = round(math.degrees(pitch),2)
             yaw = round(math.degrees(yaw),2)
-
 
             return True, f"X{x}Y{y}Z{z}Roll{roll}Pitch{pitch}Yaw{yaw}"
         return False, "Execution Failed"
