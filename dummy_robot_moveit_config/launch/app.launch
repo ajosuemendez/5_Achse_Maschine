@@ -1,0 +1,4 @@
+<launch>
+    <include file="$(find dummy_robot_moveit_config)/launch/sim.launch" />
+    <include file="$(find dummy_robot_moveit_config)/launch/gui.launch" />
+</launch>

@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<launch>
+  <node name="execute_pose_goal_node" pkg="dummy_robot_moveit_config" type="execute_pose_goal.py" output="screen"/>
+  <node name="save_gcode_node" pkg="dummy_robot_moveit_config" type="save_gcode.py" output="screen"/>
+  <node name="gui_node" pkg="dummy_robot_moveit_config" type="dold_gui_9.py" output="screen"/>
+</launch>

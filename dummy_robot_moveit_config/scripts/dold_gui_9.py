@@ -21,10 +21,12 @@ import re
 import math
 import numpy
 import roslaunch
+import rosnode
 import actionlib
 from dummy_robot_moveit_config.msg import SerialCommunicationAction, SerialCommunicationGoal, ExecuteDesiredPoseAction, ExecuteDesiredPoseGoal
 from dummy_robot_moveit_config.msg import ExecuteCartesianDesiredPoseAction, ExecuteCartesianDesiredPoseGoal
 from collections import defaultdict
+
 GLOBAL_LINES = ["",""]
 GLOABAL_LINES_CARTESIAN = ["",""]
 GLOBAL_CALCULATED_JOINTS = ["","","","","",""]
@@ -35,7 +37,7 @@ GLOBAL_ENABLE_JOINT_CONSTRAINTS = [0,0,0,0,0,0]
 GLOBAL_VALUES_JOINT_CONSTRAINTS = [360,360,360,360,360,360,360,360,360,360,360,360]
 GLOBAL_VALUES_ORIENTATION_CONSTRAINTS = [0.4,0.4,0.4]
 GLOBAL_VALUE_POSITION_CONSTRAINT = [0.01]
-import rosnode
+
 
 
 class Finisher():
@@ -2118,6 +2120,7 @@ class Ui_MainWindow(object):
         else:
             return "Not Found"
 
+
     def generate_gcodeCallback(self):
 
         myatan = lambda x,y: numpy.pi*(1.0-0.5*(1+numpy.sign(x))*(1-numpy.sign(y**2))\
@@ -2167,6 +2170,7 @@ class Ui_MainWindow(object):
             for line in lines:
                 cw= True
                 found_functions = []
+
                 for i in modes:
                     mode_name = self.check_filter(line, i)
                     if mode_name != "Not Found":
@@ -2175,10 +2179,13 @@ class Ui_MainWindow(object):
                 if found_functions:
                     x = [line]
                     start = 0
+
                     while True:
                         index_e = x[0].find("e-", start)
+
                         if index_e <0:
                             break
+
                         index_next_comma =  x[0].find(",",index_e)
 
                         for i in range(index_e, 0,-1):
@@ -2255,7 +2262,7 @@ class Ui_MainWindow(object):
 
 
                 #if len(self.full_list[i])>=8: #either Rapid5d or Linear5D can come in
-                jumps = 3 # jumps must be an int greater than 0
+                jumps = 1 # jumps must be an int greater than 0
                 if i%jumps == 0: #jump 3 lines for each iteration
                     rospy.wait_for_service('/calc_pose')
                     service_conn = rospy.ServiceProxy('/calc_pose', CalculateJoints)
@@ -2275,7 +2282,7 @@ class Ui_MainWindow(object):
 
                         if len(self.full_list[i])>= 8: #onlinear5d or onRapid5D
                             request.pitch_input = abs_pos[4] - self.full_list[i][-1] #to fix the pitch dirction to match Fusion then (-1)
-                            print("my ptich:",request.pitch_input)
+                            #print("my ptich:",request.pitch_input)
                             request.yaw_input = abs_pos[5] + self.full_list[i][-2] + add_degrees
                         elif len(self.full_list[i])< 7:# onLinear or onRapid
                             request.pitch_input = self.set_world_frame[4] + self.set_offsets[4] +self.pos_offsets[4]
