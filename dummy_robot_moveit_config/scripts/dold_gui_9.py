@@ -793,6 +793,7 @@ class Ui_MainWindow(object):
         self.cartesianGcodeSaveButton = QtWidgets.QPushButton(self.groupBox_7)
         self.cartesianGcodeSaveButton.setGeometry(QtCore.QRect(680, 90, 91, 31))
         self.cartesianGcodeSaveButton.setObjectName("cartesianGcodeSaveButton")
+        self.cartesianGcodeSaveButton.clicked.connect(self.cartesianGcodeSaveButtonCallback)
         self.tabWidget.addTab(self.tab, "")
         self.Offsets = QtWidgets.QWidget()
         self.Offsets.setObjectName("Offsets")
@@ -3354,6 +3355,15 @@ class Ui_MainWindow(object):
             #self.file_to_save = False
         else:
             self.showMessageBox(text="Add a trajectory point first", icon="Critical")
+
+    def cartesianGcodeSaveButtonCallback(self):
+        try:
+            fileName, _ = QFileDialog.getSaveFileName(None,'Save File')
+            file = open(fileName, 'w')
+            file.write(self.cartesianGcodePlainTextEdit.toPlainText())
+            file.close()
+        except Exception as e:
+            print(e)
 
     def gcode_generation_services(self,service):
 
