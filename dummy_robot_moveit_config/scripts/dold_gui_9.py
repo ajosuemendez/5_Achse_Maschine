@@ -1142,6 +1142,7 @@ class Ui_MainWindow(object):
         self.moveBackRadioButton = QtWidgets.QRadioButton(self.groupBox_3)
         self.moveBackRadioButton.setGeometry(QtCore.QRect(100, 30, 101, 23))
         self.moveBackRadioButton.setObjectName("moveBackRadioButton")
+        self.moveBackRadioButton.setEnabled(False)
         self.groupBox_4 = QtWidgets.QGroupBox(self.Gcode)
         self.groupBox_4.setGeometry(QtCore.QRect(220, 10, 411, 61))
         self.groupBox_4.setObjectName("groupBox_4")
