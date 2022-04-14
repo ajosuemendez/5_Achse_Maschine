@@ -2548,10 +2548,12 @@ class Ui_MainWindow(object):
                     self.setButton.setEnabled(True)
                     self.sendButton.setEnabled(True)
                     self.sendGcodeButton.setEnabled(True)
+                else:
+                    self.showMessageBox(text="No Connection Found", icon="Critical")
 
             except Exception as e:
                 print(e)
-                self.showMessageBox(text="No Connection Found", icon="Critical")
+
 
 
 
