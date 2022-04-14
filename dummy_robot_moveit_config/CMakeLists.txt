@@ -45,5 +45,6 @@ catkin_install_python(PROGRAMS
     scripts/get_joints.py
     scripts/save_gcode.py
     scripts/pilz_commander_planning.py
+    scripts/dold_gui_10.py
     DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )
