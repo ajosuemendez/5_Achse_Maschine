@@ -1851,7 +1851,7 @@ class Ui_MainWindow(object):
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_2), _translate("MainWindow", "Constraint Settings"))
         self.connectButton.setText(_translate("MainWindow", "Connect"))
         self.unlockButton.setText(_translate("MainWindow", "Unlock ($X)"))
-        self.homeButton.setText(_translate("MainWindow", "Home (G01X0Y0Z0A0B0C0F1000)"))
+        self.homeButton.setText(_translate("MainWindow", "Home (G01X0Y0Z0A0B0C0F500)"))
         self.hButton.setText(_translate("MainWindow", "$H"))
         self.Jogging.setTitle(_translate("MainWindow", "Jogging"))
         self.backXButton.setText(_translate("MainWindow", "-X"))
@@ -2581,7 +2581,7 @@ class Ui_MainWindow(object):
 
     def homeCallBack(self):
         if self.SerialConnected:
-            self.communicationCommand(cmd="G01X0Y0Z0A0B0C0F1000")
+            self.communicationCommand(cmd="G01X0Y0Z0A0B0C0F500")
         else:
             self.showMessageBox(text="No Serial Communication", icon="Critical")
 
