@@ -23,7 +23,7 @@ from moveit_msgs.msg import Constraints, OrientationConstraint, JointConstraint,
 from shape_msgs.msg import SolidPrimitive
 from nav_msgs.msg import Path
 import time
-from pilz_robot_programming import *
+#from pilz_robot_programming import *
 
 # import multiprocessing
 from threading import Thread

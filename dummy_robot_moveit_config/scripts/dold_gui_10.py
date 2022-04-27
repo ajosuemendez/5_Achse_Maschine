@@ -536,6 +536,7 @@ class Ui_MainWindow(object):
         self.calculateButton = QtWidgets.QPushButton(self.layoutWidget)
         self.calculateButton.setAutoDefault(True)
         self.calculateButton.setObjectName("calculateButton")
+        self.calculateButton.clicked.connect(self.calculateCallback)
         self.verticalLayout_15.addWidget(self.calculateButton)
         self.horizontalLayout_24 = QtWidgets.QHBoxLayout()
         self.horizontalLayout_24.setContentsMargins(0, 0, -1, -1)

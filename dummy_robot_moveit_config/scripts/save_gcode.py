@@ -19,12 +19,12 @@ class SaveCode():
         #self.gcode_point_service = rospy.Service("/save_gcode_point", SetBool, self.callback_gcode_point)
         #self.save_gcode_point_service = rospy.Service("/save_all_gcode_points", SetBool, self.callback_save_gcode_point)
         rospy.on_shutdown(self.shutdown)
-        self.limit = 1
+        self.limit = 0.1
         self.messages= []
         self.gcode = ""
         self.gcode_point = []
         self.messages_str = []
-        self.feed_ratio = 1000
+        self.feed_ratio = 200
         self.start_record = False
 
     def shutdown(self):
@@ -111,7 +111,7 @@ class SaveCode():
             if not self.messages:
                 points = [a,b,c,d,e,h]
                 points_str = f"{a},{b},{c},{d},{e},{h}\n"
-                gcode_msg = f"G01 A{a} B{b} C{c} D{d} E{e} H{h} F{self.feed_ratio}\n"
+                gcode_msg = f"G01 X{a} Y{b} Z{c} A{d} B{e} C{h} F{self.feed_ratio}\n"
                 self.messages.append(points)
                 self.messages_str.append(points_str)
                 self.gcode += gcode_msg
@@ -120,7 +120,7 @@ class SaveCode():
                 if abs(self.messages[-1][0] - a) > self.limit or abs(self.messages[-1][1] -b) > self.limit or abs(self.messages[-1][2] - c) > self.limit or abs(self.messages[-1][3] -d) > self.limit or abs(self.messages[-1][4] -e) > self.limit or abs(self.messages[-1][5] -h) > self.limit:
                     points = [a,b,c,d,e,h]
                     points_str = f"{a},{b},{c},{d},{e},{h}\n"
-                    gcode_msg = f"G01 A{a} B{b} C{c} D{d} E{e} H{h} F{self.feed_ratio}\n"
+                    gcode_msg = f"G01 X{a} Y{b} Z{c} A{d} B{e} C{h} F{self.feed_ratio}\n"
 
                     self.messages.append(points)
                     self.messages_str.append(points_str)

@@ -14,18 +14,19 @@
 # You should have received a copy of the GNU Lesser General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-from geometry_msgs.msg import Point
-from pilz_robot_programming import *
-import math
-import rospy
+#from geometry_msgs.msg import Point
+#from pilz_robot_programming import *
+#import math
+#import rospy
 
-__REQUIRED_API_VERSION__ = "1"  # API version
-__ROBOT_VELOCITY__ = 0.5        # velocity of the robot
+#__REQUIRED_API_VERSION__ = "1"  # API version
+#__ROBOT_VELOCITY__ = 0.5        # velocity of the robot
+#
 
 
-def start_program():
-    print("Executing " + __file__)
-    print(r.get_current_pose())
+#def start_program():
+#    print("Executing " + __file__)
+#    print(r.get_current_pose())
     # Simple ptp movement
     # r.move(Ptp(goal=[0, 0.5, 0.5, 0, 0, 0], vel_scale=0.4))
     #
@@ -83,9 +84,9 @@ def start_program():
     #     rospy.loginfo("Ptp command did fail as expected.")
 
 
-if __name__ == "__main__":
+#if __name__ == "__main__":
     # Init a ros node
-    rospy.init_node('robot_program_node')
-    r = Robot(__REQUIRED_API_VERSION__)
+    #rospy.init_node('robot_program_node')
+    #r = Robot(__REQUIRED_API_VERSION__)
 
-    start_program()
+#    start_program()

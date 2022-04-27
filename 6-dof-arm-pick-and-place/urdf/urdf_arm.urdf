@@ -158,7 +158,7 @@
     </gazebo>
     <!-- JOINT 3 -->
     <joint name="joint3" type="revolute">
-        <origin rpy="0 0 0" xyz="0 0 0.33" />
+        <origin rpy="0 0 0" xyz="0 0 0.32" />
         <parent link="link2" />
         <child link="link3" />
         <axis xyz="0 1 0" />
@@ -199,7 +199,7 @@
     </gazebo>
     <!-- JOINT 4 -->
     <joint name="joint4" type="revolute">
-        <origin rpy="0 0 0" xyz="0 0 0.33" />
+        <origin rpy="0 0 0" xyz="0 0 0.32" />
         <parent link="link3" />
         <child link="link4" />
         <axis xyz="0 1 0" />
@@ -320,7 +320,7 @@
     </gazebo>
 
     <joint name="joint7" type="revolute">
-        <origin rpy="0 0 0" xyz="0 0 0.263" />
+        <origin rpy="0 0 0" xyz="0 0 0.264" />
         <parent link="link6" />
         <child link="link7" />
         <axis xyz="0 0 1" />
