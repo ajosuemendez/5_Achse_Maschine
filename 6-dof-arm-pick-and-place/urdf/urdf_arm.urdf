@@ -18,6 +18,7 @@
     </material>
     <link name="world" />
     <!-- BASE LINK -->
+    <!-- Kommentar   MD -->
     <link name="base_link">
         <visual>
             <origin rpy="0 0 0" xyz="0 0 0.01" />
