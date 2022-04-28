@@ -2338,8 +2338,12 @@ class Ui_MainWindow(object):
 
         self.gcodeGenerationPlainTextEdit.clear()
         self.default_gcode = gcode
-        self.gcodeGenerationPlainTextEdit.insertPlainText(self.default_gcode)
+        self.gcodeGenerationPlainTextEdit.insertPlainText(gcode)
         self.file_to_save = True
+
+    def write_Gcode(self, gcode_to_write):
+        self.extremesPlainTextEdit.clear()
+        self.extremesPlainTextEdit.insertPlainText(gcode_to_write)
 
 
     def save_fileCallback(self):
@@ -3303,7 +3307,11 @@ class Ui_MainWindow(object):
 
     def get_gcode_generation(self):
         self.generated_sim_gcode = self.gcode_generation_services("/get_gcode")
+        if self.generated_sim_gcode:
+            self.write_Gcode(gcode_to_write=self.generated_sim_gcode)
+            self.sendGcodeCallback()
         #print("Generated Sim Gcode:",self.generated_sim_gcode)
+
 
     def cartesian_reportProgress(self,rec):
         self.cartesian_gcode = rec
