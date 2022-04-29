@@ -14,7 +14,7 @@ import rospy
 import time
 from plyer import filechooser
 from std_msgs.msg import Bool
-from std_msgs.msg import String
+from std_msgs.msg import String, Float64MultiArray, MultiArrayDimension
 from std_srvs.srv import SetBool
 from dummy_robot_moveit_config.srv import CalculateJoints, SendCommand
 import re
@@ -1661,6 +1661,7 @@ class Ui_MainWindow(object):
         self.enable_joints = [0,0,0,0,0,0]
         self.orientation_constraints_values = [0.4,0.4,0.4]
         self.position_constraint_value = 0.01
+        self.float_arrray_publisher = rospy.Publisher('my_topic', Float64MultiArray, queue_size=10)
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
@@ -1907,9 +1908,9 @@ class Ui_MainWindow(object):
 
         if qmb.exec() == QMessageBox.Ok:
             if callback:
-                return callback()
+                return True
             else:
-                return None
+                return False
         else:
             return None
 
@@ -2253,7 +2254,19 @@ class Ui_MainWindow(object):
             count = 1
             add_degrees = 0
             cyclic_count = 1
-            print(self.full_list)
+            #print(self.full_list)
+
+            # #####here add cartesian waypoints to be developed#####
+            # my_msg = Float64MultiArray()
+            #
+            # d = numpy.array(self.full_list, dtype=float)
+            # resized_d = d.reshape([1, numpy.size(d)-1])
+            # resized_list = resized_d.tolist()
+            # print(resized_list)
+            # my_msg.data = [float(i) for i in resized_list]
+            #
+            # self.float_arrray_publisher.publish(my_msg)
+
 
             for i in range(len(self.full_list)):
                 ####Im not so sure if world frame offset should be place here  so future alejandro keep that in mind
@@ -2408,6 +2421,8 @@ class Ui_MainWindow(object):
 
     def sendGcodeCallback(self):
         if self.SerialConnected:
+            self.sendGcodeButton.setEnabled(False)
+            self.cartesianTrajectoryExecuteButton.setEnabled(False)
             self.outputPlainTextEdit.clear()
             GLOBAL_LINES[0] = self.extremesPlainTextEdit.toPlainText()
 
@@ -2417,6 +2432,7 @@ class Ui_MainWindow(object):
                 self.worker.moveToThread(self.thread)
 
                 self.thread.started.connect(self.worker.call_action)
+                self.worker.finished.connect(self.enable_send_buttons)
                 self.worker.finished.connect(self.thread.quit)
                 self.worker.finished.connect(self.worker.deleteLater)
                 self.thread.finished.connect(self.thread.deleteLater)
@@ -2429,6 +2445,10 @@ class Ui_MainWindow(object):
         else:
             self.showMessageBox(text="No Serial Communication", icon="Critical")
 
+
+    def enable_send_buttons():
+        self.sendGcodeButton.setEnabled(True)
+        self.cartesianTrajectoryExecuteButton.setEnabled(True)
 
     def reportProgress(self,rec):
         self.outputPlainTextEdit.clear()
@@ -2567,7 +2587,6 @@ class Ui_MainWindow(object):
             rospy.sleep(1.0)
             rospy.wait_for_service('/cmd_input')
             service_conn = rospy.ServiceProxy('/cmd_input', SendCommand)
-
             try:
                 request = SendCommand()
                 request.command = "$X"
@@ -3309,8 +3328,10 @@ class Ui_MainWindow(object):
         self.generated_sim_gcode = self.gcode_generation_services("/get_gcode")
         if self.generated_sim_gcode:
             self.write_Gcode(gcode_to_write=self.generated_sim_gcode)
-            self.sendGcodeCallback()
-            self.gcode_generation_services("/clear_gcode_buffer")
+            user_confirmation = self.showMessageBox(text="Do you want to move the robot?", icon="Question", buttons=True, buttonsText=["Yes", "Cancel"],callback=True)
+            if user_confirmation:
+                self.sendGcodeCallback()
+                self.gcode_generation_services("/clear_gcode_buffer")
 
 
     def cartesian_reportProgress(self,rec):
