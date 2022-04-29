@@ -2421,8 +2421,7 @@ class Ui_MainWindow(object):
 
     def sendGcodeCallback(self):
         if self.SerialConnected:
-            self.sendGcodeButton.setEnabled(False)
-            self.cartesianTrajectoryExecuteButton.setEnabled(False)
+
             self.outputPlainTextEdit.clear()
             GLOBAL_LINES[0] = self.extremesPlainTextEdit.toPlainText()
 
@@ -2432,7 +2431,7 @@ class Ui_MainWindow(object):
                 self.worker.moveToThread(self.thread)
 
                 self.thread.started.connect(self.worker.call_action)
-                self.thread.finished.connect(self.enable_send_buttons)
+                self.worker.finished.connect(self.enable_send_buttons)
                 self.worker.finished.connect(self.thread.quit)
                 self.worker.finished.connect(self.worker.deleteLater)
                 self.thread.finished.connect(self.thread.deleteLater)
@@ -2444,9 +2443,10 @@ class Ui_MainWindow(object):
                 self.showMessageBox(text="no Gcode Found", icon="Critical")
         else:
             self.showMessageBox(text="No Serial Communication", icon="Critical")
+            self.cartesianTrajectoryExecuteButton.setEnabled(True)
 
 
-    def enable_send_buttons():
+    def enable_send_buttons(self):
         self.sendGcodeButton.setEnabled(True)
         self.cartesianTrajectoryExecuteButton.setEnabled(True)
 
@@ -3287,7 +3287,11 @@ class Ui_MainWindow(object):
 
             if test:
                 GLOABAL_LINES_CARTESIAN[0] = self.desiredPoseTestPlainTextEdit.toPlainText()
+                self.coming_from_test = True
             else:
+                self.coming_from_test = False
+                self.sendGcodeButton.setEnabled(False)
+                self.cartesianTrajectoryExecuteButton.setEnabled(False)
                 GLOABAL_LINES_CARTESIAN[0] = self.cartesianTrajectoryPlainTextEdit.toPlainText()
                 self.generated_sim_gcode = ""
                 self.gcode_generation_services("/clear_gcode_buffer")
@@ -3326,12 +3330,16 @@ class Ui_MainWindow(object):
 
     def get_gcode_generation(self):
         self.generated_sim_gcode = self.gcode_generation_services("/get_gcode")
-        if self.generated_sim_gcode:
+        if self.generated_sim_gcode and not self.coming_from_test:
             self.write_Gcode(gcode_to_write=self.generated_sim_gcode)
             user_confirmation = self.showMessageBox(text="Do you want to move the robot?", icon="Question", buttons=True, buttonsText=["Yes", "Cancel"],callback=True)
             if user_confirmation:
                 self.sendGcodeCallback()
                 self.gcode_generation_services("/clear_gcode_buffer")
+            else:
+                self.cartesianTrajectoryExecuteButton.setEnabled(True)
+                if self.SerialConnected:
+                    self.sendGcodeButton.setEnabled(True)
 
 
     def cartesian_reportProgress(self,rec):
