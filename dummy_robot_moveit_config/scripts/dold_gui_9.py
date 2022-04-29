@@ -2432,7 +2432,7 @@ class Ui_MainWindow(object):
                 self.worker.moveToThread(self.thread)
 
                 self.thread.started.connect(self.worker.call_action)
-                self.worker.finished.connect(self.enable_send_buttons)
+                self.thread.finished.connect(self.enable_send_buttons)
                 self.worker.finished.connect(self.thread.quit)
                 self.worker.finished.connect(self.worker.deleteLater)
                 self.thread.finished.connect(self.thread.deleteLater)
