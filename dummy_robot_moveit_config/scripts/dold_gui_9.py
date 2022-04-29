@@ -3307,11 +3307,10 @@ class Ui_MainWindow(object):
 
     def get_gcode_generation(self):
         self.generated_sim_gcode = self.gcode_generation_services("/get_gcode")
-        ####to be developed#####
-        # if self.generated_sim_gcode:
-        #     self.write_Gcode(gcode_to_write=self.generated_sim_gcode)
-        #     self.sendGcodeCallback()
-        #     self.generated_sim_gcode = ""
+        if self.generated_sim_gcode:
+            self.write_Gcode(gcode_to_write=self.generated_sim_gcode)
+            self.sendGcodeCallback()
+            self.gcode_generation_services("/clear_gcode_buffer")
 
 
     def cartesian_reportProgress(self,rec):
